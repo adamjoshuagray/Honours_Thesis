@@ -1,6 +1,7 @@
 \documentclass{unswmaths}
 \usepackage[a4paper]{geometry}
 \usepackage{fancyhdr}
+\usepackage{mathtools}
 \pagestyle{fancy}
 \begin{document}
 
@@ -94,21 +95,41 @@ can find that suggests such observations were ever made.
 
 Euler's definition did gain traction, however, and it was published in S. F. Lacroix's  book
 \emph{Trait\'{e} du Calcul Diff\'{e}rentiel et du Calcul Int\'{e}gral.}
-\subsubsection{Fourier}
-It appears that Joseph Fourier was the first to suggest any kind of \emph{general}
-fractional differential operator for a broader class of functions. He did this by noting
-that for \emph{sufficiently nice} functions,
-\begin{align*}
-    f(x) = \frac{1}{2\pi} \int_{-\infty}^\infty f(z) \int_{-\infty}^{\infty} \cos(ux - uz)dudz
-\end{align*}
-so for an arbitrary $ r $ we could have that
-\begin{align*}
-    \frac{d^r}{dx^r}f(x) = \frac{1}{2\pi} \int_{-\infty}^\infty f(z)\int_{-\infty}^\infty \cos(ux - uz + r\frac{\pi}{2})dudz
-\end{align*}
-\subsubsection{Laplace}
-\subsubsection{Abel \& Liouville}
-\subsubsection{Riemann}
+\subsubsection{Riemann \& Liouville}
+The differintegrals first worked on by Liouville and extended and corrected by Riemann serve as the basis for much of modern
+fractional calculus. To motivate this formulation we first consider the Cauchy formula for repeated integration. 
+It can be shown with a simple induction argument that the $ n$th repeated integral of $ f $ based at $ a $ is given by
+$$
+    f^{(-n)}(x) = \frac{1}{(n-1)!} \int_a^x (x-t)^{n-1} f(t) dt
+$$
+It seems reasonable enough to simply replace the factorial functions with gamma functions and write
+$$
+    f^{(-r)}(x) = \frac{1}{\Gamma(r)} \int_a^x (x-t)^{r-1} f(t) dt
+$$
+and this is exactly what Riemann and Liouville did. However this simply defines a fractional integral. There is an obvious
+extension of this formula which would provide a fractional derivitive. For a concrete example say one wanted to evaluate
+the $ \frac{1}{2}$th derivitive of a function $ f $. Then integrating using the above formula with just $ r = \frac{1}{2} $ and
+differentiating (normally) once would yield the $\frac{1}{2}$th derivitive. With this idea in mind we define
+$$
+    \prescript{}{a}{I}_t^r f(t) = \frac{1}{\Gamma(r)} \int_a^t (t-s)^{r-1}f(s) ds
+$$
+as the fractional integral and
+$$
+    \prescript{}{a}{D}_t^r f(t) = \frac{d^n}{dt^n} \prescript{}{a}{I}_t^{n-r} f(t)
+$$
+where $ n = \lceil r \rceil $ as the fractional derivitive.
 \subsubsection{Grunwald \& Letnikov}
-\subsubsection{Mittag-Laffler}
+The Grunwald-Letnikov derivitive was introduced by Anton Karl Grunwald in 1867 and by Aleksey Vasilivich Letnikov in 1868.
+It generalizes the idea behind  first principles differentiation. For integer order n we have that
+$$
+    f^{(n)}(x) = \lim_{x\longrightarrow0} \frac{\sum_{0\leq m \leq n} (-1)^m \binom{n}{m} f(x + (n-m)h)}{h^n}.
+$$
+It makes sense to generalize this by swapping out factorial functions for gamma functions and writing
+$$
+    f^{(r)}(x) = \lim_{x\longrightarrow0} \frac{\sum_{0\leq m \leq \infty} (-1)^m \binom{r}{m} f(x + (r-m)h)}{h^r}.
+$$
+where the binomial coefficients are evaluated with gamma functions.
+
+It does not appear that this derivitive is used much for any practical purposes and we will not discuss this derivitive any further.
 \subsubsection{Caputo}
 \end{document}
