@@ -1,0 +1,42 @@
+\documentclass{unswmaths}
+\usepackage[a4paper]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\begin{document}
+
+\setlength\parindent{0pt}
+\setlength{\parskip}{5mm plus4mm minus3mm}
+
+\unswtitle{Adam J. Gray}{3329798}{Thesis Introduction}{Fractional Differential Equations}
+\fancyfoot[l]{Adam J. Gray}
+\fancyfoot[r]{\today}
+\fancyhead[l]{The University of New South Wales}
+\fancyhead[r]{Fractional Differential Equations}
+
+\section{Introduction}
+\subsection{Historical Overview and Motivation}
+\subsubsection{L'Hopital \& Liebniz}
+Fractional calculus is almost as old as calculus itself. The 30th September 1695 is often cited as the the birthday of the field,
+as it is the date on which Leibniz, in reply to L'Hopital's question about the operator $ \frac{d^\frac{1}{2}}{dx^\frac{1}{2}} $, 
+wrote, ``It will lead to a paradox, from which one day useful consequences will be drawn.'' 
+\subsubsection{Euler}
+A crcuial function to almost all formulations of fractional calculus, is the gamma function, which extends the factorial function
+to non-integer arguments. Although the problem of extending the factorial function had been considered by
+Daniel Bernoulli and Christian Goldbach in the 1720's, it was eventually Euler who in a two letters, dated 13th October 1729 
+and 8th January 1730 respectivly, gave two different representations of the factorial which could easily be extended
+to non-integer values.
+They were
+\begin{align*}
+	n! &= \prod_{k=1}^\infty \frac{\left( 1 + \frac{1}{k} \right)^n}{1 + \frac{n}{k}} \\
+	\text{ and } \\
+	n! &= \int_0^1 (-\ln s)^n ds 
+\end{align*}
+Euler made swift use of the gamma function
+\subsubsection{Laplace}
+\subsubsection{Fourier}
+\subsubsection{Abel \& Liouville}
+\subsubsection{Riemann}
+\subsubsection{Grunwald \& Latnikov}
+\subsubsection{Mittag-Laffler}
+\subsubsection{Caputo}
+\end{document}
