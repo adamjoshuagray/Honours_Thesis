@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}
+\usepackage[a4paper]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\begin{document}
+
+\setlength\parindent{0pt}
+\setlength{\parskip}{5mm plus4mm minus3mm}
+\fancyfoot[l]{Adam J. Gray}
+\fancyfoot[r]{\today}
+\fancyhead[l]{BlackHat Maths}
+\fancyhead[r]{Abel's Integral Equation}
+
+\section*{Abel's Integral Equation}
+
+We wish to consider a simple integral equation of the form
+\begin{align}
+	\label{eqn:abel}
+	\frac{1}{\Gamma(\alpha)}\int_a^x \frac{\phi(t)dt}{(x-t)^\alpha} = f(x) 	& & x \geq 0, 0 \leq \alpha \leq 1
+\end{align}
+We call this integral equation an Abel integral equation. It is worth noting that there are many forms of Abel's integral
+equation and we are just considering one form here.
+
+We wish to layout a simple method for solving Abel's integral equation.
+
+\subsection*{Solution Method}
+Firstly let's consider the integral 
+\begin{equation}
+	\label{eqn:abelint}
+	I(x) := \int_a^x \frac{f(s)ds}{(x-s)^{1-\alpha}}.
+\end{equation}
+Now by substituting \eqref{eqn:abel} into \eqref{eqn:abelint} we get 
+\begin{align*}
+	I(x) &= \frac{1}{\Gamma(\alpha)} \int_a^x \frac{1}{(x-s)^{1-\alpha}} \left( \int_a^s \frac{\phi(t)dt}{(s-t)^\alpha} \right) ds \\
+		&= \frac{1}{\Gamma(\alpha)} \int_a^x \left( \int_a^s \frac{\phi(t)dt}{(x-s)^{1-\alpha}(s-t)^\alpha} \right) ds
+\end{align*}
+Now noting that the region of integration in $ \mathbb{R}^2 $ is just
+\begin{align*}
+	a &\leq s \leq x \\
+	a &\leq t \leq s 
+\end{align*}
+which is equivalent to 
+\begin{align*}
+	t &\leq s \leq x \\
+	a &\leq t \leq x 
+\end{align*}
+we can write 
+\begin{align}
+	\frac{1}{\Gamma(\alpha)} \int_a^x \left( \int_a^s \frac{\phi(t)dt}{(x-s)^{1-\alpha}(s-t)^\alpha} \right) ds 
+		&= \frac{1}{\Gamma(\alpha)} \int_a^x \left( \int_t^x \frac{\phi(t)ds}{(x-s)^{1-\alpha}(s-t)^\alpha} \right) dt \nonumber \\
+		\label{eqn:prebeta}
+		&= \frac{1}{\Gamma(\alpha)} \int_a^x \phi(t) \left( \int_t^x (x-s)^{\alpha-1}(s-t)^{-\alpha} ds\right) dt. 
+\end{align}
+Now performing the substitution $ \tau = \frac{s-t}{x-t} $ yields 
+\begin{align*}
+	\int_t^x (x-s)^{\alpha-1}(s-t)^{-\alpha} ds &= \int_0^1 \tau^{-\alpha} (1-\tau)^{\alpha - 1} d\tau \\
+		&= B(1-\alpha,\alpha) \\
+		&= \Gamma(1-\alpha)\Gamma(\alpha)
+\end{align*}
+and so \eqref{eqn:prebeta} becomes
+\begin{align*}
+	\frac{1}{\Gamma(\alpha)} \int_a^x \phi(t) \left( \int_t^x (x-s)^{\alpha-1}(s-t)^{-\alpha} ds\right) dt
+		&= \frac{1}{\Gamma(\alpha)} \int_a^x \phi(t) \Gamma(\alpha)\Gamma(1-\alpha) dt \\
+		&= \Gamma(1-\alpha)\int_a^x \phi(t) dt. 
+\end{align*}
+So we have that 
+\begin{align*}
+	\int_a^x \frac{f(s)ds}{(x-s)^{1-\alpha}} &= \Gamma(1-\alpha)\int_a^x \phi(t) dt
+\end{align*}
+and by differentiating we get
+\begin{align*}
+	\phi(x) &= \frac{1}{\Gamma(1-\alpha)} \frac{d}{dx} \int_a^x \frac{f(s)ds}{(x-s)^{1-\alpha}}
+\end{align*}
+\qed
+\end{document}
