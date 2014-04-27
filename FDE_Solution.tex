@@ -157,7 +157,7 @@ series which is used in its definition.
 \begin{proof}
 	See that
 	\begin{align*}
-		\laplace{ E_\alpha (\betat^\alpha)} = \int_0^\infty e^{-st} \sum_{k=0}^\infty \frac{(\beta t^\alpha)^k}{\Gamma(\alpha k+1)} dt
+		\laplace{ E_\alpha (\beta t^\alpha)} = \int_0^\infty e^{-st} \sum_{k=0}^\infty \frac{(\beta t^\alpha)^k}{\Gamma(\alpha k+1)} dt
 	\end{align*}
 	and because the series converges absolutely for all $ t \in \mathbb{R} $ we may interchange the integral
 	and the derivitive to get
@@ -168,9 +168,9 @@ series which is used in its definition.
 	By performing the change of variables $ x =st $ we get that 
 	\begin{align*}
 		\sum_0^\infty \frac{\beta^k}{\Gamma(\alpha k + 1)} \int_0^\infty e^{-st} t^{\alpha k} dt 
-			&= \sum_0^\infty \frac{\beta^k s^{-(k+1)}{\Gamma(\alpha k + 1)} \underbrace{\int_0^\infty e^{-x} x^{\alpha k} dx}_{\Gamma(\alphak + 1)} \\
+			&= \sum_0^\infty \frac{\beta^k s^{-(k+1)}}{\Gamma(\alpha k + 1)} \underbrace{\int_0^\infty e^{-x} x^{\alpha k} dx}_{\Gamma(\alpha k + 1)} \\
 			&= \sum_{k=0}^\infty \beta^{k} s^{-(\alpha k + 1)} \\
-			&= \frac{s^{\alpha-1}}{s^\alpha - \beta}.
+			&= \frac{s^{\alpha-1}}{s^\alpha - \beta}.		
 	\end{align*}
 	So we have that 
 	\begin{align*}	
