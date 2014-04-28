@@ -298,7 +298,7 @@ is equivelent to the non-linear Voltera equation of the second kind,
 			&= \int_0^t \int_0^{t_1} \int_0^{t_2} \cdots \int_0^{n-3} \left(y^{(n-2)}(t_{n-2}) - y^{(n)}(0) - ty^{(n)}(0) \right)dt_{n-1}dt_{n-2}\cdots dt_{1} \\
 			&= y(t) - \sum_{k=0}^{n-1} \frac{t^k f^{(k)}(0)}{k!}.
 	\end{align*}
-	Applying the initial conditions in \eqref{eq:fde-2-ic} we get that 
+	Applying the initial conditions in \ref{eq:fde-2-iv} we get that 
 	\begin{align*}
 		\rli{0}{\alpha}{\rld{0}{\alpha}{y}}(t) = y(t) - \sum_{k=0}^{n-1} \frac{t^k}{k!} \gamma_k
 	\end{align*}

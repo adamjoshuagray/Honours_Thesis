@@ -1,13 +1,19 @@
 \begin{thebibliography}{1}
 
-\bibitem{Samko1993}
-S.G. Samko, A.A. Kilbas, and O.I. Marichev.
-\newblock {\em Fractional {I}ntegrals and {D}erivatives}.
-\newblock Gordon and Breach Science Publishers, 1993.
+\bibitem{Diethelm2002}
+K.~Diethelm and N.J. Ford.
+\newblock Analysis of fractional differential equations.
+\newblock {\em Journal of Mathematical Analysis and Applications},
+  265:229--248, 2002.
 
-\bibitem{Podlubny}
-I. Podlubny.
+\bibitem{Podlubny1999}
+I.~Podlubny.
 \newblock {\em Fractional Differential Equations}.
 \newblock Academic Press, 1999.
+
+\bibitem{Samko1993}
+S.G. Samko, A.A. Kilbas, and O.I. Marichev.
+\newblock {\em Fractional Integrals and Derivatives}.
+\newblock Breach Science Publishers, 1993.
 
 \end{thebibliography}
