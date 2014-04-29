@@ -19,6 +19,7 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
 \newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
 \newcommand{\laplace}[1]{ \mathcal{L} \left\{ #1 \right\} }
 \newcommand{\rld}[3]{ \left( \mathcal{D}_{#1}^{#2} #3 \right) }
 \newcommand{\rli}[3]{ \left( I_{#1}^{#2} #3 \right) }
@@ -190,7 +191,7 @@ series which is used in its definition.
 We now have sufficient tools to attack the original problem, that is finding a solution to \eqref{eq:fde-1}, \eqref{eq:fde-1-ic}.
 
 \begin{lemma}
-	The FDE defined in \eqref{eq:fde-1} and \eqref{eq:fde-1-ic}, restated here for completness 
+	The FDE defined in \eqref{eq:fde-1} and \eqref{eq:fde-1-ic}, restated here for completeness 
 	\begin{align*}
 		\left( \prescript{C}{}{\mathcal{D}_0^\alpha}y \right)(t) = \beta y(t) 
 	\end{align*}
@@ -227,10 +228,130 @@ We now have sufficient tools to attack the original problem, that is finding a s
 \end{proof}
 
 An obvious question to ask now, is whether the solution to \eqref{eq:fde-1}, \eqref{eq:fde-1-ic} is unique. To answer this in 
-affermative we will prove a result about the existance and uniqueness of solutions to non-linear Voltera integral equations of the second kind
-then show that a more general FDE is equivelent to such a Voltera integral equation and hence arrive at the desired result. 
+affirmative we will prove a result about the existence and uniqueness of solutions to non-linear Volterra integral equations of the second kind
+then show that a more general FDE is equivalent to such a Volterra integral equation and hence arrive at the desired result. 
 This technique follows that in \cite{Diethelm2002}. This 
 is more general than what is required here, but it lays the groundwork for future results.
+
+In order to use the Banach fixed point method we will need to preliminary definitions and theorems. 
+
+\begin{definition}[Contraction Mapping]
+Let $ (X,d) $ be a metric space then $ A : X \longrightarrow X $ is a contraction mapping if there exists
+an $ 0 < \alpha < 1 $ such that
+$$
+	d(Ax,Ay) \leq d(x,y) 
+$$
+for all $ x, y \in X $. Call this $ \alpha $ the coefficient of contraction. 
+\end{definition}
+
+Note that it is immediately clear that a contraction mapping must be continuous.
+
+\begin{theorem}[Banach Fixed Point Theorem]
+	Let $ (X,d) $ be a complete metric space and let $ A $ be a contraction mapping on $ (X, d) $ with 
+	coefficient of contraction $ \alpha $ then 
+	there exists a unique $ x $ such that $ Ax = x $. We call this $ x $ the fixed point of $ A $. 
+\end{theorem}
+This proof follows that in \cite{Kolmogorov1975}, but the general method is essentially the same as Banach's
+original proof of this theorem.
+\begin{proof}
+	Given an $ x_0 \in X $ let
+	\begin{align*}
+		x_1 = Ax_0 & x_2 = Ax_1 = A^2x_0 & \cdots & x_n = A^n x_0.
+	\end{align*}
+	We now show that this $ \left\{ x_n \right\}_n=0^\infty $ is a Cauchy sequence.
+	Without loss of generality  let $m > n $ and note that
+	\begin{align*}
+		d(x_n, x_m) &= d(A^nx_0, A^mx_0) \\
+			&\leq \alpha^n d(x_0, x_{m-n}) \\
+			&\leq \alpha^n \left[ d(x_0, x_1) + d(x_1, x_2) + \ldots + d(x_{m-n-1}, x_{m-n}) \right] \\
+			&\leq \alpha^n d(x_0, x_1) \left[ 1 + \alpha + \alpha^2 + \ldots + \alpha^{m-n-1} \right] \\
+			&\leq \underbrace{d(x_0, x_1) \alpha^n \left( \frac{1}{1-\alpha} \right)}_{\circledast}.
+	\end{align*}
+	See that $ \circledast $ can be made arbitrarily small by making $ n $ large enough. So $ \left\{ x_n \right\}_{n=0}^\infty $
+	is a Cauchy sequence and because $ (X, d) $ is complete $ \left\{ x_n \right\}_{n=0}^\infty  $ has a limit $ x \in X $.
+	Now by the continuity of $ A $ we have that 
+	\begin{align*}
+		Ax &= A \lim_{n\longrightarrow \infty} x_n \\
+			&= \lim_{n \longrightarrow \infty} Ax_n \\
+			&= \lim_{n \longrightarrow \infty} x_{n+1} \\
+			&= x
+	\end{align*}
+	So $ Ax = x $ which shows the existence of a fixed point. To see that $ x $ is unique assume that there
+	are two fixed points $ x $ and $ y $. Then $ Ax = x $ and $ Ay = y $
+	and $ d(x,y) \leq \alpha d(x,y) $, but since $ 0 < \alpha < 1 $ we have that $ d(x,y) = 0 $ which implies
+	$ x = y $ and hence the fixed point $ x $ is unique.
+\end{proof}
+
+\begin{corollary}
+	\label{cor:banach-fixed-point}
+	Let $ (X, d) $ be a complete metric space and let $ A:X \longrightarrow X $ be a continuous mapping. Suppose 
+	that for some $ n $, $ A^n $ is a contraction mapping, then $ A $ has a unique fixed point, $ x $.
+\end{corollary}
+\begin{proof}
+	For an arbitrary $ x \in X $ let
+	\begin{align*}
+		x = \lim_{k \longrightarrow \infty} A^{kn} x_0
+	\end{align*}
+	and then by the continuity of $ A $
+	\begin{align*}
+		Ax = \lim_{k \longrightarrow \infty} AA^{kn} x_0
+	\end{align*}
+	and since $ A^n $ is a contraction then 
+	\begin{align*}
+		d(A^{kn}Ax_0, A^{kn}x_0) &\leq \alpha d(A^{(k-1)n}Ax_0, A^{(k-1)n}x_0 ) \\
+			&\leq \alpha^k d(Ax_0, x_0).
+	\end{align*}
+	It follows that 
+	\begin{align*}
+		d(Ax, x) &= \lim_{k \longrightarrow \infty} d(AA^{kn}x_0,A^{kn}x_0) \\
+			&= 0
+	\end{align*}
+	and so $ Ax = x $ which means $ x $ is a fixed point of $ A $.
+	It is clear to see that $ x $ must be unique beucase if $ y $ is another fixed point of $ A $
+	then $ y $ must be a fixed point of $ A^n $, but $ A^n $ is a contraction mapping so this would
+	be a contradiction.
+\end{proof}
+
+\begin{lemma}
+	Let $ K : [a,b] \times [a,b] \longrightarrow \mathbb{R} $ and $ \phi : [a,b] \times [a,b] \longrightarrow \mathbb{R} $ 
+	be continuous functions and suppose there exists an $ M $ such that
+	\begin{align*}
+		|K(x,y)| \leq M & & \forall (a,y) \in [a,b] \times [a,b] 
+	\end{align*}
+	then the Volterra equation 
+	\begin{align}
+		\label{eq:volt-1}
+		f(x) = \lambda \int_a^x K(x,y) f(y)dy + \phi(x) 
+	\end{align}
+	has a unique solution on for $ f $ on $ [a, b] $.
+\end{lemma}
+\begin{proof}
+	Define the operator $ A : C[a,b] \longrightarrow C[a,b] $ 
+	by
+	\begin{align*}
+		(Af)(x) = \lambda \int_a^x K(x,y)f(y)dy + \phi(x). 
+	\end{align*}
+	Let $ f, g \in C[a,b] $ and see that
+	\begin{align*}
+		|(Af)(x) - (Ag)(x)| &= \vert \lambda \int_a^x K(x,y)[f(y) - g(y)]dy \vert \\
+			&\leq | \lambda | \int_a^x|K(x,y)[ f(y)-g(y)]|dy \\
+			&\leq | \lambda | M(x-y) \max_{x\in [a,b]} \left\{ |f(y) - g(y) |\right\} \\
+	\end{align*}
+	In a similar maner it follows that
+	\begin{align*}
+		|(A^nf)(x) - (A^ng)(x)| \leq \underbrace{|\lambda^n|M^n \frac{(b-a)^n}{n!}\max_{x\in[a,b]}\left\{ | f(x) - g(x) | \right\}}_{\circledast}
+	\end{align*}
+	so 
+	\begin{align*}
+		\rho(A^nf, A^ng) \leq |\lambda^n|M^n \frac{(b-a)^n}{n!}\rho(f,g)
+	\end{align*}
+	where $ \rho $ is the usual metric on $ C[a,b] $.
+	It can be seen that for any $ \lambda $ it is possible to choose an $ n $ which will make $\circledast $ arbitrarily small.
+	So by corollary \ref{cor:banach-fixed-point} we have that there must exist a unique fixed point $ h $ such that
+	$ (Ah)(x) = h(x) $, which means that there exists a unique solution to \eqref{eq:volt-1} on $ [a, b] $.
+\end{proof}
+
+To fully prove the existence and uniqueness of solutions to 
 
 \begin{lemma}
 \label{lem:fde_volt_equiv}
@@ -241,10 +362,11 @@ If the function $ f $ is continuous, then the initial value problem
 \end{align}
 along with 
 \begin{align}
+	\label{eq:fde-2-ic}
 	y^{(k)}(0) &= \gamma_k & k=0,1,\ldots, n-1 
 \end{align}
 where $ n = \lceil \alpha \rceil $
-is equivelent to the non-linear Voltera equation of the second kind,
+is equivalent to the non-linear Volterra equation of the second kind,
 \begin{align*}
 	y(t) = \sum_{k=0}^{n-1} \frac{t^k}{k!} \gamma_k + \frac{1}{\Gamma(\alpha)} \int_0^t (t-u)^{\alpha-1} f(u,y(u))du.
 \end{align*}
@@ -268,7 +390,7 @@ is equivelent to the non-linear Voltera equation of the second kind,
 			0 \leq x \leq t
 		\end{cases}
 	\end{align*}
-	which is equivelent to 
+	which is equivalent to 
 		\begin{align*}
 		R' :=
 		\begin{cases}
@@ -302,7 +424,7 @@ is equivelent to the non-linear Voltera equation of the second kind,
 	\begin{align*}
 		\rli{0}{\alpha}{\rld{0}{\alpha}{y}}(t) = y(t) - \sum_{k=0}^{n-1} \frac{t^k}{k!} \gamma_k
 	\end{align*}
-	and by subsituting back into \eqref{eq:fde-volt-equiv-1} and rearranging we have
+	and by substituting back into \eqref{eq:fde-volt-equiv-1} and rearranging we have
 	\begin{align*}
 		y(t) = \sum_{k=0}^{n-1} \frac{t^k}{k!} \gamma_k + \frac{1}{\Gamma(\alpha)} \int_0^t (t-u)^{\alpha-1} f(u,y(u))du.
 	\end{align*}
