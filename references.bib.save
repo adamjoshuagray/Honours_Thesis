@@ -1,0 +1,24 @@
+@book{Samko1993,
+	author		= "Samko, S.G. and Kilbas, and O.I. Marichev",
+	title 		= "Fractional Integrals and Derivatives",
+	publisher 	= "Breach Science Publishers",
+	year		= "1993"
+}
+
+@book{Podlubny1999,
+	author 		= "I. Podlubny",
+	title		= "Fractional Differential Equations",
+	publisher	= "Academic Press",
+	year		= "1999"
+}
+
+@article{Diethelm2002,
+	author		= "K. Diethelm, N.J. Ford",
+	title		= "Analysis of Fractional Differential Equations",
+	year		= "2002",
+	journal		= "Journal of Mathematical Analysis and Applications",
+	volume		= "265",
+	pages		= "229--248"
+}
+
+
