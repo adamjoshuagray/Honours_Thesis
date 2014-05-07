@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Arch Linux) (format=pdflatex 2014.4.26)  8 MAY 2014 01:42
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Arch Linux) (format=pdflatex 2014.4.26)  8 MAY 2014 01:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**FDE_Existance_Uniq.tex
+**FDE_Existance_Uniq.tex unswmaths.cls
 (./FDE_Existance_Uniq.tex
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 78 languages loaded.
@@ -601,7 +601,7 @@ Here is how much of TeX's memory you used:
  16605 multiletter control sequences out of 15000+600000
  6691 words of font info for 26 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 62i,16n,56p,416b,266s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,16n,56p,430b,266s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.
@@ -615,7 +615,7 @@ fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/pu
 blic/amsfonts/symbols/msam10.pfb></usr/share/texmf-dist/fonts/type1/public/amsf
 onts/symbols/msam7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbo
 ls/msbm10.pfb>
-Output written on FDE_Existance_Uniq.pdf (5 pages, 150902 bytes).
+Output written on FDE_Existance_Uniq.pdf (5 pages, 150550 bytes).
 PDF statistics:
  79 PDF objects out of 1000 (max. 8388607)
  57 compressed objects within 1 object stream

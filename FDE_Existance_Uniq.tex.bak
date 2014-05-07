@@ -20,10 +20,10 @@
 
 
 We wish to consider the existence an uniqueness of solutions to a fractional differential equation. 
-This generalizes a result of Tisdell [What do I reference? ]
+This generalises a result of Tisdell [What do I reference? ]
 
 
-\begin{theorem}[Existence and Uniqueness]
+\begin{theorem}[Existance and Uniqueness]
 \label{thm-existence-uniq}
 	Define
 		$$ S:= \{ (t,p) \in \Rl^2 : t \in [0, a], p \in \Rl \} $$
@@ -47,7 +47,7 @@ This generalizes a result of Tisdell [What do I reference? ]
 To do this we will need several lemmas. 
 
 \begin{lemma}
-	The IVP defined \eqref{eq-fde-ivp-1}, \eqref{eq-fde-ivp-ic-1} is equivalent to the integral equation
+	The IVP defined \eqref{eq-fde-ivp-1}, \eqref{eq-fde-ivp-ic-1} is equivelent to the integral equation
 	\begin{align*}
 		x(t) &= \sum_{k=1}^{n_1}\frac{A_kt^k}{k!} + \frac{1}{\beta_1} \Bigl( \frac{1}{\Gamma(\alpha_1)}\int_{0}^{t} (t-s)^{\alpha_1 - 1}f(s,x(s))ds \\
 			& \ \ \ - \sum_{j=2}^{N}\beta_j \frac{1}{\Gamma(\alpha_1 - \alpha_j)}
@@ -166,7 +166,7 @@ To do this we will need several lemmas.
 			\frac{L}{\gamma}\left( 1- \frac{1}{E_{\alpha_1}(\gamma t^{\alpha_1})} \right) \\
 			& \ \ \ + \sum_{j=2}^N |\beta_j| \frac{t^{\alpha_1 - \alpha_j}}{\Gamma( \alpha_1 - \alpha_j)} \Bigr) \\
 	\end{align*}
-	and finally we get that 
+	and finnaly we get that 
 	\begin{align*}
 		d_\gamma^{\alpha_1}(Fx,Fy) &\leq d_\gamma^{\alpha_1}(x,y) \frac{1}{|\beta_1|}\left( \frac{L}{\gamma} + \sum_{j=2}^N |\beta_j| \frac{a^{\alpha_1 - \alpha_j}}{\Gamma(\alpha_1 - \alpha_j)} \right).
 	\end{align*}
@@ -174,6 +174,6 @@ To do this we will need several lemmas.
 	$$
 		\frac{1}{|\beta_1|}\left( \frac{L}{\gamma} + \sum_{j=2}^N |\beta_j| \frac{a^{\alpha_1 - \alpha_j}}{\Gamma(\alpha_1 - \alpha_j)} \right) < 1
 	$$
-	and so $ F $ is a contractive mapping and thus the IVP defined in \eqref{eq-fde-ivp-1}, \eqref{eq-fde-ivp-ic-1} has a unique solution on $ [0, a] $.
+	and so $ F $ is a contractive mapping and thus the IVP defined in \eqref{eq-fde-ivp-1}, \eqref{eq-fde-ivp-ic-1} has a unique soluition on $ [0, a] $.
 \end{proof}
 \end{document}
