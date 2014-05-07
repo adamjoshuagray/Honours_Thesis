@@ -16,9 +16,7 @@ spell:
 	ispell $(NAME).tex
 
 class_update:
-	cd ..; \
 	git submodule foreach git pull origin master; \
-	cd -; \
-	cp -r ../UNSW_Latex/artwork artwork; \
-	cp -r ../UNSW_Latex/unswmaths.cls unswmaths.cls	
-	cp -r ../UNSW_Latex/unswshortcuts.sty unswshortcuts.sty
+	cp -r UNSW_Latex/artwork artwork; \
+	cp UNSW_Latex/unswmaths.cls unswmaths.cls	
+	cp UNSW_Latex/unswshortcuts.sty unswshortcuts.sty
