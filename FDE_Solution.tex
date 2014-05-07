@@ -91,7 +91,7 @@ We now consider the Laplace transform of the fractional integration and differen
 
 \begin{lemma}
 	\begin{align*}
-		\mathcal{L} \left\{\mathcal{D}_0^\alpha f\right\} = s^\alpha \mathcal{L} \left\{ f \right\} - \sum_{k=0}^{n-1} s^{k-1} \left( \mathcal{D}_0^{\alpha-k} f\right)(0)
+		\mathcal{L} \left\{\mathcal{D}_0^\alpha f\right\} = s^\alpha \mathcal{L} \left\{ f \right\} - \sum_{k=0}^{n-1} s^{k} \left( \mathcal{D}_0^{\alpha-k-1} f\right)(0)
 	\end{align*}
 \end{lemma}
 \begin{proof}
@@ -99,7 +99,7 @@ We now consider the Laplace transform of the fractional integration and differen
 	\begin{align*}
 		\laplace{ \rld{0}{\alpha}{f} } &= \laplace{ \der{}{t}{n} \rli{0}{n-\alpha}{f} } \\
 			&= s\laplace{\rli{0}{n-\alpha}{f}} - \sum_{k=0}^{n-1} s^k \der{}{t}{n-k-1} \rli{0}{n-\alpha}{f}(0) \\
-			&= s\laplace{\rli{0}{n-\alpha}{f}} - \sum_{k=0}^{n-1} s^{k-1} \rld{0}{\alpha - k}{f}(0). 
+			&= s\laplace{\rli{0}{n-\alpha}{f}} - \sum_{k=0}^{n-1} s^{k} \rld{0}{\alpha - k - 1}{f}(0). 
 	\end{align*}
 \end{proof}
 
@@ -113,7 +113,7 @@ We now consider the Laplace transform of the fractional integration and differen
 \begin{proof}
 	See that
 	\begin{align*}
-		\laplace{\capder{0}{\alpha}{f}} &= \laplace{ \frac{1}{\Gamma(n-\alpha)} \rli{0}{n-\alpha}{\der{f}{t}{n}}} \\
+		\laplace{\capder{0}{\alpha}{f}} &= \laplace{  \rli{0}{n-\alpha}{\der{f}{t}{n}}} \\
 			&= \frac{1}{\Gamma(n-\alpha)}\laplace{ \int_0^t (t-u)^{n-\alpha-1} \der{f}{t}{n} du} \\ 
 	\end{align*}
 	which is the Laplace transform of a convolution so
