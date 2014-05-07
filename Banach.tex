@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}
+\usepackage[a4paper]{geometry}
+\usepackage{fancyhdr}
+\usepackage{mathtools}
+\pagestyle{fancy}
+\begin{document}
+
+\setlength\parindent{0pt}
+\setlength{\parskip}{5mm plus4mm minus3mm}
+\fancyfoot[l]{Adam J. Gray}
+\fancyfoot[r]{\today}
+\fancyhead[l]{BlackHat Maths}
+\fancyhead[r]{Solution to a Simple FDE}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
+\newcommand{\laplace}[1]{ \mathcal{L} \left\{ #1 \right\} }
+\newcommand{\rld}[3]{ \left( \mathcal{D}_{#1}^{#2} #3 \right) }
+\newcommand{\rli}[3]{ \left( I_{#1}^{#2} #3 \right) }
+\newcommand{\der}[3]{ \frac{d^{#3}#1}{d#2^{#3}} }
+\newcommand{\capder}[3]{ \left( \prescript{C}{}{\mathcal{D}_{#1}^{#2}} #3 \right) }
+\section*{Existance and Uniqueness of a Solution to a General FDE}
+
+\begin{theorem}
+	Let $ f : [0, a] \times U \longrightarrow \mathbb{R} $
+	The following fractional differential equation
+	\begin{align}
+		\capder{0}{\alpha}{x}(t) &= f(y, x(t)) \\
+	\end{align}
+\end{theorem}
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
