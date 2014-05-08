@@ -32,7 +32,7 @@ This generalizes a result of Tisdell [What do I reference? ]
 	and a set of constants $ \{ \alpha_j \}_{j = 1}^{N} $, $ \{ \beta_j \}_{j=1}^N $
 	such that
 	$$
-		\sum_{j=2}^N \left|\frac{\beta_j}{\beta_1}\right| \frac{a^{\alpha_1 - \alpha_j}}{\Gamma(\alpha_1 - \alpha_j)} < 1
+		\sum_{j=2}^N \left|\frac{\beta_j}{\beta_1}\right| a^{\alpha_1 - \alpha_j} < 1
 	$$
 	then the following initial value problem has a unique solution on $ [0, a] $.
 	\begin{align}
@@ -66,7 +66,7 @@ To do this we will need several lemmas.
 \begin{lemma}	
 \label{lem-rli-mit-lef-1}
 	\begin{align*}
-		\rli{0}{\xi}{E_\alpha(\gamma t^\alpha)} \leq \frac{t^\xi}{\Gamma(\xi)} E_\alpha(\gamma t^\alpha)
+		\rli{0}{\xi}{E_\alpha(\gamma t^\alpha)} \leq t^\xi E_\alpha(\gamma t^\alpha)
 	\end{align*}
 \end{lemma}
 \begin{proof}
@@ -87,8 +87,8 @@ To do this we will need several lemmas.
 	\begin{align*}
 		\rli{0}{\xi}{E_\alpha(\gamma t^\alpha)} &= \sum_{k=0}^\infty \frac{\gamma^k t^{\alpha k + \xi}}{\Gamma(\alpha k + \xi + 1)} \\
 			&= t^{\xi}\sum_{k=0}^\infty\frac{\gamma^k t^{\alpha k}}{\Gamma(\alpha k + \xi + 1)} \\
-			&\leq \frac{t^{\xi}}{\Gamma(\xi)}\sum_{k=0}^\infty\frac{\gamma^k t^{\alpha k}}{\Gamma(\alpha k + 1)} \\
-			&= \frac{t^{\xi}}{\Gamma(\xi)} E_\alpha(\gamma t^\alpha).
+			&\leq t^{\xi}\sum_{k=0}^\infty\frac{\gamma^k t^{\alpha k}}{\Gamma(\alpha k + 1)} \\
+			&= t^{\xi} E_\alpha(\gamma t^\alpha).
 	\end{align*}
 \end{proof}
 
@@ -161,18 +161,17 @@ To do this we will need several lemmas.
 	\begin{align*}
 		d_\gamma^{\alpha_1}(Fx,Fy) &\leq d_\gamma^{\alpha_1}(x,y) \max_{t \in [0, a]} \frac{1}{E_{\alpha_1}(\gamma t^{\alpha_1})|\beta_1|} \Bigl(
 			\frac{L}{\gamma}\left( E_{\alpha_1}(\gamma t^{\alpha_1}) - 1 \right) \\
-			& \ \ \ + \sum_{j=2}^N |\beta_j| \frac{t^{\alpha_1 - \alpha_j}}{\Gamma( \alpha_1 - \alpha_j)} E_{\alpha_1}(\gamma t^{\alpha_1}) \Bigr) \\
+			& \ \ \ + \sum_{j=2}^N |\beta_j| t^{\alpha_1 - \alpha_j} E_{\alpha_1}(\gamma t^{\alpha_1}) \Bigr) \\
 			&= d_\gamma^{\alpha_1}(x,y) \max_{t \in [0, a]} \frac{1}{|\beta_1|} \Bigl(
-			\frac{L}{\gamma}\left( 1- \frac{1}{E_{\alpha_1}(\gamma t^{\alpha_1})} \right) \\
-			& \ \ \ + \sum_{j=2}^N |\beta_j| \frac{t^{\alpha_1 - \alpha_j}}{\Gamma( \alpha_1 - \alpha_j)} \Bigr) \\
+			\frac{L}{\gamma}\left( 1- \frac{1}{E_{\alpha_1}(\gamma t^{\alpha_1})} \right) + \sum_{j=2}^N |\beta_j| t^{\alpha_1 - \alpha_j}\Bigr) \\
 	\end{align*}
 	and finally we get that 
 	\begin{align*}
-		d_\gamma^{\alpha_1}(Fx,Fy) &\leq d_\gamma^{\alpha_1}(x,y) \frac{1}{|\beta_1|}\left( \frac{L}{\gamma} + \sum_{j=2}^N |\beta_j| \frac{a^{\alpha_1 - \alpha_j}}{\Gamma(\alpha_1 - \alpha_j)} \right).
+		d_\gamma^{\alpha_1}(Fx,Fy) &\leq d_\gamma^{\alpha_1}(x,y) \frac{1}{|\beta_1|}\left( \frac{L}{\gamma} + \sum_{j=2}^N |\beta_j| a^{\alpha_1 - \alpha_j} \right).
 	\end{align*}
 	By choosing $ \gamma $ sufficiently large we get that 
 	$$
-		\frac{1}{|\beta_1|}\left( \frac{L}{\gamma} + \sum_{j=2}^N |\beta_j| \frac{a^{\alpha_1 - \alpha_j}}{\Gamma(\alpha_1 - \alpha_j)} \right) < 1
+		\frac{1}{|\beta_1|}\left( \frac{L}{\gamma} + \sum_{j=2}^N |\beta_j| a^{\alpha_1 - \alpha_j} \right) < 1
 	$$
 	and so $ F $ is a contractive mapping and thus the IVP defined in \eqref{eq-fde-ivp-1}, \eqref{eq-fde-ivp-ic-1} has a unique solution on $ [0, a] $.
 \end{proof}
