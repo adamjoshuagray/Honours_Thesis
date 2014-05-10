@@ -1,0 +1,96 @@
+
+\documentclass[pdf]{beamer}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+\usetheme{Dresden}
+\usecolortheme{beaver}
+
+%Analysis
+\newcommand{\Rl}{\mathbb{R}}
+\newcommand{\Cplx}{\mathbb{C}}
+\newcommand{\Itgr}{\mathbb{Z}}
+\newcommand{\Ntrl}{\mathbb{N}}
+\newcommand{\Ind}{\mathbbm{1}}
+\newcommand{\Hlbt}{\mathcal{H}}
+\newcommand{\im}{\operatorname{im}}
+
+%Algebra
+\newcommand{\Grp}{\mathcal{G}}
+
+%Misc
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lla}{\longleftarrow}
+\newcommand{\la}{\leftarrow}
+
+%Stats \ Prob
+\newcommand{\E}[1]{\mathbb{E} \left[ #1 \right]}
+\newcommand{\Var}[1]{\operatorname{Var} \left[ #1 \right] }
+\newcommand{\Cov}[2]{\operatorname{Cov} \left[ #1, #2 \right] }
+\newcommand{\Filt}{\mathcal{F}}
+
+%Fractional Differential Equations
+
+\newcommand{\laplace}[1]{ \mathcal{L} \left\{ #1 \right\} }
+\newcommand{\fourier}[1]{ \mathcal{F} \left\{ #1 \right\} }
+\newcommand{\mellin}[1]{ \mathcal{M} \left\{ #1 \right\} }
+\newcommand{\rld}[3]{ \left( \mathcal{D}_{#1}^{#2} #3 \right) }
+\newcommand{\rli}[3]{ \left( I_{#1}^{#2} #3 \right) }
+\newcommand{\der}[3]{ \frac{d^{#3}#1}{d#2^{#3}} }
+\newcommand{\capder}[3]{ \left( \prescript{C}{}{\mathcal{D}_{#1}^{#2}} #3 \right) }
+
+\mode<presentation>{}
+\title{A Solution to a Fractional Differential Equation}
+\subtitle{The Laplace Transform Method}
+\author{Adam J. Gray}
+\institute{
+	School of Mathematics and Statistics \\
+	Univeristy of New South Wales
+}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\begin{frame}{The Goal}
+	We aim to get a solution to the following fractional differential equation (in terms of Caputo derivatives)
+	\begin{align}
+		\label{eq:fde-1}
+		\left( \prescript{C}{}{\mathcal{D}_0^\alpha}y \right)(t) = \beta y(t) 
+	\end{align}
+
+	along with the initial conditions 
+	\begin{align}
+		\label{eq:fde-1-ic}
+		y^{(k)}(0) = 
+		\begin{cases}
+			1 & k = 0 \\
+			0 & 1 \leq k \leq \lceil \alpha \rceil - 1  
+		\end{cases}
+	\end{align}
+\end{frame}
+
+
+\begin{frame}{Motivations}
+	\begin{block}{Cauchy Formula for Repeated Integration}
+	\begin{align*}
+		\int_{a}^{x} \int_{a}^{y_1} \cdots \int_a^{y_{n-1}} f(y_n) dy_n \cdots dy_2 dy_1 = \frac{1}{(n-1)!} \int_a^x(x-t)^{n-1}f(t)dt
+	\end{align*}
+	\end{block}
+	\pause
+	The idea is to replace the factorials with gamma functions to define an integral of arbitrary order
+	\pause
+	\begin{block}{Riemann-Luoiville Fractional Integral}
+	\begin{align*}
+		\rli{a}{\alpha}{f}(x) = \frac{1}{\Gamma(\alpha)} \int_a^x(x-t)^{\alpha-1}f(t)dt
+	\end{align*}
+	\end{block}
+\end{frame}
+
+\end{document}

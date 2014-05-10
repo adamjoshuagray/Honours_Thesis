@@ -1,0 +1,141 @@
+
+\documentclass[pdf]{beamer}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+\usetheme{Dresden}
+\usecolortheme{beaver}
+
+%Analysis
+\newcommand{\Rl}{\mathbb{R}}
+\newcommand{\Cplx}{\mathbb{C}}
+\newcommand{\Itgr}{\mathbb{Z}}
+\newcommand{\Ntrl}{\mathbb{N}}
+\newcommand{\Ind}{\mathbbm{1}}
+\newcommand{\Hlbt}{\mathcal{H}}
+\newcommand{\im}{\operatorname{im}}
+
+%Algebra
+\newcommand{\Grp}{\mathcal{G}}
+
+%Misc
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lla}{\longleftarrow}
+\newcommand{\la}{\leftarrow}
+
+%Stats \ Prob
+\newcommand{\E}[1]{\mathbb{E} \left[ #1 \right]}
+\newcommand{\Var}[1]{\operatorname{Var} \left[ #1 \right] }
+\newcommand{\Cov}[2]{\operatorname{Cov} \left[ #1, #2 \right] }
+\newcommand{\Filt}{\mathcal{F}}
+
+%Fractional Differential Equations
+
+\newcommand{\laplace}[1]{ \mathcal{L} \left\{ #1 \right\} }
+\newcommand{\fourier}[1]{ \mathcal{F} \left\{ #1 \right\} }
+\newcommand{\mellin}[1]{ \mathcal{M} \left\{ #1 \right\} }
+\newcommand{\rld}[3]{ \left( \mathcal{D}_{#1}^{#2} #3 \right) }
+\newcommand{\rli}[3]{ \left( I_{#1}^{#2} #3 \right) }
+\newcommand{\der}[3]{ \frac{d^{#3}#1}{d#2^{#3}} }
+\newcommand{\capder}[3]{ \left( \prescript{C}{}{\mathcal{D}_{#1}^{#2}} #3 \right) }
+
+\mode<presentation>{}
+\title{A Solution to a Fractional Differential Equation}
+\subtitle{The Laplace Transform Method}
+\author{Adam J. Gray}
+\institute{
+	School of Mathematics and Statistics \\
+	University of New South Wales
+}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\begin{frame}{The Goal}
+	We aim to get a solution to the following fractional differential equation (in terms of Caputo derivatives)
+	\begin{align}
+		\label{eq:fde-1}
+		\left( \prescript{C}{}{\mathcal{D}_0^\alpha}y \right)(t) = \beta y(t) 
+	\end{align}
+
+	along with the initial conditions 
+	\begin{align}
+		\label{eq:fde-1-ic}
+		y^{(k)}(0) = 
+		\begin{cases}
+			1 & k = 0 \\
+			0 & 1 \leq k \leq \lfloor \alpha \rfloor - 1  
+		\end{cases}
+	\end{align}
+\end{frame}
+
+
+\begin{frame}{Motivations}
+	\begin{block}{Cauchy Formula for Repeated Integration}
+		\begin{align*}
+			\int_{a}^{x} \int_{a}^{y_1} \cdots \int_a^{y_{n-1}} f(y_n) dy_n \cdots dy_2 dy_1 = \frac{1}{(n-1)!} \int_a^x(x-t)^{n-1}f(t)dt
+		\end{align*}
+	\end{block}
+	\pause
+	The idea is to replace the factorials with gamma functions to define an integral of arbitrary order
+	\pause
+	\begin{block}{Riemann-Liouville Fractional Integral}
+		\begin{align*}
+			\rli{a}{\alpha}{f}(x) = \frac{1}{\Gamma(\alpha)} \int_a^x(x-t)^{\alpha-1}f(t)dt
+		\end{align*}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Motivations (Derivatives)}
+	\begin{block}{Riemann-Liouville Fractional Derivative}
+		\begin{align*}
+			\rld{a}{\alpha}{f}(x) &= \frac{d^{\lceil \alpha \rceil}}{dx^{\lceil \alpha \rceil}} \rli{a}{\lceil \alpha \rceil - \alpha}{f}(x) \\
+				&= \frac{1}{\Gamma(1 - \alpha)}\frac{d^{n}}{dx^n} \int_a^x \frac{f(t)dt}{\frac{(x-t)^{\alpha - n + 1}}{}}
+		\end{align*}
+		where $ n - 1 < \alpha \leq n $
+	\end{block}
+\end{frame}
+
+\begin{frame}{Motivations (Derivatives)}
+	\begin{block}{Caputo Fractional Derivative}
+		\begin{align*}
+			\capder{a}{\alpha}{f}(x) &= \rli{a}{\lceil \alpha \rceil - \alpha}{\frac{d^{\lceil \alpha \rceil}}{dx^{\lceil \alpha \rceil}}f}(x) \\
+				&= \frac{1}{\Gamma(1 - \alpha)} \int_a^x \frac{\frac{d^{t}}{dt^n}f(t)dt}{(x-t)^{\alpha - n + 1}}
+		\end{align*}
+		where $ n - 1 < \alpha \leq n $
+	\end{block}
+\end{frame}
+
+\begin{frame}{ Riemann-Liouville vs Caputo Derivative}
+	\begin{alertblock}{Note!}
+		The Caputo derivative and the and the Riemann-Liouville derivatives are note the same.
+		In general 
+		\begin{align*}
+			\capder{a}{\alpha}{f}(x) \neq \rld{a}{\alpha}{f}(x).
+		\end{align*}
+	\end{alertblock}
+	The reason is exatly the same reason that in general
+	\begin{align*}
+		f(x) \neq \int_a^x f'(t) dt.
+	\end{align*}
+	In some sense if you differentiate first you "loose information" about the function.
+\end{frame}
+
+\begin{frame}{ Riemann-Liouville vs Caputo Derivative}
+
+	The Caputo derivative is often used in fractionial differential equations because it
+	can be coupled with integer order initial conditions, whereas often the Riemann-Liouville
+	derivative can't be coupled with integer order intial conditions.
+
+\end{frame}
+	
+
+
+\end{document}

@@ -1,0 +1,66 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{unswshortcuts}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{bbm}
+\RequirePackage{tikz}
+
+%Analysis
+\newcommand{\Rl}{\mathbb{R}}
+\newcommand{\Cplx}{\mathbb{C}}
+\newcommand{\Itgr}{\mathbb{Z}}
+\newcommand{\Ntrl}{\mathbb{N}}
+\newcommand{\Ind}{\mathbbm{1}}
+\newcommand{\Hlbt}{\mathcal{H}}
+\newcommand{\im}{\operatorname{im}}
+
+%Algebra
+\newcommand{\Grp}{\mathcal{G}}
+
+%Misc
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lla}{\longleftarrow}
+\newcommand{\la}{\leftarrow}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
+
+
+%Stats \ Prob
+\newcommand{\E}[1]{\mathbb{E} \left[ #1 \right]}
+\newcommand{\Var}[1]{\operatorname{Var} \left[ #1 \right] }
+\newcommand{\Cov}[2]{\operatorname{Cov} \left[ #1, #2 \right] }
+\newcommand{\Filt}{\mathcal{F}}
+
+%Fractional Differential Equations
+
+\newcommand{\laplace}[1]{ \mathcal{L} \left\{ #1 \right\} }
+\newcommand{\fourier}[1]{ \mathcal{F} \left\{ #1 \right\} }
+\newcommand{\mellin}[1]{ \mathcal{M} \left\{ #1 \right\} }
+\newcommand{\rld}[3]{ \left( \mathcal{D}_{#1}^{#2} #3 \right) }
+\newcommand{\rli}[3]{ \left( I_{#1}^{#2} #3 \right) }
+\newcommand{\der}[3]{ \frac{d^{#3}#1}{d#2^{#3}} }
+\newcommand{\capder}[3]{ \left( \prescript{C}{}{\mathcal{D}_{#1}^{#2}} #3 \right) }
+
+%Commutative Diagrams
+
+\newcommand{\comtri}[5][d,e]{
+    \begin{tikzpicture}
+        \draw (0.5, 4.5) node {#1};
+        \draw (0.5, 4.5) circle [radius = 0.5];
+        \draw (1,4.5) -- (4, 4.5);
+        \draw (4.5, 4.5) node {#2};        
+        \draw (4.5, 4.5) circle [radius = 0.5];
+        \draw (4.5, 0.5) node {#3};        
+        \draw (4.5, 0.5) circle [radius = 0.5];
+        \draw (4.5, 4) -- (4.5, 1);
+        \draw (0.854, 4.146) -- (4.146, 0.854);
+    \end{tikzpicture}
+}
+
+\endinput
