@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Arch Linux) (format=pdflatex 2014.4.26)  11 MAY 2014 17:40
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Arch Linux) (format=pdflatex 2014.4.26)  11 MAY 2014 23:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -636,43 +636,48 @@ Overfull \hbox (34.2587pt too wide) in paragraph at lines 57--57
  []
 
 [1] [2] [3]
-Overfull \hbox (105.55672pt too wide) in paragraph at lines 182--182
+Overfull \hbox (13.97849pt too wide) in paragraph at lines 186--186
 [] 
  []
 
 [4] [5] [6]
-Overfull \hbox (10.745pt too wide) in paragraph at lines 310--311
+Overfull \hbox (10.745pt too wide) in paragraph at lines 314--315
 []\OT1/cmr/bx/n/10 Definition 3 \OT1/cmr/m/n/10 (Two Paramter Mit-tag-Le-fler F
 unc-tion)\OT1/cmr/bx/n/10 . []\OT1/cmr/m/it/10 We de-fine the two paramter
  []
 
 [7] [8] [9] [10] [11] [12]
-Overfull \hbox (17.57268pt too wide) in paragraph at lines 533--533
+Overfull \hbox (17.57268pt too wide) in paragraph at lines 537--537
 [] 
  []
 
 
-Overfull \hbox (16.45325pt too wide) in paragraph at lines 548--548
+Overfull \hbox (16.45325pt too wide) in paragraph at lines 552--552
 [] 
  []
 
 [13] [14]
-Overfull \hbox (7.71617pt too wide) in paragraph at lines 574--574
+Overfull \hbox (7.71617pt too wide) in paragraph at lines 578--578
 []\OT1/cmr/bx/n/14.4 Solution to a Sin-gu-lar Frac-tional Dif-fer-en-tial Equa-
 
  []
 
 [15]
-Overfull \hbox (22.18648pt too wide) in paragraph at lines 644--644
+Overfull \hbox (22.06726pt too wide) in paragraph at lines 644--644
 [] 
  []
 
-(./FDE_Thesis.bbl) [16] [17] (./FDE_Thesis.aux) ) 
+[16]
+Overfull \hbox (1.34644pt too wide) in paragraph at lines 715--715
+[] 
+ []
+
+[17] (./FDE_Thesis.bbl) [18] (./FDE_Thesis.aux) ) 
 Here is how much of TeX's memory you used:
- 13373 strings out of 493308
- 255547 string characters out of 6143616
- 309534 words of memory out of 5000000
- 16533 multiletter control sequences out of 15000+600000
+ 13372 strings out of 493308
+ 255504 string characters out of 6143616
+ 309523 words of memory out of 5000000
+ 16532 multiletter control sequences out of 15000+600000
  9450 words of font info for 35 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  62i,17n,56p,392b,285s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -693,10 +698,10 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fon
 ts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texmf-dist/fonts/type1/
 public/amsfonts/symbols/msam7.pfb></usr/share/texmf-dist/fonts/type1/public/ams
 fonts/symbols/msbm10.pfb>
-Output written on FDE_Thesis.pdf (18 pages, 501390 bytes).
+Output written on FDE_Thesis.pdf (19 pages, 506108 bytes).
 PDF statistics:
- 144 PDF objects out of 1000 (max. 8388607)
- 101 compressed objects within 2 object streams
+ 148 PDF objects out of 1000 (max. 8388607)
+ 104 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  23 words of extra memory for PDF output out of 10000 (max. 10000000)
 

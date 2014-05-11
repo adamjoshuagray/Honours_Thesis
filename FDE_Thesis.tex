@@ -110,7 +110,7 @@ integrals and derivatives.
 		(\mathcal{D}_{a+}^{\alpha}f)(x) := \frac{1}{\Gamma(n-\alpha)} \frac{d^n}{dx^n}\int_a^x \frac{f(t)}{(x-t)^{\alpha - n + 1}} dt \\
 		(\prescript{C}{}{\mathcal{D}}_{a+}^\alpha f)(x) := I_{0}^{n-\alpha} \frac{d^n}{dx^n}f(x) 
 	\end{align*}
-	where $ n  = \lceil \alpha \rceil - 1$.
+	where $ n  = \lfloor \alpha \rfloor + 1$.
 	We will refer to $ I_{a+}^\alpha f$ as the (Riemann Louiville) integral $ f $ of over $ \alpha $ (based at $ a $).
 	Likewise we refer to $ \mathcal{D}_{a+}^\alpha f $ as the (Riemann Louiville) derivative of order $ \alpha $ (based at $ a $).
 	We also refer to $ \prescript{C}{}{\mathcal{D}}_{a+}^\alpha f $ as the Caputo derivative of order $ \alpha $ (based at $ a $).
@@ -156,8 +156,11 @@ We now consider the Laplace transform of the fractional integration and differen
 	See that
 	\begin{align*}
 		\laplace{ \rld{0}{\alpha}{f} } &= \laplace{ \der{}{t}{n} \rli{0}{n-\alpha}{f} } \\
-			&= s\laplace{\rli{0}{n-\alpha}{f}} - \sum_{k=0}^{n-1} s^k \der{}{t}{n-k-1} \rli{0}{n-\alpha}{f}(0) \\
-			&= s\laplace{\rli{0}{n-\alpha}{f}} - \sum_{k=0}^{n-1} s^{k} \rld{0}{\alpha - k - 1}{f}(0). 
+			&= s^n\laplace{\rli{0}{n-\alpha}{f}} - \sum_{k=0}^{n-1} s^k \der{}{t}{n-k-1} \rli{0}{n-\alpha}{f}(0)
+	\end{align*}
+	and by applying the result of \ref{lem:lap_rli} we get
+	\begin{align*}
+			\mathcal{L} \left\{\mathcal{D}_0^\alpha f\right\} &= s^\alpha \laplace{f} - \sum_{k=0}^{n-1} s^{k} \rld{0}{\alpha - k - 1}{f}(0). 
 	\end{align*}
 \end{proof}
 
@@ -177,7 +180,8 @@ We now consider the Laplace transform of the fractional integration and differen
 	which is the Laplace transform of a convolution so
 	\begin{align*}
 		\Gamma(n-\alpha)\laplace{ \int_0^t (t-u)^{n-\alpha-1} \der{f}{t}{n} du} &= \laplace{t^{n-\alpha-1}} \laplace{\der{f}{t}{n}} \\
-		&= \frac{1}{n-\alpha} \left( s^{-(n-\alpha)} \Gamma(n-\alpha) \right) \left( s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right) \\
+		&= \frac{1}{n-\alpha} \left( s^{-(n-\alpha)} \Gamma(n-\alpha) \right) \\
+		& \ \ \ \times \left( s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right) \\
 		&= s^{\alpha - n} \left[ s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right].
 	\end{align*}	
 \end{proof}
@@ -573,22 +577,16 @@ virtue of the correspondence between the Caputo derivative and the Riemann-Liouv
 
 \section*{Solution to a Singular Fractional Differential Equation}
 
-We wish to consider the following fractional diffferential equation 
+We wish to consider the following fractional diffferential equation,  
 \begin{align}
 \label{eq:fde-singular}
 	t^{\alpha + 1} \rld{0}{\alpha + 1}{y}(t) + t^\alpha \rld{0}{\alpha}{y}(t) = f(t)
 \end{align}
-along with the initial and ``final'' conditions
+along with the condition that
 \begin{align}
-	\label{eq:fde-singular-ic-1}
-	y(0) = 0 \\
-	\label{eq:fde-singular-ic-2}
-	y'(0) = 0 \\
-	\label{eq:fde-singular-ic-3}
-	\lim_{t\lra \infty} y(t) = 0 \\
-	\label{eq:fde-singular-ic-4}
-	\lim_{t\lra \infty} y'(t) = 0.
+	\left[ \rld{0}{\alpha-k-1}{f}(t)t^{r+\alpha-k-1} \right]_{t=0}^{t \lra \infty} = 0
 \end{align}
+for all $ 0 \leq k \leq n - 1 $ and suitable $ r $.
 
 To attack this problem we are going to need to consider Mellin transforms and prove several lemmas about Mellin transforms
 and Riemann-Liouville fractional derivatives. These results follow closely those in \cite{Podlubny1999}.
@@ -622,6 +620,7 @@ A proof that this is in fact a valid inverse is a well known result and not prov
 \end{definition}
 
 \begin{theorem}[Mellin Convolution Theorem]
+\label{thm:mel-conv}
 	The Mellin transform of the Mellin convolution of two functions has a simple expression given by
 	\begin{align*}
 		\mellin{f(t) * g(t)} = \tilde{F}(r)\tilde{G}(1-r)
@@ -630,6 +629,7 @@ A proof that this is in fact a valid inverse is a well known result and not prov
 Again this is a well known result and not proved here.
 
 \begin{lemma}
+	\label{lem:mel-power}
 	The Mellin transform of $ t^\alpha f(t) $ is given by
 	\begin{align*}
 		\mellin{t^\alpha f(t)} = \tilde{F}(r + \alpha).
@@ -640,7 +640,7 @@ The proof of this follows immediatly from the definition of the Mellin transform
 \begin{lemma}[Mellin Transform of Integer Order Derivatives]
 	The Mellin transform of $ f^{(n)}(t) $ is given by
 	\begin{align*}
-		\mellin{f^{(n)}(t)} = \sum_{k=0}^\infty \frac{\Gamma(1-r+k)}{\Gamma(1-s)} \left[ f^{(n-k-1)}(t)t^{r-k-1}\right]_{s=0}^{s\lra\infty} + \frac{\Gamma(1-r-n)}{\Gamma(1-r)}F(r-n).
+		\mellin{f^{(n)}(t)} = \sum_{k=0}^{n-1} \frac{\Gamma(1-r+k)}{\Gamma(1-r)} \left[ f^{(n-k-1)}(t)t^{r-k-1}\right]_{t=0}^{t\lra\infty} + \frac{\Gamma(1-r+n)}{\Gamma(1-r)}F(r-n).
 	\end{align*}
 \end{lemma}
 This is a well known result and not proved here.
@@ -653,9 +653,79 @@ This is a well known result and not proved here.
 	\end{align*}
 \end{lemma}
 \begin{proof}
-	
+	Firstly note that 
+	\begin{align*}
+		\rli{0}{\alpha}{f}(t) = \frac{1}{\Gamma(\alpha)} \int_0^t (t-\tau)^{\alpha-1}f(\tau) d\tau
+	\end{align*}
+	and with the change of variables $ u =\frac{\tau}{t} $ we can rewrite this as 
+	\begin{align*}
+		\rli{0}{\alpha}{f}(t) = \frac{t^\alpha}{\Gamma(\alpha)} \underbrace{\int_0^1 (1-u)^{\alpha-1}f(tu) du}_{\circledast}.
+	\end{align*}
+	If we define a function 
+	\begin{align*}
+		g(t) :=
+		\begin{cases}
+			(1-t)^{\alpha-1} & 0 \leq t \leq 1 \\
+			0 & \text{ otherwise}
+		\end{cases}
+	\end{align*}
+	and note that
+	\begin{align*}
+		\mellin{g(t)} &= \int_0^\infty g(t) t^{r-1} dt \\
+			&= \int_0^1 (1-t)^{\alpha-1}t^{r-1}dt \\
+			&= B(\alpha, r).
+	\end{align*}
+	Combining this with the result of theorem \ref{thm:mel-conv} we get that
+	\begin{align*}
+		\circledast &= \mellin{f*g} \\
+			&= F(r)B(\alpha,1-r)
+	\end{align*}
+	and with the result of lemma \ref{lem:mel-power} we have
+	\begin{align*}
+		\mellin{\rli{0}{\alpha}{f}(t)} &= \frac{1}{\Gamma(\alpha)} F(r+\alpha)B(\alpha,1-r-\alpha) \\
+			&= \frac{\Gamma(1-r-\alpha)}{\Gamma(1-r)}F(r+\alpha)
+	\end{align*}
 \end{proof}
 
+\begin{lemma}
+\label{lem:mel-rl-der}
+	The Mellin transform of the Riemann-Liouville derivative is given by
+	\begin{align*}
+		\mellin{\rld{0}{\alpha}{f}(t)} &= \sum_{k=0}^{n-1} \frac{\Gamma(1-r+k)}{\Gamma(1-r)} 
+			\left[ \rld{0}{\alpha-k-1}{f}(t)t^{r-k-1} \right]_{t=0}^{t \lra \infty} \\
+			&= \ \ \ + \frac{\Gamma(1-r+\alpha)}{\Gamma(1-r)}F(r-\alpha).
+	\end{align*}
+\end{lemma}
+\begin{proof}
+	Firstly note that $$ \rld{0}{\alpha}{f}(t) = \frac{d^n}{dt^n} \left[ \rli{0}{n-\alpha}{f}(t) \right] $$
+	so we have that
+	\begin{align*}
+		\mellin{\rld{0}{\alpha}{f}(t)} &= \mellin{\frac{d^n}{dt^n} \left[ \rli{0}{n-\alpha}{f}(t) \right]} \\
+	\end{align*}
+	and by using the results of lemma \ref{lem:mel-rl-int} and lemma \ref{lem:mel-power} we get that
+	\begin{align*}
+		\mellin{\frac{d^n}{dt^n} \left[ \rli{0}{n-\alpha}{f}(t) \right]} 
+			&= \sum_{k=0}^\infty \frac{\Gamma(1-r+k)}{\Gamma(1-r)} \left[ \frac{d^{n-k-1}}{dt^{n-k-1}} \rli{0}{n-\alpha}{f}(t)t^{r-k-1}\right]_{t=0}^{t \lra \infty} \\
+			& \ \ \ + \frac{\Gamma(1-r+n)}{\Gamma(1-r)}\mellin{\rli{0}{n-\alpha}{f}(t)}(r-n) \\
+			&= \sum_{k=0}^\infty \frac{\Gamma(1-r+k)}{\Gamma(1-r)} \left[ \rld{0}{\alpha-k-1}{f}(t)t^{r-k-1}\right]_{t=0}^{t \lra \infty} \\
+			& \ \ \ + \frac{\Gamma(1-r+n)}{\Gamma(1-r)}\frac{\Gamma(1-r+\alpha)}{\Gamma(1-r+n)}F(r+\alpha)\\
+			&= \sum_{k=0}^{n-1} \frac{\Gamma(1-r+k)}{\Gamma(1-r)} 
+			\left[ \rld{0}{\alpha-k-1}{f}(t)t^{r-k-1} \right]_{t=0}^{t \lra \infty} \\
+			& \ \ \ + \frac{\Gamma(1-r+\alpha)}{\Gamma(1-r)}F(r-\alpha).
+	\end{align*}
+\end{proof}
+
+\begin{lemma}
+	The Mellin transform of $ t^\alpha \rld{0}{\alpha}{f}(t) $ is given by
+	\begin{align*}
+		\mellin{t^\alpha \rld{0}{\alpha}{f}(t)} 
+			&= \sum_{k=0}^{n-1}\frac{\Gamma(1-r-\alpha+k)}{\Gamma(1-r-\alpha)} \left[ \rld{0}{\alpha - k - 1}{f}(t) t^{r+\alpha-k-1}\right]_{t=0}^{t\lra\infty} \\
+			& \ \ \ + \frac{\Gamma(1-r)}{\Gamma(1-r-\alpha)}F(r).
+	\end{align*}
+\end{lemma}
+\begin{proof}
+	This follows immediatly from lemma \ref{lem:mel-rl-der} and lemma \ref{lem:mel-power}.
+\end{proof}
 \bibliographystyle{plain}
 \bibliography{references}
 \end{document}
