@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Arch Linux) (format=pdflatex 2014.4.26)  10 MAY 2014 17:47
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Arch Linux) (format=pdflatex 2014.4.26)  10 MAY 2014 18:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -951,6 +951,14 @@ Overfull \hbox (13.15784pt too wide) in paragraph at lines 94--94
 
 ] [9
 
+] [10
+
+] [11
+
+] [12
+
+] [13
+
 ]
 \tf@nav=\write6
 \openout6 = `Talk.nav'.
@@ -961,11 +969,11 @@ Overfull \hbox (13.15784pt too wide) in paragraph at lines 94--94
 \tf@snm=\write8
 \openout8 = `Talk.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 141.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 141.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 192.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 192.
  (./Talk.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 141.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 141.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 192.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 192.
 Package rerunfilecheck Info: File `Talk.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -973,14 +981,14 @@ Package rerunfilecheck Info: File `Talk.out' has not changed.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 141.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 192.
  ) 
 Here is how much of TeX's memory you used:
- 17210 strings out of 493308
- 327468 string characters out of 6143616
+ 17267 strings out of 493308
+ 328618 string characters out of 6143616
  404457 words of memory out of 5000000
- 20246 multiletter control sequences out of 15000+600000
- 10697 words of font info for 39 fonts, out of 8000000 for 9000
+ 20293 multiletter control sequences out of 15000+600000
+ 11737 words of font info for 43 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  56i,19n,55p,384b,578s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/
@@ -992,11 +1000,12 @@ ss10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr
 st/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmssi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.p
-fb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on Talk.pdf (9 pages, 126666 bytes).
+fb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/
+texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on Talk.pdf (13 pages, 144279 bytes).
 PDF statistics:
- 311 PDF objects out of 1000 (max. 8388607)
- 278 compressed objects within 3 object streams
- 21 named destinations out of 1000 (max. 500000)
+ 422 PDF objects out of 1000 (max. 8388607)
+ 383 compressed objects within 4 object streams
+ 29 named destinations out of 1000 (max. 500000)
  43 words of extra memory for PDF output out of 10000 (max. 10000000)
 

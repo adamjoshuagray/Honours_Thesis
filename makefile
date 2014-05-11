@@ -1,10 +1,13 @@
 READ = evince
-NAME = FDE_Existance_Uniq
+NAME = FDE_Thesis
 COMP = pdflatex
-CLASS = unswmaths.cls
+BIB  = bibtex
 
-$(NAME).pdf: $(NAME).tex $(CLASS)
-	$(COMP) $^
+$(NAME).pdf: $(NAME).tex
+	$(COMP) $^; \
+	$(COMP) $^; \
+	$(COMP) $(NAME).aux; \
+	$(COMP) $(NAME).tex
 
 read: $(NAME).pdf
 	$(READ) $^ &
@@ -18,5 +21,5 @@ spell:
 class_update:
 	git submodule foreach git pull origin master; \
 	cp -r UNSW_Latex/artwork artwork; \
-	cp UNSW_Latex/unswmaths.cls unswmaths.cls	
+	cp UNSW_Latex/unswmaths.cls unswmaths.cls; \	
 	cp UNSW_Latex/unswshortcuts.sty unswshortcuts.sty

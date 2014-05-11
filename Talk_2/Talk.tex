@@ -121,7 +121,7 @@
 			\capder{a}{\alpha}{f}(x) \neq \rld{a}{\alpha}{f}(x).
 		\end{align*}
 	\end{alertblock}
-	The reason is exatly the same reason that in general
+	The reason is exactly the same reason that in general
 	\begin{align*}
 		f(x) \neq \int_a^x f'(t) dt.
 	\end{align*}
@@ -130,11 +130,62 @@
 
 \begin{frame}{ Riemann-Liouville vs Caputo Derivative}
 
-	The Caputo derivative is often used in fractionial differential equations because it
+	The Caputo derivative is often used in fractional differential equations because it
 	can be coupled with integer order initial conditions, whereas often the Riemann-Liouville
-	derivative can't be coupled with integer order intial conditions.
+	derivative can't be coupled with integer order initial conditions.
 
 \end{frame}
+
+\begin{frame}{A Quick Note on the Laplace Transform}
+	\begin{definition}
+		We the define the Laplace transform of a function $ f $ to be the function $ F $
+		given by
+		\begin{align*}
+			F(s) := \int_0^\infty e^{-st} f(t) dt
+		\end{align*}
+	\end{definition}
+	
+	We often write $ F(s) = \laplace{f(t)} $.
+	
+\end{frame}
+
+\begin{frame}{A Quick Note on the Laplace Transform}
+	
+		
+	
+	The laplace is particularly useful as it allows us to transform a differential equation into
+	an "algebraic" equation. 
+	
+	Lerch's theorem guarantees, with minor caveats, that the Laplace transform of a function is
+	unique.
+	
+\end{frame}
+
+\begin{frame}{Basic Idea of the Laplace Transform Method}
+	\begin{itemize}
+		\item Apply the Laplace transform to both sides of the differential equation to get
+		and "algebraic" equation.
+		\item Apply the Laplace transform to the initial conditions. 
+		\item Sub the transformed intial conditions into the transformed equation.
+		\item Rearange to get an expression for the Laplace transform of the function of interest.
+		\item Invert. (This is possible, and guarenteed with minor caveats by Lerch's theorem)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{The Differential Equation}
+	\begin{align*}
+		\left( \prescript{C}{}{\mathcal{D}_0^\alpha}y \right)(t) = \beta y(t) 
+	\end{align*}
+	
+	\begin{align*}
+		y^{(k)}(0) = 
+		\begin{cases}
+			1 & k = 0 \\
+			0 & 1 \leq k \leq \lfloor \alpha \rfloor - 1  
+		\end{cases}
+	\end{align*}
+\end{frame}
+
 	
 
 

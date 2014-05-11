@@ -49,7 +49,7 @@
 \author{Adam J. Gray}
 \institute{
 	School of Mathematics and Statistics \\
-	Univeristy of New South Wales
+	University of New South Wales
 }
 
 \begin{document}
@@ -71,7 +71,7 @@
 		y^{(k)}(0) = 
 		\begin{cases}
 			1 & k = 0 \\
-			0 & 1 \leq k \leq \lceil \alpha \rceil - 1  
+			0 & 1 \leq k \leq \lfloor \alpha \rfloor - 1  
 		\end{cases}
 	\end{align}
 \end{frame}
@@ -79,18 +79,93 @@
 
 \begin{frame}{Motivations}
 	\begin{block}{Cauchy Formula for Repeated Integration}
-	\begin{align*}
-		\int_{a}^{x} \int_{a}^{y_1} \cdots \int_a^{y_{n-1}} f(y_n) dy_n \cdots dy_2 dy_1 = \frac{1}{(n-1)!} \int_a^x(x-t)^{n-1}f(t)dt
-	\end{align*}
+		\begin{align*}
+			\int_{a}^{x} \int_{a}^{y_1} \cdots \int_a^{y_{n-1}} f(y_n) dy_n \cdots dy_2 dy_1 = \frac{1}{(n-1)!} \int_a^x(x-t)^{n-1}f(t)dt
+		\end{align*}
 	\end{block}
 	\pause
 	The idea is to replace the factorials with gamma functions to define an integral of arbitrary order
 	\pause
-	\begin{block}{Riemann-Luoiville Fractional Integral}
-	\begin{align*}
-		\rli{a}{\alpha}{f}(x) = \frac{1}{\Gamma(\alpha)} \int_a^x(x-t)^{\alpha-1}f(t)dt
-	\end{align*}
+	\begin{block}{Riemann-Liouville Fractional Integral}
+		\begin{align*}
+			\rli{a}{\alpha}{f}(x) = \frac{1}{\Gamma(\alpha)} \int_a^x(x-t)^{\alpha-1}f(t)dt
+		\end{align*}
 	\end{block}
 \end{frame}
+
+\begin{frame}{Motivations (Derivatives)}
+	\begin{block}{Riemann-Liouville Fractional Derivative}
+		\begin{align*}
+			\rld{a}{\alpha}{f}(x) &= \frac{d^{\lceil \alpha \rceil}}{dx^{\lceil \alpha \rceil}} \rli{a}{\lceil \alpha \rceil - \alpha}{f}(x) \\
+				&= \frac{1}{\Gamma(1 - \alpha)}\frac{d^{n}}{dx^n} \int_a^x \frac{f(t)dt}{\frac{(x-t)^{\alpha - n + 1}}{}}
+		\end{align*}
+		where $ n - 1 < \alpha \leq n $
+	\end{block}
+\end{frame}
+
+\begin{frame}{Motivations (Derivatives)}
+	\begin{block}{Caputo Fractional Derivative}
+		\begin{align*}
+			\capder{a}{\alpha}{f}(x) &= \rli{a}{\lceil \alpha \rceil - \alpha}{\frac{d^{\lceil \alpha \rceil}}{dx^{\lceil \alpha \rceil}}f}(x) \\
+				&= \frac{1}{\Gamma(1 - \alpha)} \int_a^x \frac{\frac{d^{t}}{dt^n}f(t)dt}{(x-t)^{\alpha - n + 1}}
+		\end{align*}
+		where $ n - 1 < \alpha \leq n $
+	\end{block}
+\end{frame}
+
+\begin{frame}{ Riemann-Liouville vs Caputo Derivative}
+	\begin{alertblock}{Note!}
+		The Caputo derivative and the and the Riemann-Liouville derivatives are note the same.
+		In general 
+		\begin{align*}
+			\capder{a}{\alpha}{f}(x) \neq \rld{a}{\alpha}{f}(x).
+		\end{align*}
+	\end{alertblock}
+	The reason is exatly the same reason that in general
+	\begin{align*}
+		f(x) \neq \int_a^x f'(t) dt.
+	\end{align*}
+	In some sense if you differentiate first you "loose information" about the function.
+\end{frame}
+
+\begin{frame}{ Riemann-Liouville vs Caputo Derivative}
+
+	The Caputo derivative is often used in fractionial differential equations because it
+	can be coupled with integer order initial conditions, whereas often the Riemann-Liouville
+	derivative can't be coupled with integer order intial conditions.
+
+\end{frame}
+
+\begin{frame}{A Quick Note on the Laplace Transform}
+	\begin{definition}
+		We the define the Laplace transform of a function $ f $ to be the function $ F $
+		given by
+		\begin{align*}
+			F(s) := \int_0^\infty e^{-st} f(t) dt
+		\end{align*}
+	\end{definition}
+	This is particularly useful as it allows us to transform a differential equation into
+	an "algebraic" equation. 
+	
+	Lerch's theorem guarentees, with minor caveates, that the Laplace transform of a function is
+	unique.
+\end{frame}
+
+\begin{frame}{The Differential Equation}
+	\begin{align*}
+		\left( \prescript{C}{}{\mathcal{D}_0^\alpha}y \right)(t) = \beta y(t) 
+	\end{align*}
+	
+	\begin{align*}
+		y^{(k)}(0) = 
+		\begin{cases}
+			1 & k = 0 \\
+			0 & 1 \leq k \leq \lfloor \alpha \rfloor - 1  
+		\end{cases}
+	\end{align*}
+\end{frame}
+
+	
+
 
 \end{document}
