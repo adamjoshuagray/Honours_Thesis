@@ -123,7 +123,7 @@
 	\begin{align*}
 		f(x) \neq \int_a^x f'(t) dt.
 	\end{align*}
-	In some sense if you differentiate first you "loose information" about the function.
+	In some sense if you differentiate first you ``lose information'' about the function.
 \end{frame}
 
 \begin{frame}{ Riemann-Liouville vs Caputo Derivative}
@@ -151,8 +151,8 @@
 	
 		
 	
-	The laplace is particularly useful as it allows us to transform a differential equation into
-	an "algebraic" equation. 
+	The Laplace transform is particularly useful as it allows us to transform a differential equation into
+	an ``algebraic'' equation. 
 	
 	Lerch's theorem guarantees, with minor caveats, that the Laplace transform of a function is
 	unique.
@@ -164,15 +164,15 @@
 		\item Apply the Laplace transform to both sides of the differential equation to get
 		and "algebraic" equation.
 		\item Apply the Laplace transform to the initial conditions. 
-		\item Sub the transformed intial conditions into the transformed equation.
-		\item Rearange to get an expression for the Laplace transform of the function of interest.
-		\item Invert. (This is possible, and guarenteed with minor caveats by Lerch's theorem)
+		\item Sub the transformed initial conditions into the transformed equation.
+		\item Rearrange to get an expression for the Laplace transform of the function of interest.
+		\item Invert. (This is possible, and guaranteed with minor caveats by Lerch's theorem)
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{The Laplace Transform of the Riemann-Liouville Integral}
 	\begin{lemma}
-	The Laplace transform of the Riemann-Liouville integral of a fuction $ f $ is given by
+	The Laplace transform of the Riemann-Liouville integral of a function $ f $ is given by
 		$$ \mathcal{L} \left\{ I_0^\alpha f \right\}  = s^{-\alpha} \mathcal{L} \left\{ f \right\}.	$$
 	\end{lemma}
 \end{frame}
@@ -208,7 +208,7 @@
 \end{frame}
 
 \begin{frame}{The Laplace Transform of the Caputo Derivative [Proof]}
-	$ \circledast $ is just the laplace transform of a convolution so 
+	$ \circledast $ is just the Laplace transform of a convolution so 
 	\begin{align*}
 		\circledast &= \laplace{t^{n-\alpha-1}} \laplace{\der{f}{t}{n}} \\
 		&= \frac{1}{n-\alpha} \left( s^{-(n-\alpha)} \Gamma(n-\alpha) \right) \\
@@ -218,7 +218,7 @@
 	\qed
 \end{frame}
 
-\begin{frame}{One Paramter Mittag-Lefler Function}
+\begin{frame}{One Parameter Mittag-Lefler Function}
 	\begin{definition}
 		The one parameter Mittag-Lefler $ E_\alpha $ function is defined by its power series.
 		$$
@@ -314,10 +314,11 @@ See that
 	$$
 		\laplace{y} = \frac{s^{\alpha-1}}{s^\alpha - \beta}.
 	$$
-	is the laplace transform of $ E_\alpha(\beta t^\alpha) $ we have that
+	is the Laplace transform of $ E_\alpha(\beta t^\alpha) $ we have that
 	\begin{align*}
 		y(t) = E_\alpha(\beta t^\alpha)
 	\end{align*}
+	\qed
 \end{frame}
 
 

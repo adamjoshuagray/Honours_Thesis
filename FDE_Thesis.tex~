@@ -134,7 +134,7 @@ We now consider the Laplace transform of the fractional integration and differen
 \begin{proof}
 	Since 
 	$$
-		 (I_0^\alpha f)(t) = \frac{1}{\Gamma(\alpha)} \int_0^x f(u) (t-u)^{\alpha - 1} du
+		 (I_0^\alpha f)(t) = \frac{1}{\Gamma(\alpha)} \int_0^t f(u) (t-u)^{\alpha - 1} du
 	$$
 	is just $ \frac{1}{\Gamma(\alpha)} $ times the convolution of $ f $ with $ t^{\alpha - 1} $ then by the convolution theorem
 	for Laplace transforms we have that 
@@ -440,7 +440,7 @@ fractional differential equations can be found in \cite{Podlubny1999}.
 To do this we will need several lemmas. 
 
 \begin{lemma}
-	The IVP defined \eqref{eq-fde-ivp-1}, \eqref{eq-fde-ivp-ic-1} is equivalent to the integral equation
+	The IVP defined in \eqref{eq-fde-ivp-1}, \eqref{eq-fde-ivp-ic-1} is equivalent to the integral equation
 	\begin{align*}
 		x(t) &= \sum_{k=1}^{n_1}\frac{A_kt^k}{k!} + \frac{1}{\beta_1} \Bigl( \frac{1}{\Gamma(\alpha_1)}\int_{0}^{t} (t-s)^{\alpha_1 - 1}f(s,x(s))ds \\
 			& \ \ \ - \sum_{j=2}^{N}\beta_j \frac{1}{\Gamma(\alpha_1 - \alpha_j)}
@@ -726,6 +726,102 @@ This is a well known result and not proved here.
 \begin{proof}
 	This follows immediatly from lemma \ref{lem:mel-rl-der} and lemma \ref{lem:mel-power}.
 \end{proof}
+
+
+\section*{Generalisation of Bihari's Inequality}
+We wish to generalise Bihari's inequality \cite{Bihari1956} to the case of fractional integrals.
+We will setup some initial results and then present a generalised Bihari's Inequality.
+\begin{lemma}
+\label{lem:rli-non-neg}
+	If $ f $ is a non-negative function on $ [0, a] $ then $ \rli{0}{\alpha}{f} $ is a non-negative non-decreasing function on $ [0, a] $ for 
+	$ \alpha \geq 1 $ and $ \alpha \in \Rl $
+\end{lemma}
+\begin{proof}
+	It is clear to see that $ \rli{0}{\alpha}{f}(t) \geq 0 $ and to see that $ \rli{0}{\alpha}{f}(t) $ is also non-decreasing
+	observe that 
+	\begin{align*}
+		\frac{d}{dt} \rli{0}{\alpha}{f} &= \rli{0}{\alpha-1}{f}(t)
+	\end{align*}
+	which is non-negative so long as $ \alpha \geq 1 $ for the same reason.
+\end{proof}
+
+\begin{theorem}[Generalised Bihari's Inequality]
+	Let $ F $ be a positive function on $ [0, a] $ and let $ \omega $ be a non-decreasing function on $ [0 ,a ]. $
+	Let $ K $ and $ M $ be positive constants such that $ M \geq \frac{1}{F(t)} $ for all $ t \in [0,a] $.
+	\begin{align*}
+		Y(t) \leq K + M\rli{0}{\alpha}{(F\cdot (\omega \circ Y))}(t).
+	\end{align*}
+	then
+	\begin{align*}
+		V(t) \leq \Omega^{-1} \left[ M\rli{0}{\alpha}{F}(t) - P(t)\right]
+	\end{align*}
+	where
+	\begin{align*}
+		\Omega(t) = \rli{0}{\alpha}{\frac{1}{\omega}}(t)
+	\end{align*}
+	and
+	\begin{align*}
+		P(t) = \sum_{k=0}^{n} \frac{\left[\frac{d^k}{ds^k} \Omega(V(s)) \right]_{s=0}t^{k}}{k!}
+	\end{align*}
+\end{theorem}
+
+\begin{proof}
+	Let $ V(t) = K + M\rli{0}{\alpha}{(F\cdot (\omega \circ Y))}(t) $ then note that because
+	$ \omega $ is a non-decreasing function we can write
+	\begin{align*}
+		\omega(Y(t)) \leq \omega(V((t))
+	\end{align*}
+	and so
+	\begin{align*}
+		\frac{\omega(Y(t))}{\omega(V(t))} \leq 1
+	\end{align*}
+	multiplying both sides by $ M F(t) $ we get that
+	\begin{align*}
+		\frac{\omega(Y(t))MF(t)}{\omega(V(t))} \leq MF(t).
+	\end{align*}
+	Note that
+	\begin{align*}
+		\capder{0}{\alpha}{V}(t) &= \omega(Y(t))MF(t)
+	\end{align*}
+	so we can write
+	\begin{align*}
+		\frac{\capder{0}{\alpha}{V}(t)}{\omega(V(t))} \leq MF(t).
+	\end{align*}
+	See that 
+	\begin{align*}
+		\capder{0}{\alpha}{\Omega \circ V }(t) = \capder{0}{\alpha}{\rli{0}{\alpha}{\frac{1}{\omega}}}
+	\end{align*}
+	\begin{align*}
+		\capder{0}{\alpha}{\Omega \circ V }(t) \leq \frac{\capder{0}{\alpha}{V}(t)}{\omega(V(t))}
+	\end{align*}
+	we have that
+	\begin{align*}
+		\capder{0}{\alpha}{\Omega \circ V }(t) \leq  MF(t)
+	\end{align*}
+	and by using lemma \ref{lem:rli-non-neg}  and applying $ I_0^\alpha $ to both sides we get that 
+	\begin{align*}
+		\rli{0}{\alpha}{\capder{0}{\alpha}{\Omega \circ V }}(t) &\leq M\rli{0}{\alpha}{F}(t)
+	\end{align*}
+	and by recognising that 
+	\begin{align*}
+		\rli{0}{\alpha}{\capder{0}{\alpha}{x}}(t) = x(t) + \sum_{k=0}^{n} \frac{x^{(k)}(0)t^{k}}{k!}
+	\end{align*}
+	we see that
+	\begin{align*}
+		\Omega(V(t)) + \sum_{k=0}^{n} \frac{\left[\frac{d^k}{ds^k} \Omega(V(s)) \right]_{s=0}t^{k}}{k!}
+	\end{align*}
+	and so 
+	\begin{align*}
+		\Omega(V(t)) &\leq M\rli{0}{\alpha}{F}(t) - \sum_{k=0}^{n} \frac{\left[\frac{d^k}{ds^k} \Omega(V(s)) \right]_{s=0}t^{k}}{k!}
+	\end{align*}
+	and by inverting
+	\begin{align*}
+		V(t) &\leq \Omega^{-1} \left( M\rli{0}{\alpha}{F}(t) - \sum_{k=0}^{n} \frac{\left[\frac{d^k}{ds^k} \Omega(V(s)) \right]_{s=0}t^{k}}{k!} \right)
+	\end{align*}
+\end{proof}
+
+
+
 \bibliographystyle{plain}
 \bibliography{references}
 \end{document}

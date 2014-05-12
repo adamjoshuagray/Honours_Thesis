@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.8.1)  12 MAY 2014 09:24
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.8.1)  12 MAY 2014 16:54
 entering extended mode
  %&-line parsing enabled.
 **FDE_Thesis.tex
@@ -649,36 +649,36 @@ Overfull \hbox (1.34644pt too wide) in paragraph at lines 715--715
 [] 
  []
 
-[17] (./FDE_Thesis.bbl) [18] (./FDE_Thesis.aux) ) 
+[17] [18] [19] (./FDE_Thesis.bbl) [20] (./FDE_Thesis.aux) ) 
 Here is how much of TeX's memory you used:
- 11606 strings out of 494818
- 209027 string characters out of 1178667
- 266340 words of memory out of 3000000
- 14507 multiletter control sequences out of 15000+50000
+ 11608 strings out of 494818
+ 209056 string characters out of 1178667
+ 266353 words of memory out of 3000000
+ 14509 multiletter control sequences out of 15000+50000
  9450 words of font info for 35 fonts, out of 3000000 for 9000
  212 hyphenation exceptions out of 8191
- 63i,17n,57p,401b,285s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/font
-s/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1/pub
-lic/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmcsc10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex1
-0.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr
-/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texmf
--texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fon
-ts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/pub
-lic/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
-/cm/cmr5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb>
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share
-/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-texli
-ve/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/typ
-e1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/a
-msfonts/cm/cmti12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/sym
-bols/msam10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/m
-sam7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msbm10.p
-fb>
-Output written on FDE_Thesis.pdf (19 pages, 526603 bytes).
+ 63i,17n,57p,401b,287s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-te
+xlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts
+/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/publ
+ic/amsfonts/cm/cmcsc10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
+s/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10
+.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/s
+hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts
+/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/publi
+c/amsfonts/cm/cmr5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
+/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
+/usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/t
+exmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive
+/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type
+1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-texlive/fonts/type1/public/am
+sfonts/symbols/msam10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
+/symbols/msam7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbol
+s/msbm10.pfb>
+Output written on FDE_Thesis.pdf (21 pages, 535690 bytes).
 PDF statistics:
- 145 PDF objects out of 1000 (max. 8388607)
+ 151 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  23 words of extra memory for PDF output out of 10000 (max. 10000000)
 
