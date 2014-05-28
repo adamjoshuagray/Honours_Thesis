@@ -16,7 +16,130 @@
 \setlength\parindent{0pt}
 \setlength{\parskip}{5mm plus4mm minus3mm}
 
+\tableofcontents
+
+\section*{Introduction}
+\addcontentsline{toc}{section}{Introduction}
+\subsection*{Historical Overview and Motivation}
+\subsubsection*{L'Hopital \& Liebniz}
+Fractional calculus is almost as old as calculus itself. The 30th September 1695 is often cited as the the birthday of the field,
+as it is the date on which Leibniz, in reply to L'Hopital's question about the operator $ \frac{d^\frac{1}{2}}{dx^\frac{1}{2}} $, 
+wrote, ``It will lead to a paradox, from which one day useful consequences will be drawn.''
+\subsubsection*{Leibniz, Wallis \& Bernoulli}
+Leibniz, in letters addressed to John Wallis and Daniel Bernoulli in 1697, proposed a 
+formulation for the fractional derivitive of an exponential function.
+He proposed that 
+$$
+    \frac{d^r}{dx^r} e^{mx} = m^r e^{mx}.
+$$
+Keeping in mind that this is was the late 17th century and so Fourier had yet to 
+be born, let alone develop the idea of a Fourier decomposition, so there was
+no ``obvious'' way to extend this definition to other functions.
+\subsubsection*{Euler}
+A crucial function to almost all formulations of fractional calculus, is the gamma function, which extends the factorial function
+to non-integer arguments. Although the problem of extending the factorial function had been considered by Daniel Bernoulli and Christian Goldbach in the 1720's, it was eventually Euler who in a two letters, dated 13th October 1729 
+and 8th January 1730 respectively, gave two different representations of the factorial which could easily be extended
+to non-integer values.
+They were
+\begin{align*}
+	n! &= \prod_{k=1}^\infty \frac{\left( 1 + \frac{1}{k} \right)^n}{1 + \frac{n}{k}} \\
+	\text{ and } \\
+	n! &= \int_0^1 (-\ln s)^n ds 
+\end{align*}
+Euler made swift use of the gamma function by generalizing the derivitive of the power function.
+Euler noticed that 
+$$
+	\frac{d^n}{dx^n} x^m = \frac{m!}{n+1!} x^{m - n}
+$$
+provided that $ n \leq m + 1 $.
+The obvious extension was to take the factorials and replace them with gamma functions to get
+$$
+    \frac{d^r}{dx^r} x^m = \frac{\Gamma (m+1)}{\Gamma (m - r + 1)} x^{m-r}.
+$$
+Beutiful results like 
+$$
+    \frac{d^\frac{1}{2}}{dx^\frac{1}{2}} x = \sqrt{\frac{4x}{\pi}}
+$$
+became immediate. 
+A useful point to note here is that my taking $ r = -1 $ we have
+\begin{align*}
+    \frac{d^{-1}}{dx^{-1}} x^m  &= \frac{\Gamma(m+1)}{\Gamma(m + 2)} x^{m + 1} \\
+                                &= \frac{m!}{(m+1)!}x^{m+1} \\
+                                &= \frac{1}{m+1} x^{m+1} \\
+                                &= \int_0^x t^m dt
+\end{align*}
+which is consistent with the fundamental theorem of calculus.
+
+Tangentially it is worth noting that Taylor series were formally introduced
+by English mathematician Brook Taylor in 1715. Although it did not happen,
+an enterpising mathematician, may have seen that Euler's definition could be
+extended at least in some formal sense by using Taylor expansions.
+Let us consider $ e^{mx} $ and write
+$$
+    e^{mx} = \sum_{k = 0}^\infty \frac{m^k}{k!} x^k.
+$$
+It would be natural to write \footnote{By $ \sum_{k = r}^\infty $ we mean a sum starting at $ k = r $ and adding in increments of $ 1 $. }
+\begin{align}
+    \label{eq:Euler_Leibniz_Sum}
+    \frac{d^r}{dx^r} e^{mx} &= \sum_{k = r}^\infty \frac{d^r}{dx^r} \frac{m^k}{k!} x^k \\
+                            &= \sum_{k = r}^\infty \frac{m^k}{\Gamma(k+1)} \frac{\Gamma(k+1)}{\Gamma(k - r + 1)} x^{k-r} \nonumber \\             
+                            &= \sum_{k = r}^\infty \frac{m^k}{\Gamma(k - r + 1)}x^{k-r} \nonumber \\
+                            &= m^r \sum_{k = r}^\infty \frac{m^{k-r}}{\Gamma(k - r + 1)}x^{k-r}. \nonumber
+\end{align}
+Letting $ j = k - r $ we have
+\begin{align*}
+    m^r \sum_{k = r}^\infty \frac{m^{k-r}}{\Gamma(k - r + 1)}x^{k-r}
+        &= m^r \sum_{j = 0}^\infty \frac{m^{j}}{\Gamma(j + 1)}x^{j} \\
+        &= m^r \sum_{j = 0}^\infty \frac{m^{j}}{j!}x^{j} \\
+        &= m^r e^{mx}
+\end{align*}
+which suggests that in some formal sense Euler's derivitive is consistent with Leibniz's.
+
+Regardless of the potential utility  of this observation, there is no historical evidence that the author
+can find that suggests such observations were ever made.
+
+Euler's definition did gain traction, however, and it was published in S. F. Lacroix's  book
+\emph{Trait\'{e} du Calcul Diff\'{e}rentiel et du Calcul Int\'{e}gral.}
+\subsubsection*{Riemann \& Liouville}
+The differintegrals first worked on by Liouville and extended and corrected by Riemann serve as the basis for much of modern
+fractional calculus. To motivate this formulation we first consider the Cauchy formula for repeated integration. 
+It can be shown with a simple induction argument that the $ n$th repeated integral of $ f $ based at $ a $ is given by
+$$
+    f^{(-n)}(x) = \frac{1}{(n-1)!} \int_a^x (x-t)^{n-1} f(t) dt
+$$
+It seems reasonable enough to simply replace the factorial functions with gamma functions and write
+$$
+    f^{(-r)}(x) = \frac{1}{\Gamma(r)} \int_a^x (x-t)^{r-1} f(t) dt
+$$
+and this is exactly what Riemann and Liouville did. However this simply defines a fractional integral. There is an obvious
+extension of this formula which would provide a fractional derivitive. For a concrete example say one wanted to evaluate
+the $ \frac{1}{2}$th derivitive of a function $ f $. Then integrating using the above formula with just $ r = \frac{1}{2} $ and
+differentiating (normally) once would yield the $\frac{1}{2}$th derivitive. With this idea in mind we define
+$$
+    \prescript{}{a}{I}_t^r f(t) = \frac{1}{\Gamma(r)} \int_a^t (t-s)^{r-1}f(s) ds
+$$
+as the fractional integral and
+$$
+    \prescript{}{a}{D}_t^r f(t) = \frac{d^n}{dt^n} \prescript{}{a}{I}_t^{n-r} f(t)
+$$
+where $ n = \lceil r \rceil $ as the fractional derivitive.
+\subsubsection*{Grunwald \& Letnikov}
+The Grunwald-Letnikov derivitive was introduced by Anton Karl Grunwald in 1867 and by Aleksey Vasilivich Letnikov in 1868.
+It generalizes the idea behind  first principles differentiation. For integer order n we have that
+$$
+    f^{(n)}(x) = \lim_{x\longrightarrow0} \frac{\sum_{0\leq m \leq n} (-1)^m \binom{n}{m} f(x + (n-m)h)}{h^n}.
+$$
+It makes sense to generalize this by swapping out factorial functions for gamma functions and writing
+$$
+    f^{(r)}(x) = \lim_{x\longrightarrow0} \frac{\sum_{0\leq m \leq \infty} (-1)^m \binom{r}{m} f(x + (r-m)h)}{h^r}.
+$$
+where the binomial coefficients are evaluated with gamma functions.
+
+It does not appear that this derivitive is used much for any practical purposes and we will not discuss this derivitive any further.
+\subsubsection*{Caputo}
+
 \section*{Abel's Integral Equation}
+\addcontentsline{toc}{section}{Abel's Integral Equation}
 
 We wish to consider a simple integral equation of the form
 \begin{align}
@@ -80,7 +203,7 @@ and by differentiating we get
 
 
 \section*{Solution to a Simple Fractional Differential Equation}
-
+\addcontentsline{toc}{section}{Solution to a Simple Fractional Differential Equation}
 We aim to get a solution to the following fractional differential equation (in terms of Caputo derivatives)
 
 \begin{align}
@@ -291,7 +414,7 @@ We now have sufficient tools to attack the original problem, that is finding a s
 \end{proof}
 
 \section*{Solution to a Multi-Order Fractional Differential Equation}
-
+\addcontentsline{toc}{section}{Solution to a Multi-Order Fractional Differential Equation}
 This section follows the technique outlined in \cite{Podlubny1999}.
 
 We wish to consider the following differential equation
@@ -409,7 +532,7 @@ The follopwing lemma is essentially a generalisation of lemma \ref{lem:lap_mit}.
 \end{proof}
 
 \section*{Existence and Uniquness of Fractional Differential Equations}
-
+\addcontentsline{toc}{section}{Existence and Uniquness of Fractional Differential Equations}
 After looking at the solution to a couple of fractional differential equations 
 we wish to consider the existence an uniqueness of solutions to a class fractional differential equations. 
 This generalizes a result and technique of Tisdell \cite{Tisdell2012} but a similar result for Miller-Ross sequential
@@ -576,6 +699,7 @@ to note that this result can be extended to differential equations involving Rie
 virtue of the correspondence between the Caputo derivative and the Riemann-Liouville derivative \cite{Podlubny1999}. 
 
 \section*{Solution to a Singular Fractional Differential Equation}
+\addcontentsline{toc}{section}{Solution to a Singular Fractional Differential Equation}
 
 We wish to consider the following fractional diffferential equation,  
 \begin{align}
@@ -729,6 +853,7 @@ This is a well known result and not proved here.
 
 
 \section*{Generalisation of Bihari's Inequality}
+\addcontentsline{toc}{section}{Generalisation of Bihari's Inequality}
 We wish to generalise Bihari's inequality \cite{Bihari1956} to the case of fractional integrals.
 We will setup some initial results and then present a generalised Bihari's Inequality.
 \begin{lemma}
@@ -789,7 +914,7 @@ We will setup some initial results and then present a generalised Bihari's Inequ
 	\end{align*}
 	See that 
 	\begin{align*}
-		\capder{0}{\alpha}{\Omega \circ V }(t) = \capder{0}{\alpha}{\rli{0}{\alpha}{\frac{1}{\omega}}}
+		\capder{0}{\alpha}{\Omega \circ V }(t) = \capder{0}{\alpha}{\rli{0}{\alpha}{\frac{1}{\omega}}(V)}(t)
 	\end{align*}
 	\begin{align*}
 		\capder{0}{\alpha}{\Omega \circ V }(t) \leq \frac{\capder{0}{\alpha}{V}(t)}{\omega(V(t))}
@@ -820,6 +945,32 @@ We will setup some initial results and then present a generalised Bihari's Inequ
 	\end{align*}
 \end{proof}
 
+\section*{Potential Methods}
+
+We wish to generalize the techniques discussed above. To do this we will touch on potential theory and try and place fractional
+calculus in a more abstract setting. 
+
+We wish to consider intergral equations of the following kind (usually refered to as the first kind \cite{Podlubny1999})
+\begin{align*}
+	\int_a^b K(t, \tau)y(\tau) d\tau &= f(t)  & & (a < t < b ).
+\end{align*}
+
+Note that we can't really define a fractional integral or derivitive from this because we don't have a variable upper limit. 
+When we define an integral equation of the second kind we will have a variable upper limit and then it will be clear that
+a fractional integral can be defined with the appropriate kernel.
+
+Now suppose there 
+
+\begin{definition}[Pochhammer Symbol]
+	We define the Pochhammer symbol $ (a)_n $ by
+	\begin{align*}
+		(a)_n &= 
+		\begin{cases}
+			1 & \text{ if } n= 0
+			a(a+1)\ldots(a+n-1) 
+		\end{cases}
+	\end{align*}
+\end{definition}
 
 
 \bibliographystyle{plain}
