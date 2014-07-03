@@ -2,6 +2,7 @@
 \usepackage{mathtools}
 \usepackage{unswshortcuts}
 
+
 \author{Adam J. Gray}
 \studentno{3329798}
 \subject{Fractional Differential Equations}
@@ -21,9 +22,14 @@
 \section*{Introduction}
 \addcontentsline{toc}{section}{Introduction}
 \subsection*{Historical Overview and Motivation}
+\subsubsection*{Prehistory: Liebniz to Fourier}
+Although one can argue that fractional calculus is a field which is essentially as old as
+``conventional'' calculus iteslef we will regard all development in the field up until the
+work of Abel as prehistory. This is because the first applications of the field did not appear
+until Abel and even simple definitions were not properly developed.
+
 \subsubsection*{L'Hopital \& Liebniz}
-Fractional calculus is almost as old as calculus itself. The 30th September 1695 is often cited as the the birthday of the field,
-as it is the date on which Leibniz, in reply to L'Hopital's question about the operator $ \frac{d^\frac{1}{2}}{dx^\frac{1}{2}} $, 
+Leibniz, in reply to L'Hopital's question about the operator $ \frac{d^\frac{1}{2}}{dx^\frac{1}{2}} $, 
 wrote, ``It will lead to a paradox, from which one day useful consequences will be drawn.''
 \subsubsection*{Leibniz, Wallis \& Bernoulli}
 Leibniz, in letters addressed to John Wallis and Daniel Bernoulli in 1697, proposed a 
@@ -201,6 +207,17 @@ and by differentiating we get
 \nocite{Samko1993}
 \qed
 
+\section*{Application of Abel's Integral Equation \\ to the Tautochrone Problem}
+\addcontentsline{toc}{section}{Application of Abel's Integral Equation \\ to the Tautochrone Problem}
+
+From a historical perspective, as mentioned above, the solution to Abel's integral equation was actually arrived at in an attempt
+to solve the tautochrone problem. For the sake of making this section self contained we provide an explanation of what themtautochrone
+problem actually is again (in more detail).
+
+The tautochrone problem seeks to find the curve along which the time taken to travel from some starting point
+to the bottom of the curve under the force of gravity is indpendent of the height of the starting point. That is to say
+if there were two seperate particles placed on this curve at different heights and released at the same time they would
+both reach the bottom of the curve at exactly the same time. 
 
 \section*{Solution to a Simple Fractional Differential Equation}
 \addcontentsline{toc}{section}{Solution to a Simple Fractional Differential Equation}
@@ -852,125 +869,260 @@ This is a well known result and not proved here.
 \end{proof}
 
 
-\section*{Generalisation of Bihari's Inequality}
-\addcontentsline{toc}{section}{Generalisation of Bihari's Inequality}
-We wish to generalise Bihari's inequality \cite{Bihari1956} to the case of fractional integrals.
-We will setup some initial results and then present a generalised Bihari's Inequality.
-\begin{lemma}
-\label{lem:rli-non-neg}
-	If $ f $ is a non-negative function on $ [0, a] $ then $ \rli{0}{\alpha}{f} $ is a non-negative non-decreasing function on $ [0, a] $ for 
-	$ \alpha \geq 1 $ and $ \alpha \in \Rl $
-\end{lemma}
-\begin{proof}
-	It is clear to see that $ \rli{0}{\alpha}{f}(t) \geq 0 $ and to see that $ \rli{0}{\alpha}{f}(t) $ is also non-decreasing
-	observe that 
-	\begin{align*}
-		\frac{d}{dt} \rli{0}{\alpha}{f} &= \rli{0}{\alpha-1}{f}(t)
-	\end{align*}
-	which is non-negative so long as $ \alpha \geq 1 $ for the same reason.
-\end{proof}
+%\section*{Generalisation of Bihari's Inequality}
+%\addcontentsline{toc}{section}{Generalisation of Bihari's Inequality}
+%We wish to generalise Bihari's inequality \cite{Bihari1956} to the case of fractional integrals.
+%We will setup some initial results and then present a generalised Bihari's Inequality.
+%\begin{lemma}
+%\label{lem:rli-non-neg}
+%	If $ f $ is a non-negative function on $ [0, a] $ then $ \rli{0}{\alpha}{f} $ is a non-negative non-decreasing function on $ [0, a] $ for 
+%	$ \alpha \geq 1 $ and $ \alpha \in \Rl $
+%\end{lemma}
+%\begin{proof}
+%	It is clear to see that $ \rli{0}{\alpha}{f}(t) \geq 0 $ and to see that $ \rli{0}{\alpha}{f}(t) $ is also non-decreasing
+%	observe that 
+%	\begin{align*}
+%		\frac{d}{dt} \rli{0}{\alpha}{f} &= \rli{0}{\alpha-1}{f}(t)
+%	\end{align*}
+%	which is non-negative so long as $ \alpha \geq 1 $ for the same reason.
+%\end{proof}
 
-\begin{theorem}[Generalised Bihari's Inequality]
-	Let $ F $ be a positive function on $ [0, a] $ and let $ \omega $ be a non-decreasing function on $ [0 ,a ]. $
-	Let $ K $ and $ M $ be positive constants such that $ M \geq \frac{1}{F(t)} $ for all $ t \in [0,a] $.
-	\begin{align*}
-		Y(t) \leq K + M\rli{0}{\alpha}{(F\cdot (\omega \circ Y))}(t).
-	\end{align*}
-	then
-	\begin{align*}
-		V(t) \leq \Omega^{-1} \left[ M\rli{0}{\alpha}{F}(t) - P(t)\right]
-	\end{align*}
-	where
-	\begin{align*}
-		\Omega(t) = \rli{0}{\alpha}{\frac{1}{\omega}}(t)
-	\end{align*}
-	and
-	\begin{align*}
-		P(t) = \sum_{k=0}^{n} \frac{\left[\frac{d^k}{ds^k} \Omega(V(s)) \right]_{s=0}t^{k}}{k!}
-	\end{align*}
-\end{theorem}
+%\begin{theorem}[Generalised Bihari's Inequality]
+%	Let $ F $ be a positive function on $ [0, a] $ and let $ \omega $ be a non-decreasing function on $ [0 ,a ]. $
+%	Let $ K $ and $ M $ be positive constants such that $ M \geq \frac{1}{F(t)} $ for all $ t \in [0,a] $.
+%	\begin{align*}
+%		Y(t) \leq K + M\rli{0}{\alpha}{(F\cdot (\omega \circ Y))}(t).
+%	\end{align*}
+%	then
+%	\begin{align*}
+%		V(t) \leq \Omega^{-1} \left[ M\rli{0}{\alpha}{F}(t) - P(t)\right]
+%	\end{align*}
+%	where
+%	\begin{align*}
+%		\Omega(t) = \rli{0}{\alpha}{\frac{1}{\omega}}(t)
+%	\end{align*}
+%	and
+%	\begin{align*}
+%		P(t) = \sum_{k=0}^{n} \frac{\left[\frac{d^k}{ds^k} \Omega(V(s)) \right]_{s=0}t^{k}}{k!}
+%	\end{align*}
+%\end{theorem}
 
-\begin{proof}
-	Let $ V(t) = K + M\rli{0}{\alpha}{(F\cdot (\omega \circ Y))}(t) $ then note that because
-	$ \omega $ is a non-decreasing function we can write
-	\begin{align*}
-		\omega(Y(t)) \leq \omega(V((t))
-	\end{align*}
-	and so
-	\begin{align*}
-		\frac{\omega(Y(t))}{\omega(V(t))} \leq 1
-	\end{align*}
-	multiplying both sides by $ M F(t) $ we get that
-	\begin{align*}
-		\frac{\omega(Y(t))MF(t)}{\omega(V(t))} \leq MF(t).
-	\end{align*}
-	Note that
-	\begin{align*}
-		\capder{0}{\alpha}{V}(t) &= \omega(Y(t))MF(t)
-	\end{align*}
-	so we can write
-	\begin{align*}
-		\frac{\capder{0}{\alpha}{V}(t)}{\omega(V(t))} \leq MF(t).
-	\end{align*}
-	See that 
-	\begin{align*}
-		\capder{0}{\alpha}{\Omega \circ V }(t) = \capder{0}{\alpha}{\rli{0}{\alpha}{\frac{1}{\omega}}(V)}(t)
-	\end{align*}
-	\begin{align*}
-		\capder{0}{\alpha}{\Omega \circ V }(t) \leq \frac{\capder{0}{\alpha}{V}(t)}{\omega(V(t))}
-	\end{align*}
-	we have that
-	\begin{align*}
-		\capder{0}{\alpha}{\Omega \circ V }(t) \leq  MF(t)
-	\end{align*}
-	and by using lemma \ref{lem:rli-non-neg}  and applying $ I_0^\alpha $ to both sides we get that 
-	\begin{align*}
-		\rli{0}{\alpha}{\capder{0}{\alpha}{\Omega \circ V }}(t) &\leq M\rli{0}{\alpha}{F}(t)
-	\end{align*}
-	and by recognising that 
-	\begin{align*}
-		\rli{0}{\alpha}{\capder{0}{\alpha}{x}}(t) = x(t) + \sum_{k=0}^{n} \frac{x^{(k)}(0)t^{k}}{k!}
-	\end{align*}
-	we see that
-	\begin{align*}
-		\Omega(V(t)) + \sum_{k=0}^{n} \frac{\left[\frac{d^k}{ds^k} \Omega(V(s)) \right]_{s=0}t^{k}}{k!}
-	\end{align*}
-	and so 
-	\begin{align*}
-		\Omega(V(t)) &\leq M\rli{0}{\alpha}{F}(t) - \sum_{k=0}^{n} \frac{\left[\frac{d^k}{ds^k} \Omega(V(s)) \right]_{s=0}t^{k}}{k!}
-	\end{align*}
-	and by inverting
-	\begin{align*}
-		V(t) &\leq \Omega^{-1} \left( M\rli{0}{\alpha}{F}(t) - \sum_{k=0}^{n} \frac{\left[\frac{d^k}{ds^k} \Omega(V(s)) \right]_{s=0}t^{k}}{k!} \right)
-	\end{align*}
-\end{proof}
+%\begin{proof}
+%	Let $ V(t) = K + M\rli{0}{\alpha}{(F\cdot (\omega \circ Y))}(t) $ then note that because
+%	$ \omega $ is a non-decreasing function we can write
+%	\begin{align*}
+%		\omega(Y(t)) \leq \omega(V((t))
+%	\end{align*}
+%	and so
+%	\begin{align*}
+%		\frac{\omega(Y(t))}{\omega(V(t))} \leq 1
+%	\end{align*}
+%	multiplying both sides by $ M F(t) $ we get that
+%	\begin{align*}
+%		\frac{\omega(Y(t))MF(t)}{\omega(V(t))} \leq MF(t).
+%	\end{align*}
+%	Note that
+%	\begin{align*}
+%		\capder{0}{\alpha}{V}(t) &= \omega(Y(t))MF(t)
+%	\end{align*}
+%	so we can write
+%	\begin{align*}
+%		\frac{\capder{0}{\alpha}{V}(t)}{\omega(V(t))} \leq MF(t).
+%	\end{align*}
+%	See that 
+%	\begin{align*}
+%		\capder{0}{\alpha}{\Omega \circ V }(t) = \capder{0}{\alpha}{\rli{0}{\alpha}{\frac{1}{\omega}}(V)}(t)
+%	\end{align*}
+%	\begin{align*}
+%		\capder{0}{\alpha}{\Omega \circ V }(t) \leq \frac{\capder{0}{\alpha}{V}(t)}{\omega(V(t))}
+%	\end{align*}
+%	we have that
+%	\begin{align*}
+%		\capder{0}{\alpha}{\Omega \circ V }(t) \leq  MF(t)
+%	\end{align*}
+%	and by using lemma \ref{lem:rli-non-neg}  and applying $ I_0^\alpha $ to both sides we get that 
+%	\begin{align*}
+%		\rli{0}{\alpha}{\capder{0}{\alpha}{\Omega \circ V }}(t) &\leq M\rli{0}{\alpha}{F}(t)
+%	\end{align*}
+%	and by recognising that 
+%	\begin{align*}
+%		\rli{0}{\alpha}{\capder{0}{\alpha}{x}}(t) = x(t) + \sum_{k=0}^{n} \frac{x^{(k)}(0)t^{k}}{k!}
+%	\end{align*}
+%	we see that
+%	\begin{align*}
+%		\Omega(V(t)) + \sum_{k=0}^{n} \frac{\left[\frac{d^k}{ds^k} \Omega(V(s)) \right]_{s=0}t^{k}}{k!}
+%	\end{align*}
+%	and so 
+%	\begin{align*}
+%		\Omega(V(t)) &\leq M\rli{0}{\alpha}{F}(t) - \sum_{k=0}^{n} \frac{\left[\frac{d^k}{ds^k} \Omega(V(s)) \right]_{s=0}t^{k}}{k!}
+%	\end{align*}
+%	and by inverting
+%	\begin{align*}
+%		V(t) &\leq \Omega^{-1} \left( M\rli{0}{\alpha}{F}(t) - \sum_{k=0}^{n} \frac{\left[\frac{d^k}{ds^k} \Omega(V(s)) \right]_{s=0}t^{k}}{k!} \right)
+%	\end{align*}
+%\end{proof}
 
-\section*{Potential Methods}
+%\section*{Potential Methods}
 
-We wish to generalize the techniques discussed above. To do this we will touch on potential theory and try and place fractional
-calculus in a more abstract setting. 
+%We wish to generalize the techniques discussed above. To do this we will touch on potential theory and try and place fractional
+%calculus in a more abstract setting. 
 
-We wish to consider intergral equations of the following kind (usually refered to as the first kind \cite{Podlubny1999})
+%We wish to consider intergral equations of the following kind (usually refered to as the first kind \cite{Podlubny1999})
+%\begin{align*}
+%	\int_a^b K(t, \tau)y(\tau) d\tau &= f(t)  & & (a < t < b ).
+%\end{align*}
+
+%Note that we can't really define a fractional integral or derivitive from this because we don't have a variable upper limit. 
+%When we define an integral equation of the second kind we will have a variable upper limit and then it will be clear that
+%a fractional integral can be defined with the appropriate kernel.
+
+%Now suppose there 
+
+%\begin{definition}[Rising Pochhammer Symbol]
+%	We define the Pochhammer symbol $ (a)_n $ by
+%	\begin{align*}
+%		(a)_n &= 
+%		\begin{cases}
+%			1 & \text{ if } n = 0 \\
+%			a(a+1)\ldots(a+n-1) 
+%		\end{cases}
+%	\end{align*}
+%\end{definition}
+
+%\begin{definition}[Hypergeometric Series]
+	
+%\end{definition}
+
+\section*{PID Controllers}
+
+This section deviates significantly from the style of the above sections because we now wish to consider some applications of fractional differential equations. 
+One of the areas that we will consider are fractional PID controllers, which are finding increasing use in engineering fields and industry. To understand fractional
+PID controllers much of the basic theory of conventional PID controllers must be covered, and that is what the following few sections cover.
+
+\section*{Introduction and History of PID Controllers}
+
+PID controllers are used to control systems. Typically we 
+
+
+%PID Controller Closed Loop Diagram.
+\begin{tikzpicture} 
+  \draw (3,1) -- (1,1) -- (1,2) -- (3,2) -- cycle;
+  \draw [->] (3,1.5) -- (5,1.5);
+  \draw (7,1) -- (5,1) -- (5,2) -- (7,2) -- cycle;
+  \draw [->] (7,1.5) -- (9,1.5);
+  \draw (8,1.5) -- (8,3) -- (0,3);
+  \draw [->] (0,3) -- (0,1.75);
+  \draw (0,1.5) circle [radius=0.25];
+  \draw (0,1.75) -- (0,1.25);
+  \draw (-0.25, 1.5) -- (0.25, 1.5);
+  \draw [->] (0.25,1.5) -- (1,1.5);
+  \draw [->] (-1.5,1.5) -- (-0.25, 1.5);
+  \draw (0.6,1.75) node {$e(t)$};
+  \draw (-0.75,1.75) node {$r(t)$};
+  \draw (4,1.75) node {$u(t)$};
+  \draw (8.5,1.75) node {$y(t)$};
+  \draw (2, 1.5) node {controller};
+  \draw (6, 1.5) node {plant};
+  \draw (-0.25,2) node {$-$};
+  \draw (-0.5,1.25) node {$+$};
+  
+  \draw [dotted] (1, 1) -- (-1, -1);
+  \draw [dotted] (3, 1) -- (9, -1);
+  \draw [dotted] (-1,-1) -- (9,-1) -- (9,-6) -- (-1,-6) -- cycle;
+  \draw (0,-3.5) -- (1,-3.5);
+  \draw (1,-5) -- (1,-2);
+  \draw [->] (1,-3.5) -- (2,-3.5);
+  \draw [->] (1,-2) -- (2,-2);
+  \draw [->] (1,-5) -- (2,-5);
+  \draw (2, -1.5) -- (5, -1.5) -- (5, -2.5) -- (2, -2.5) -- cycle;
+  \draw (2, -3) -- (5, -3) -- (5, -4) -- (2, -4) -- cycle; 
+  \draw (2, -4.5) -- (5, -4.5) -- (5, -5.5) -- (2, -5.5) -- cycle;
+  \draw (2.25,-3.5) node {I};
+  \draw (3.75,-3.5) node {$\beta_I\int_0^t, e(\tau) d\tau$};
+  \draw (4.25,-2) node {$\beta_P e(t) $};
+  \draw (2.25,-2) node {P};
+  \draw (2.25,-5) node {D};
+  \draw (4.25,-5) node {$\beta_{D} \frac{de(t)}{dt}$};
+  \draw (5, -5) -- (6.5,-5);
+  \draw (5, -2) -- (6.5,-2);
+  \draw [->] (6.5,-2) -- (6.5, -3);
+  \draw [->] (6.5,-5) -- (6.5, -4);
+  \draw [->] (5, -3.5) -- (6,-3.5);
+  \draw (6.5, -3.5) circle [radius=0.5];
+  \draw (6.5, -3.5) node {$\sum$};
+  \draw [->] (7,-3.5) -- (8, -3.5);
+  \draw (0.5,-3.25) node {$e(t)$};
+  \draw (7.5,-3.25) node {$u(t)$};
+  \draw (6.75,-2.75) node {$+$};
+  \draw (6.75,-4.25) node {$+$};
+  \draw (5.75,-3.25) node {$+$};
+\end{tikzpicture}
+
+
+%Plate In A Newtonian Fluid
+\begin{tikzpicture} 
+	\path [fill, color=blue, opacity=0.25] (0,1) -- (14,1) -- (14,-1) -- (0, -1) -- cycle;
+	\path [fill, color=blue, opacity=0.25] (9,1) -- (11, 1.75) -- (11, 4) -- (14, 4) -- (14,1) -- cycle;
+	\path [fill, color=blue, opacity=0.25] (0,1) -- (1,1) -- (1,1.25) -- (3,2) -- (0,2) -- cycle;
+	\path [fill, color=blue, opacity=0.25] (0,2) -- (0,4) -- (11,4) -- (11,2) -- cycle;
+	\path [fill, color=brown, opacity=0.25] (1,1) -- (9,1) -- (9,1.25) -- (1, 1.25) -- cycle;	
+	\draw (1,1) -- (9,1) -- (9,1.25) -- (1, 1.25) -- cycle;
+	\draw [dotted] (1,1) -- (5,2.5) -- (13, 2.5);
+	\draw (13,2.5) -- (9,1);
+	\draw (1,1.25) -- (5,2.75) -- (13, 2.75) -- (9, 1.25);
+	\path [fill, color=brown, opacity=0.25] (1,1.25) -- (5,2.75) -- (13, 2.75) -- (9, 1.25) -- cycle;
+	\path [fill, color=brown, opacity=0.25] (1,1) -- (1,1.25) -- (5,2.75) -- (5,2.5) -- cycle;
+	\path [fill, color=brown, opacity=0.25] (5,2.5) -- (5,2.75) -- (13,2.75) -- (13,2.5) -- cycle;
+	\path [fill, color=brown, opacity=0.25] (9, 1) -- (9,1.25) -- (13,2.75) -- (13,2.5) -- cycle;
+	\path [fill, color=brown, opacity=0.25] (1,1) -- (5,2.5) -- (13, 2.5) -- (9, 1) -- cycle;
+	\draw (13,2.75) -- (13, 2.5);
+	\draw [dotted] (5,2.5) -- (5,2.75);
+ 	\draw [->] (1.125,1.125) -- (2, 1.125);
+ 	\draw [->] (2.125, 1.125) -- (3, 1.125);
+ 	\draw [->] (3.125, 1.125) -- (4, 1.125);
+ 	\draw [->] (4.125, 1.125) -- (5, 1.125);
+ 	\draw (2,-0.5) node {Newtonian Fluid};
+ 	\draw (3.5,1.5) node {Rigid Plate};
+ 	\draw [->] (5.125, 1.125) -- (6, 1.125);
+ 	\draw [->] (6.125, 1.125) -- (7, 1.125);
+ 	\draw [->] (7.125, 1.125) -- (8, 1.125);
+ 	\draw [->] (8.125, 1.125) -- (8.875, 1.125);
+% 	\path [fill, color=blue, opacity=0.5] (0,2) -- (14,2) -- (14,5) -- (0, 5) -- cycle;
+\end{tikzpicture}
+
+%PID Controller Explanatory Graph
+\begin{tikzpicture} 
+  \draw[->] (-1,0) -- (4.2,0) node[right] {$t$};
+  \draw[->] (0,-1) -- (0,4.2) node[above] {$e(t)$};
+  \draw[scale=0.5,domain=0:8,smooth,variable=\x,blue] plot ({\x},{5*exp(-0.5*\x)*cos(100*\x)});
+\end{tikzpicture}
+
+%Derivatives
+\begin{tikzpicture}
+  \draw[->] (-1,0) -- (4.2,0) node[right] {$x$};
+  \draw[->] (0,-1) -- (0,4.2) node[above] {$y$};
+  \draw[scale=1,domain=0:4,smooth,variable=\x,blue] plot ({\x},{\x});
+  \draw[scale=1,domain=0:4,smooth,variable=\x,blue!80] plot ({\x},{ 1.03975 * \x^0.9});
+  \draw[scale=1,domain=0:4,smooth,variable=\x,blue!60] plot ({\x},{ 1.07367 * \x^0.8});
+  \draw[scale=1,domain=0:4,smooth,variable=\x,blue!40] plot ({\x},{ 1.10055 * \x^0.7});
+  \draw[scale=1,domain=0:4,smooth,variable=\x,blue!20] plot ({\x},{ 1.119175 * \x^0.6});
+  \draw[scale=1,domain=0:4,smooth,variable=\x,green] plot ({\x},{ 1.12838 * \x^0.5});
+  \draw[scale=1,domain=0:4,smooth,variable=\x,red!20] plot ({\x},{ 1.127060 * \x^0.4});
+  \draw[scale=1,domain=0:4,smooth,variable=\x,red!40] plot ({\x},{ 1.114243 * \x^0.3});
+  \draw[scale=1,domain=0:4,smooth,variable=\x,red!60] plot ({\x},{ 1.08912 * \x^0.2});
+  \draw[scale=1,domain=0:4,smooth,variable=\x,red!80] plot ({\x},{ 1.05114 * \x^0.1});
+  \draw[scale=1,domain=0:4,smooth,variable=\x,red] plot ({\x},{ 1 * \x^0});
+\end{tikzpicture}
+
+
+We will consider this in two senses, formally and with a block diagram. The block diagrams are common in engineering for describing these control systems and given their
+utility we will make use of them here as well.
+
+Formally we say that we calculate a control value (function) $ u $ by
+
 \begin{align*}
-	\int_a^b K(t, \tau)y(\tau) d\tau &= f(t)  & & (a < t < b ).
+	u(t) = \beta_{P} e(t) + \beta_{D}\frac{de(t)}{dt} + \beta_{I} \int_{0}^{t} e(s) ds
 \end{align*}
-
-Note that we can't really define a fractional integral or derivitive from this because we don't have a variable upper limit. 
-When we define an integral equation of the second kind we will have a variable upper limit and then it will be clear that
-a fractional integral can be defined with the appropriate kernel.
-
-Now suppose there 
-
-\begin{definition}[Pochhammer Symbol]
-	We define the Pochhammer symbol $ (a)_n $ by
-	\begin{align*}
-		(a)_n &= 
-		\begin{cases}
-			1 & \text{ if } n= 0
-			a(a+1)\ldots(a+n-1) 
-		\end{cases}
-	\end{align*}
-\end{definition}
 
 
 \bibliographystyle{plain}
