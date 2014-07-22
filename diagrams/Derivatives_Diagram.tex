@@ -1,0 +1,16 @@
+%Derivatives
+\begin{tikzpicture}
+  \draw[->] (-1,0) -- (4.2,0) node[right] {$x$};
+  \draw[->] (0,-1) -- (0,4.2) node[above] {$y$};
+  \draw[scale=1,domain=0:4,smooth,variable=\x,blue] plot ({\x},{\x});
+  \draw[scale=1,domain=0:4,smooth,variable=\x,blue!80] plot ({\x},{ 1.03975 * \x^0.9});
+  \draw[scale=1,domain=0:4,smooth,variable=\x,blue!60] plot ({\x},{ 1.07367 * \x^0.8});
+  \draw[scale=1,domain=0:4,smooth,variable=\x,blue!40] plot ({\x},{ 1.10055 * \x^0.7});
+  \draw[scale=1,domain=0:4,smooth,variable=\x,blue!20] plot ({\x},{ 1.119175 * \x^0.6});
+  \draw[scale=1,domain=0:4,smooth,variable=\x,green] plot ({\x},{ 1.12838 * \x^0.5});
+  \draw[scale=1,domain=0:4,smooth,variable=\x,red!20] plot ({\x},{ 1.127060 * \x^0.4});
+  \draw[scale=1,domain=0:4,smooth,variable=\x,red!40] plot ({\x},{ 1.114243 * \x^0.3});
+  \draw[scale=1,domain=0:4,smooth,variable=\x,red!60] plot ({\x},{ 1.08912 * \x^0.2});
+  \draw[scale=1,domain=0:4,smooth,variable=\x,red!80] plot ({\x},{ 1.05114 * \x^0.1});
+  \draw[scale=1,domain=0:4,smooth,variable=\x,red] plot ({\x},{ 1 * \x^0});
+\end{tikzpicture}

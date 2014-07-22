@@ -1007,7 +1007,7 @@ PID controllers are used to control systems. Typically we
 %Plate In A Newtonian Fluid
 %\input{diagrams/Plate_Diagram.tex}
 %PID Controller Explanatory Graph
-\input{diagrams/PID_Explanation_Graph.tex}
+%\input{diagrams/PID_Explanation_Graph.tex}
 
 We will consider this in two senses, formally and with a block diagram. The block diagrams are common in engineering for describing these control systems and given their
 utility we will make use of them here as well.

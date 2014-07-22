@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.21)  21 JUL 2014 16:07
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.21)  22 JUL 2014 12:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**FDE_Thesis.tex
-(./FDE_Thesis.tex
+**NewThesis.tex
+(./NewThesis.tex
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 78 languages loaded.
 (./unswmaths.cls
@@ -563,180 +563,124 @@ File: tikzlibrarytopaths.code.tex 2008/06/17 v2.10 (rcs-revision 1.2)
 \c@definition=\count136
 \c@corollary=\count137
 \c@remark=\count138
-) (./FDE_Thesis.aux)
-\openout1 = `FDE_Thesis.aux'.
+) (/usr/share/texlive/texmf-dist/tex/latex/preprint/fullpage.sty
+Package: fullpage 1999/02/23 1.1 (PWD)
+\FP@margin=\skip64
+) (./CodeStyle.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count139
+\lst@gtempboxa=\box63
+\lst@token=\toks35
+\lst@length=\count140
+\lst@currlwidth=\dimen174
+\lst@column=\count141
+\lst@pos=\count142
+\lst@lostspace=\dimen175
+\lst@width=\dimen176
+\lst@newlines=\count143
+\lst@lineno=\count144
+\lst@maxwidth=\dimen177
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
+\c@lstnumber=\count145
+\lst@skipnumbers=\count146
+\lst@framebox=\box64
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2013/08/26 1.5b listings configuration
+))
+Package: listings 2013/08/26 1.5b (Carsten Heinz)
 
-(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2013/08/26 1.5b listings language file
+))
+(./NewThesis.aux)
+\openout1 = `NewThesis.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+ (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count139
-\scratchdimen=\dimen174
-\scratchbox=\box63
-\nofMPsegments=\count140
-\nofMParguments=\count141
-\everyMPshowfont=\toks35
-\MPscratchCnt=\count142
-\MPscratchDim=\dimen175
-\MPnumerator=\count143
-\makeMPintoPDFobject=\count144
-\everyMPtoPDFconversion=\toks36
+\scratchcounter=\count147
+\scratchdimen=\dimen178
+\scratchbox=\box65
+\nofMPsegments=\count148
+\nofMParguments=\count149
+\everyMPshowfont=\toks36
+\MPscratchCnt=\count150
+\MPscratchDim=\dimen179
+\MPnumerator=\count151
+\makeMPintoPDFobject=\count152
+\everyMPtoPDFconversion=\toks37
 ) ABD: EveryShipout initializing macros
+\c@lstlisting=\count153
+
 <artwork/unswlogo.jpg, id=4, 254.96857pt x 93.37283pt>
 File: artwork/unswlogo.jpg Graphic file (type jpg)
 
 <use artwork/unswlogo.jpg>
-Package pdftex.def Info: artwork/unswlogo.jpg used on input line 15.
-(pdftex.def)             Requested size: 345.0pt x 126.35846pt.
+Package pdftex.def Info: artwork/unswlogo.jpg used on input line 18.
+(pdftex.def)             Requested size: 469.75502pt x 172.05028pt.
 
 <artwork/mathslogo.jpg, id=5, 205.76875pt x 205.76875pt>
 File: artwork/mathslogo.jpg Graphic file (type jpg)
 
 <use artwork/mathslogo.jpg>
-Package pdftex.def Info: artwork/mathslogo.jpg used on input line 15.
-(pdftex.def)             Requested size: 137.9979pt x 137.99934pt.
+Package pdftex.def Info: artwork/mathslogo.jpg used on input line 18.
+(pdftex.def)             Requested size: 187.89914pt x 187.89977pt.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./artwork/unswlogo.jpg> <.
 /artwork/mathslogo.jpg>]
-LaTeX Font Info:    Try loading font information for U+msa on input line 32.
+(./diagrams/AMB_Task_Diagram.tex
+LaTeX Font Info:    Try loading font information for U+msa on input line 51.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 32.
+LaTeX Font Info:    Try loading font information for U+msb on input line 51.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1] [2] [3] [4]
-Overfull \hbox (34.2587pt too wide) in paragraph at lines 186--186
-[] 
- []
-
-[5]
-
-LaTeX Warning: Citation `Samko1993' undefined on input line 207.
-
-[6]
-
-LaTeX Warning: Citation `Samko1993' on page 7 undefined on input line 261.
-
-
-LaTeX Warning: Citation `Podlubny1999' on page 7 undefined on input line 261.
-
-[7] [8]
-Overfull \hbox (13.97849pt too wide) in paragraph at lines 326--326
-[] 
- []
-
-[9] [10]
-
-LaTeX Warning: Citation `Podlubny1999' on page 11 undefined on input line 435.
-
-[11]
-Overfull \hbox (10.745pt too wide) in paragraph at lines 454--455
-[]\OT1/cmr/bx/n/10 Definition 3 \OT1/cmr/m/n/10 (Two Paramter Mit-tag-Le-fler F
-unc-tion)\OT1/cmr/bx/n/10 . []\OT1/cmr/m/it/10 We de-fine the two paramter
- []
-
-[12] [13]
-
-LaTeX Warning: Citation `Tisdell2012' on page 14 undefined on input line 555.
-
-
-LaTeX Warning: Citation `Podlubny1999' on page 14 undefined on input line 556.
-
-[14] [15] [16]
-Overfull \hbox (17.57268pt too wide) in paragraph at lines 677--677
-[] 
- []
-
-[17]
-Overfull \hbox (16.45325pt too wide) in paragraph at lines 692--692
-[] 
- []
-
-[18]
-
-LaTeX Warning: Citation `Podlubny1999' on page 19 undefined on input line 716.
-
-
-Overfull \hbox (7.71617pt too wide) in paragraph at lines 718--718
-[]\OT1/cmr/bx/n/14.4 Solution to a Sin-gu-lar Frac-tional Dif-fer-en-tial Equa-
-
- []
-
-
-LaTeX Warning: Citation `Podlubny1999' on page 19 undefined on input line 733.
-
-[19]
-Overfull \hbox (22.06726pt too wide) in paragraph at lines 785--785
-[] 
- []
-
-[20] [21]
-Overfull \hbox (1.34644pt too wide) in paragraph at lines 856--856
-[] 
- []
-
-[22] (./diagrams/PID_Explanation_Graph.tex
-Overfull \hbox (59.76012pt too wide) in paragraph at lines 1004--7
-\OT1/cmr/m/n/10 PID con-trollers are used to con-trol sys-tems. Typ-i-cally we 
-[] 
- []
-
-[23] (./FDE_Thesis.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) ) 
+))
+(./diagrams/AMB_y_Diagram.tex) (./chapters/Appendix_A.tex [1] [2] [3] [4]
+[5] [6]) [7] (./NewThesis.aux) ) 
 Here is how much of TeX's memory you used:
- 12055 strings out of 493304
- 217824 string characters out of 6139871
- 273879 words of memory out of 5000000
- 15220 multiletter control sequences out of 15000+600000
- 12857 words of font info for 48 fonts, out of 8000000 for 9000
+ 13354 strings out of 493304
+ 236096 string characters out of 6139871
+ 414001 words of memory out of 5000000
+ 16494 multiletter control sequences out of 15000+600000
+ 9798 words of font info for 37 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 63i,17n,57p,401b,494s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sy
-mbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sym
-bols/msam7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbo
-ls/msbm10.pfb>
-Output written on FDE_Thesis.pdf (24 pages, 573024 bytes).
+ 63i,6n,57p,421b,1561s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcs
+c10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmtt9.pfb>
+Output written on NewThesis.pdf (8 pages, 397950 bytes).
 PDF statistics:
- 187 PDF objects out of 1000 (max. 8388607)
- 132 compressed objects within 2 object streams
+ 88 PDF objects out of 1000 (max. 8388607)
+ 62 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  23 words of extra memory for PDF output out of 10000 (max. 10000000)
 
