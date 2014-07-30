@@ -1,5 +1,5 @@
 
-\section{Adams-Moulten-Bashford FDE Solver Code}
+\section{Appendix A: Adams-Moulten-Bashford FDE Solver Code}
 
 \subsection{C\# Implementation of AMB FDE Solver}
 
@@ -261,4 +261,296 @@ namespace FDE_Solver
 	}
 }
  
+\end{lstlisting}
+
+
+\subsection{CUDA C/C++ Implementation of AMB FDE Solver}
+\subsubsection{FDE\_Solver.cu}
+
+\lstset{language=C++}
+\begin{lstlisting}
+#include <iostream>
+#include <ctime>
+
+// This is the size of the memory that we will have in each thread block
+// Currently thread blocks can be at most 1024 in size so we allocate double
+// that for good measure.
+#define SHARED_MEMORY_SIZE 2048
+
+using namespace std;
+
+// The RHS of the differential equation
+__device__ float f(float x, float y) {
+    return -y;
+}
+
+// This uses the Lanczos approximation and is only valid
+// for positive real values of z. This code is essentially
+// a translation of a python implementation available
+// at http://en.wikipedia.org/wiki/Lanczos_approximation
+// on 22nd July 2014
+__device__ float Gamma(float z) {
+    float g = 7;
+    float p [] = { 0.99999999999980993, 676.5203681218851, -1259.1392167224028,
+				   771.32342877765313, -176.61502916214059, 12.507343278686905,
+				   -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7 };
+	float result = 0;
+	if (z < 0.5) {
+	    result = M_PI / (sin(M_PI * z) * Gamma(1-z));
+	} else {
+	    z -= 1;
+	    float x = p[0];
+	    for (int i = 1; i < g + 2; i++) {
+	        x += p[i] / (z +i);
+	    }
+	    float t = z + g + 0.5;
+	    result = sqrt(2 * M_PI) * pow(t, z + 0.5f) * exp(-t) * x;
+	}
+	return result;
+}
+
+// Calculates the factorial of an integer
+__device__ int Factorial(int k) {
+    int value = 1;
+    for (int i = 1; i <= k; i++) {
+        value *= i;
+    }
+    return value;
+}
+
+// This calculates the a coefficient described in the K. Diethelm paper
+// referenced in the body of thesis.
+__device__ float a(int mu, float alpha) {
+    return (pow((float)mu + 2, alpha + 1) - 2 * pow((float)mu + 1, alpha + 1) + pow((float)mu, alpha + 1))/Gamma(alpha + 2);
+}
+
+// This calculates the b coefficient described in the K. Diethelm paper
+// referenced in the body of thesis.
+__device__ float b(int mu, float alpha) {
+    return (pow ((float)mu + 1, alpha) - pow ((float)mu, alpha)) / Gamma (alpha + 1);
+}
+
+// This calculates the c coefficient described in the K. Diethelm paper
+// referenced in the body of thesis.
+__device__ float c(int mu, float alpha) {
+    return (pow((float)mu, alpha+1) - (mu - alpha)*pow((float)mu + 1, alpha)) / Gamma(alpha + 2);
+}
+
+// This calculates the sum R in parallel on the GPU. The sum R is discussed in the body of the
+// thesis. 
+__global__ void calcR(int j, float* x, float* y, float alpha, int opsPerThread, float* R) {
+    __shared__ float temp[SHARED_MEMORY_SIZE];
+    int i 			    = (blockDim.x * blockIdx.x + threadIdx.x) * opsPerThread;
+    float sum 		    = 0;
+	for (int l = 0; l < opsPerThread && i + l <= j; ++l) {
+		sum 		    += b(j - (i + l), alpha) * f(x[i+l], y[i+l]);
+	}
+	temp[threadIdx.x]   = sum;
+	__syncthreads();
+    if ( 0 == threadIdx.x ) {
+        sum             = 0;
+        for (int k      = 0; k < blockDim.x; ++k) {
+            sum         += temp[k];
+        }
+        atomicAdd( &R[j], sum );
+    }
+}
+
+
+// This calculates the sum S in parallel on the GPU. The sum R is discussed in the body of the
+// thesis. 
+__global__ void calcS(int j, float* x, float* y, float alpha, int opsPerThread, float* S) {
+    __shared__ float temp[SHARED_MEMORY_SIZE];
+    int i 			    = (blockDim.x * blockIdx.x + threadIdx.x) * opsPerThread;
+    float sum 		    = 0;
+	for (int l = 0; l < opsPerThread && i + l <= j; ++l) {
+		sum 		    += a(j - (i + l), alpha) * f(x[i+l], y[i+l]);
+	}
+	temp[threadIdx.x]   = sum;
+	__syncthreads();
+    if ( 0 == threadIdx.x ) {
+        sum             = 0;
+        for (int k      = 0; k < blockDim.x; ++k) {
+            sum         += temp[k];
+        }
+        atomicAdd( &S[j], sum );
+    }
+}
+
+// This is used to initialize the very first value in the solution array
+// from the initial conditions.
+__global__ void setY0(float* y, float y0) {
+    y[0] = y0;
+}
+
+// This is used to initialize the x array with the correct grid points.
+// This will execute in parallel
+__global__ void initialize_x(float* x, float h, int N, int opsPerThread) {
+    int j = (blockIdx.x * blockDim.x + threadIdx.x) * opsPerThread;
+    for (int i = 0; i < opsPerThread && i + j < N; i++) {
+        x[j + i] = (j + i) * h;
+    }
+}
+
+// This calculate the predictor value from the sums already calculated.
+// This does not run in parallel and should be called with <<< 1, 1 >>>
+__global__ void calcYp(int j, float* I, float* R, float* Yp, float h, float alpha) {
+    Yp[j+1] = I[j+1] + pow(h, alpha) * R[j];
+}
+
+// This calculate the y value from the sums already calculated.
+// This does not run in parallel and should be called with <<< 1, 1 >>>
+__global__ void calcY(int j, float* I, float* S, float* Yp, float* y, float* x, float h, float alpha) {
+    y[j+1] = I[j+1] + pow(h, alpha) * ( c(j, alpha) * f(x[0], y[0]) + S[j] + f(x[j+1], Yp[j+1]) / Gamma(alpha + 2) );
+}
+
+
+// This calculates the I sum discussed in the body of the thesis. The entirety of
+// the I sums can be precalculated and so that is what this does. This does run
+// in parallel with as many threads as there are steps.
+__global__ void initialize_I(float* I, float* x, float* y_0_diffs, float alpha, int N) {
+	float sum = 0;
+	int j = blockIdx.x * blockDim.x + threadIdx.x;
+    if (j < N) {
+        for (int k = 0; k <= (ceil(alpha) - 1); k++) {
+			sum += pow(x[j], (float)k) / Factorial(k) * y_0_diffs[k];
+		}
+		I[j] = sum;
+    }
+}
+
+// This sets up the actual computations on the graphics card and launches them.
+// N 			- Number of steps
+// T 			- Maximum value of x
+// y_0_diffs 	- The initial conditions
+// y			- The vector into which the solution should be copied. (This needs to be
+//				  malloced out by the caller of this function.
+// opsPerThread	- Number of operations per thread to actually perform.
+void compute(int N, float alpha, float T, float* y_0_diffs, float* y, int opsPerThread){
+	float* 			dev_x 				= NULL;
+	float* 			dev_y 				= NULL;
+	float* 			dev_R				= NULL;
+	float* 			dev_S				= NULL;
+	float*			dev_y_0_diffs		= NULL;
+	float* 			dev_y_p				= NULL;
+	float* 			dev_I				= NULL;
+	cudaDeviceProp* props				= NULL;	
+	float 			h					= 0;
+	int 			size				= 0;
+	int 			size_ics			= 0;
+	int 			blocks				= 0;
+	float 			blocksf				= 0;
+	int 			threads				= 0;
+	float 			threadsf			= 0;
+	
+	
+	// The amount of space needed for the main arrays
+	size 			= sizeof(float) * N;
+	
+	// The amount of space needed for the initial conditions
+	size_ics		= sizeof(float) * ceil(alpha);
+	
+	// Allocate memory on device for computations
+	cudaMalloc( (void**)&dev_x, size );
+	cudaMalloc( (void**)&dev_y, size );
+	cudaMalloc( (void**)&dev_R, size );
+	cudaMalloc( (void**)&dev_S, size );
+	cudaMalloc( (void**)&dev_I, size );
+	cudaMalloc( (void**)&dev_y_p, size );
+	cudaMalloc( (void**)&dev_y_0_diffs, size_ics );
+	
+	// Set the device memory up so that it is otherwise set to 0
+	cudaMemset( dev_y, 0, size );
+	cudaMemset( dev_y_p, 0, size );
+	cudaMemset( dev_R, 0, size );
+	cudaMemset( dev_S, 0, size );
+	
+	// Move the 0th order initial condition across.
+	setY0<<< 1, 1 >>>( dev_y, y_0_diffs[0] );
+	
+	// Move the initial conditions across.
+	cudaMemcpy( dev_y_0_diffs, y_0_diffs, size_ics, cudaMemcpyHostToDevice );
+	
+	// Query device capabilities.
+	props 			= (cudaDeviceProp*) malloc( sizeof(cudaDeviceProp) );
+	cudaGetDeviceProperties( props, 0 ); // Assume that we will always use device 1.
+	
+	// initialize the x vector
+	h 				= T / N;
+	blocksf 		= (float) N / (float) (props->maxThreadsPerBlock * opsPerThread);
+	blocks 			= ceil(blocksf);
+	threads 		= props->maxThreadsPerBlock;
+	if (1 == blocks) {
+		threadsf 	= (float) N / (float)opsPerThread;
+		threads 	= ceil(threadsf);
+	}
+	initialize_x<<< blocks, threads >>>(dev_x, h, N, opsPerThread);
+	
+	// initialize the I vector
+	blocksf 		= (float) N / (float) props->maxThreadsPerBlock;
+	blocks 			= ceil(blocksf);
+	if (1 == blocks) {
+		threads 	= N;
+	} else {
+		threads		= props->maxThreadsPerBlock;
+	}
+	initialize_I<<< blocks, threads >>>(dev_I, dev_x, dev_y_0_diffs, alpha, N);
+	
+	// Perform the actual calculations.
+	for (int j = 0; j < N; ++j) {
+		blocksf 		= (float) ( j + 1 )/ (float) (props->maxThreadsPerBlock * opsPerThread);
+		blocks 			= ceil(blocksf);
+		if (1 == blocks) {
+			threadsf 	= (float) j / (float)opsPerThread;
+			threads 	= ceil(threadsf) + 1;
+		} else {
+			threads = props->maxThreadsPerBlock;
+		}
+		calcR<<< blocks, threads >>>(j, dev_x, dev_y, alpha, opsPerThread, dev_R);
+		calcYp<<< 1, 1 >>>(j, dev_I, dev_R, dev_y_p, h, alpha);
+		calcS<<< blocks, threads >>>(j, dev_x, dev_y, alpha, opsPerThread, dev_S);
+		calcY<<< 1, 1 >>>(j, dev_I, dev_S, dev_y_p, dev_y, dev_x, h, alpha);
+	}
+	
+	// Copy y vector back onto host memory
+	cudaMemcpy( y, dev_R, size, cudaMemcpyDeviceToHost );
+	
+	// Free up all resources that were used.
+	cudaFree( dev_x );
+	cudaFree( dev_y );
+	cudaFree( dev_R );
+	cudaFree( dev_S );
+	cudaFree( dev_I );
+	cudaFree( dev_y_0_diffs );
+	cudaFree( dev_y_p );
+	
+	// Free up all space used on the host.
+	free( props );
+}
+
+int main( void ) {
+	// This code will benchmark the performance of this solver with different
+	// paramters for the number of steps and number of operations per thread.
+	float       y_0_diffs[] 		= { 1 };
+	int         N 					= 10000;
+	int         T					= 10;
+	clock_t     start               = 0;
+	clock_t     end                 = 0;
+	double      duration            = 0;
+	for (int i = 1; i <= 50; i+=5) {
+		// Need to make sure that the correct ammount of memory is available.
+		int         size 			= N * i * sizeof( float );
+		float*      y 			    = (float*) malloc( size );
+	    for (int j = 1; j <= 20; ++j) {
+	        start           = clock();  
+	       	compute(N * i, 0.5f, T, y_0_diffs, y, j );
+	       	end             = clock();
+	       	duration        = (end - start) / (double) CLOCKS_PER_SEC;
+	       	cout << duration << "\t" << flush;
+	    }
+	    free(y);
+	    cout << "\n";
+	}
+    return 0;
+}
 \end{lstlisting}

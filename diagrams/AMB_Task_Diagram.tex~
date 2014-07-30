@@ -54,19 +54,19 @@
     \draw (7.5, 16.25) node { $ I $ };
     \draw (8, 15.75) node[color=red]  { $ 1 $ };
     
-    \draw (10.5, 16.25) node { $ H_p $ };
+    \draw (10.5, 16.25) node { $ H^P $ };
     \draw (11, 15.75) node[color=red]  { $ 1 $ };
     
-    \draw (9.25, 13) node { $ L_p $ };
+    \draw (9.25, 13) node { $ L^P $ };
     \draw (9.75, 12.5) node[color=red] { $ 1 $ };
     
-    \draw (9.25, 10) node { $ S_p $ };
+    \draw (9.25, 10) node { $ S^P $ };
     \draw (9.75, 9.5) node[color=red] { $ 1 $ };
     
     \draw (9.25, 7.25) node { $ L $ };
     \draw (9.75, 6.75) node[color=red] { $ 1 $ };
     
-    \draw (9.25, 4.25) node { $ L $ };
+    \draw (9.25, 4.25) node { $ S $ };
     \draw (9.75, 3.75) node[color=red] { $ 1 $ };
     
     
@@ -77,10 +77,10 @@
     \draw (15.5, 16.25) node { $ I $ };
     \draw (16, 15.75) node[color=red]  { $ 2 $ };
     
-    \draw (18.5, 16.25) node { $ H_p $ };
+    \draw (18.5, 16.25) node { $ H^P $ };
     \draw (19, 15.75) node[color=red]  { $ 2 $ };
     
-    \draw (17.25, 13) node { $ L_p $ };
+    \draw (17.25, 13) node { $ L^P $ };
     \draw (17.75, 12.5) node[color=red] { $ 2 $ };
     
     \draw (17.25, 10) node { $ S_p $ };
@@ -89,7 +89,7 @@
     \draw (17.25, 7.25) node { $ L $ };
     \draw (17.75, 6.75) node[color=red] { $ 2 $ };
     
-    \draw (17.25, 4.25) node { $ L $ };
+    \draw (17.25, 4.25) node { $ S $ };
     \draw (17.75, 3.75) node[color=red] { $ 2 $ };
     
     \draw [->] (17.25, 3.5) -- (17.25, 2) -- (11.5, 2) -- (11.5, 1);

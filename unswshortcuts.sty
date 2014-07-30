@@ -42,10 +42,11 @@
 \newcommand{\laplace}[1]{ \mathcal{L} \left\{ #1 \right\} }
 \newcommand{\fourier}[1]{ \mathcal{F} \left\{ #1 \right\} }
 \newcommand{\mellin}[1]{ \mathcal{M} \left\{ #1 \right\} }
-\newcommand{\rld}[3]{ \left( \mathcal{D}_{#1}^{#2} #3 \right) }
+\newcommand{\rld}[4]{ \left( \prescript{}{#1}{\mathcal{D}_{#2}^{#3}} #4 \right) }
 \newcommand{\rli}[3]{ \left( I_{#1}^{#2} #3 \right) }
 \newcommand{\der}[3]{ \frac{d^{#3}#1}{d#2^{#3}} }
-\newcommand{\capder}[3]{ \left( \prescript{C}{}{\mathcal{D}_{#1}^{#2}} #3 \right) }
+\newcommand{\capder}[4]{ \left( \prescript{C}{#1}{\mathcal{D}_{#2}^{#3}} #4 \right) }
+\newcommand{\fracdelta}[4]{ \left( \prescript{}{#1}{\Delta^{#2}_{#3} } #4 \right) }
 
 %Commutative Diagrams
 
