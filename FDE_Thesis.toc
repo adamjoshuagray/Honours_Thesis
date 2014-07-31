@@ -1,7 +1,0 @@
-\contentsline {section}{Introduction}{1}
-\contentsline {section}{Abel's Integral Equation}{5}
-\contentsline {section}{Application of Abel's Integral Equation \\ to the Tautochrone Problem}{6}
-\contentsline {section}{Solution to a Simple Fractional Differential Equation}{7}
-\contentsline {section}{Solution to a Multi-Order Fractional Differential Equation}{11}
-\contentsline {section}{Existence and Uniquness of Fractional Differential Equations}{14}
-\contentsline {section}{Solution to a Singular Fractional Differential Equation}{19}
