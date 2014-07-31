@@ -537,7 +537,7 @@ int main( void ) {
 	clock_t     start               = 0;
 	clock_t     end                 = 0;
 	double      duration            = 0;
-	for (int i = 1; i <= 50; i+=5) {
+	for (int i = 0; i <= 50; i+=5) {
 		// Need to make sure that the correct ammount of memory is available.
 		int         size 			= N * i * sizeof( float );
 		float*      y 			    = (float*) malloc( size );
