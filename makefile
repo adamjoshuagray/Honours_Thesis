@@ -1,5 +1,5 @@
 READ = evince
-NAME = FDE_Thesis
+NAME = NewThesis
 COMP = pdflatex
 BIB  = bibtex
 

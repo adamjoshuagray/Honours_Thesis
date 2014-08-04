@@ -1,0 +1,328 @@
+
+\documentclass[pdf]{beamer}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+\usetheme{Dresden}
+\usecolortheme{beaver}
+
+%Analysis
+\newcommand{\Rl}{\mathbb{R}}
+\newcommand{\Cplx}{\mathbb{C}}
+\newcommand{\Itgr}{\mathbb{Z}}
+\newcommand{\Ntrl}{\mathbb{N}}
+\newcommand{\Ind}{\mathbbm{1}}
+\newcommand{\Hlbt}{\mathcal{H}}
+\newcommand{\im}{\operatorname{im}}
+
+%Algebra
+\newcommand{\Grp}{\mathcal{G}}
+
+%Misc
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lla}{\longleftarrow}
+\newcommand{\la}{\leftarrow}
+
+%Stats \ Prob
+\newcommand{\E}[1]{\mathbb{E} \left[ #1 \right]}
+\newcommand{\Var}[1]{\operatorname{Var} \left[ #1 \right] }
+\newcommand{\Cov}[2]{\operatorname{Cov} \left[ #1, #2 \right] }
+\newcommand{\Filt}{\mathcal{F}}
+
+%Fractional Differential Equations
+
+\newcommand{\laplace}[1]{ \mathcal{L} \left\{ #1 \right\} }
+\newcommand{\fourier}[1]{ \mathcal{F} \left\{ #1 \right\} }
+\newcommand{\mellin}[1]{ \mathcal{M} \left\{ #1 \right\} }
+\newcommand{\rld}[3]{ \left( \mathcal{D}_{#1}^{#2} #3 \right) }
+\newcommand{\rli}[3]{ \left( I_{#1}^{#2} #3 \right) }
+\newcommand{\der}[3]{ \frac{d^{#3}#1}{d#2^{#3}} }
+\newcommand{\capder}[3]{ \left( \prescript{C}{}{\mathcal{D}_{#1}^{#2}} #3 \right) }
+
+\mode<presentation>{}
+\title{A Solution to a Fractional Differential Equation}
+\subtitle{The Laplace Transform Method}
+\author{Adam J. Gray}
+\institute{
+	School of Mathematics and Statistics \\
+	University of New South Wales
+}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\begin{frame}{The Goal}
+	We aim to get a solution to the following fractional differential equation (in terms of Caputo derivatives)
+	\begin{align*}
+		\left( \prescript{C}{}{\mathcal{D}_0^\alpha}y \right)(t) = \beta y(t) 
+	\end{align*}
+
+	along with the initial conditions 
+	\begin{align*}
+		y^{(k)}(0) = 
+		\begin{cases}
+			1 & k = 0 \\
+			0 & 1 \leq k \leq \lfloor \alpha \rfloor - 1  
+		\end{cases}
+	\end{align*}
+\end{frame}
+
+
+\begin{frame}{Motivations}
+	\begin{block}{Cauchy Formula for Repeated Integration}
+		\begin{align*}
+			\int_{a}^{x} \int_{a}^{y_1} \cdots \int_a^{y_{n-1}} f(y_n) dy_n \cdots dy_2 dy_1 = \frac{1}{(n-1)!} \int_a^x(x-t)^{n-1}f(t)dt
+		\end{align*}
+	\end{block}
+	\pause
+	The idea is to replace the factorials with gamma functions to define an integral of arbitrary order
+	\pause
+	\begin{block}{Riemann-Liouville Fractional Integral}
+		\begin{align*}
+			\rli{a}{\alpha}{f}(x) = \frac{1}{\Gamma(\alpha)} \int_a^x(x-t)^{\alpha-1}f(t)dt
+		\end{align*}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Motivations (Derivatives)}
+	\begin{block}{Riemann-Liouville Fractional Derivative}
+		\begin{align*}
+			\rld{a}{\alpha}{f}(x) &= \frac{d^{\lceil \alpha \rceil}}{dx^{\lceil \alpha \rceil}} \rli{a}{\lceil \alpha \rceil - \alpha}{f}(x) \\
+				&= \frac{1}{\Gamma(1 - \alpha)}\frac{d^{n}}{dx^n} \int_a^x \frac{f(t)dt}{\frac{(x-t)^{\alpha - n + 1}}{}}
+		\end{align*}
+		where $ n - 1 < \alpha \leq n $
+	\end{block}
+\end{frame}
+
+\begin{frame}{Motivations (Derivatives)}
+	\begin{block}{Caputo Fractional Derivative}
+		\begin{align*}
+			\capder{a}{\alpha}{f}(x) &= \rli{a}{\lceil \alpha \rceil - \alpha}{\frac{d^{\lceil \alpha \rceil}}{dx^{\lceil \alpha \rceil}}f}(x) \\
+				&= \frac{1}{\Gamma(1 - \alpha)} \int_a^x \frac{\frac{d^{t}}{dt^n}f(t)dt}{(x-t)^{\alpha - n + 1}}
+		\end{align*}
+		where $ n - 1 < \alpha \leq n $
+	\end{block}
+\end{frame}
+
+\begin{frame}{ Riemann-Liouville vs Caputo Derivative}
+	\begin{alertblock}{Note!}
+		The Caputo derivative and the and the Riemann-Liouville derivatives are note the same.
+		In general 
+		\begin{align*}
+			\capder{a}{\alpha}{f}(x) \neq \rld{a}{\alpha}{f}(x).
+		\end{align*}
+	\end{alertblock}
+	The reason is exactly the same reason that in general
+	\begin{align*}
+		f(x) \neq \int_a^x f'(t) dt.
+	\end{align*}
+	In some sense if you differentiate first you "loose information" about the function.
+\end{frame}
+
+\begin{frame}{ Riemann-Liouville vs Caputo Derivative}
+
+	The Caputo derivative is often used in fractional differential equations because it
+	can be coupled with integer order initial conditions, whereas often the Riemann-Liouville
+	derivative can't be coupled with integer order initial conditions.
+
+\end{frame}
+
+\begin{frame}{A Quick Note on the Laplace Transform}
+	\begin{definition}
+		We the define the Laplace transform of a function $ f $ to be the function $ F $
+		given by
+		\begin{align*}
+			F(s) := \int_0^\infty e^{-st} f(t) dt
+		\end{align*}
+	\end{definition}
+	
+	We often write $ F(s) = \laplace{f(t)} $.
+	
+\end{frame}
+
+\begin{frame}{A Quick Note on the Laplace Transform}
+	
+		
+	
+	The laplace is particularly useful as it allows us to transform a differential equation into
+	an "algebraic" equation. 
+	
+	Lerch's theorem guarantees, with minor caveats, that the Laplace transform of a function is
+	unique.
+	
+\end{frame}
+
+\begin{frame}{Basic Idea of the Laplace Transform Method}
+	\begin{itemize}
+		\item Apply the Laplace transform to both sides of the differential equation to get
+		and "algebraic" equation.
+		\item Apply the Laplace transform to the initial conditions. 
+		\item Sub the transformed intial conditions into the transformed equation.
+		\item Rearange to get an expression for the Laplace transform of the function of interest.
+		\item Invert. (This is possible, and guarenteed with minor caveats by Lerch's theorem)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{The Laplace Transform of the Riemann-Liouville Integral}
+	\begin{lemma}
+	The Laplace transform of the Riemann-Liouville integral of a fuction $ f $ is given by
+		$$ \mathcal{L} \left\{ I_0^\alpha f \right\}  = s^{-\alpha} \mathcal{L} \left\{ f \right\}.	$$
+	\end{lemma}
+\end{frame}
+
+\begin{frame}{The Laplace Transform of the Riemann-Liouville Integral[Proof]}
+	Since 
+	$$
+		 (I_0^\alpha f)(t) = \frac{1}{\Gamma(\alpha)} \int_0^t f(u) (t-u)^{\alpha - 1} du
+	$$
+	is just $ \frac{1}{\Gamma(\alpha)} $ times the convolution of $ f $ with $ t^{\alpha - 1} $ then by the convolution theorem
+	for Laplace transforms we have that 
+	\begin{align*}
+		\mathcal{L} \left\{ I_0^\alpha f \right\} &= \frac{1}{\Gamma(\alpha)} \mathcal{L} \left\{ \int_{0}^{t} f(u) (t-u)^{\alpha - 1} du \right\} \\
+			&= \frac{1}{\Gamma(\alpha)} \mathcal{L} \left\{ f(t) \right\} \underbrace{\mathcal{L} \left\{ t^{\alpha - 1} \right\}}_{=s^{-\alpha} \Gamma(\alpha)} \\
+			&= s^{-\alpha} \mathcal{L} \left\{ f \right\}.
+	\end{align*}
+	\qed
+\end{frame}
+
+\begin{frame}{The Laplace Transform of the Caputo Derivative}
+	The Laplace transform of the Caputo derivative of  a function $ f $ is given by
+	\begin{align*}
+		\laplace{\capder{0}{\alpha}{f}} = s^{\alpha - n} \left[ s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right].
+	\end{align*}
+\end{frame}
+
+\begin{frame}{The Laplace Transform of the Caputo Derivative [Proof]}
+	See that
+	\begin{align*}
+		\laplace{\capder{0}{\alpha}{f}} &= \laplace{  \rli{0}{n-\alpha}{\der{f}{t}{n}}} \\
+			&= \underbrace{\frac{1}{\Gamma(n-\alpha)}\laplace{ \int_0^t (t-u)^{n-\alpha-1} \der{f}{t}{n} du}}_{\circledast} \\ 
+	\end{align*}
+\end{frame}
+
+\begin{frame}{The Laplace Transform of the Caputo Derivative [Proof]}
+	$ \circledast $ is just the laplace transform of a convolution so 
+	\begin{align*}
+		\circledast &= \laplace{t^{n-\alpha-1}} \laplace{\der{f}{t}{n}} \\
+		&= \frac{1}{n-\alpha} \left( s^{-(n-\alpha)} \Gamma(n-\alpha) \right) \\
+		& \ \ \ \times \left( s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right) \\
+		&= s^{\alpha - n} \left[ s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right].
+	\end{align*}
+	\qed
+\end{frame}
+
+\begin{frame}{One Paramter Mittag-Lefler Function}
+	\begin{definition}
+		The one parameter Mittag-Lefler $ E_\alpha $ function is defined by its power series.
+		$$
+			E_\alpha(t) = \sum_{k=0}^{\infty} \frac{t^k}{\Gamma(\alpha k + 1)}
+		$$
+	\end{definition}
+\end{frame}
+
+\begin{frame}{Laplace Transform of $E_\alpha(\beta t^\alpha)$}
+	\begin{lemma}
+		\begin{align*}	
+			\laplace{ E_\alpha (\beta t^\alpha)} = \frac{s^{\alpha - 1}}{s^\alpha - \beta}
+		\end{align*}
+	\end{lemma}
+\end{frame}
+
+\begin{frame}{Laplace Transform of $E_\alpha(\beta t^\alpha)$ [Proof]}
+See that
+	\begin{align*}
+		\laplace{ E_\alpha (\beta t^\alpha)} = \int_0^\infty e^{-st} \sum_{k=0}^\infty \frac{(\beta t^\alpha)^k}{\Gamma(\alpha k+1)} dt
+	\end{align*}
+	and because the series converges absolutely for all $ t \in \mathbb{R} $  we may interchange the integral
+	and the sum to get
+	\begin{align*}
+		\int_0^\infty e^{-st} \sum_{k=0}^\infty \frac{(\beta t^\alpha)^k}{\Gamma(\alpha k+1)} dt &= \sum_{k=0}^\infty \int_0^\infty e^{-st} \frac{(\beta t^\alpha)^k}{\Gamma(\alpha k + 1)} dt \\
+			&= \sum_0^\infty \frac{\beta^k}{\Gamma(\alpha k + 1)} \int_0^\infty e^{-st} t^{\alpha k} dt. \\
+	\end{align*}
+\end{frame}
+
+\begin{frame}{Laplace Transform of $E_\alpha(\beta t^\alpha)$ [Proof]}
+	By performing the change of variables $ x =st $ we get that 
+	\begin{align*}
+		\sum_0^\infty \frac{\beta^k}{\Gamma(\alpha k + 1)} \int_0^\infty e^{-st} t^{\alpha k} dt 
+			&= \sum_0^\infty \frac{\beta^k s^{-(k+1)}}{\Gamma(\alpha k + 1)} \underbrace{\int_0^\infty e^{-x} x^{\alpha k} dx}_{\Gamma(\alpha k + 1)} \\
+			&= \sum_{k=0}^\infty \beta^{k} s^{-(\alpha k + 1)} \\
+			&= \frac{s^{\alpha-1}}{s^\alpha - \beta}.	
+	\end{align*}
+	\qed
+\end{frame}
+
+\begin{frame}{Summary of Important Results}
+	\begin{align*}
+		\laplace{\capder{0}{\alpha}{f}} &= s^{\alpha - n} \left[ s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right] \\
+		\laplace{ E_\alpha (\beta t^\alpha)} &= \frac{s^{\alpha - 1}}{s^\alpha - \beta}
+	\end{align*}
+\end{frame}
+
+
+
+\begin{frame}{The Solution to the Differential Equation}
+	\begin{lemma}
+		The fractional differential equation,
+		\begin{align}
+			\label{eq:fde-1}
+			\left( \prescript{C}{}{\mathcal{D}_0^\alpha}y \right)(t) = \beta y(t) 
+		\end{align}
+
+		along with the initial conditions 
+		\begin{align}
+			\label{eq:fde-1-ic}
+			y^{(k)}(0) = 
+			\begin{cases}
+				1 & k = 0 \\
+				0 & 1 \leq k \leq \lfloor \alpha \rfloor - 1  
+			\end{cases}
+		\end{align}
+		has solution
+		$ y(t) = E_\alpha \left( \beta t^\alpha \right) $
+	\end{lemma}
+\end{frame}
+
+\begin{frame}{Proof of Proposed Solution}
+	Taking the Laplace transform of both sides of \eqref{eq:fde-1} yields
+	\begin{align*}
+		\laplace{\capder{0}{\alpha}{y}} &= \beta \laplace{y} \\
+		s^{-(n+\alpha)} \left[s^n \laplace{y} - \sum_{k=0}^{n-1} s^{n-k-1} y^{(k)}(0) \right] &= \beta \laplace{y}
+	\end{align*}
+\end{frame}
+
+\begin{frame}{Proof of Proposed Solution}
+	Then taking into account \eqref{eq:fde-1-ic} (the initial conditions) we get
+	\begin{align*}
+		s^{-(n+\alpha)} \left[s^n \laplace{y} - s^{n-1}\right] &= \beta \laplace{y}
+	\end{align*}
+	and so 
+	\begin{align*}
+		\laplace{y} = \frac{s^{\alpha-1}}{s^\alpha - \beta}.
+	\end{align*}
+\end{frame}
+
+\begin{frame}{Proof of Proposed Solution}
+	By by noticing that 
+	$$
+		\laplace{y} = \frac{s^{\alpha-1}}{s^\alpha - \beta}.
+	$$
+	is the laplace transform of $ E_\alpha(\beta t^\alpha) $ we have that
+	\begin{align*}
+		y(t) = E_\alpha(\beta t^\alpha)
+	\end{align*}
+	\qed
+\end{frame}
+
+
+	
+
+
+\end{document}

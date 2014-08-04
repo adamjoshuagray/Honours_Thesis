@@ -1,0 +1,151 @@
+\documentclass[pdf]{beamer}
+
+\usepackage{mathtools}
+
+\newcommand{\laplace}[1]{ \mathcal{L} \left\{ #1 \right\} }
+\newcommand{\fourier}[1]{ \mathcal{F} \left\{ #1 \right\} }
+\newcommand{\mellin}[1]{ \mathcal{M} \left\{ #1 \right\} }
+\newcommand{\rld}[4]{ \left( \prescript{}{#1}{\mathcal{D}_{#2}^{#3}} #4 \right) }
+\newcommand{\rli}[3]{ \left( I_{#1}^{#2} #3 \right) }
+\newcommand{\der}[3]{ \frac{d^{#3}#1}{d#2^{#3}} }
+\newcommand{\capder}[4]{ \left( \prescript{C}{#1}{\mathcal{D}_{#2}^{#3}} #4 \right) }
+\newcommand{\fracdelta}[4]{ \left( \prescript{}{#1}{\Delta^{#2}_{#3} } #4 \right) }
+
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lla}{\longleftarrow}
+\newcommand{\la}{\leftarrow}
+
+%Analysis
+\newcommand{\Rl}{\mathbb{R}}
+\newcommand{\Cplx}{\mathbb{C}}
+\newcommand{\Itgr}{\mathbb{Z}}
+\newcommand{\Ntrl}{\mathbb{N}}
+\newcommand{\Ind}{\mathbbm{1}}
+\newcommand{\Hlbt}{\mathcal{H}}
+\newcommand{\im}{\operatorname{im}}
+
+\mode<presentation>{}
+\title{Accelerating Numerical Solutions to Fractional Differential Equations}
+\subtitle{Adams Moulton Bashforth Method}
+\author[Adam J. Gray]{Adam J. Gray\\{\small Supervised by: Dr Chris Tisdell}}
+\institute{
+	School of Mathematics and Statistics \\
+	University of New South Wales
+}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+
+\begin{frame}{Problem}
+    \begin{align*}
+        \capder{0}{x}{\alpha}{y}(x) = f(x,y)
+    \end{align*}
+    
+    \begin{align*}
+        y^{(k)}(0) = a_{k} & & 0 \leq \alpha \leq \lceil k \rceil
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Similar Problems}
+    \begin{align*}
+        \frac{dy}{dx} = f(x,y)
+    \end{align*}
+    
+    \begin{align*}
+        y(0) = y_0
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Explanation of (Explicit) Euler Method}
+    The Euler method is designed to solve problems of the form
+    \begin{align*}
+        y'(x) = f(x,y(x)) & & y(x_0) = y_0.
+    \end{align*}
+    
+    From first principles
+    \begin{align*}
+        y'(x_0) = \lim_{h \lra 0}\frac{f(x_0 + h) - f(x_0)}{h}
+    \end{align*}
+    therefore
+    \begin{align*}
+        \lim_{h \lra 0}\frac{f(x_0 + h) - f(x_0)}{h} = f(x_0, y(x_0))
+    \end{align*}
+    and by rearranging and choosing some small but non-zero h,
+    \begin{align*}
+        y(x_0 + h) = hf(x_0, y(x_0)) + y(x_0).
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Explanation of (Explicit) Euler Method (cont)}
+    Restating this iteratively we get
+    \begin{align*}
+        y_{n+1} = y_{n} + hf(x_n,y_n)
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Computational Complexity}
+    \begin{tabular}{|c|c|}
+        \hline
+        Scheme & Complexity \\
+        \hline
+        Euler & $O(n)$ \\
+        Runge-Kutta &$ O(n)$ \\
+        Adams Moulton &$ O(n)$ \\
+        Adams Bashforth &$ O(n)$ \\
+        etc & O(n) \\
+        \hline
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Truncation Errors}
+    \textbf{Local Truncation Error}
+    
+    This is the amount of error built up in each step.
+    From a Taylor series expansion we have,
+    \begin{align*}
+        y(x_0 + h) = y(x_0) + hy'(x_0) + \frac{1}{2}h^2y''(x_0) + O(h^3)
+    \end{align*}
+    and thus
+    \begin{align*}
+        e_{local} = \frac{1}{2}h^2y''(x_0) + O(h^3)
+    \end{align*}
+    so long as $ y $ has bounded third derivative.
+\end{frame}
+
+\begin{frame}{Truncation Errors}
+    
+    \textbf{Global Truncation Error}
+    
+    The number of steps is 
+    \begin{align*}
+        n = \frac{x - x_0}{h}
+    \end{align*}
+    and the local truncation error is $ O(h^2) $ so we can expect
+    the global truncation error to be $ O(h) $. 
+    
+    This result holds for \emph{sufficiently nice} $ f $ and $ y $.
+    
+\end{frame}
+
+\begin{frame}{Computational Complexity and Truncation Errors}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        Scheme & Complexity & Global Truncation Error \\
+        \hline
+        Euler & $O(n)$ & $ O(h) $ \\
+        Runge-Kutta (RK4) & $O(n)$ & $O(h^4)$ \\
+        \hline
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{The Fractional Case}
+\end{frame}
+
+
+
+\end{document}

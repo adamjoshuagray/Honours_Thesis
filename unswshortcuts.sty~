@@ -46,7 +46,7 @@
 \newcommand{\rli}[3]{ \left( I_{#1}^{#2} #3 \right) }
 \newcommand{\der}[3]{ \frac{d^{#3}#1}{d#2^{#3}} }
 \newcommand{\capder}[4]{ \left( \prescript{C}{#1}{\mathcal{D}_{#2}^{#3}} #4 \right) }
-\newcommand{\glder}[4]{ \left( \prescript{GL}{#1}{\mathcal{D}_{#2}^{#3}} #4 \right) }
+\newcommand{\glder}[4]{ \left( \prescriptGLC}{#1}{\mathcal{D}_{#2}^{#3}} #4 \right) }
 \newcommand{\fracdelta}[4]{ \left( \prescript{}{#1}{\Delta^{#2}_{#3} } #4 \right) }
 
 %Commutative Diagrams

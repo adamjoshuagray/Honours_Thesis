@@ -1,0 +1,24 @@
+\begin{thebibliography}{1}
+
+\bibitem{Diethelm2010}
+K.~Diethelm.
+\newblock {\em The Analysis of Fractional Differential Equations}.
+\newblock Springer, 2010.
+
+\bibitem{Diethelm2011}
+K.~Diethelm.
+\newblock An efficient parallel algorithm for the numerical solution of
+  fractional differential equations.
+\newblock {\em Fractional Calculus and Applied Analysis}, 14:475--490, 2011.
+
+\bibitem{Diethelm2004}
+K.~Diethelm, N.J. Ford, and A.D. Freed.
+\newblock Detailed error analysis for a fractional adams method.
+\newblock {\em Numerical Algorithms}, pages 31--52, 2004.
+
+\bibitem{Podlubny1999}
+I.~Podlubny.
+\newblock {\em Fractional Differential Equations}.
+\newblock Academic Press, 1999.
+
+\end{thebibliography}
