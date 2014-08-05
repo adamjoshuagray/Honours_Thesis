@@ -43,7 +43,8 @@ Lets consider the initial value problem
 \end{align}
 for $ 0 \leq k < \lfloor \alpha \rfloor $. Note that this initial value problem is stated in terms of Caputo derivatives. The motivation for such intial value problems was discussed in [INSERT CC REF].
 
-One of the most important things to note about this equation is that for non-integer values of $ \alpha $ it is non-local, in the sense that the value of the solution at $ y(x_0+h) $ depends not only on $ y(x_0) $ but also on $ y(x), x \in [0, x_0] $ \cite{Diethelm2010}. This is in contrast to ordinary differential equations and this fact is what makes fractional differential equations considerably more complex to solve. Even multistep methods which can be used to solve ordinary differential equations, only rely on some \emph{fixed} number previous time steps. As a solution to a fractional differential equation progresses it relies on more and more previous time steps. As one might suspect this fundamentally increases the computational complexity of the schemes used to solve fractional differential equations as compared with the schemes used to solve traditional ordinary differential equations. \footnote{It is possible to reduce these computations to look at some large but fixed number of previous gridpoints but this results in a speed vs. accuracy tradeoff which will be discussed in section \ref{sec:reduce_complexity}}
+One of the most important things to note about this equation is that for non-integer values of $ \alpha $ it is non-local, in the sense that the value of the solution at $ y(x_0+h) $ depends not only on $ y(x_0) $ but also on $ y(x), x \in [0, x_0] $ \cite{Diethelm2010}. This is in contrast to ordinary differential equations and this fact is what makes fractional differential equations considerably more complex to solve. Even multistep methods which can be used to solve ordinary differential equations, only rely on some \emph{fixed} number previous time steps. As a solution to a fractional differential equation progresses it relies on more and more previous time steps. As one might suspect this fundamentally increases the computational complexity of the schemes used to solve fractional differential equations as compared with the schemes used to solve traditional ordinary differential equations. \footnote{It is possible to reduce these computations to look at some large but fixed number of previous gridpoints 
+but this results in a speed vs. accuracy tradeoff which will be discussed in section \ref{sec:reduce_complexity}}
 
 \subsubsection{The Adams Moulton Bashforth Scheme}
 \label{sec:amb_desc}
@@ -157,11 +158,20 @@ The red arrow illustrate the interdependency of variables within a block. The se
 
 \subsubsection{Analysis of the Performance of the Scheme in C\# and MONO}
 
-We wish to analyse the performance of this scheme, and specifically its implementation in C\# (MONO). Although this scheme is extremely similar to that outlined in \cite{Diethelm2011} it differs mainly in the fact that this is a task based scheme which does not have an explicit number of threads which are executed. This is because we rely on a task scheduler to do that for us. In this scheme we let $ p $ denote the number of variables per block (and then spawn up to 4 simultaneous tasks per variable) instead of having $ p $ explicit threads for each block.
+We wish to analyse the performance of this scheme both from the a theoretical standpoint and from at practical standpoint. 
+
+\begin{principle}[Amdahl]
+Let $ P $ be the proportion of a computation which can be parallelized in a given progress. Then the speedup given by
+$ N $ cores is
+\begin{align*}
+	S(N) = \frac{1}{(1-P)+\frac{P}{N}}
+\end{align*}
+
+\end{principle}
+
+We wish to analyse the performance of this scheme, and specifically its implementation in C\# (MONO). Although this scheme is extremely similar to that outlined in \cite{Diethelm2011} it differs mainly in the fact that this is a task based scheme which does not have an explicit number of threads which are executed, this decission is handed off to a task scheduler. In this scheme we let $ p $ denote the number of variables per block (and then spawn up to 4 simultaneous tasks per variable) instead of having $ p $ explicit threads for each block.
 
 As can be seen from the code in Appendix A this results in easy to define dependencies and the bulk of the multithreading logic being done in just 40 lines of code.
-
-A possible drawback of this scheme is that it relies on the a task scheduler which may or may not be optimised for the type of workload being placed on it. We will discuss this issue in more detail later on.
 
 To understand the performance characteristics of this scheme see figure \ref{fig:mono_performance_surface} for a \emph{performance surface} which shows the average runtime of the scheme for different values of $ p $ and $ N $.
 
@@ -171,8 +181,9 @@ To understand the performance characteristics of this scheme see figure \ref{fig
 \label{fig:mono_performance_surface}
 \end{figure}
 
-Firstly the $ O(N^2) $ complexity of the algorithm is quite clearly visible, especially in the case where $ p = 1 $. Secondly the law of diminishing returns is also clearly visible in this plot. In the case where $ p = 1 $ it should be noted that there are up to $ 4 $ tasks running just for that one variable ($ I $, $ L^P $, $ H $, $ H^P $). In \cite{Diethelm2011} $ p = 1 $ would refer to only 1 thread running at all times, which is not the case here. This is has its advantages and disadvantages. Its clearly advantageous because it results in potentially higher concurrency but disadvantageous because it limits out ability to compare this scheme with the one in \cite{Diethelm2011} on a \emph{thread for thread} basis.
+Firstly the $ O(N^2) $ complexity of the algorithm is quite clearly visible, especially in the case where $ p = 1 $. Secondly the law of diminishing returns is also clearly visible in this plot. This affect can be attributed to Amdahl's law c.f. \cite{Rogers1985}. 
 
+In the case where $ p = 1 $ it should be noted that there are up to $ 4 $ tasks running just for that one variable ($ I $, $ L^P $, $ H $, $ H^P $). In Diethelm's method, $ p = 1 $ would refer to only 1 thread running at all times, which is not the case here. While this limits the validity of any comparisons made with the method of Diethelm, it increases scalability and flexability.
 
 
 \subsubsection{Parallelizing: A Naive CUDA Approach}
