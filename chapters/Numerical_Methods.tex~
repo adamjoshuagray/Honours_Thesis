@@ -43,7 +43,8 @@ Lets consider the initial value problem
 \end{align}
 for $ 0 \leq k < \lfloor \alpha \rfloor $. Note that this initial value problem is stated in terms of Caputo derivatives. The motivation for such intial value problems was discussed in [INSERT CC REF].
 
-One of the most important things to note about this equation is that for non-integer values of $ \alpha $ it is non-local, in the sense that the value of the solution at $ y(x_0+h) $ depends not only on $ y(x_0) $ but also on $ y(x), x \in [0, x_0] $ \cite{Diethelm2010}. This is in contrast to ordinary differential equations and this fact is what makes fractional differential equations considerably more complex to solve. Even multistep methods which can be used to solve ordinary differential equations, only rely on some \emph{fixed} number previous time steps. As a solution to a fractional differential equation progresses it relies on more and more previous time steps. As one might suspect this fundamentally increases the computational complexity of the schemes used to solve fractional differential equations as compared with the schemes used to solve traditional ordinary differential equations. \footnote{It is possible to reduce these computations to look at some large but fixed number of previous gridpoints but this results in a speed vs. accuracy tradeoff which will be discussed in section \ref{sec:reduce_complexity}}
+One of the most important things to note about this equation is that for non-integer values of $ \alpha $ it is non-local, in the sense that the value of the solution at $ y(x_0+h) $ depends not only on $ y(x_0) $ but also on $ y(x), x \in [0, x_0] $ \cite{Diethelm2010}. This is in contrast to ordinary differential equations and this fact is what makes fractional differential equations considerably more complex to solve. Even multistep methods which can be used to solve ordinary differential equations, only rely on some \emph{fixed} number previous time steps. As a solution to a fractional differential equation progresses it relies on more and more previous time steps. As one might suspect this fundamentally increases the computational complexity of the schemes used to solve fractional differential equations as compared with the schemes used to solve traditional ordinary differential equations. \footnote{It is possible to reduce these computations to look at some large but fixed number of previous gridpoints 
+but this results in a speed vs. accuracy tradeoff which will be discussed in section \ref{sec:reduce_complexity}}
 
 \subsubsection{The Adams Moulton Bashforth Scheme}
 \label{sec:amb_desc}
@@ -105,7 +106,7 @@ Diethelm's paper \cite{Diethelm2011} outlines a parallel method of numerically a
 
 After we have setup the gridpoints $ x_0, \ldots, x_{N-1} $ we create an array of solution values $ y_0, \ldots, y_{N-1} $ which are to be populated with the calculated solution. From the initial conditions we can immediatly calculate $ y_0 $. We then break up the vector (array) $ \mathbf{y} $ into blocks of size $ p $. Suppose that $ p = 2 $ for example. Then the first block would contain $ y_1 $ and $ y_2 $. Each of the $ p $ variables in each block can be calculated almost entirely in parallel. There is some dependency between values in each block (i.e. $ y_2 $ depends on $ y_1 $) but this can be done after the bulk of the parallel computations have been completed.
 
-To illustrate this idea we consider figure \ref{fig:comp_diag}. We have broken the vector (array) $ \mathbf{y} $ up into $ \ell = \lceil \frac{N}{p} \rceil $ blocks of $ p $ variables.
+To illustrate this idea we consider figure \ref{fig:comp_diag}. We have broken the vector (array) $ \mathbf{y} $ up into $ K = \lceil \frac{N}{p} \rceil $ blocks of $ p $ variables.
 
 
 \begin{figure}[h]
@@ -157,13 +158,77 @@ The red arrow illustrate the interdependency of variables within a block. The se
 
 \subsubsection{Analysis of the Performance of the Scheme in C\# and MONO}
 
-We wish to analyse the performance of this scheme, and specifically its implementation in C\# (MONO). Although this scheme is extremely similar to that outlined in \cite{Diethelm2011} it differs mainly in the fact that this is a task based scheme which does not have an explicit number of threads which are executed. This is because we rely on a task scheduler to do that for us. In this scheme we let $ p $ denote the number of variables per block (and then spawn up to 4 simultaneous tasks per variable) instead of having $ p $ explicit threads for each block.
+We wish to analyse the performance of this scheme both from the a theoretical standpoint and from at practical standpoint. 
 
-As can be seen from the code in Appendix A this results in easy to define dependencies and the bulk of the multithreading logic being done in just 40 lines of code.
+For the theoretical analysis of the scheme we introduce Amdahl's Law or Amdahl's principle.
+\begin{principle}[Amdahl]
+Let $ P $ be the proportion of a computation which can be parallelized in a given progress. Then the speedup given by
+$ Q $ cores is
+\begin{align*}
+	S(Q) = \frac{1}{(1-P)+\frac{P}{Q}}
+\end{align*}
 
-A possible drawback of this scheme is that it relies on the a task scheduler which may or may not be optimised for the type of workload being placed on it. We will discuss this issue in more detail later on.
+\end{principle}
 
-To understand the performance characteristics of this scheme see figure \ref{fig:mono_performance_surface} for a \emph{performance surface} which shows the average runtime of the scheme for different values of $ p $ and $ N $.
+This law was first introduced in a 1967 paper by computer architect Amdahl. We introduce a new notion of Amdahl efficiency to characterise the how \emph{good} a parallel algorithm is in comparison with it serial counterpart in the limit of large input. 
+
+To formalise this notion we introduce the following definition.
+
+\begin{definition}[Amdahl Efficiency]
+    Let $ S(N,Q) $ represent the parallel speedup for a problem with input size $ N $ and executed with $ Q $ cores.
+    Then we define the Amdahl efficiency of parallel scheme as 
+    \begin{align*}
+        E(Q) = \lim_{N \lra \infty} \frac{S(N, Q)}{Q}.
+    \end{align*}
+    Further we say that a parallel scheme is Amdahl efficient with respect to its serial counterpart if $ E(p) = 1 $.
+\end{definition}
+
+\begin{proposition}
+The parallel Adams Moulton Bashforth scheme is Amdahl efficient with respect to its serial counterpart.
+\end{proposition}
+\begin{proof}
+We present the paralellizable fraction of computation in each block of variables in the following table. The order column represents the number of \emph{multiply-add} operations per task.
+
+\begin{tabular}[ht]{|c|c|c|c|}
+\hline
+Task        & Computational Complexity  & Number of Variables per Block     & Total Complexity \\ \hline
+$ H $       & $ O(\ell p ) $            & $ p $                             & $ O(\ell p^2) $ \\ \hline
+$ H_p $     & $ O(\ell p ) $            & $ p $                             & $ O(\ell p^2) $ \\ \hline
+$ I $       & $ O( \alpha ) $           & $ p $                             & $ O(p) $ \\ \hline \hline          
+$ L $       & $ O( p ) $                & $ p $                             & $ O(p^2) $ \\ \hline
+$ L_p $     & $ O( p ) $                & $ p $                             & $ O(p^2) $ \\ \hline
+\end{tabular}
+
+In each block $ H $, $ H_p $ and $ I $ can be computed in parallel across all variables in the block. For the purposes of simplicity we assume that the tasks $ L $ and $ L_p $ must all be computed in serial across all variables in a block. This means that in the $ \ell$-th block the non-parallelizable fraction of computation is
+\begin{align}
+    \overline{P}_{block}(\ell) \sim \frac{2p^2}{2p^2(\ell + 1) } \sim \frac{1}{\ell}
+\end{align}
+
+The amount of computation in the $ \ell$-th block is $ O(\ell p^2) $ and there are $ K \approx \frac{N}{p} $ blocks in the total computation. This means that the total amount of computation is
+\begin{align}
+    \sum_{\ell=1}^{K} \ell p^2 \sim \frac{K^2p^2}{2}
+\end{align}
+and by taking a weighted average sum, the total fraction of non-parallelizable computation is
+\begin{align}
+    \label{eq:tot_par_c}
+    \overline{P}_{total} \sim \sum_{\ell = 1}^{K} \frac{2\ell p^2}{K^2 \ell p^2} = \frac{2}{K} = \frac{2p}{N}.
+\end{align}
+
+Noticing the fact that the computation in the task $ I $ is insignificant compared to $ H $ and $ H_p $ we would suppose using $ Q = 2p $ cores would be in some sense optimal. Applying Amdahl's principle with the result in \ref{eq:tot_par_c} and with $ Q = 2p $ we get 
+\begin{align*}
+    S(N, Q) &= S(N, 2p) \\
+    &\sim \frac{1}{(\frac{2p}{N}) + \frac{1-\frac{2p}{N}}{2p} } \\
+\end{align*}
+then letting $ N \lra \infty $ we get
+\begin{align*}
+    E(p) = \lim_{N \lra \infty} \left(\frac{1}{(\frac{2p}{N}) + \frac{1-\frac{2p}{N}}{2p} } \right) \slash p = 1.
+\end{align*}
+
+\end{proof}
+
+What this result means is that if we have $ 2p $ free cores this parallel method should take $ \frac{1}{2p} $ the amount of time to run compared to it's serial counterpart given a sufficiently large number of grid points, $N$. Due to the fact that this a task based scheme 
+
+We now compare this with practical experimentation. This method was developed in
 
 \begin{figure}[H]
 \includegraphics[scale = 0.3]{images/Dot_Net_Performance_No_Label}
@@ -171,8 +236,9 @@ To understand the performance characteristics of this scheme see figure \ref{fig
 \label{fig:mono_performance_surface}
 \end{figure}
 
-Firstly the $ O(N^2) $ complexity of the algorithm is quite clearly visible, especially in the case where $ p = 1 $. Secondly the law of diminishing returns is also clearly visible in this plot. In the case where $ p = 1 $ it should be noted that there are up to $ 4 $ tasks running just for that one variable ($ I $, $ L^P $, $ H $, $ H^P $). In \cite{Diethelm2011} $ p = 1 $ would refer to only 1 thread running at all times, which is not the case here. This is has its advantages and disadvantages. Its clearly advantageous because it results in potentially higher concurrency but disadvantageous because it limits out ability to compare this scheme with the one in \cite{Diethelm2011} on a \emph{thread for thread} basis.
+Firstly the $ O(N^2) $ complexity of the algorithm is quite clearly visible, especially in the case where $ p = 1 $. Secondly the law of diminishing returns is also clearly visible in this plot. This affect can be attributed to Amdahl's law c.f. \cite{Rogers1985}. 
 
+In the case where $ p = 1 $ it should be noted that there are up to $ 4 $ tasks running just for that one variable ($ I $, $ L^P $, $ H $, $ H^P $). In Diethelm's method, $ p = 1 $ would refer to only 1 thread running at all times, which is not the case here. While this limits the validity of any comparisons made with the method of Diethelm, it increases scalability and flexability.
 
 
 \subsubsection{Parallelizing: A Naive CUDA Approach}

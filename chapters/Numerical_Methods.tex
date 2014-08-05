@@ -106,7 +106,7 @@ Diethelm's paper \cite{Diethelm2011} outlines a parallel method of numerically a
 
 After we have setup the gridpoints $ x_0, \ldots, x_{N-1} $ we create an array of solution values $ y_0, \ldots, y_{N-1} $ which are to be populated with the calculated solution. From the initial conditions we can immediatly calculate $ y_0 $. We then break up the vector (array) $ \mathbf{y} $ into blocks of size $ p $. Suppose that $ p = 2 $ for example. Then the first block would contain $ y_1 $ and $ y_2 $. Each of the $ p $ variables in each block can be calculated almost entirely in parallel. There is some dependency between values in each block (i.e. $ y_2 $ depends on $ y_1 $) but this can be done after the bulk of the parallel computations have been completed.
 
-To illustrate this idea we consider figure \ref{fig:comp_diag}. We have broken the vector (array) $ \mathbf{y} $ up into $ \ell = \lceil \frac{N}{p} \rceil $ blocks of $ p $ variables.
+To illustrate this idea we consider figure \ref{fig:comp_diag}. We have broken the vector (array) $ \mathbf{y} $ up into $ K = \lceil \frac{N}{p} \rceil $ blocks of $ p $ variables.
 
 
 \begin{figure}[h]
@@ -160,20 +160,75 @@ The red arrow illustrate the interdependency of variables within a block. The se
 
 We wish to analyse the performance of this scheme both from the a theoretical standpoint and from at practical standpoint. 
 
+For the theoretical analysis of the scheme we introduce Amdahl's Law or Amdahl's principle.
 \begin{principle}[Amdahl]
 Let $ P $ be the proportion of a computation which can be parallelized in a given progress. Then the speedup given by
-$ N $ cores is
+$ Q $ cores is
 \begin{align*}
-	S(N) = \frac{1}{(1-P)+\frac{P}{N}}
+	S(Q) = \frac{1}{(1-P)+\frac{P}{Q}}
 \end{align*}
 
 \end{principle}
 
-We wish to analyse the performance of this scheme, and specifically its implementation in C\# (MONO). Although this scheme is extremely similar to that outlined in \cite{Diethelm2011} it differs mainly in the fact that this is a task based scheme which does not have an explicit number of threads which are executed, this decission is handed off to a task scheduler. In this scheme we let $ p $ denote the number of variables per block (and then spawn up to 4 simultaneous tasks per variable) instead of having $ p $ explicit threads for each block.
+This law was first introduced in a 1967 paper by computer architect Amdahl. We introduce a new notion of Amdahl efficiency to characterise the how \emph{good} a parallel algorithm is in comparison with it serial counterpart in the limit of large input. 
 
-As can be seen from the code in Appendix A this results in easy to define dependencies and the bulk of the multithreading logic being done in just 40 lines of code.
+To formalise this notion we introduce the following definition.
 
-To understand the performance characteristics of this scheme see figure \ref{fig:mono_performance_surface} for a \emph{performance surface} which shows the average runtime of the scheme for different values of $ p $ and $ N $.
+\begin{definition}[Amdahl Efficiency]
+    Let $ S(N,Q) $ represent the parallel speedup for a problem with input size $ N $ and executed with $ Q $ cores.
+    Then we define the Amdahl efficiency of parallel scheme as 
+    \begin{align*}
+        E(Q) = \lim_{N \lra \infty} \frac{S(N, Q)}{Q}.
+    \end{align*}
+    Further we say that a parallel scheme is Amdahl efficient with respect to its serial counterpart if $ E(p) = 1 $.
+\end{definition}
+
+\begin{proposition}
+The parallel Adams Moulton Bashforth scheme is Amdahl efficient with respect to its serial counterpart.
+\end{proposition}
+\begin{proof}
+We present the paralellizable fraction of computation in each block of variables in the following table. The order column represents the number of \emph{multiply-add} operations per task.
+
+\begin{tabular}[ht]{|c|c|c|c|}
+\hline
+Task        & Computational Complexity  & Number of Variables per Block     & Total Complexity \\ \hline
+$ H $       & $ O(\ell p ) $            & $ p $                             & $ O(\ell p^2) $ \\ \hline
+$ H_p $     & $ O(\ell p ) $            & $ p $                             & $ O(\ell p^2) $ \\ \hline
+$ I $       & $ O( \alpha ) $           & $ p $                             & $ O(p) $ \\ \hline \hline          
+$ L $       & $ O( p ) $                & $ p $                             & $ O(p^2) $ \\ \hline
+$ L_p $     & $ O( p ) $                & $ p $                             & $ O(p^2) $ \\ \hline
+\end{tabular}
+
+In each block $ H $, $ H_p $ and $ I $ can be computed in parallel across all variables in the block. For the purposes of simplicity we assume that the tasks $ L $ and $ L_p $ must all be computed in serial across all variables in a block. This means that in the $ \ell$-th block the non-parallelizable fraction of computation is
+\begin{align}
+    \overline{P}_{block}(\ell) \sim \frac{2p^2}{2p^2(\ell + 1) } \sim \frac{1}{\ell}
+\end{align}
+
+The amount of computation in the $ \ell$-th block is $ O(\ell p^2) $ and there are $ K \approx \frac{N}{p} $ blocks in the total computation. This means that the total amount of computation is
+\begin{align}
+    \sum_{\ell=1}^{K} \ell p^2 \sim \frac{K^2p^2}{2}
+\end{align}
+and by taking a weighted average sum, the total fraction of non-parallelizable computation is
+\begin{align}
+    \label{eq:tot_par_c}
+    \overline{P}_{total} \sim \sum_{\ell = 1}^{K} \frac{2\ell p^2}{K^2 \ell p^2} = \frac{2}{K} = \frac{2p}{N}.
+\end{align}
+
+Noticing the fact that the computation in the task $ I $ is insignificant compared to $ H $ and $ H_p $ we would suppose using $ Q = 2p $ cores would be in some sense optimal. Applying Amdahl's principle with the result in \ref{eq:tot_par_c} and with $ Q = 2p $ we get 
+\begin{align*}
+    S(N, Q) &= S(N, 2p) \\
+    &\sim \frac{1}{(\frac{2p}{N}) + \frac{1-\frac{2p}{N}}{2p} } \\
+\end{align*}
+then letting $ N \lra \infty $ we get
+\begin{align*}
+    E(p) = \lim_{N \lra \infty} \left(\frac{1}{(\frac{2p}{N}) + \frac{1-\frac{2p}{N}}{2p} } \right) \slash p = 1.
+\end{align*}
+
+\end{proof}
+
+What this result means is that if we have $ 2p $ free cores this parallel method should take $ \frac{1}{2p} $ the amount of time to run compared to it's serial counterpart given a sufficiently large number of grid points, $N$. Due to the fact that this a task based scheme this is also dependent on an efficient scheduler.
+
+We now compare this with practical experimentation. This method was developed in
 
 \begin{figure}[H]
 \includegraphics[scale = 0.3]{images/Dot_Net_Performance_No_Label}
