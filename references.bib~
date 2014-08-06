@@ -164,6 +164,4 @@
 @misc{NVIDIAGTX780,
     author      = "NVIDIA Corporation",
     title       = "GeForce GTX 780 Specifications",
-    howpublished = {\url{http://www.geforce.com/hardware/desktop-gpus/geforce-gtx-780/specifications}},
-    note        = "Accessed: 2014-08-01"
-}
+    

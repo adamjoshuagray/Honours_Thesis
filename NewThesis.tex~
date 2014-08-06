@@ -2,7 +2,6 @@
 \documentclass{unswmaths}
 \usepackage{mathtools}
 \usepackage{amsfonts}
-\usepackage{hyperref}
 \usepackage{unswshortcuts}
 \usepackage{fullpage}
 \usepackage{CodeStyle}

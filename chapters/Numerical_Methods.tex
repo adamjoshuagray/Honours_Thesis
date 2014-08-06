@@ -175,6 +175,7 @@ This law was first introduced in a 1967 paper by computer architect Amdahl. We i
 To formalise this notion we introduce the following definition.
 
 \begin{definition}[Amdahl Efficiency]
+\label{def:amdahl_efficient}
     Let $ S(N,Q) $ represent the parallel speedup for a problem with input size $ N $ and executed with $ Q $ cores.
     Then we define the Amdahl efficiency of parallel scheme as 
     \begin{align*}
@@ -226,9 +227,17 @@ then letting $ N \lra \infty $ we get
 
 \end{proof}
 
-What this result means is that if we have $ 2p $ free cores this parallel method should take $ \frac{1}{2p} $ the amount of time to run compared to it's serial counterpart given a sufficiently large number of grid points, $N$. Due to the fact that this a task based scheme this is also dependent on an efficient scheduler.
+What this result means is that if we have $ 2p $ free cores this parallel method should take $ \frac{1}{2p} $ the amount of time to run compared to it's seri. My phone Canal counterpart given a sufficiently large number of grid points, $N$. Due to the fact that this a task based scheme this is also dependent on an efficient scheduler.
 
-We now compare this with practical experimentation. This method was developed in
+We now compare this with practical experimentation. This method was developed in C\# with MONO (see Appendix A for C\# code) and run on a machine with an Intel \textregistered Core \texttrademark{} i7-4930K CPU @ 3.40GHz. This particular CPU has 6 physical cores with 12 logical cores provided by hyperthreading. 
+
+We solved the following initial value problem
+
+\begin{align}
+    \capder{0}{x}{\frac{1}{2}}{y}(x) = -y(x) & & y(0) = 1
+\end{align}
+
+with $ N = 2000 $ through to $ N = 10000 $ time steps over the interval $ [0,10] $ with $ p $ ranging from $ 1 $ though to $ 12 $. Each solution was computed 5 times and the average runtime  was computed, yeilding the \emph{performance surface} shown in figure \ref{fig:mono_performance_surface}.
 
 \begin{figure}[H]
 \includegraphics[scale = 0.3]{images/Dot_Net_Performance_No_Label}
@@ -236,15 +245,53 @@ We now compare this with practical experimentation. This method was developed in
 \label{fig:mono_performance_surface}
 \end{figure}
 
-Firstly the $ O(N^2) $ complexity of the algorithm is quite clearly visible, especially in the case where $ p = 1 $. Secondly the law of diminishing returns is also clearly visible in this plot. This affect can be attributed to Amdahl's law c.f. \cite{Rogers1985}. 
+Figure \ref{fig:mono_performance_surface} clearly shows the $ O(N^2) $ complexity of the algorithm, especially in the case where $ p = 1 $. 
+We present some of the results from the $ N = 10000 $ computations in a figure \ref{tab:mono_speedup} to illustrate the speedup. 
+\begin{figure}[h]
+\label{tab:mono_speedup}
+\begin{tabular}[ht]{|c|c|c|}
+\hline
+p       & Runtime (s)   & Speedup (wrt p = 1)\\ \hline
+1       & 22.89         & 1  \\ \hline
+2       & 12.35         & 1.85 \\ \hline
+3       & 10.28         & 2.22 \\ \hline
+4       & 8.58          & 2.66 \\ \hline
+5       & 7.53          & 3.04 \\ \hline
+6       & 7.70          & 2.97 \\ \hline
+\end{tabular}
+\end{figure}
 
-In the case where $ p = 1 $ it should be noted that there are up to $ 4 $ tasks running just for that one variable ($ I $, $ L^P $, $ H $, $ H^P $). In Diethelm's method, $ p = 1 $ would refer to only 1 thread running at all times, which is not the case here. While this limits the validity of any comparisons made with the method of Diethelm, it increases scalability and flexability.
+From a theoretical perspective we would expect speedups of 2, 3 and 4 for the cases $ p =2,3, 4 $ respectivly, however, this is not achieved. There are a number of possible reasons for this. Firstly the MONO task schedular (based of the .Net schedular) is not performance optimised \cite{MicrosoftTaskSchedular}.
 
+There is the possibility that we havn't chosen a large anough value of $ N $ to get the full relative speedup. This is supported by the fact that for the $ N = 8000 $ case the speedup from $ p = 1 $ to $ p = 2 $ was $ 1.53 $ (less than that in the $ N = 10000 $ case). 
 
-\subsubsection{Parallelizing: A Naive CUDA Approach}
+Also for cases where $ p > 3 $ we have 6 computationally heavy tasks ( $ H $ and $ H_p $ ) being completed per block and are therefore reaching the limit of the number of physical cores on the system. Obviously we cannot expect an improvement once $ p $ gets too large as the number of tasks to be executed in parallel exceeds the number of available cores. We see the full effect of this in the $ p = 6 $ case where the runtime was actually longer than that for $ p = 5 $.
+
+\subsubsection{Parallelizing: A CUDA Approach}
+
 \label{sec:parallel_cuda}
 
-\subsubsection{Reducing the Complexity Class: Speed - Accuracy Tradeoffs}
-\label{sec:reduce_complexity}
+One of the main benefits of the scheme outlined in section \ref{sec:parallel_c}, especially noted in it's form presented by Diethlem in \cite{Diethelm2011} is the ability for this scheme to be implemented across multiple machines with a small amount of message passing between executing threads (or in this case tasks). The main reason for wanting to minimise message passing is that it can significantly impact performance to the point where most of the time is actually spent communicating updates between execution nodes. This is given significant consideration in \cite{Diethelm2011}. In this section we abandon these measures in favor of massive performance gains when executing in a massively parallel maner on a GPU.
 
-\clearpage
+Modern graphics cards have the advantage of being able to efficiently perform massively parallel computations, espeically calculations involving floating point arithmetic \cite{Fernando2005}. For example the NVIDIA GeForce GTX 780 has 2304 cores clocked at 863Mhz. We use one of these graphics cards in an effort to dramatically speed up the fractional Adams Moulton Bashforth Method using NVIDIA's CUDA toolchain.
+
+Instead of using blocks of variables as was done in \cite{Diethelm2011} and reimplemented by us in section \ref{sec:parallel_c} we return to the original specification of the scheme in section \ref{sec:amb_desc} and seek out other opportunities of parallelism.
+
+The essential problem with the scheme is that the number of terms in the sums defined in \eqref{eq:amb_y_pred} and \eqref{eq:amb_y_corr} grows linearly with each time step taken. It is clear that the actual terms in each sum are independent and so breaking the sum up into smaller parts to be calculated and then summed together is a reasonable approach. This is so long as communication between cores doing different parts of the sum is sufficiently fast and global memory access is sufficiently fast. In the case of a GPU both of these criteria are satisfied and so this approach is reasonable.\footnote{It is easy to see that this scheme would be Amdahl efficient in the sense of definition \ref{def:amdahl_efficient}.}
+
+We aim to use as much of the GPU as possible to perform the calculations and so unlike the scheme outlined in section \ref{sec:parallel_c} we will automatically scale the number of threads to use as many cores as possible. We define one \emph{performance tuning} parameter $ opsPerThread $ which define the number of \emph{multiply-add} operations per thread. 
+Figure \ref{fig:cuda_performance_surface} shows a \emph{performance surface} showing runtime against number of time steps $ N $ and $ opsPerThread $. The actual initial value problem being solved is exactly the same as in section \ref{sec:parallel_c}.
+
+\begin{figure}[H]
+\includegraphics[scale = 0.4]{images/CUDA_Performance_No_Label}
+\caption{Runtime for the scheme for various values of opsPerThread and N.}
+\label{fig:cuda_performance_surface}
+\end{figure}
+
+Firstly we note the size of the problems being solved here. The last point on the $ N $ axis is $10^6$ timesteps, 100 times larger than was computed in the CPU based C\# approach. Given the quadratic computational complexity of this algorithm that means this CUDA implementation is solving problems which would take roughly $ 2.5 $ days to compute using the previous parallel scheme, in less than 6 minutes.
+
+As can be seen from this chart, as $ N $ increases it makes sense to perform more operations per thread. This arrises from the fact that there is an overhead in dealing with each thread and this overhead becomes significant as $ N $ gets large. This effect is also exacerbated by the fact that for small values of $ N $ the overhead of managing more threads on the GPU is offset by the increased parallelism that a smaller number of operations per thread affords. Once, however, every core is being utilised it makes sense to start to increase the number of operations per thread as $ N $ is increased.
+
+The speedup from running these computation on CUDA is enormous. It is arguable that any advantage achieved through reducing the number of messages passed between multiple threads and nodes by using the scheme outlined in \cite{Diethelm2011} and in section \ref{sec:parallel_c}, is completely outweighed by the sheer speed of computation on a GPU. 
+
+\clearpage 

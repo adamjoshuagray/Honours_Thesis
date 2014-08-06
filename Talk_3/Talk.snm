@@ -1,0 +1,4 @@
+\beamer@slide {def:amdahl_efficient}{17}
+\beamer@slide {eq:tot_par_c}{19}
+\beamer@slide {fig:mono_performance_surface}{22}
+\beamer@slide {fig:cuda_performance_surface}{25}

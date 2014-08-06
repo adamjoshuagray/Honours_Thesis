@@ -16,6 +16,19 @@ K.~Diethelm, N.J. Ford, and A.D. Freed.
 \newblock Detailed error analysis for a fractional adams method.
 \newblock {\em Numerical Algorithms}, pages 31--52, 2004.
 
+\bibitem{Fernando2005}
+M.~Harris.
+\newblock Mapping computational concepts to gpus.
+\newblock In M.~Pharr, R.~Fernando, and T.~Sweeney, editors, {\em GPU Gems 2}.
+  Addison-Wesley Professional, 2005.
+
+\bibitem{MicrosoftTaskSchedular}
+Microsoft.
+\newblock Task schedulers.
+\newblock
+  \url{http://msdn.microsoft.com/en-us/library/dd997402%28v=vs.110%29.aspx}.
+\newblock Accessed: 2014-08-01.
+
 \bibitem{Podlubny1999}
 I.~Podlubny.
 \newblock {\em Fractional Differential Equations}.
