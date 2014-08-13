@@ -1,5 +1,12 @@
 \begin{thebibliography}{1}
 
+\bibitem{MicrosoftTaskSchedular}
+Microsoft Copropration.
+\newblock Task schedulers.
+\newblock
+  \url{http://msdn.microsoft.com/en-us/library/dd997402%28v=vs.110%29.aspx}.
+\newblock Accessed: 2014-08-01.
+
 \bibitem{Diethelm2010}
 K.~Diethelm.
 \newblock {\em The Analysis of Fractional Differential Equations}.
@@ -22,16 +29,20 @@ M.~Harris.
 \newblock In M.~Pharr, R.~Fernando, and T.~Sweeney, editors, {\em GPU Gems 2}.
   Addison-Wesley Professional, 2005.
 
-\bibitem{MicrosoftTaskSchedular}
-Microsoft.
-\newblock Task schedulers.
-\newblock
-  \url{http://msdn.microsoft.com/en-us/library/dd997402%28v=vs.110%29.aspx}.
-\newblock Accessed: 2014-08-01.
-
 \bibitem{Podlubny1999}
 I.~Podlubny.
 \newblock {\em Fractional Differential Equations}.
 \newblock Academic Press, 1999.
+
+\bibitem{Samko1993}
+S.G. Samko, A.A. Kilbas, and O.I. Marichev.
+\newblock {\em Fractional Integrals and Derivatives}.
+\newblock Breach Science Publishers, 1993.
+
+\bibitem{Tisdell2012}
+C.C. Tisdell.
+\newblock On the application of sequential and fixed-point methods to
+  fractional differential equations of arbitrary order.
+\newblock {\em Journal of Integral Equations}, 24, 2012.
 
 \end{thebibliography}

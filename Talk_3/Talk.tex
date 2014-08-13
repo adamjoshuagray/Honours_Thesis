@@ -70,7 +70,7 @@
 \begin{frame}{Outline}
     \begin{itemize}
         \item Examine the Adams Moulton Bashforth method for a first order initial value problem.
-        \item Examine a fractional Adams Moutlon Bashforth method.
+        \item Examine a fractional Adams Moulton Bashforth method.
         \item Examine a parallel CPU based implementation of the scheme.
         \item Examine a parallel GPU based implementation of the scheme.
     \end{itemize}
@@ -84,14 +84,14 @@ We would like to solve the following initial value problem.
 \begin{align*}
     y(0) = y_0
 \end{align*}
-This is equivelent to
+This is equivalent to
 \begin{align*}
     y(x) = y_0 + \int_0^x f(t, y(t))dt
 \end{align*}
 \end{frame}
 
 \begin{frame}{The first step}
-    Suppose we want to approximate the solution some small timestep $ h $ away from $ 0 $.
+    Suppose we want to approximate the solution some small time-step $ h $ away from $ 0 $.
     \begin{align*}
         y(h) = y(0) + \int_0^h f(t, y(t)) dt
     \end{align*}
@@ -112,14 +112,14 @@ This is equivelent to
     \begin{align*}
         y^{P}(h) = y_0 + h f(0, y(0))
     \end{align*}
-    and putting $y^{P}(h) $ in the equation before yeilds
+    and putting $y^{P}(h) $ in the equation before yields
     \begin{align*}
         y(h) = y(0) + \frac{h}{2} \left[ f(0, y(0)) + f(0, y^P(h)) \right]
     \end{align*}
 \end{frame}
 
 \begin{frame}{Iterating the process}
-    The previous slides explained how to step forward one small timestep $ h $. We can now use the value calculated for $ y(h) $ as the \emph{initial value} and calculate $ y(2h) $.
+    The previous slides explained how to step forward one small time-step $ h $. We can now use the value calculated for $ y(h) $ as the \emph{initial value} and calculate $ y(2h) $.
     \begin{align*}
         y(2h) = y(h) + \frac{h}{2} \left[ f(h, y(h)), + f(2h, y^{P}(2h)) \right]
     \end{align*}
@@ -173,7 +173,7 @@ This is equivelent to
     \end{align*}
 \end{frame}
 
-\begin{frame}{Equivelent Integral Equation}
+\begin{frame}{Equivalent Integral Equation}
 The initial value problem
     \begin{align*}
         \capder{0}{x}{\alpha}{y}(x) = f(x,y)
@@ -182,7 +182,7 @@ The initial value problem
     \begin{align*}
         y(0) = y_0^{(k)} & & 0 \leq k \leq \lceil \alpha \rceil - 1
     \end{align*}
-    is equivelent to the integral equation
+    is equivalent to the integral equation
     \begin{align*}
         y(x) = \sum_{k = 0}^{\lceil \alpha \rceil - 1} y_0^{(k)} \frac{x^k}{k!} + \frac{1}{\Gamma(\alpha)} \int_0^x (x - t)^{\alpha - 1}f(t,y(t))dt
     \end{align*}
@@ -266,7 +266,7 @@ $ Q $ cores is
 The parallel Adams Moulton Bashforth scheme is Amdahl efficient with respect to its serial counterpart.
 \end{proposition}
 \begin{proof}
-We present the paralellizable fraction of computation in each block of variables in the following table. The order column represents the number of \emph{multiply-add} operations per task.
+We present the parallelizable fraction of computation in each block of variables in the following table. The order column represents the number of \emph{multiply-add} operations per task.
 \end{proof}
 \resizebox{300pt}{!}{
 \begin{tabular}[ht]{|c|c|c|c|}
@@ -319,8 +319,8 @@ I solved the initial value problem being discussed with $ \alpha = \frac{1}{2} $
 \end{figure}
 \end{frame}
 
-\begin{frame}{Redisgning the Algorithm for CUDA}
-    Instead of trying to compute multiple variables in parallel we just return to the original (single threaded) forumulation of the scheme and compute the large sums in parallel. 
+\begin{frame}{Redesigning the Algorithm for CUDA}
+    Instead of trying to compute multiple variables in parallel we just return to the original (single threaded) formulation of the scheme and compute the large sums in parallel. 
         \begin{align*}
     y_{k+1} &= \sum_{j=0}^{\lceil \alpha \rceil - 1} y_{0}^{(j)} \frac{x^j_{k+1}}{j!} + \\
     & \frac{1}{\Gamma(\alpha)} \left( \sum_{j=0}^k a_{j,k+1} f(x_j,y_j) + a_{k+1,k+1}f(x_{k+1}, y_{k+1}^P )\right) \\
@@ -348,7 +348,7 @@ I solved the same initial value problem as I did in the C\# case.
 \end{frame}
 
 \begin{frame}{Lets play...}
-Solution to the relaxation oscilation equation for $ \alpha \in [0.5, 2] $.
+Solution to the relaxation oscillation equation for $ \alpha \in [0.5, 2] $.
 \begin{figure}[H]
 \includegraphics[scale = 0.2]{../images/FDE_Solution_Surface_No_Label}
 \end{figure}
@@ -360,7 +360,7 @@ Solution to the relaxation oscilation equation for $ \alpha \in [0.5, 2] $.
 
 \item [2] K. Diethelm. An efficient parallel algorithm for the numerical solution of fractional differential equations. Fractional Calculus and Applied Analysis, 14:475–490, 2011.
 
-\item [3] K. Diethelm, N.J. Ford, and A.D. Freed. Detailed error analysis for a fractional adams method. Numerical
+\item [3] K. Diethelm, N.J. Ford, and A.D. Freed. Detailed error analysis for a fractional Adams method. Numerical
 Algorithms, pages 31–52, 2004.
 \end{itemize}
 \end{frame}

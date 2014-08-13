@@ -1,7 +1,7 @@
 
 \section{Numerical Methods for Fractional Differential Equations}
 
-In this section we describe numerical methods which can be used for solving fractional differential equations. We begin by looking at two ways for approximating a fractional derivative and then look at a specific scheme outlined by Diethelm \cite{Diethelm2011}.
+In this section we describe numerical methods which can be used for solving fractional differential equations. We being by looking at two wasy for approximating a fractional derivative and then look at a specific scheme outlined by Diethlem \cite{Diethelm2011}.
 
 \subsection{Approximations of Fractional Derivatives and Integrals}
 
@@ -25,13 +25,13 @@ In much the same was as we might use a finite difference method to approximate a
     \widehat{ \glder{a}{t}{\alpha}{f}(t) } = \frac{1}{h^\alpha} \sum_{j=0}^n (-1)^j {\alpha \choose j} f(t - jh).
 \end{align}
 
-It can be shown \cite{Podlubny1999} that this yields a first order approximation of the Riemann-Liouville fractional derivative.
+It can be shown \cite{Podlubny1999} that this yeilds a first order approximation of the Riemann-Liouville fractional derivative.
 \subsubsection{Quadrature Approximation}
-A completely different approach is to use a quadrature rule to evaluate the integral from the Riemann-Liouville definition. If one is simply evaluating a derivative this method is not ideal because it also requires the approximation of an integer order derivative. If, however, we wish to calculate a fractional integral, such as might be required in a numerical FDE solver, then the quadrature method may be a more practical method.
+A completely different approach to take is to use a quadrature rule to evalute the integral from the Riemann-Liouville definition. If one is simply evaluating a derivative this method is not ideal because it also requires the approximation of an integer order derivative. If, however, we wish to calculate a fractional integral, such as might be required in a numerical FDE solver, then the quadrature method may be a more practical method.
 
 There is no \emph{set way} to do the quadrature approximation and it will all depend on the scheme being used. 
 
-In the following sections we will examine a general initial value problem and an Adams Moulton Bashforth scheme which is based off a quadrature method. \cite{Diethelm2011}
+In the following sections we will examine a general initial value problem and an Adams Moulton Bashforth scheme which is based of a quadrature method. \cite{Diethelm2011}
 
 \subsubsection{An Initial Value Problem}
 Lets consider the initial value problem
@@ -41,14 +41,14 @@ Lets consider the initial value problem
     \label{eq:num_ivp_2}
     y^{(k)}(0) &= y_{0}^{(k)} 
 \end{align}
-for $ 0 \leq k < \lfloor \alpha \rfloor $. Note that this initial value problem is stated in terms of Caputo derivatives. The motivation for such initial value problems was discussed in [INSERT CC REF].
+for $ 0 \leq k < \lfloor \alpha \rfloor $. Note that this initial value problem is stated in terms of Caputo derivatives. The motivation for such intial value problems was discussed in [INSERT CC REF].
 
-One of the most important things to note about this equation is that for non-integer values of $ \alpha $ it is non-local, in the sense that the value of the solution at $ y(x_0+h) $ depends not only on $ y(x_0) $ but also on $ y(x), x \in [0, x_0] $ \cite{Diethelm2010}. This is in contrast to ordinary differential equations and this fact is what makes fractional differential equations considerably more complex to solve. Even multi-step methods which can be used to solve ordinary differential equations, only rely on some \emph{fixed} number previous time steps. As a solution to a fractional differential equation progresses it relies on more and more previous time steps. As one might suspect this fundamentally increases the computational complexity of the schemes used to solve fractional differential equations as compared with the schemes used to solve traditional ordinary differential equations. \footnote{It is possible to reduce these computations to look at some large but fixed number of previous grid-points 
+One of the most important things to note about this equation is that for non-integer values of $ \alpha $ it is non-local, in the sense that the value of the solution at $ y(x_0+h) $ depends not only on $ y(x_0) $ but also on $ y(x), x \in [0, x_0] $ \cite{Diethelm2010}. This is in contrast to ordinary differential equations and this fact is what makes fractional differential equations considerably more complex to solve. Even multistep methods which can be used to solve ordinary differential equations, only rely on some \emph{fixed} number previous time steps. As a solution to a fractional differential equation progresses it relies on more and more previous time steps. As one might suspect this fundamentally increases the computational complexity of the schemes used to solve fractional differential equations as compared with the schemes used to solve traditional ordinary differential equations. \footnote{It is possible to reduce these computations to look at some large but fixed number of previous gridpoints 
 but this results in a speed vs. accuracy tradeoff which will be discussed in section \ref{sec:reduce_complexity}}
 
 \subsubsection{The Adams Moulton Bashforth Scheme}
 \label{sec:amb_desc}
-We briefly outline a method explained and analyzed in detail in \cite{Diethelm2004}. As shown in section \ref{sec:existence_uniq} the initial value problem \eqref{eq:num_ivp_1}, \eqref{eq:num_ivp_2} is equivalent to the Volterra equation.
+We briefly outline a method explained and analysed in detail in \cite{Diethelm2004}. As shown in section [INSERT CC REF] the initial value problem \eqref{eq:num_ivp_1}, \eqref{eq:num_ivp_2} is equivelent to the Volterra equation.
 
 \begin{align}
     \label{eq:num_int_eq}
@@ -60,7 +60,7 @@ We apply the approximation
 \begin{align*}
     \int_0^{x_{k+1}} (x_{k+1} - t)^{\alpha - 1} g(t)dt \approx \int_0^{x_{k+1}} (x_{k+1} - t)^{\alpha - 1} \tilde{g}_{k+1}(t)dt
 \end{align*}
-where $ g(t) = f(t, y(t)) $ and $ \tilde{g}_{k+1}(t) $ is the piecewise linear approximation of $ g(t) $ with nodes at the grid-points $ x_k $. As outlined in \cite{Diethelm2004} we can approximate the integral in \eqref{eq:num_int_eq} as
+where $ g(t) = f(t, y(t)) $ and $ \tilde{g}_{k+1}(t) $ is the piecewise linear approximation of $ g(t) $ with nodes at the gridpoints $ x_k $. As outlined in \cite{Diethelm2004} we can approximate the integral in \eqref{eq:num_int_eq} as
 \begin{align}
     \label{eq:amb_sum_1}
     \int_{0}^{x_{k+1}} (x_{k+1} - t)^{\alpha - 1} \tilde{g}_{k+1}(t) dt = \sum_{j=0}^{k+1} a_{j,k+1}g(x_j)
@@ -75,7 +75,7 @@ where
     \end{cases}
 \end{align}
 
-By separating the final term in the sum we can write
+By seperating the final term in the sum we can write
 \begin{align}
 \label{eq:amb_y_corr}
     y_{k+1} = \sum_{j=0}^{\lceil \alpha \rceil - 1} y_{0}^{(j)} \frac{x^j_{k+1}}{j!} + \frac{1}{\Gamma(\alpha)} \left( \sum_{j=0}^k a_{j,k+1} f(x_j,y_j) + a_{k+1,k+1}f(x_{k+1}, y_{k+1}^P )\right)
@@ -104,7 +104,7 @@ This outlines a fractional Adams Moulton Bashforth scheme. Of particular note ar
 
 Diethelm's paper \cite{Diethelm2011} outlines a parallel method of numerically approximating the solution to \eqref{eq:num_ivp_1}, \eqref{eq:num_ivp_2} by using a thread based parallel implementation of the Adams Moulton Bashforth method outlined in \ref{sec:amb_desc}. We base our approach in this section broadly on those of \cite{Diethelm2011} but reformulate the scheme in terms of tasks instead of threads. This has a number of distinct benefits including scalability, especially from an implementation standpoint and clarity.
 
-After we have setup the grid-points $ x_0, \ldots, x_{N-1} $ we create an array of solution values $ y_0, \ldots, y_{N-1} $ which are to be populated with the calculated solution. From the initial conditions we can immediately calculate $ y_0 $. We then break up the vector (array) $ \mathbf{y} $ into blocks of size $ p $. Suppose that $ p = 2 $ for example. Then the first block would contain $ y_1 $ and $ y_2 $. Each of the $ p $ variables in each block can be calculated almost entirely in parallel. There is some dependency between values in each block (i.e. $ y_2 $ depends on $ y_1 $) but this can be done after the bulk of the parallel computations have been completed.
+After we have setup the gridpoints $ x_0, \ldots, x_{N-1} $ we create an array of solution values $ y_0, \ldots, y_{N-1} $ which are to be populated with the calculated solution. From the initial conditions we can immediatly calculate $ y_0 $. We then break up the vector (array) $ \mathbf{y} $ into blocks of size $ p $. Suppose that $ p = 2 $ for example. Then the first block would contain $ y_1 $ and $ y_2 $. Each of the $ p $ variables in each block can be calculated almost entirely in parallel. There is some dependency between values in each block (i.e. $ y_2 $ depends on $ y_1 $) but this can be done after the bulk of the parallel computations have been completed.
 
 To illustrate this idea we consider figure \ref{fig:comp_diag}. We have broken the vector (array) $ \mathbf{y} $ up into $ K = \lceil \frac{N}{p} \rceil $ blocks of $ p $ variables.
 
@@ -115,14 +115,14 @@ To illustrate this idea we consider figure \ref{fig:comp_diag}. We have broken t
 \label{fig:comp_diag}
 \end{figure} 
 
-The center row shows how $ \mathbf{y} $ is broken up into blocks, and the bottom row is a detailed view
+The centre row shows how $ \mathbf{y} $ is broken up into blocks, and the bottom row is a detailed view
 of the contents of the \emph{current block} being computed.
 
 The red lines indicate dependency, in that $ \mathbf{y}_{(\ell - 1)p + 1} $ depends on all the $ y_j $ values calculated in the previous blocks. $ \mathbf{y}_{(\ell - 1)p + 2} $ depends on all the $ y_j $ values calculated in previous blocks \emph{and} on $ \mathbf{y}_{(\ell - 1)p + 1 } $. 
 
 The idea is that in each block we can do all of the computations which only depend on previous blocks in parallel and then perform the calculations which are dependent on other values within the same block in sequence. After all the values in a particular block are calculated we move on to the next block and repeat the process.
 
-An exploded view of the last block is also provided to emphasize the fact that this block might not contain $ p $ variables if $ p $ does not divide $ N - 1 $. This fact causes us no bother as it is easy to handle in code.
+An exploded view of the last block is also provided to emphasise the fact that this block might not contain $ p $ variables if $ p $ does not divide $ N - 1 $. This fact causes us no bother as it is easy to handle in code.
 
 As in \cite{Diethelm2011} we rewrite the equations \eqref{eq:amb_y_corr} and $ \eqref{eq:amb_y_pred} $ as
 \begin{align}
@@ -144,9 +144,9 @@ L_{j,\ell} & := \sum_{k=(\ell-1)p + 1}^j a{j-k} f(x_k, y_k) + \frac{f(x_{j+1}, y
 
 In each block the values of $ H, I $ and $ H^P $ can be calculated in parallel for each $ y_j $ in the block.Then there is a somewhat more complex dependency between these sums. 
 
-To best explain how the processes proceeds in each block and what dependencies there are we will consider a specific example where there are two values to be calculated per block (i.e. $ p = 2 $). Consider figure \ref{fig:AMB_Task_Flow}. 
+To best explain how the processes procedes in each block and what dependencies there are we will consider a specific example where there are two values to be calculated per block (i.e. $ p = 2 $). Consider figure \ref{fig:AMB_Task_Flow}. 
 
-Each box in the figure represents a task. A task can execute when all the tasks with arrows pointing to it have completed. The little red number represents the index of the variable \emph{within} the block which is being calculated. All the task names are reasonably self explanatory except for perhaps $ S^P $ and $ S $. These take the values calculated in the other sums and add them together to get $ y^P $ and $ y $ respectively. These are very small tasks which take very little time to execute.
+Each box in the figure represents a task. A task can execute when all the tasks with arrows pointing to it have completed. The little red number represents the index of the variable \emph{within} the block which is being calculated. All the task names are reasonablly self explanatory except for perhaps $ S^P $ and $ S $. These take the values calculated in the other sums and add them together to get $ y^P $ and $ y $ respectivly. These are very small tasks which take very little time to execute.
 
 The red arrow illustrate the interdependency of variables within a block. The second variable cannot have the sum $ L^P $ calculate until the first variable is calculated. This means that in effect each of the $ L $ tasks have to execute in series but these sums are relatively small so the time taken is quite short. Each block is then executed in sequence as each block depends on the blocks before it. See Appendix A for a C\# implementation of this. 
 
@@ -158,7 +158,7 @@ The red arrow illustrate the interdependency of variables within a block. The se
 
 \subsubsection{Analysis of the Performance of the Scheme in C\# and MONO}
 
-We wish to analyze the performance of this scheme both from the a theoretical standpoint and from at practical standpoint. 
+We wish to analyse the performance of this scheme both from the a theoretical standpoint and from at practical standpoint. 
 
 For the theoretical analysis of the scheme we introduce Amdahl's Law or Amdahl's principle.
 \begin{principle}[Amdahl]
@@ -170,9 +170,9 @@ $ Q $ cores is
 
 \end{principle}
 
-This law was first introduced in a 1967 paper by computer architect Amdahl. We introduce a new notion of Amdahl efficiency to characterize the how \emph{good} a parallel algorithm is in comparison with it serial counterpart in the limit of large input. 
+This law was first introduced in a 1967 paper by computer architect Amdahl. We introduce a new notion of Amdahl efficiency to characterise the how \emph{good} a parallel algorithm is in comparison with it serial counterpart in the limit of large input. 
 
-To formalize this notion we introduce the following definition.
+To formalise this notion we introduce the following definition.
 
 \begin{definition}[Amdahl Efficiency]
 \label{def:amdahl_efficient}
@@ -200,7 +200,7 @@ $ L $       & $ O( p ) $                & $ p $                             & $ 
 $ L_p $     & $ O( p ) $                & $ p $                             & $ O(p^2) $ \\ \hline
 \end{tabular}
 
-In each block $ H $, $ H_p $ and $ I $ can be computed in parallel across all variables in the block. For the purposes of simplicity we assume that the tasks $ L $ and $ L_p $ must all be computed in serial across all variables in a block. This means that in the $ \ell$-th block the non-paralellizable fraction of computation is
+In each block $ H $, $ H_p $ and $ I $ can be computed in parallel across all variables in the block. For the purposes of simplicity we assume that the tasks $ L $ and $ L_p $ must all be computed in serial across all variables in a block. This means that in the $ \ell$-th block the non-parallelizable fraction of computation is
 \begin{align}
     \overline{P}_{block}(\ell) \sim \frac{2p^2}{2p^2(\ell + 1) } \sim \frac{1}{\ell}
 \end{align}
@@ -209,7 +209,7 @@ The amount of computation in the $ \ell$-th block is $ O(\ell p^2) $ and there a
 \begin{align}
     \sum_{\ell=1}^{K} \ell p^2 \sim \frac{K^2p^2}{2}
 \end{align}
-and by taking a weighted average sum, the total fraction of non-paralellizable computation is
+and by taking a weighted average sum, the total fraction of non-parallelizable computation is
 \begin{align}
     \label{eq:tot_par_c}
     \overline{P}_{total} \sim \sum_{\ell = 1}^{K} \frac{2\ell p^2}{K^2 \ell p^2} = \frac{2}{K} = \frac{2p}{N}.
@@ -227,9 +227,9 @@ then letting $ N \lra \infty $ we get
 
 \end{proof}
 
-What this result means is that if we have $ 2p $ free cores this parallel method should take $ \frac{1}{2p} $ the amount of time to run compared to it's serial counterpart given a sufficiently large number of grid points, $N$. Due to the fact that this a task based scheme this is also dependent on an efficient scheduler.
+What this result means is that if we have $ 2p $ free cores this parallel method should take $ \frac{1}{2p} $ the amount of time to run compared to it's seri. My phone Canal counterpart given a sufficiently large number of grid points, $N$. Due to the fact that this a task based scheme this is also dependent on an efficient scheduler.
 
-We now compare this with practical experimentation. This method was developed in C\# with MONO (see Appendix A for C\# code) and run on a machine with an Intel \textregistered Core \texttrademark{} i7-4930K CPU @ 3.40GHz. This particular CPU has 6 physical cores with 12 logical cores provided by hyper-threading. 
+We now compare this with practical experimentation. This method was developed in C\# with MONO (see Appendix A for C\# code) and run on a machine with an Intel \textregistered Core \texttrademark{} i7-4930K CPU @ 3.40GHz. This particular CPU has 6 physical cores with 12 logical cores provided by hyperthreading. 
 
 We solved the following initial value problem
 
@@ -237,7 +237,7 @@ We solved the following initial value problem
     \capder{0}{x}{\frac{1}{2}}{y}(x) = -y(x) & & y(0) = 1
 \end{align}
 
-with $ N = 2000 $ through to $ N = 10000 $ time steps over the interval $ [0,10] $ with $ p $ ranging from $ 1 $ though to $ 12 $. Each solution was computed 5 times and the average runtime  was computed, yielding the \emph{performance surface} shown in figure \ref{fig:mono_performance_surface}.
+with $ N = 2000 $ through to $ N = 10000 $ time steps over the interval $ [0,10] $ with $ p $ ranging from $ 1 $ though to $ 12 $. Each solution was computed 5 times and the average runtime  was computed, yeilding the \emph{performance surface} shown in figure \ref{fig:mono_performance_surface}.
 
 \begin{figure}[H]
 \includegraphics[scale = 0.3]{images/Dot_Net_Performance_No_Label}
@@ -261,9 +261,9 @@ p       & Runtime (s)   & Speedup (wrt p = 1)\\ \hline
 \end{tabular}
 \end{figure}
 
-From a theoretical perspective we would expect speedups of 2, 3 and 4 for the cases $ p =2,3, 4 $ respectively, however, this is not achieved. There are a number of possible reasons for this. Firstly the MONO task scheduler (based of the .Net scheduler) is not performance optimized \cite{MicrosoftTaskSchedular}.
+From a theoretical perspective we would expect speedups of 2, 3 and 4 for the cases $ p =2,3, 4 $ respectivly, however, this is not achieved. There are a number of possible reasons for this. Firstly the MONO task schedular (based of the .Net schedular) is not performance optimised \cite{MicrosoftTaskSchedular}.
 
-There is the possibility that we haven't chosen a large enough value of $ N $ to get the full relative speedup. This is supported by the fact that for the $ N = 8000 $ case the speedup from $ p = 1 $ to $ p = 2 $ was $ 1.53 $ (less than that in the $ N = 10000 $ case). 
+There is the possibility that we havn't chosen a large anough value of $ N $ to get the full relative speedup. This is supported by the fact that for the $ N = 8000 $ case the speedup from $ p = 1 $ to $ p = 2 $ was $ 1.53 $ (less than that in the $ N = 10000 $ case). 
 
 Also for cases where $ p > 3 $ we have 6 computationally heavy tasks ( $ H $ and $ H_p $ ) being completed per block and are therefore reaching the limit of the number of physical cores on the system. Obviously we cannot expect an improvement once $ p $ gets too large as the number of tasks to be executed in parallel exceeds the number of available cores. We see the full effect of this in the $ p = 6 $ case where the runtime was actually longer than that for $ p = 5 $.
 
@@ -271,9 +271,9 @@ Also for cases where $ p > 3 $ we have 6 computationally heavy tasks ( $ H $ and
 
 \label{sec:parallel_cuda}
 
-One of the main benefits of the scheme outlined in section \ref{sec:parallel_c}, especially noted in it's form presented by Diethelm in \cite{Diethelm2011} is the ability for this scheme to be implemented across multiple machines with a small amount of message passing between executing threads (or in this case tasks). The main reason for wanting to minimize message passing is that it can significantly impact performance to the point where most of the time is actually spent communicating updates between execution nodes. This is given significant consideration in \cite{Diethelm2011}. In this section we abandon these measures in favor of massive performance gains when executing in a massively parallel manner on a GPU.
+One of the main benefits of the scheme outlined in section \ref{sec:parallel_c}, especially noted in it's form presented by Diethlem in \cite{Diethelm2011} is the ability for this scheme to be implemented across multiple machines with a small amount of message passing between executing threads (or in this case tasks). The main reason for wanting to minimise message passing is that it can significantly impact performance to the point where most of the time is actually spent communicating updates between execution nodes. This is given significant consideration in \cite{Diethelm2011}. In this section we abandon these measures in favor of massive performance gains when executing in a massively parallel maner on a GPU.
 
-Modern graphics cards have the advantage of being able to efficiently perform massively parallel computations, especially calculations involving floating point arithmetic \cite{Fernando2005}. For example the NVIDIA GeForce GTX 780 has 2304 cores clocked at 863MHz. We use one of these graphics cards in an effort to dramatically speed up the fractional Adams Moulton Bashforth Method using NVIDIA's CUDA tool-chain.
+Modern graphics cards have the advantage of being able to efficiently perform massively parallel computations, espeically calculations involving floating point arithmetic \cite{Fernando2005}. For example the NVIDIA GeForce GTX 780 has 2304 cores clocked at 863Mhz. We use one of these graphics cards in an effort to dramatically speed up the fractional Adams Moulton Bashforth Method using NVIDIA's CUDA toolchain.
 
 Instead of using blocks of variables as was done in \cite{Diethelm2011} and reimplemented by us in section \ref{sec:parallel_c} we return to the original specification of the scheme in section \ref{sec:amb_desc} and seek out other opportunities of parallelism.
 
@@ -288,9 +288,9 @@ Figure \ref{fig:cuda_performance_surface} shows a \emph{performance surface} sho
 \label{fig:cuda_performance_surface}
 \end{figure}
 
-Firstly we note the size of the problems being solved here. The last point on the $ N $ axis is $10^6$ time-steps, 100 times larger than was computed in the CPU based C\# approach. Given the quadratic computational complexity of this algorithm that means this CUDA implementation is solving problems which would take roughly $ 2.5 $ days to compute using the previous parallel scheme, in less than 6 minutes.
+Firstly we note the size of the problems being solved here. The last point on the $ N $ axis is $10^6$ timesteps, 100 times larger than was computed in the CPU based C\# approach. Given the quadratic computational complexity of this algorithm that means this CUDA implementation is solving problems which would take roughly $ 2.5 $ days to compute using the previous parallel scheme, in less than 6 minutes.
 
-As can be seen from this chart, as $ N $ increases it makes sense to perform more operations per thread. This arises from the fact that there is an overhead in dealing with each thread and this overhead becomes significant as $ N $ gets large. This effect is also exacerbated by the fact that for small values of $ N $ the overhead of managing more threads on the GPU is offset by the increased parallelism that a smaller number of operations per thread affords. Once, however, every core is being utilized it makes sense to start to increase the number of operations per thread as $ N $ is increased.
+As can be seen from this chart, as $ N $ increases it makes sense to perform more operations per thread. This arrises from the fact that there is an overhead in dealing with each thread and this overhead becomes significant as $ N $ gets large. This effect is also exacerbated by the fact that for small values of $ N $ the overhead of managing more threads on the GPU is offset by the increased parallelism that a smaller number of operations per thread affords. Once, however, every core is being utilised it makes sense to start to increase the number of operations per thread as $ N $ is increased.
 
 The speedup from running these computation on CUDA is enormous. It is arguable that any advantage achieved through reducing the number of messages passed between multiple threads and nodes by using the scheme outlined in \cite{Diethelm2011} and in section \ref{sec:parallel_c}, is completely outweighed by the sheer speed of computation on a GPU. 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.21)  6 AUG 2014 23:48
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.21)  14 AUG 2014 05:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -755,14 +755,14 @@ LaTeX Info: Redefining \nameref on input line 19.
  ABD: EveryShipout initializing macros
 \c@lstlisting=\count166
 
-<artwork/unswlogo.jpg, id=71, 254.96857pt x 93.37283pt>
+<artwork/unswlogo.jpg, id=95, 254.96857pt x 93.37283pt>
 File: artwork/unswlogo.jpg Graphic file (type jpg)
 
 <use artwork/unswlogo.jpg>
 Package pdftex.def Info: artwork/unswlogo.jpg used on input line 21.
 (pdftex.def)             Requested size: 469.75502pt x 172.05028pt.
 
-<artwork/mathslogo.jpg, id=72, 205.76875pt x 205.76875pt>
+<artwork/mathslogo.jpg, id=96, 205.76875pt x 205.76875pt>
 File: artwork/mathslogo.jpg Graphic file (type jpg)
 
 <use artwork/mathslogo.jpg>
@@ -772,46 +772,52 @@ Package pdftex.def Info: artwork/mathslogo.jpg used on input line 21.
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./artwork/unswlogo.jpg> <.
 /artwork/mathslogo.jpg>]
-(./chapters/Numerical_Methods.tex
-LaTeX Font Info:    Try loading font information for U+msa on input line 8.
+(./chapters/Analytical_Techniques_ODE.tex
+LaTeX Font Info:    Try loading font information for U+msa on input line 6.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 8.
+LaTeX Font Info:    Try loading font information for U+msb on input line 6.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
+)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.65 	\end{align*}
+                   [1] [2] [3] [4] [5] [6] [7] [8] [9] [10])
+(./chapters/Numerical_Methods.tex [11]
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 12.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.43 \end{align}
-                 [1] [2] (./diagrams/AMB_y_Diagram.tex)
+[12]
+
+LaTeX Warning: Reference `sec:reduce_complexity' on page 13 undefined on input 
+line 47.
+
+[13] (./diagrams/AMB_y_Diagram.tex)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[3] [4pdfTeX warning (ext4): destination with the same identifier (name{figure.
-1}) has been already used, duplicate ignored
+[14] [15pdfTeX warning (ext4): destination with the same identifier (name{figur
+e.1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.143 \end{align}
-                 ] (./diagrams/AMB_Task_Diagram.tex) [5] [6pdfTeX warning (ext4
-): destination with the same identifier (name{figure.2}) has been already used,
- duplicate ignored
+                 ] (./diagrams/AMB_Task_Diagram.tex) [16] [17pdfTeX warning (ex
+t4): destination with the same identifier (name{figure.2}) has been already use
+d, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.163 F
        or the theoretical analysis of the scheme we introduce Amdahl's Law o...
-] [7]
+] [18]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 232.
 
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
@@ -820,37 +826,37 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 232.
 
-<images/Dot_Net_Performance_No_Label.png, id=193, 1463.4675pt x 907.39pt>
+<images/Dot_Net_Performance_No_Label.png, id=322, 1463.4675pt x 907.39pt>
 File: images/Dot_Net_Performance_No_Label.png Graphic file (type png)
 
 <use images/Dot_Net_Performance_No_Label.png>
 Package pdftex.def Info: images/Dot_Net_Performance_No_Label.png used on input 
 line 243.
 (pdftex.def)             Requested size: 439.04364pt x 272.2191pt.
- [8] [9pdfTeX warning (ext4): destination with the same identifier (name{figure
-.3}) has been already used, duplicate ignored
+ [19] [20pdfTeX warning (ext4): destination with the same identifier (name{figu
+re.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.275 
        <./images/Dot_Net_Performance_No_Label.png (PNG copy)>]
-<images/CUDA_Performance_No_Label.png, id=223, 843.15pt x 864.22874pt>
+<images/CUDA_Performance_No_Label.png, id=352, 843.15pt x 864.22874pt>
 File: images/CUDA_Performance_No_Label.png Graphic file (type png)
 
 <use images/CUDA_Performance_No_Label.png>
 Package pdftex.def Info: images/CUDA_Performance_No_Label.png used on input lin
 e 286.
 (pdftex.def)             Requested size: 337.25401pt x 345.68536pt.
- [10] [11pdfTeX warning (ext4): destination with the same identifier (name{figu
+ [21] [22pdfTeX warning (ext4): destination with the same identifier (name{figu
 re.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.301 \clearpage
+l.297 \clearpage
                  <./images/CUDA_Performance_No_Label.png (PNG copy)>])
-(./chapters/Appendix_A.tex [12
+(./chapters/Appendix_A.tex [23
 
-] [13] [14] [15] [16]
+] [24] [25] [26] [27]
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2013/08/26 1.5b listings language file
 )
@@ -859,51 +865,64 @@ File: lstlang1.sty 2013/08/26 1.5b listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
-) [17] [18]
-[19] [20] [21]) (./NewThesis.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 32.
- [22]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 32.
+) [28] [29]
+[30] [31] [32]) (./chapters/Appendix_B.tex [33] [34
+
+]) (./NewThesis.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 34.
+
+[35
+
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 34.
  (./NewThesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 32.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 32.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 34.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 34.
 Package rerunfilecheck Info: File `NewThesis.out' has not changed.
-(rerunfilecheck)             Checksum: F66899B9AB181B3E034E5A15388D11E6;1456.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 32.
+(rerunfilecheck)             Checksum: DB49CF8470BB85F863BDBCF732B2415D;2052.
+
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 34.
  ) 
 Here is how much of TeX's memory you used:
- 17885 strings out of 493304
- 304949 string characters out of 6139871
- 495371 words of memory out of 5000000
- 20345 multiletter control sequences out of 15000+600000
- 14033 words of font info for 53 fonts, out of 8000000 for 9000
+ 17962 strings out of 493304
+ 305916 string characters out of 6139871
+ 495370 words of memory out of 5000000
+ 20372 multiletter control sequences out of 15000+600000
+ 14731 words of font info for 55 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 63i,18n,58p,1097b,1783s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,18n,58p,1099b,1783s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/s
-ymbols/msbm10.pfb>
-Output written on NewThesis.pdf (23 pages, 837590 bytes).
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmtt9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/
+msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/m
+sam7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
+m10.pfb>
+Output written on NewThesis.pdf (36 pages, 918623 bytes).
 PDF statistics:
- 1023 PDF objects out of 1200 (max. 8388607)
- 959 compressed objects within 10 object streams
- 609 named destinations out of 1000 (max. 500000)
- 161 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1186 PDF objects out of 1200 (max. 8388607)
+ 1104 compressed objects within 12 object streams
+ 652 named destinations out of 1000 (max. 500000)
+ 209 words of extra memory for PDF output out of 10000 (max. 10000000)
 

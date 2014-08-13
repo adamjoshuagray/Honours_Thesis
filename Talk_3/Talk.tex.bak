@@ -1,13 +1,47 @@
-
 \documentclass[pdf]{beamer}
 
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
 \usepackage{mathtools}
+\usepackage{tikz}
 
-\usetheme{Dresden}
-\usecolortheme{beaver}
+\usepackage{listings}
+\usepackage{color}
+
+\newtheorem{principle}{Principle}
+\newtheorem{proposition}{Proposition}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+
+\newcommand{\laplace}[1]{ \mathcal{L} \left\{ #1 \right\} }
+\newcommand{\fourier}[1]{ \mathcal{F} \left\{ #1 \right\} }
+\newcommand{\mellin}[1]{ \mathcal{M} \left\{ #1 \right\} }
+\newcommand{\rld}[4]{ \left( \prescript{}{#1}{\mathcal{D}_{#2}^{#3}} #4 \right) }
+\newcommand{\rli}[3]{ \left( I_{#1}^{#2} #3 \right) }
+\newcommand{\der}[3]{ \frac{d^{#3}#1}{d#2^{#3}} }
+\newcommand{\capder}[4]{ \left( \prescript{C}{#1}{\mathcal{D}_{#2}^{#3}} #4 \right) }
+\newcommand{\fracdelta}[4]{ \left( \prescript{}{#1}{\Delta^{#2}_{#3} } #4 \right) }
+
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lla}{\longleftarrow}
+\newcommand{\la}{\leftarrow}
 
 %Analysis
 \newcommand{\Rl}{\mathbb{R}}
@@ -18,311 +52,318 @@
 \newcommand{\Hlbt}{\mathcal{H}}
 \newcommand{\im}{\operatorname{im}}
 
-%Algebra
-\newcommand{\Grp}{\mathcal{G}}
-
-%Misc
-\newcommand{\lra}{\longrightarrow}
-\newcommand{\ra}{\rightarrow}
-\newcommand{\lla}{\longleftarrow}
-\newcommand{\la}{\leftarrow}
-
-%Stats \ Prob
-\newcommand{\E}[1]{\mathbb{E} \left[ #1 \right]}
-\newcommand{\Var}[1]{\operatorname{Var} \left[ #1 \right] }
-\newcommand{\Cov}[2]{\operatorname{Cov} \left[ #1, #2 \right] }
-\newcommand{\Filt}{\mathcal{F}}
-
-%Fractional Differential Equations
-
-\newcommand{\laplace}[1]{ \mathcal{L} \left\{ #1 \right\} }
-\newcommand{\fourier}[1]{ \mathcal{F} \left\{ #1 \right\} }
-\newcommand{\mellin}[1]{ \mathcal{M} \left\{ #1 \right\} }
-\newcommand{\rld}[3]{ \left( \mathcal{D}_{#1}^{#2} #3 \right) }
-\newcommand{\rli}[3]{ \left( I_{#1}^{#2} #3 \right) }
-\newcommand{\der}[3]{ \frac{d^{#3}#1}{d#2^{#3}} }
-\newcommand{\capder}[3]{ \left( \prescript{C}{}{\mathcal{D}_{#1}^{#2}} #3 \right) }
-
 \mode<presentation>{}
-\title{A Solution to a Fractional Differential Equation}
-\subtitle{The Laplace Transform Method}
-\author{Adam J. Gray}
+\title{Accelerating Numerical Solutions to Fractional Differential Equations}
+\subtitle{Adams Moulton Bashforth Method}
+\author[Adam J. Gray]{Adam J. Gray\\{\small Supervised by: Dr Chris Tisdell}}
 \institute{
 	School of Mathematics and Statistics \\
 	University of New South Wales
 }
 
 \begin{document}
-
 \begin{frame}
 	\titlepage
 \end{frame}
 
-\begin{frame}{The Goal}
-	We aim to get a solution to the following fractional differential equation (in terms of Caputo derivatives)
-	\begin{align*}
-		\left( \prescript{C}{}{\mathcal{D}_0^\alpha}y \right)(t) = \beta y(t) 
-	\end{align*}
 
-	along with the initial conditions 
-	\begin{align*}
-		y^{(k)}(0) = 
-		\begin{cases}
-			1 & k = 0 \\
-			0 & 1 \leq k \leq \lfloor \alpha \rfloor - 1  
-		\end{cases}
-	\end{align*}
+\begin{frame}{Outline}
+    \begin{itemize}
+        \item Examine the Adams Moulton Bashforth method for a first order initial value problem.
+        \item Examine a fractional Adams Moutlon Bashforth method.
+        \item Examine a parallel CPU based implementation of the scheme.
+        \item Examine a parallel GPU based implementation of the scheme.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{A first order problem}
+We would like to solve the following initial value problem.
+\begin{align*}
+    \frac{d}{dx} y(x) = f(x,y)
+\end{align*}
+\begin{align*}
+    y(0) = y_0
+\end{align*}
+This is equivelent to
+\begin{align*}
+    y(x) = y_0 + \int_0^x f(t, y(t))dt
+\end{align*}
+\end{frame}
+
+\begin{frame}{The first step}
+    Suppose we want to approximate the solution some small timestep $ h $ away from $ 0 $.
+    \begin{align*}
+        y(h) = y(0) + \int_0^h f(t, y(t)) dt
+    \end{align*}
+    Using a simple quadrature rule (trapezoidal) we could approximate the integral to get
+    \begin{align*}
+        y(h) = y(0) + \frac{h}{2} \left[ f(0, y(0)) + f(0, y(h)) \right]
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Predictor Approximation of y(h)}
+    What if we approximate $ y(h) $ and use that value in the previous integral?
+    We can do this by using the rectangle quadrature rule which
+    gives us
+    \begin{align*}
+        \int_0^h f(t, y(t)) dt \approx h f(0, y(0))
+    \end{align*}
+    and so we could say
+    \begin{align*}
+        y^{P}(h) = y_0 + h f(0, y(0))
+    \end{align*}
+    and putting $y^{P}(h) $ in the equation before yeilds
+    \begin{align*}
+        y(h) = y(0) + \frac{h}{2} \left[ f(0, y(0)) + f(0, y^P(h)) \right]
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Iterating the process}
+    The previous slides explained how to step forward one small timestep $ h $. We can now use the value calculated for $ y(h) $ as the \emph{initial value} and calculate $ y(2h) $.
+    \begin{align*}
+        y(2h) = y(h) + \frac{h}{2} \left[ f(h, y(h)), + f(2h, y^{P}(2h)) \right]
+    \end{align*}
+    with 
+    \begin{align*}
+        y^P(2h) = y(h) + hf(h, y(h)).
+    \end{align*}
+    We can restate this whole process iteratively:
+    \begin{align*}
+        y_{k+1} &= y_{k} + \frac{h}{2} \left[ f(x_k, y_k) + f(x_{k+1}, y_{k+1}^{P} ) \right] \\
+        y^{P}_{k+1} &= y_k + hf(x_k, y_k)
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Is the only way of doing things?}
+\begin{itemize}
+    \item No! 
+    
+    \item There are lots of different schemes for numerically approximating the solutions to integer order initial value problems (RK3/4, Euler, Milne, etc).
+    
+    \item In fact we have hidden the Euler method inside this method. The Euler method basically puts some small but non-zero $ h $ into the first principles definition of the derivative and solves from there.
+    
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Key Computational Points of this Method}
+\begin{itemize}
+    \item It's numerically stable for reasonable choices of $ f $.
+    \item It's convergent of order $ 2 $ in the sense that 
+    \begin{align*}
+        \max_{j=0,1,...,N} | y(t_j) - y_j | = O(h^2) 
+    \end{align*}
+    \item The computational complexity is $ O(N) $ (linear time).
+\end{itemize}
+ 
+\end{frame}
+
+\begin{frame}{The Fractional Problem}
+    We wish to solve a fractional initial value problem of the form
+    \begin{align*}
+        \capder{0}{x}{\alpha}{y}(x) = f(x,y)
+    \end{align*}
+    along with initial conditions
+    \begin{align*}
+        y(0) = y_0^{(k)} & & 0 \leq k \leq \lceil \alpha \rceil - 1
+    \end{align*}
+    \hrulefill
+    \begin{align*}
+        \capder{0}{x}{\alpha}{y}(x) = \frac{1}{\Gamma( \lceil \alpha \rceil - \alpha)} \int_{0}^{x} \frac{\frac{d^{\lceil \alpha \rceil}}{dt^{\lceil \alpha \rceil}} y(t)}{(x-t)^{\lceil \alpha \rceil - \alpha + 1}}dt
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Equivelent Integral Equation}
+The initial value problem
+    \begin{align*}
+        \capder{0}{x}{\alpha}{y}(x) = f(x,y)
+    \end{align*}
+    along with initial conditions
+    \begin{align*}
+        y(0) = y_0^{(k)} & & 0 \leq k \leq \lceil \alpha \rceil - 1
+    \end{align*}
+    is equivelent to the integral equation
+    \begin{align*}
+        y(x) = \sum_{k = 0}^{\lceil \alpha \rceil - 1} y_0^{(k)} \frac{x^k}{k!} + \frac{1}{\Gamma(\alpha)} \int_0^x (x - t)^{\alpha - 1}f(t,y(t))dt
+    \end{align*}
+\end{frame}
+
+\begin{frame}{The Fractional Case}
+    \begin{align*}
+    y_{k+1} &= \sum_{j=0}^{\lceil \alpha \rceil - 1} y_{0}^{(j)} \frac{x^j_{k+1}}{j!} + \\
+    & \frac{1}{\Gamma(\alpha)} \left( \sum_{j=0}^k a_{j,k+1} f(x_j,y_j) + a_{k+1,k+1}f(x_{k+1}, y_{k+1}^P )\right) \\
+    y_{k+1}^P &= \sum_{j=0}^{\lceil \alpha \rceil - 1} \frac{x^{j}_{k+1}}{j!} y_{0}^{(j)} + \frac{1}{\Gamma(\alpha)} \sum_{j=0}^{k} b_{j,k+1} f(x_j, y_j).
+\end{align*}
+
+\end{frame}
+
+\begin{frame}{Coefficients}
+\begin{align*}
+    a_{j,k+1} &= \frac{h^\alpha}{\alpha(\alpha+1)} \times
+    \begin{cases}
+        (k^{\alpha+1}-(k-\alpha)(k+1)^\alpha) & \text{ if } j = 0 \\
+        ((k-j+2)^{\alpha + 1} + (k-j)^{\alpha+1} - 2(k-j+1)^{\alpha+1}) & \text{ if } 1 \leq j \leq k \\
+        1 & \text{ if } j = k + 1.
+    \end{cases} \\
+    b_{j,k+1} &= \frac{h^\alpha}{\alpha} \left( (k+1-j)^\alpha - (k-j)^\alpha \right).
+\end{align*}
+\end{frame}
+
+\begin{frame}{Parallel Approach}
+\resizebox{300pt}{!}{
+\input{../diagrams/AMB_y_Diagram.tex}
+}
+\end{frame}
+\begin{frame}{Parallel Formulation}
+We can requite the previous equations in the form
+\begin{align*}
+y_{j+1}^P = I_{j+1} + h^\alpha H_{j,\ell}^P + h^\alpha L_{j,\ell}^P
+\end{align*}
+and
+\begin{align*}
+y_{j+1} = I_{j+1} + h^{\alpha} H_{j,\ell} + h^\alpha L_{j,\ell}
+\end{align*}
+\end{frame}
+\begin{frame}{Parallel Formulation}
+\begin{align*}
+I_{j+1} & := \sum_{k=0}^{\lceil \alpha \rceil -1} \frac{x_{j+1}^k}{k!} y_0^{(k)} \\
+H^P_{j,\ell} & := \sum_{k=0}^{(\ell-1)p} b_{j-k} f(x_k, y_k) \\
+L_{j,\ell}^P & := \sum_{k=(\ell-1)p+1}^{j} b_{j-k} f(x_k,y_k) \\
+H_{j,\ell} & := c_j f(x_0, y_0) + \sum_{k=1}^{(\ell - 1)p} a_{j-k}f(x_k, y_k) \\
+L_{j,\ell} & := \sum_{k=(\ell-1)p + 1}^j a{j-k} f(x_k, y_k) + \frac{f(x_{j+1}, y^P_{j+1})}{\Gamma(\alpha + 2.)}
+\end{align*}
+\end{frame}
+
+\begin{frame}{Task Flow (in a single block)}
+\resizebox{200pt}{!}{
+\input{../diagrams/AMB_Task_Diagram.tex}
+}
+\end{frame}
+\begin{frame}{Is this parallelization reasonable?}
+\begin{principle}[Amdahl]
+Let $ P $ be the proportion of a computation which can be parallelized in a given progress. Then the speedup given by
+$ Q $ cores is
+\begin{align*}
+	S(Q) = \frac{1}{(1-P)+\frac{P}{Q}}
+\end{align*}
+
+\end{principle}
+
+\begin{definition}[Amdahl Efficiency]
+\label{def:amdahl_efficient}
+    Let $ S(N,Q) $ represent the parallel speedup for a problem with input size $ N $ and executed with $ Q $ cores.
+    Then we define the Amdahl efficiency of parallel scheme as 
+    \begin{align*}
+        E(Q) = \lim_{N \lra \infty} \frac{S(N, Q)}{Q}.
+    \end{align*}
+    Further we say that a parallel scheme is Amdahl efficient with respect to its serial counterpart if $ E(Q) = 1 $.
+\end{definition}
 \end{frame}
 
 
-\begin{frame}{Motivations}
-	\begin{block}{Cauchy Formula for Repeated Integration}
-		\begin{align*}
-			\int_{a}^{x} \int_{a}^{y_1} \cdots \int_a^{y_{n-1}} f(y_n) dy_n \cdots dy_2 dy_1 = \frac{1}{(n-1)!} \int_a^x(x-t)^{n-1}f(t)dt
-		\end{align*}
-	\end{block}
-	\pause
-	The idea is to replace the factorials with gamma functions to define an integral of arbitrary order
-	\pause
-	\begin{block}{Riemann-Liouville Fractional Integral}
-		\begin{align*}
-			\rli{a}{\alpha}{f}(x) = \frac{1}{\Gamma(\alpha)} \int_a^x(x-t)^{\alpha-1}f(t)dt
-		\end{align*}
-	\end{block}
+\begin{frame}
+\begin{proposition}
+The parallel Adams Moulton Bashforth scheme is Amdahl efficient with respect to its serial counterpart.
+\end{proposition}
+\begin{proof}
+We present the paralellizable fraction of computation in each block of variables in the following table. The order column represents the number of \emph{multiply-add} operations per task.
+\end{proof}
+\resizebox{300pt}{!}{
+\begin{tabular}[ht]{|c|c|c|c|}
+\hline
+Task        & Computational Complexity  & Number of Variables per Block     & Total Complexity \\ \hline
+$ H $       & $ O(\ell p ) $            & $ p $                             & $ O(\ell p^2) $ \\ \hline
+$ H_p $     & $ O(\ell p ) $            & $ p $                             & $ O(\ell p^2) $ \\ \hline
+$ I $       & $ O( \alpha ) $           & $ p $                             & $ O(p) $ \\ \hline \hline          
+$ L $       & $ O( p ) $                & $ p $                             & $ O(p^2) $ \\ \hline
+$ L_p $     & $ O( p ) $                & $ p $                             & $ O(p^2) $ \\ \hline
+\end{tabular}
+}
+\end{frame}
+\begin{frame}
+In each block $ H $, $ H_p $ and $ I $ can be computed in parallel across all variables in the block. For the purposes of simplicity we assume that the tasks $ L $ and $ L_p $ must all be computed in serial across all variables in a block. This means that in the $ \ell$-th block the non-parallelizable fraction of computation is
+\begin{align*}
+    \overline{P}_{block}(\ell) \sim \frac{2p^2}{2p^2(\ell + 1) } \sim \frac{1}{\ell}
+\end{align*}
+
+The amount of computation in the $ \ell$-th block is $ O(\ell p^2) $ and there are $ K \approx \frac{N}{p} $ blocks in the total computation. This means that the total amount of computation is
+\begin{align*}
+    \sum_{\ell=1}^{K} \ell p^2 \sim \frac{K^2p^2}{2}
+\end{align*}
+and by taking a weighted average sum, the total fraction of non-parallelizable computation is
+\begin{align*}
+    \label{eq:tot_par_c}
+    \overline{P}_{total} \sim \sum_{\ell = 1}^{K} \frac{2\ell p^2}{K^2 \ell p^2} = \frac{2}{K} = \frac{2p}{N}.
+\end{align*}
+\end{frame}
+\begin{frame}
+Noticing the fact that the computation in the task $ I $ is insignificant compared to $ H $ and $ H_p $ we would suppose using $ Q = 2p $ cores would be in some sense optimal. Applying Amdahl's principle with the result in \ref{eq:tot_par_c} and with $ Q = 2p $ we get 
+\begin{align*}
+    S(N, Q) &= S(N, 2p) \\
+    &\sim \frac{1}{(\frac{2p}{N}) + \frac{1-\frac{2p}{N}}{2p} } \\
+\end{align*}
+then letting $ N \lra \infty $ we get
+\begin{align*}
+    E(p) = \lim_{N \lra \infty} \left(\frac{1}{(\frac{2p}{N}) + \frac{1-\frac{2p}{N}}{2p} } \right) \slash p = 1.
+\end{align*}
 \end{frame}
 
-\begin{frame}{Motivations (Derivatives)}
-	\begin{block}{Riemann-Liouville Fractional Derivative}
-		\begin{align*}
-			\rld{a}{\alpha}{f}(x) &= \frac{d^{\lceil \alpha \rceil}}{dx^{\lceil \alpha \rceil}} \rli{a}{\lceil \alpha \rceil - \alpha}{f}(x) \\
-				&= \frac{1}{\Gamma(1 - \alpha)}\frac{d^{n}}{dx^n} \int_a^x \frac{f(t)dt}{\frac{(x-t)^{\alpha - n + 1}}{}}
-		\end{align*}
-		where $ n - 1 < \alpha \leq n $
-	\end{block}
+\begin{frame}{Practical Experimentation}
+I solved the initial value problem being discussed with $ \alpha = \frac{1}{2} $ and $ y(0) = 1 $ over the interval $ [0, 1] $ using a C\# implementation of the above algorithm.
+\end{frame}
+\begin{frame}{Practical Experimentation}
+\begin{figure}[H]
+\includegraphics[scale = 0.2]{../images/Dot_Net_Performance_No_Label}
+\caption{Average runtime of the scheme for different values of $ p $ and $ N $}
+\label{fig:mono_performance_surface}
+\end{figure}
 \end{frame}
 
-\begin{frame}{Motivations (Derivatives)}
-	\begin{block}{Caputo Fractional Derivative}
-		\begin{align*}
-			\capder{a}{\alpha}{f}(x) &= \rli{a}{\lceil \alpha \rceil - \alpha}{\frac{d^{\lceil \alpha \rceil}}{dx^{\lceil \alpha \rceil}}f}(x) \\
-				&= \frac{1}{\Gamma(1 - \alpha)} \int_a^x \frac{\frac{d^{t}}{dt^n}f(t)dt}{(x-t)^{\alpha - n + 1}}
-		\end{align*}
-		where $ n - 1 < \alpha \leq n $
-	\end{block}
-\end{frame}
-
-\begin{frame}{ Riemann-Liouville vs Caputo Derivative}
-	\begin{alertblock}{Note!}
-		The Caputo derivative and the and the Riemann-Liouville derivatives are note the same.
-		In general 
-		\begin{align*}
-			\capder{a}{\alpha}{f}(x) \neq \rld{a}{\alpha}{f}(x).
-		\end{align*}
-	\end{alertblock}
-	The reason is exactly the same reason that in general
-	\begin{align*}
-		f(x) \neq \int_a^x f'(t) dt.
-	\end{align*}
-	In some sense if you differentiate first you "loose information" about the function.
-\end{frame}
-
-\begin{frame}{ Riemann-Liouville vs Caputo Derivative}
-
-	The Caputo derivative is often used in fractional differential equations because it
-	can be coupled with integer order initial conditions, whereas often the Riemann-Liouville
-	derivative can't be coupled with integer order initial conditions.
-
-\end{frame}
-
-\begin{frame}{A Quick Note on the Laplace Transform}
-	\begin{definition}
-		We the define the Laplace transform of a function $ f $ to be the function $ F $
-		given by
-		\begin{align*}
-			F(s) := \int_0^\infty e^{-st} f(t) dt
-		\end{align*}
-	\end{definition}
-	
-	We often write $ F(s) = \laplace{f(t)} $.
-	
-\end{frame}
-
-\begin{frame}{A Quick Note on the Laplace Transform}
-	
-		
-	
-	The laplace is particularly useful as it allows us to transform a differential equation into
-	an "algebraic" equation. 
-	
-	Lerch's theorem guarantees, with minor caveats, that the Laplace transform of a function is
-	unique.
-	
-\end{frame}
-
-\begin{frame}{Basic Idea of the Laplace Transform Method}
-	\begin{itemize}
-		\item Apply the Laplace transform to both sides of the differential equation to get
-		and "algebraic" equation.
-		\item Apply the Laplace transform to the initial conditions. 
-		\item Sub the transformed intial conditions into the transformed equation.
-		\item Rearange to get an expression for the Laplace transform of the function of interest.
-		\item Invert. (This is possible, and guarenteed with minor caveats by Lerch's theorem)
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{The Laplace Transform of the Riemann-Liouville Integral}
-	\begin{lemma}
-	The Laplace transform of the Riemann-Liouville integral of a fuction $ f $ is given by
-		$$ \mathcal{L} \left\{ I_0^\alpha f \right\}  = s^{-\alpha} \mathcal{L} \left\{ f \right\}.	$$
-	\end{lemma}
-\end{frame}
-
-\begin{frame}{The Laplace Transform of the Riemann-Liouville Integral[Proof]}
-	Since 
-	$$
-		 (I_0^\alpha f)(t) = \frac{1}{\Gamma(\alpha)} \int_0^t f(u) (t-u)^{\alpha - 1} du
-	$$
-	is just $ \frac{1}{\Gamma(\alpha)} $ times the convolution of $ f $ with $ t^{\alpha - 1} $ then by the convolution theorem
-	for Laplace transforms we have that 
-	\begin{align*}
-		\mathcal{L} \left\{ I_0^\alpha f \right\} &= \frac{1}{\Gamma(\alpha)} \mathcal{L} \left\{ \int_{0}^{t} f(u) (t-u)^{\alpha - 1} du \right\} \\
-			&= \frac{1}{\Gamma(\alpha)} \mathcal{L} \left\{ f(t) \right\} \underbrace{\mathcal{L} \left\{ t^{\alpha - 1} \right\}}_{=s^{-\alpha} \Gamma(\alpha)} \\
-			&= s^{-\alpha} \mathcal{L} \left\{ f \right\}.
-	\end{align*}
-	\qed
-\end{frame}
-
-\begin{frame}{The Laplace Transform of the Caputo Derivative}
-	The Laplace transform of the Caputo derivative of  a function $ f $ is given by
-	\begin{align*}
-		\laplace{\capder{0}{\alpha}{f}} = s^{\alpha - n} \left[ s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right].
-	\end{align*}
-\end{frame}
-
-\begin{frame}{The Laplace Transform of the Caputo Derivative [Proof]}
-	See that
-	\begin{align*}
-		\laplace{\capder{0}{\alpha}{f}} &= \laplace{  \rli{0}{n-\alpha}{\der{f}{t}{n}}} \\
-			&= \underbrace{\frac{1}{\Gamma(n-\alpha)}\laplace{ \int_0^t (t-u)^{n-\alpha-1} \der{f}{t}{n} du}}_{\circledast} \\ 
-	\end{align*}
-\end{frame}
-
-\begin{frame}{The Laplace Transform of the Caputo Derivative [Proof]}
-	$ \circledast $ is just the laplace transform of a convolution so 
-	\begin{align*}
-		\circledast &= \laplace{t^{n-\alpha-1}} \laplace{\der{f}{t}{n}} \\
-		&= \frac{1}{n-\alpha} \left( s^{-(n-\alpha)} \Gamma(n-\alpha) \right) \\
-		& \ \ \ \times \left( s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right) \\
-		&= s^{\alpha - n} \left[ s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right].
-	\end{align*}
-	\qed
-\end{frame}
-
-\begin{frame}{One Paramter Mittag-Lefler Function}
-	\begin{definition}
-		The one parameter Mittag-Lefler $ E_\alpha $ function is defined by its power series.
-		$$
-			E_\alpha(t) = \sum_{k=0}^{\infty} \frac{t^k}{\Gamma(\alpha k + 1)}
-		$$
-	\end{definition}
-\end{frame}
-
-\begin{frame}{Laplace Transform of $E_\alpha(\beta t^\alpha)$}
-	\begin{lemma}
-		\begin{align*}	
-			\laplace{ E_\alpha (\beta t^\alpha)} = \frac{s^{\alpha - 1}}{s^\alpha - \beta}
-		\end{align*}
-	\end{lemma}
-\end{frame}
-
-\begin{frame}{Laplace Transform of $E_\alpha(\beta t^\alpha)$ [Proof]}
-See that
-	\begin{align*}
-		\laplace{ E_\alpha (\beta t^\alpha)} = \int_0^\infty e^{-st} \sum_{k=0}^\infty \frac{(\beta t^\alpha)^k}{\Gamma(\alpha k+1)} dt
-	\end{align*}
-	and because the series converges absolutely for all $ t \in \mathbb{R} $  we may interchange the integral
-	and the sum to get
-	\begin{align*}
-		\int_0^\infty e^{-st} \sum_{k=0}^\infty \frac{(\beta t^\alpha)^k}{\Gamma(\alpha k+1)} dt &= \sum_{k=0}^\infty \int_0^\infty e^{-st} \frac{(\beta t^\alpha)^k}{\Gamma(\alpha k + 1)} dt \\
-			&= \sum_0^\infty \frac{\beta^k}{\Gamma(\alpha k + 1)} \int_0^\infty e^{-st} t^{\alpha k} dt. \\
-	\end{align*}
-\end{frame}
-
-\begin{frame}{Laplace Transform of $E_\alpha(\beta t^\alpha)$ [Proof]}
-	By performing the change of variables $ x =st $ we get that 
-	\begin{align*}
-		\sum_0^\infty \frac{\beta^k}{\Gamma(\alpha k + 1)} \int_0^\infty e^{-st} t^{\alpha k} dt 
-			&= \sum_0^\infty \frac{\beta^k s^{-(k+1)}}{\Gamma(\alpha k + 1)} \underbrace{\int_0^\infty e^{-x} x^{\alpha k} dx}_{\Gamma(\alpha k + 1)} \\
-			&= \sum_{k=0}^\infty \beta^{k} s^{-(\alpha k + 1)} \\
-			&= \frac{s^{\alpha-1}}{s^\alpha - \beta}.	
-	\end{align*}
-	\qed
-\end{frame}
-
-\begin{frame}{Summary of Important Results}
-	\begin{align*}
-		\laplace{\capder{0}{\alpha}{f}} &= s^{\alpha - n} \left[ s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right] \\
-		\laplace{ E_\alpha (\beta t^\alpha)} &= \frac{s^{\alpha - 1}}{s^\alpha - \beta}
-	\end{align*}
+\begin{frame}{Redisgning the Algorithm for CUDA}
+    Instead of trying to compute multiple variables in parallel we just return to the original (single threaded) forumulation of the scheme and compute the large sums in parallel. 
+        \begin{align*}
+    y_{k+1} &= \sum_{j=0}^{\lceil \alpha \rceil - 1} y_{0}^{(j)} \frac{x^j_{k+1}}{j!} + \\
+    & \frac{1}{\Gamma(\alpha)} \left( \sum_{j=0}^k a_{j,k+1} f(x_j,y_j) + a_{k+1,k+1}f(x_{k+1}, y_{k+1}^P )\right) \\
+    y_{k+1}^P &= \sum_{j=0}^{\lceil \alpha \rceil - 1} \frac{x^{j}_{k+1}}{j!} y_{0}^{(j)} + \frac{1}{\Gamma(\alpha)} \sum_{j=0}^{k} b_{j,k+1} f(x_j, y_j).
+\end{align*}
 \end{frame}
 
 
-
-\begin{frame}{The Solution to the Differential Equation}
-	\begin{lemma}
-		The fractional differential equation,
-		\begin{align}
-			\label{eq:fde-1}
-			\left( \prescript{C}{}{\mathcal{D}_0^\alpha}y \right)(t) = \beta y(t) 
-		\end{align}
-
-		along with the initial conditions 
-		\begin{align}
-			\label{eq:fde-1-ic}
-			y^{(k)}(0) = 
-			\begin{cases}
-				1 & k = 0 \\
-				0 & 1 \leq k \leq \lfloor \alpha \rfloor - 1  
-			\end{cases}
-		\end{align}
-		has solution
-		$ y(t) = E_\alpha \left( \beta t^\alpha \right) $
-	\end{lemma}
+\begin{frame}{Quick Notes for CUDA}
+\begin{itemize}
+    \item CUDA is particularly good for SIMD type computations (same instructions multiple data). We also refer to this as data parallelism. (We have a large amount of that in this particular case)
+    \item We by calling a function in CUDA we can actually be invoking 1000s of instances of the function. 
+    \item Each instance is passed \emph{grid reference} so it knows what part of the data to work on. Groups of instances (up to 1024) can do some limited communication and perform a small set of atomic operations on shared memory. This allows us add up the sub results.
+\end{itemize}
 \end{frame}
 
-\begin{frame}{Proof of Proposed Solution}
-	Taking the Laplace transform of both sides of \eqref{eq:fde-1} yields
-	\begin{align*}
-		\laplace{\capder{0}{\alpha}{y}} &= \beta \laplace{y} \\
-		s^{-(n+\alpha)} \left[s^n \laplace{y} - \sum_{k=0}^{n-1} s^{n-k-1} y^{(k)}(0) \right] &= \beta \laplace{y}
-	\end{align*}
+\begin{frame}{Practical Experimentation}
+I solved the same initial value problem as I did in the C\# case. 
+\begin{figure}[H]
+\includegraphics[scale = 0.2]{../images/CUDA_Performance_No_Label}
+\caption{Runtime for the scheme for various values of opsPerThread and N.}
+\label{fig:cuda_performance_surface}
+\end{figure}
+
 \end{frame}
 
-\begin{frame}{Proof of Proposed Solution}
-	Then taking into account \eqref{eq:fde-1-ic} (the initial conditions) we get
-	\begin{align*}
-		s^{-(n+\alpha)} \left[s^n \laplace{y} - s^{n-1}\right] &= \beta \laplace{y}
-	\end{align*}
-	and so 
-	\begin{align*}
-		\laplace{y} = \frac{s^{\alpha-1}}{s^\alpha - \beta}.
-	\end{align*}
+\begin{frame}{Lets play...}
+Solution to the relaxation oscilation equation for $ \alpha \in [0.5, 2] $.
+\begin{figure}[H]
+\includegraphics[scale = 0.2]{../images/FDE_Solution_Surface_No_Label}
+\end{figure}
 \end{frame}
 
-\begin{frame}{Proof of Proposed Solution}
-	By by noticing that 
-	$$
-		\laplace{y} = \frac{s^{\alpha-1}}{s^\alpha - \beta}.
-	$$
-	is the laplace transform of $ E_\alpha(\beta t^\alpha) $ we have that
-	\begin{align*}
-		y(t) = E_\alpha(\beta t^\alpha)
-	\end{align*}
-	\qed
+\begin{frame}{Key references}
+\begin{itemize}
+\item [1] K. Diethelm. The Analysis of Fractional Differential Equations. Springer, 2010.
+
+\item [2] K. Diethelm. An efficient parallel algorithm for the numerical solution of fractional differential equations. Fractional Calculus and Applied Analysis, 14:475–490, 2011.
+
+\item [3] K. Diethelm, N.J. Ford, and A.D. Freed. Detailed error analysis for a fractional adams method. Numerical
+Algorithms, pages 31–52, 2004.
+\end{itemize}
 \end{frame}
-
-
-	
 
 
 \end{document}

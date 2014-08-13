@@ -2,11 +2,12 @@
 \documentclass{unswmaths}
 \usepackage{mathtools}
 \usepackage{amsfonts}
+\usepackage{hyperref}
 \usepackage{unswshortcuts}
 \usepackage{fullpage}
 \usepackage{CodeStyle}
 \usepackage{float}
-
+\usepackage{lscape}
 
 \author{Adam J. Gray}
 \studentno{3329798}
@@ -24,6 +25,7 @@
 
 \input{chapters/Numerical_Methods.tex}
 \input{chapters/Appendix_A.tex}
+\input{chapters/Appendix_B.tex}
 
 \bibliographystyle{plain}
 \bibliography{references}
