@@ -43,7 +43,8 @@ Lets consider the initial value problem
 \end{align}
 for $ 0 \leq k < \lfloor \alpha \rfloor $. Note that this initial value problem is stated in terms of Caputo derivatives. The motivation for such initial value problems was discussed in [INSERT CC REF].
 
-One of the most important things to note about this equation is that for non-integer values of $ \alpha $ it is non-local, in the sense that the value of the solution at $ y(x_0+h) $ depends not only on $ y(x_0) $ but also on $ y(x), x \in [0, x_0] $ \cite{Diethelm2010}. This is in contrast to ordinary differential equations and this fact is what makes fractional differential equations considerably more complex to solve. Even multi-step methods which can be used to solve ordinary differential equations, only rely on some \emph{fixed} number previous time steps. As a solution to a fractional differential equation progresses it relies on more and more previous time steps. As one might suspect this fundamentally increases the computational complexity of the schemes used to solve fractional differential equations as compared with the schemes used to solve traditional ordinary differential equations. \footnote{It is possible to reduce these computations to look at some large but fixed number of previous grid-points 
+One of the most important things to note about this equation is that for non-integer values of $ \alpha $ it is non-local, in the sense that the value of the solution at $ y(x_0+h) $ depends not only on $ y(x_0) $ but also on $ y(x), x \in [0, x_0] $ \cite{Diethelm2010}. This is in contrast to ordinary differential equations and this fact is what makes fractional differential equations considerably more complex to solve. Even multi-step methods which can be used to solve ordinary differential equations, only rely on some \emph{fixed} number previous time steps. As a solution to a fractional differential equation progresses it relies on more and more previous time steps. As one might suspect this fundamentally increases the computational complexity of the schemes used to solve fractional differential equations as compared with the schemes used to solve traditional ordinary differential equations. \footnote{It is possible to reduce these computations to look at some large but fixed number of previous grid-
+points 
 but this results in a speed vs. accuracy tradeoff which will be discussed in section \ref{sec:reduce_complexity}}
 
 \subsubsection{The Adams Moulton Bashforth Scheme}
@@ -237,11 +238,11 @@ We solved the following initial value problem
     \capder{0}{x}{\frac{1}{2}}{y}(x) = -y(x) & & y(0) = 1
 \end{align}
 
-with $ N = 2000 $ through to $ N = 10000 $ time steps over the interval $ [0,10] $ with $ p $ ranging from $ 1 $ though to $ 12 $. Each solution was computed 5 times and the average runtime  was computed, yielding the \emph{performance surface} shown in figure \ref{fig:mono_performance_surface}.
+with $ N = 2000 $ through to $ N = 10000 $ time steps over the interval $ [0,10] $ with $ p $ ranging from $ 1 $ though to $ 12 $. Each solution was computed 5 times and the average runtime  was computed, yielding the \emph{performance surface} shown in figure \ref{fig:mono_performance_surface}. \footnote{See Appendix B for a full table of runtimes.}
 
 \begin{figure}[H]
 \includegraphics[scale = 0.3]{images/Dot_Net_Performance_No_Label}
-\caption{Average runtime of the scheme for different values of $ p $ and $ N $}
+\caption{Average runtime of the scheme for different values of $ p $ and $ N $. }
 \label{fig:mono_performance_surface}
 \end{figure}
 
@@ -280,7 +281,7 @@ Instead of using blocks of variables as was done in \cite{Diethelm2011} and reim
 The essential problem with the scheme is that the number of terms in the sums defined in \eqref{eq:amb_y_pred} and \eqref{eq:amb_y_corr} grows linearly with each time step taken. It is clear that the actual terms in each sum are independent and so breaking the sum up into smaller parts to be calculated and then summed together is a reasonable approach. This is so long as communication between cores doing different parts of the sum is sufficiently fast and global memory access is sufficiently fast. In the case of a GPU both of these criteria are satisfied and so this approach is reasonable.\footnote{It is easy to see that this scheme would be Amdahl efficient in the sense of definition \ref{def:amdahl_efficient}.}
 
 We aim to use as much of the GPU as possible to perform the calculations and so unlike the scheme outlined in section \ref{sec:parallel_c} we will automatically scale the number of threads to use as many cores as possible. We define one \emph{performance tuning} parameter $ opsPerThread $ which define the number of \emph{multiply-add} operations per thread. 
-Figure \ref{fig:cuda_performance_surface} shows a \emph{performance surface} showing runtime against number of time steps $ N $ and $ opsPerThread $. The actual initial value problem being solved is exactly the same as in section \ref{sec:parallel_c}.
+Figure \ref{fig:cuda_performance_surface} shows a \emph{performance surface} showing runtime against number of time steps $ N $ and $ opsPerThread $ \footnote{See appendix B for a full table of runtimes}. The actual initial value problem being solved is exactly the same as in section \ref{sec:parallel_c}.
 
 \begin{figure}[H]
 \includegraphics[scale = 0.4]{images/CUDA_Performance_No_Label}
