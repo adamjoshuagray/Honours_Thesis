@@ -1,0 +1,7 @@
+# Temp Files #
+*.save
+*~
+*.aux
+*.log
+*.out
+*.blg
