@@ -1,0 +1,16 @@
+\begin{tikzpicture}[scale=2]
+    \draw[<->] (1.5,0) -- (-1.5,0);
+    \draw[<-,red] (-1.5,1.5) -- (-0.25, 0.25);
+    \draw[<-, red] (-0.25, -0.25) -- (-1.5,-1.5);
+    \draw[<-, red] (-0.25,0.25) arc [radius = 0.35355, start angle=135, end angle=0];
+    \draw[red] (-0.25,-0.25) arc [radius = 0.35355, start angle=-135, end angle=0];
+    \draw[<->] (0,1.5) -- (0,-1.5);
+    \draw[densely dotted] (0,0) -- (0.24,0.24);   
+    \draw (0.25, 0.15) node {$\varepsilon$};
+    \draw (1.5, 0.125) node {$Re$};
+    \draw (0.135, 1.5) node {$Im$};
+    \draw (-1, 0.5) node {$ G^-(\varepsilon, \varphi) $};
+    \draw (1, 1) node {$G^+(\varepsilon, \varphi) $};
+    \draw[<-, densely dotted] (-0.5, 0.5) arc [radius = 0.7071 , start angle=135, end angle=0];
+    \draw (0.5, 0.6) node {$\varphi$};
+\end{tikzpicture}
