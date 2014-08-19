@@ -1,7 +1,0 @@
-%PID Controller Explanatory Graph
-\begin{tikzpicture} 
-  \draw[->] (-1,0) -- (4.2,0) node[right] {$t$};
-  \draw[->] (0,-1) -- (0,4.2) node[above] {$e(t)$};
-  \draw[scale=0.5,domain=0:8,smooth,variable=\x,blue] plot ({\x},{5*exp(-0.5*\x)*cos(100*\x)});
-\end{tikzpicture}
-\end{document}
