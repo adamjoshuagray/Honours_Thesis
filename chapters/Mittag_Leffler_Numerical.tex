@@ -78,6 +78,7 @@ Taking $ \varepsilon \lra 0 $ in the other two integrals and rearanging gives us
 We would like to exploit this result to give a simple contour integral representation of $ \frac{1}{\Gamma(z)} $.
 
 \begin{lemma}
+    \label{lem:contour_1_gamma_1}
     A contour integral representation of $ \frac{1}{\Gamma(z)} $ is given by
     \begin{align*}
         \frac{1}{\Gamma(z)} = \frac{1}{2 \pi i} \int_{Ha} e^\tau \tau^{-z} d\tau
@@ -129,22 +130,53 @@ which we will then use in a pair of contour integrals representing $ E_{\alpha, 
     \begin{align}
         \frac{1}{\Gamma(z)} = \frac{1}{4 \pi i} \int_{\gamma(\varepsilon, \pi)} e^{\zeta^{1 / 2}} \zeta^{-(z + 1) / 2} d\zeta
     \end{align}
-    where the contours $ \gamma(\varepsilon, \varphi) $ are depicted in figure \ref{fig:hankel_wedge}.
+    where the contour $ \gamma(\varepsilon, \varphi) $ is depicted in figure \ref{fig:hankel_wedge}.
 \end{lemma}
 This proof follows that of Podlubny \cite{Podlubny1999}.
 \begin{proof}
 
+Firstly we show that we can rewrite the contour integral in lemma \ref{lem:contour_1_gamma_1} can be rewritten as a contour
+integral about $ \gamma(\varepsilon, \varphi) $ where $ \gamma(\varepsilon, \varphi) $ is shown in figure \ref{fig:hankel_wedge}. We restrict $ \varphi $ to $ \frac{\pi}{2} < \varphi \pi $. 
+
+Now lets consider the contour integral diagram in figure \ref{fig:hankel_wedge_2} and note that as $ f(\tau) := e^\tau t^{-z} $ does not have any singularities we have
+\begin{align*}
+    \int_{A^+ B^+ C^+ D^+} f(\tau) d\tau = \int_{A^-D^-C^-B^-} f(\tau) = 0.
+\end{align*}
+
+Considering just the arc $ A^+B^+ $ we note that $ |\tau| = R $ and hence
+\begin{align*}
+    |f(\tau)| &= |e^\tau \tau^{-z}| = e^{R\cos(\arg \tau) - Re(z) \log(R) + Im(z) \arg \tau} \\
+      &\leq e^{-R\cos(\pi - \phi) - x \log(R) + 2 \pi y} \\
+      &\sim \frac{1}{R}e^{-R}
+\end{align*}
+
+and thus by application of the ML lemma we have
+\begin{align*}
+    \lim_{R \lra \infty} \int_{A^+}^{B^+} f(\tau) d\tau = 0.
+\end{align*}
+
+A completely symetric argument yields
+\begin{align*}
+    \lim_{R \lra \infty} \int_{B^-}^{A^-} f(\tau) d\tau = 0
+\end{align*}
+and so we can write
+\begin{align*}
+    \int_{C^+}^{B_\infty^+} f(\tau)d\tau = \int_{C^+}^{D^+} f(\tau)d\tau + \int_{D^+}^{\infty^+} f(\tau)d\tau
+\end{align*}
+and
+\begin{align*}
+    \int_{B_\infty^-}^{C^-} f(\tau)d\tau = \int_{\infty^-}^{D^-} f(\tau)d\tau + \int_{D^-}^{C^-} f(\tau)d\tau
+\end{align*}
 \begin{wrapfigure}{l}{210pt}
     \input{diagrams/Hankel_Wedge.tex}
     \caption{The Hankel countour $ \gamma(\varepsilon, \varphi) $}
     \label{fig:hankel_wedge}
 \end{wrapfigure}
-\end{proof}
 
 \begin{wrapfigure}{l}{210pt}
     \input{diagrams/Hankel_Wedge_2.tex}
     \caption{ Integration contour for $ \gamma(\varepsilon, \varphi) $}
-    \label{fig:hankel_wedge}
+    \label{fig:hankel_wedge_2}
 \end{wrapfigure}
 \end{proof}
 
