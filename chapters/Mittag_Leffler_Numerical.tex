@@ -13,9 +13,8 @@ a gamma function as it is a factorial. We discuss the evaluation of the gamma fu
 
 
 \subsection{Mittag-Lefller Function}
-\subsubsection{Integral Representation of $ E_{\alpha,\beta}(z) $}
+\subsubsection{Contour Integral Representation of $ \Gamma(z) $ and $ \frac{1}{\Gamma(z)} $}
 
-We firstly need to develop a contour integral representation of $ \Gamma(z) $ and of $ \frac{1}{\Gamma(z)} $.
 The gamma function is defined as
 \begin{align}
     \Gamma(z) = \int_0^\infty e^t t^{z-1} dt
@@ -114,7 +113,7 @@ This proof follows that of Podlubny \cite{Podlubny1999}
 \end{proof}
 
 We now wish to give a pair of contour integral representations of the function $ \frac{1}{\Gamma(z)} $
-which we will then use in a pair of contour integrals representing $ E_{\alpha, \beta}(z) $. 
+which we will then use in contour integrals representing $ E_{\alpha, \beta}(z) $. 
 
 \begin{lemma}
     The function $ \frac{1}{\Gamma(z)} $ can be represented by the following contour integrals
@@ -155,6 +154,12 @@ and thus by application of the ML lemma we have
     \lim_{R \lra \infty} \int_{A^+}^{B^+} f(\tau) d\tau = 0.
 \end{align*}
 
+\begin{wrapfigure}{l}{210pt}
+    \input{diagrams/Hankel_Wedge.tex}
+    \caption{The Hankel countour $ \gamma(\varepsilon, \varphi) $}
+    \label{fig:hankel_wedge}
+\end{wrapfigure}
+
 A completely symetric argument yields
 \begin{align*}
     \lim_{R \lra \infty} \int_{B^-}^{A^-} f(\tau) d\tau = 0
@@ -165,20 +170,73 @@ and so we can write
 \end{align*}
 and
 \begin{align*}
-    \int_{B_\infty^-}^{C^-} f(\tau)d\tau = \int_{\infty^-}^{D^-} f(\tau)d\tau + \int_{D^-}^{C^-} f(\tau)d\tau
+    \int_{B_\infty^-}^{C^-} f(\tau)d\tau = \int_{\infty^-}^{D^-} f(\tau)d\tau + \int_{D^-}^{C^-} f(\tau)d\tau.
 \end{align*}
-\begin{wrapfigure}{l}{210pt}
-    \input{diagrams/Hankel_Wedge.tex}
-    \caption{The Hankel countour $ \gamma(\varepsilon, \varphi) $}
-    \label{fig:hankel_wedge}
-\end{wrapfigure}
+Then
+\begin{align*}
+    \int_{Ha} f(\tau) d\tau = \left( \int_{B_\infty^-}^{C^-} f(\tau)d\tau + \int_{C^-}^{C^+} f(\tau)d\tau +  \int_{C^+}^{B_\infty^+} f(\tau)d\tau \right) = \int_{\gamma(\varepsilon, \varphi)}e^\tau \tau^-z d\tau.
+\end{align*}
+To get the final results, we perform the substitution $ \tau = \zeta^{1/\alpha} $ for $ \alpha < 2 $
+which yields
 
-\begin{wrapfigure}{l}{210pt}
+\begin{align}
+    \frac{1}{\Gamma(z)} = \frac{1}{2 \pi \alpha i} \int_{\gamma(\varepsilon, \mu)} 
+			  e^{\zeta^{1 / \alpha}} \zeta^{(1-z-\alpha) / \alpha} d\zeta 
+\end{align}
+
+so long as $ \alpha < 2 $ and $ \frac{\pi \alpha}{2} < \mu < \min\{ \pi, \pi \alpha \} $.
+
+If, however, we perform the substitution $ \tau = \sqrt{\zeta} $ and integrate over the contour $ \gamma(\varepsilon, \frac{\pi}{2} $ we get
+
+\begin{wrapfigure}{l}{10pt}
     \input{diagrams/Hankel_Wedge_2.tex}
     \caption{ Integration contour for $ \gamma(\varepsilon, \varphi) $}
     \label{fig:hankel_wedge_2}
 \end{wrapfigure}
+
+\begin{align}
+    \frac{1}{\Gamma(z)} = \frac{1}{4 \pi i} \int_{\gamma(\varepsilon, \pi)} e^{\zeta^{1 / 2}} \zeta^{-(z + 1) / 2} d\zeta
+\end{align}
+for $ Re(z) > 0 $.
+
 \end{proof}
+
+\subsubsection{Contour Integral Representation of $ E_{\alpha, \beta} $ }
+
+We now develop integral representations of the Mittag-Leffler function. These contour integral representations will form the basis of the numerical method we present for evaluating the Mittag-Leffler function.
+
+\begin{lemma}
+    For $ \alpha \in \mathbb{R} $ with $ 0 < \alpha < 2 $ and $ \beta \in \mathbb{C} $ and $ \varepsilon > 0 $
+    such that
+    \begin{align*}
+	\frac{\pi \alpha}{2} < \mu \leq \min\{ \pi, \pi \alpha \}
+    \end{align*}
+    we have that
+    \begin{align*}
+	E_{\alpha, \beta}(z) = \frac{1}{2\alpha\pi i} \int_{\gamma(\varepsilon, \mu)} \frac{e^{\zeta^{1 / \alpha}}\zeta^{(1-\beta)/\alpha}}{\zeta - z} d\zeta
+    \end{align*}
+    for $ z \in G^{-}(\varepsilon, \mu) $
+    and
+    \begin{align*}
+	\frac{1}{\alpha} z^{(1-\beta) / \alpha} e^{z^{1 / \alpha}} + \frac{1}{2 \alpha\pi i} \int_{\gamma(\varepsilon, \mu)} + \frac{1}{2\alpha\pi i} \int_{\gamma(\varepsilon, \mu)} \frac{e^{\zeta^{1 / \alpha}}\zeta^{(1-\beta)/\alpha}}{\zeta - z} d\zeta
+    \end{align*}
+    for $ z \in G^{+}(\varepsilon, \mu) $.
+    The contour $ \gamma(\varepsilon, \mu) $ is depicted in figure \ref{fig:hankel_wedge_2} as are the regions $ G^+ $ and $ G^-$.
+\end{lemma}
+This proof follows that of Podlubny \cite{Podlubny1999}.
+\begin{proof}
+    Starting from the definition of the Mittag-Leffler function we have that
+    \begin{align*}
+	E_{\alpha, \beta}(z) &= \sum_{k=0}^\infty \frac{z^k}{\Gamma(\alpha k + \beta)} \\
+	    &= \sum_{k=0}^\infty 
+    \end{align*}
+\end{proof}
+
+\subsubsection{A Numerical Algorithm for Evaluating $ E_{\alpha, \beta}(z) $}
+
+\subsection{Wright Function}
+\subsubsection{Contour Integral Representation of $ W_{\alpha, \beta}(z) $}
+\subsubsection{A Numerical Algorithm for Evaluating $ W_{\alpha, \beta} $}
 
 \subsection{Additional Notes on the Numerical Evaluation of the Gamma Function}
 \label{sec:num-gamma}
