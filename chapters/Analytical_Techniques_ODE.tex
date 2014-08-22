@@ -6,11 +6,11 @@ In this section we establish some analytical results for ordinary fractional dif
 
 \begin{definition}[Fractional Derivatives and Integrals]
 	For $ \alpha > 0 $ we define
-	\begin{align*}
+	\begin{align}
 		(I_{a+}^{\alpha}f)(x) := \frac{1}{\Gamma(\alpha)}\int_a^x \frac{f(t)}{(x-t)^{1 - \alpha}} dt \\
 		(\mathcal{D}_{a+}^{\alpha}f)(x) := \frac{1}{\Gamma(n-\alpha)} \frac{d^n}{dx^n}\int_a^x \frac{f(t)}{(x-t)^{\alpha - n + 1}} dt \\
 		(\prescript{C}{}{\mathcal{D}}_{a+}^\alpha f)(x) := I_{0}^{n-\alpha} \frac{d^n}{dx^n}f(x) 
-	\end{align*}
+	\end{align}
 	where $ n  = \lfloor \alpha \rfloor + 1$.
 	We will refer to $ I_{a+}^\alpha f$ as the (Riemann Louiville) integral $ f $ of over $ \alpha $ (based at $ a $).
 	Likewise we refer to $ \mathcal{D}_{a+}^\alpha f $ as the (Riemann Louiville) derivative of order $ \alpha $ (based at $ a $).
@@ -69,52 +69,52 @@ We now consider the Laplace transform of the fractional integration and differen
 	$$
 	is just $ \frac{1}{\Gamma(\alpha)} $ times the convolution of $ f $ with $ t^{\alpha - 1} $ then by the convolution theorem
 	for Laplace transforms we have that 
-	\begin{align*}
+	\begin{align}
 		\mathcal{L} \left\{ I_0^\alpha f \right\} &= \frac{1}{\Gamma(\alpha)} \mathcal{L} \left\{ \int_{0}^{t} f(u) (t-u)^{\alpha - 1} du \right\} \\
 			&= \frac{1}{\Gamma(\alpha)} \mathcal{L} \left\{ f(t) \right\} \underbrace{\mathcal{L} \left\{ t^{\alpha - 1} \right\}}_{=s^{-\alpha} \Gamma(\alpha)} \\
 			&= s^{-\alpha} \mathcal{L} \left\{ f \right\}.
-	\end{align*}
+	\end{align}
 \end{proof}
 
 \begin{lemma}
 \label{lem:lap_rld}
 	The Laplace transform the of the Riemann-Liouville derivative of a function $ f $ is as follows
-	\begin{align*}
+	\begin{align}
 		\mathcal{L} \left\{\mathcal{D}_0^\alpha f\right\} = s^\alpha \mathcal{L} \left\{ f \right\} - \sum_{k=0}^{n-1} s^{k} \left( \mathcal{D}_0^{\alpha-k-1} f\right)(0).
-	\end{align*}
+	\end{align}
 \end{lemma}
 \begin{proof}
 	See that
-	\begin{align*}
+	\begin{align}
 		\laplace{ \rld{0}{t}{\alpha}{f} } &= \laplace{ \der{}{t}{n} \rli{0}{n-\alpha}{f} } \\
 		&= s^n\laplace{\rli{0}{n-\alpha}{f}} - \sum_{k=0}^{n-1} s^k \der{}{t}{n-k-1} \rli{0}{n-\alpha}{f}(0)
-	\end{align*}
+	\end{align}
 	and by applying the result of \ref{lem:lap_rli} we get
-	\begin{align*}
+	\begin{align}
 			\mathcal{L} \left\{\mathcal{D}_0^\alpha f\right\} &= s^\alpha \laplace{f} - \sum_{k=0}^{n-1} s^{k} \rld{0}{\alpha - k - 1}{f}(0). 
-	\end{align*}
+	\end{align}
 \end{proof}
 
 \begin{lemma}
 \label{lem:lap_cap}
 	The Laplace transform of the Caputo derivative of  a function $ f $ is given as follows
-	\begin{align*}
+	\begin{align}
 		\laplace{\capder{0}{t}{\alpha}{f}} = s^{\alpha - n} \left[ s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right].
-	\end{align*}
+	\end{align}
 \end{lemma}
 \begin{proof}
 	See that
-	\begin{align*}
+	\begin{align}
 		\laplace{\capder{0}{t}{\alpha}{f}} &= \laplace{  \rli{0}{n-\alpha}{\der{f}{t}{n}}} \\
 			&= \frac{1}{\Gamma(n-\alpha)}\laplace{ \int_0^t (t-u)^{n-\alpha-1} \der{f}{t}{n} du} \\ 
-	\end{align*}
+	\end{align}
 	which is the Laplace transform of a convolution so
-	\begin{align*}
+	\begin{align}
 		\Gamma(n-\alpha)\laplace{ \int_0^t (t-u)^{n-\alpha-1} \der{f}{t}{n} du} &= \laplace{t^{n-\alpha-1}} \laplace{\der{f}{t}{n}} \\
 		&= \frac{1}{n-\alpha} \left( s^{-(n-\alpha)} \Gamma(n-\alpha) \right) \\
 		& \ \ \ \times \left( s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right) \\
 		&= s^{\alpha - n} \left[ s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right].
-	\end{align*}	
+	\end{align}	
 \end{proof}
 
 We now define the Mittag-Lefler function and calculate its Laplace transform.
@@ -153,32 +153,32 @@ Using this lemma we can then go on to state and prove the following lemma.
 
 \begin{lemma}
 \label{lem:lap_mit}
-	\begin{align*}	
+	\begin{align}	
 		\laplace{ E_\alpha (\beta t^\alpha)} = \frac{s^{\alpha - 1}}{s^\alpha - \beta}
-	\end{align*}
+	\end{align}
 \end{lemma}
 \begin{proof}
 	See that
-	\begin{align*}
+	\begin{align}
 		\laplace{ E_\alpha (\beta t^\alpha)} = \int_0^\infty e^{-st} \sum_{k=0}^\infty \frac{(\beta t^\alpha)^k}{\Gamma(\alpha k+1)} dt
-	\end{align*}
+	\end{align}
 	and because the series converges absolutely for all $ t \in \mathbb{R} $ (lemma \ref{lem:mit_conv}) we may interchange the integral
 	and the sum to get
-	\begin{align*}
+	\begin{align}
 		\int_0^\infty e^{-st} \sum_{k=0}^\infty \frac{(\beta t^\alpha)^k}{\Gamma(\alpha k+1)} dt &= \sum_{k=0}^\infty \int_0^\infty e^{-st} \frac{(\beta t^\alpha)^k}{\Gamma(\alpha k + 1)} dt \\
 			&= \sum_0^\infty \frac{\beta^k}{\Gamma(\alpha k + 1)} \int_0^\infty e^{-st} t^{\alpha k} dt. \\
-	\end{align*}
+	\end{align}
 	By performing the change of variables $ x =st $ we get that 
-	\begin{align*}
+	\begin{align}
 		\sum_0^\infty \frac{\beta^k}{\Gamma(\alpha k + 1)} \int_0^\infty e^{-st} t^{\alpha k} dt 
 			&= \sum_0^\infty \frac{\beta^k s^{-(k+1)}}{\Gamma(\alpha k + 1)} \underbrace{\int_0^\infty e^{-x} x^{\alpha k} dx}_{\Gamma(\alpha k + 1)} \\
 			&= \sum_{k=0}^\infty \beta^{k} s^{-(\alpha k + 1)} \\
 			&= \frac{s^{\alpha-1}}{s^\alpha - \beta}.		
-	\end{align*}
+	\end{align}
 	So we have that 
-	\begin{align*}	
+	\begin{align}	
 		\laplace{ E_\alpha (\beta t^\alpha)} = \frac{s^{\alpha - 1}}{s^\alpha - \beta}
-	\end{align*}	
+	\end{align}	
 	as required.
 \end{proof}
 
@@ -186,39 +186,39 @@ We now have sufficient tools to attack the original problem, that is finding a s
 
 \begin{lemma}
 	The initial value problem defined in \eqref{eq:fde-1} and \eqref{eq:fde-1-ic}, restated here for completeness 
-	\begin{align*}
+	\begin{align}
 		\left( \prescript{C}{}{\mathcal{D}_0^\alpha}y \right)(t) = \beta y(t) 
-	\end{align*}
+	\end{align}
 
 	along with the initial conditions 
-	\begin{align*}
+	\begin{align}
 		y^{(k)}(0) = 
 		\begin{cases}
 			1 & k = 0 \\
 			0 & 1 \leq k \leq \lfloor \alpha \rfloor - 1  
 		\end{cases}
-	\end{align*}
+	\end{align}
 	has solution $ y(t) = E_\alpha \left( \beta t^\alpha \right) $.
 \end{lemma}
 \begin{proof}
 	Taking the Laplace transform of both sides of \eqref{eq:fde-1} yields
-	\begin{align*}
+	\begin{align}
 		\laplace{\capder{0}{t}{\alpha}{y}} &= \beta \laplace{y} \\
 		s^{-(n+\alpha)} \left[s^n \laplace{y} - \sum_{k=0}^{n-1} s^{n-k-1} y^{(k)}(0) \right] &= \beta \laplace{y}
-	\end{align*}
+	\end{align}
 	by the result of lemma \ref{lem:lap_cap}. 
 	Then taking into account \eqref{eq:fde-1-ic} we get
-	\begin{align*}
+	\begin{align}
 		s^{-(n+\alpha)} \left[s^n \laplace{y} - s^{n-1}\right] &= \beta \laplace{y}
-	\end{align*}
+	\end{align}
 	and so 
-	\begin{align*}
+	\begin{align}
 		\laplace{y} = \frac{s^{\alpha-1}}{s^\alpha - \beta}.
-	\end{align*}
+	\end{align}
 	By using the result of lemma \ref{lem:lap_mit} we have that 
-	\begin{align*}
+	\begin{align}
 		y(t) = E_\alpha(\beta t^\alpha)
-	\end{align*}
+	\end{align}
 \end{proof}
 
 \subsection{Solution to a multi-order initial value problem via Laplace transforms}
@@ -243,9 +243,9 @@ Again we will introduce a definition and prove a lemma which we will need to get
 \begin{definition}[Two Paramter Mittag-Lefler Function]
 	\label{def:mit-lef-2}
 	We define the two paramter Mittag-Lefler function with the power series
-	\begin{align*}
+	\begin{align}
 		E_{\alpha, \gamma}(t) &:= \sum_{k=0}^\infty \frac{t^k}{\Gamma(\alpha k + \gamma)}.
-	\end{align*}
+	\end{align}
 	Note that this is just a generalisation of the one paramter Mittag-Lefler function, in that
 	$ E_{\alpha}(t) = E_{\alpha, 1}(t) $.
 \end{definition}
@@ -254,74 +254,74 @@ The follopwing lemma is essentially a generalisation of lemma \ref{lem:lap_mit}.
 \begin{lemma}
 	\label{lem:lap_mit_2}
 	The Laplace transform of $ t^{\alpha m + \gamma - 1}E_{\alpha, \gamma}^{(m)}(t) $ is given by
-	\begin{align*}
+	\begin{align}
 		\laplace{ t^{\alpha m + \gamma - 1}E_{\alpha,\gamma}^{(m)} (\beta t^\alpha)} = \frac{m!s^{\alpha-\gamma}}{(s^\alpha - \beta)^{m+1}}
-	\end{align*}
+	\end{align}
 \end{lemma}
 \begin{proof}
 	Firstly see that
-	\begin{align*}
+	\begin{align}
 		E_{\alpha,\gamma}^{(m)}(t) &= \sum_{k=m}^{\infty} \frac{\frac{k!}{(k-m)!}t^{k-m}}{\gamma(\alpha k + \gamma)} \\
 			&= \sum_{k=0}^{\infty} \frac{(k+m)!t^k}{k!\Gamma(\alpha k + \gamma)}
-	\end{align*}
+	\end{align}
 	so we have that
-	\begin{align*}
+	\begin{align}
 		E_{\alpha, \gamma}^{(m)}(\beta t^\alpha) &= \sum_{k=0}^{\infty} \frac{(k+m)!t^{\alpha k} \beta^k}{k! \Gamma(\alpha (k+m) + \gamma)}.
-	\end{align*}
+	\end{align}
 	We can then write that
-	\begin{align*}
+	\begin{align}
 		\laplace{t^{\alpha m + \gamma - 1}E_{\alpha, \gamma}^{(m)}(t)} &= \int_0^\infty t^{\alpha m + \gamma - 1}  \sum_{k=0}^{\infty} \frac{(k+m)!t^{\alpha k} \beta^k}{k! \Gamma(\alpha (k+m) + \gamma)} \\
 			&= \sum_{k=0}^\infty \frac{\beta^k (k+m)!}{\Gamma(\alpha(k+m) + \gamma) k!} \underbrace{\int_0^\infty e^{-st} t^{\alpha (k+m) + \gamma - 1}dt}_{\circledast}.
-	\end{align*}
+	\end{align}
 	Considering just $ \circledast $ and performing the substitution $ x = st $ we get that 
-	\begin{align*}
+	\begin{align}
 		\circledast &= s^{-\alpha(k+m) - \gamma} \int_0^\infty e^{-x} x^{\alpha (k+m) + \gamma - 1} dx \\
 			&= s^{-\alpha(k+m) - \gamma} \Gamma(\alpha(k+m) + \gamma)
-	\end{align*}
+	\end{align}
 	and so 
-	\begin{align*}
+	\begin{align}
 		\laplace{t^{\alpha m + \gamma - 1}E_{\alpha, \gamma}^{(m)}(t)} = s^{-\alpha m - \gamma}\sum_{k=0}^\infty \left(\frac{\beta}{s^\alpha}\right)^k\frac{(k+m)!}{k!} .
-	\end{align*}
+	\end{align}
 	Now by the derivative rule for geometric series we get
-	\begin{align*}
+	\begin{align}
 		\sum_{k=0}^\infty \left(\frac{\beta}{s^\alpha}\right)^k\frac{(k+m)!}{k!} &= \frac{m!}{(1-\frac{\beta}{s^\alpha})^{m+1}} \\
 			&= \frac{s^{\alpha(m+1)} m!}{(s^\alpha - \beta)^{m+1}}
-	\end{align*}
+	\end{align}
 	and so 
-	\begin{align*}
+	\begin{align}
 		\laplace{t^{\alpha m + \gamma - 1}E_{\alpha, \gamma}^{(m)}(t)} = \frac{m!s^{\alpha-\gamma}}{(s^\alpha - \beta)^{m+1}}.
-	\end{align*}
+	\end{align}
 \end{proof}
 
 \begin{lemma}
 	The initial value problem, \ref{eq:fde-multi-order}, restated here for completeness,
-	\begin{align*}
+	\begin{align}
 		\rld{0}{\Lambda}{y}(t) + \rld{0}{\lambda}{y}(t) = f(t)
-	\end{align*}
+	\end{align}
 	has solution, given by
-	\begin{align*}
+	\begin{align}
 		y(t) = C g(t) + \int_0^t g(t-\tau)f(\tau) d\tau
-	\end{align*}
+	\end{align}
 	where
-	\begin{align*}
+	\begin{align}
 		C &= \rld{0}{\Lambda-1}{y}(0) + \rld{0}{\lambda-1}{y}(0) \\
 		g(t) &= t^{\Lambda - 1} E_{\Lambda - \lambda, \Lambda}(-t^{\Lambda - \lambda}).
-	\end{align*}
+	\end{align}
 \end{lemma}
 
 \begin{proof}
 
 	Taking the Laplace transform of both sides of \ref{eq:fde-multi-order} and using the result of lemma \ref{lem:lap_rld}
 	we get that 
-	\begin{align*}
+	\begin{align}
 		\laplace{\rld{0}{\Lambda}{y}(t)} + \laplace{\rld{0}{\lambda}{y}(t)} &= \laplace{f(t)} \\
 		s^\Lambda Y(s) + s^\lambda Y(s) - \rld{0}{\Lambda-1}{y}(0) - \rld{0}{\lambda-1}{y}(0) &= F(s).
-	\end{align*}
+	\end{align}
 	Note that $$ C = \rld{0}{\Lambda-1}{y}(0) + \rld{0}{\lambda-1}{y}(0) $$ is a constant so we write
-	\begin{align*}
+	\begin{align}
 		Y(s) &= \frac{C + F(s)}{s^\Lambda + s^\lambda} \\
 			&= \left( C + F(s)\right) \frac{s^{-\lambda}}{s^{\Lambda-\lambda} + 1}.
-	\end{align*}
+	\end{align}
 	
 	Let $$ G(s) = \frac{s^{-\lambda}}{s^{\Lambda-\lambda} + 1} $$
 	and by using lemma \ref{lem:lap_mit_2} with $ \alpha = \Lambda - \lambda $ and $ \gamma = \Lambda $
@@ -329,14 +329,14 @@ The follopwing lemma is essentially a generalisation of lemma \ref{lem:lap_mit}.
 	$$ \laplace{g(t)} = G(s) $$.
 	
 	Then using the Laplace convolution theorem we get that 
-	\begin{align*}
+	\begin{align}
 		y(t) = C g(t) + \int_0^t g(t-\tau)f(\tau) d\tau
-	\end{align*}
+	\end{align}
 	where
-	\begin{align*}
+	\begin{align}
 		C &= \rld{0}{\Lambda-1}{y}(0) + \rld{0}{\lambda-1}{y}(0) \\
 		g(t) &= t^{\Lambda - 1} E_{\Lambda - \lambda, \Lambda}(-t^{\Lambda - \lambda}).
-	\end{align*}
+	\end{align}
 \end{proof}
 
 \subsection{Existence and uniquness of solutions to initial value problems}
@@ -376,11 +376,11 @@ To prove this we will need several lemmas.
 
 \begin{lemma}
 	The IVP defined in \eqref{eq-fde-ivp-1}, \eqref{eq-fde-ivp-ic-1} is equivalent to the integral equation
-	\begin{align*}
+	\begin{align}
 		x(t) &= \sum_{k=1}^{n_1}\frac{A_kt^k}{k!} + \frac{1}{\beta_1} \Bigl( \frac{1}{\Gamma(\alpha_1)}\int_{0}^{t} (t-s)^{\alpha_1 - 1}f(s,x(s))ds \\
 			& \ \ \ - \sum_{j=2}^{N}\beta_j \frac{1}{\Gamma(\alpha_1 - \alpha_j)}
 			\int_{0}^{t}(t-s)^{\alpha_1 - \alpha_j - 1}\left(x(s) - \sum_{k=1}^{n_j}\frac{A_ks^k}{k!} \right) ds \Bigr)
-	\end{align*}
+	\end{align}
 \end{lemma}
 \begin{proof}
 	Apply $ \rli{0}{\alpha}{} $ to both sides of \eqref{eq-fde-ivp-1} and recognize that
@@ -393,85 +393,85 @@ To prove this we will need several lemmas.
 
 \begin{lemma}	
 \label{lem-rli-mit-lef-1}
-	\begin{align*}
+	\begin{align}
 		\rli{0}{\xi}{E_\alpha(\gamma t^\alpha)} \leq t^\xi E_\alpha(\gamma t^\alpha)
-	\end{align*}
+	\end{align}
 \end{lemma}
 \begin{proof}
 	See that
-	\begin{align*}
+	\begin{align}
 		\rli{0}{\xi}{E_\alpha(\gamma t^\alpha)} &= \frac{1}{\Gamma(\xi)} \int_0^t E_\alpha(\gamma s^\alpha)(t-s)^{\xi - 1} ds \\
 			&= \frac{1}{\Gamma(\xi)} \int_0^t \sum_{k=0}^\infty \frac{\gamma^k s^{\alpha k}}{\Gamma(\alpha k + 1)} (t-s)^{\xi - 1} ds \\
 			&= \frac{1}{\Gamma(\xi)} \sum_{k=0}^\infty \frac{\gamma^k}{\Gamma(\alpha k + 1)} \underbrace{\int_0^t s^{\alpha k}(t-s)^{\xi - 1} ds}_\circledast.
-	\end{align*}
+	\end{align}
 	Letting $ \tau = \frac{s}{t} $ we have that 
-	\begin{align*}
+	\begin{align}
 		\circledast &= \int_0^1 (t\tau)^{\alpha k} (t - t\tau)^{\xi - 1} t d\tau \\
 			&= t^{\alpha k + \xi}\int_0^1 (\tau)^{\alpha k} (1 - 1\tau)^{\xi - 1} d\tau \\
 			&= t^{\alpha k + \xi} B(\alpha k + 1, \xi) \\
 			&= t^{\alpha k + \xi} \frac{\Gamma(\alpha k + 1) \Gamma(\xi)}{\Gamma(\alpha k + \xi + 1)}.
-	\end{align*}
+	\end{align}
 	This means that 
-	\begin{align*}
+	\begin{align}
 		\rli{0}{\xi}{E_\alpha(\gamma t^\alpha)} &= \sum_{k=0}^\infty \frac{\gamma^k t^{\alpha k + \xi}}{\Gamma(\alpha k + \xi + 1)} \\
 			&= t^{\xi}\sum_{k=0}^\infty\frac{\gamma^k t^{\alpha k}}{\Gamma(\alpha k + \xi + 1)} \\
 			&\leq t^{\xi}\sum_{k=0}^\infty\frac{\gamma^k t^{\alpha k}}{\Gamma(\alpha k + 1)} \\
 			&= t^{\xi} E_\alpha(\gamma t^\alpha).
-	\end{align*}
+	\end{align}
 \end{proof}
 
 
 \begin{lemma}	
 \label{lem-rli-mit-lef-2}
-	\begin{align*}
+	\begin{align}
 		\rli{0}{\alpha}{E_\alpha(\gamma t^\alpha)} = \frac{1}{\gamma} \left( E_\alpha(\gamma t^\alpha) - 1 \right)
-	\end{align*}
+	\end{align}
 \end{lemma}
 \begin{proof}
 	See that
-	\begin{align*}
+	\begin{align}
 		\rli{0}{\alpha}{E_\alpha(\gamma t^\alpha)} &= \frac{1}{\Gamma(\alpha)} \int_0^t E_\alpha (\gamma s^\alpha)(t-s)^{\alpha - 1} ds \\
 			&= \frac{1}{\Gamma(\alpha)} \sum_{k=0}^\infty \frac{\gamma^k}{\Gamma(\alpha k + 1)} \underbrace{\int_0^t s^{\alpha k} (t-s)^\alpha ds}_{\circledast}.
-	\end{align*}
+	\end{align}
 
 	Letting $ \tau = \frac{s}{t} $ we have that 
-	\begin{align*}
+	\begin{align}
 		\circledast &= \int_0^1 (t\tau)^{\alpha k}(t-t\tau)^{\alpha - 1} t d\tau \\
 			&= t^{\alpha (k + 1)}\int_0^1 \tau^{\alpha k}(1-\tau)^{\alpha - 1} d\tau \\
 			&= t^{\alpha (k + 1)}B(\alpha k + 1, \alpha) \\
 			&= t^{\alpha (k + 1)} \frac{\Gamma(\alpha k + 1) \Gamma(\alpha)}{\Gamma(\alpha(k + 1) + 1)}.
-	\end{align*}
+	\end{align}
 	This then means that 
 	
-	\begin{align*}
+	\begin{align}
 		\rli{0}{\alpha}{E_\alpha(\gamma t^\alpha)} &= \sum_{k=0}^\infty \frac{\gamma^k t^{\alpha(k+1)}}{\Gamma(\alpha(k + 1) + 1)} \\
 			&= \frac{1}{\gamma}\sum_{k=1}^\infty \frac{\gamma^k t^{\alpha k}}{\Gamma(\alpha k+ 1)} \\
 			&= \frac{1}{\gamma}\left( \sum_{k=0}^\infty \frac{\gamma^k t^{\alpha k}}{\Gamma(\alpha k+ 1)} - 1\right) \\
 			&= \frac{1}{\gamma}\left( E_\alpha(\gamma t^\alpha) - 1 \right).
-	\end{align*}
+	\end{align}
 \end{proof}
 
 
 \begin{proof}[Proof of theorem \ref{thm-existence-uniq}]
 
 	To arrive at this we only have to prove that the map
-	\begin{align*}
+	\begin{align}
 		[Fx](t) &:= \sum_{k=1}^{n_1}\frac{A_kt^k}{k!} + \frac{1}{\beta_1} \Bigl( \frac{1}{\Gamma(\alpha_1)}\int_{0}^{t} (t-s)^{\alpha_1 - 1}f(s,x(s))ds \\
 			& \ \ \ - \sum_{j=2}^{N} \frac{\beta_j}{\Gamma(\alpha_1 - \alpha_j)}\int_{0}^{t}(t-s)^{\alpha_1 - \alpha_j - 1}\left(x(s) - \sum_{k=1}^{n_j}\frac{A_ks^k}{k!} \right) ds \Bigr)
-	\end{align*}
+	\end{align}
 	is contractive in the metric space $ \left( C[0,a], d^{\alpha_1}_\gamma \right) $ where 
 	$$ d_\gamma^{\alpha_1}(x,y) = \max_{t \in [0, a]} \frac{|x(t) - y(t)|}{E_{\alpha_1}(\gamma t^{\alpha_1})}. $$
 	To see this note that
-	\begin{align*}
+	\begin{align}
 		d_\gamma^{\alpha_1}(Fx,Fy) &= \max_{t \in [0, a]}  \frac{1}{E_{\alpha_1}(\gamma t^{\alpha_1})} 
 			\left| \frac{1}{\beta_1} \right| \Bigl| \frac{1}{\Gamma(\alpha_1)}\int_0^t (t-s)^{\alpha_1 - 1} (f(s,x(s)) - f(s,y(s))ds \\ 
 			& \ \ \ - \sum_{j=2}^N \frac{\beta_j}{\Gamma(\alpha_1 - \alpha_j)} \int_0^t (t-s)^{\alpha_1 - \alpha_j - 1}(x(s) - y(s)) ds \Bigr| \\
 			&\leq \max_{t \in [0, a]} \frac{1}{E_{\alpha_1}(\gamma t^{\alpha_1}) | \beta_1 |} \Big(
 			 \frac{1}{\Gamma(\alpha_1)}\int_0^t (t-s)^{\alpha_1 - 1} |f(s,x(s)) - f(s,y(s))|ds \\ 
 			& \ \ \ + \sum_{j=2}^N \frac{|\beta_j|}{\Gamma(\alpha_1 - \alpha_j)} \int_0^t (t-s)^{\alpha_1 - \alpha_j - 1}|x(s) - y(s))| ds \Bigr).
-	\end{align*}
+	\end{align}
 	By exploiting the Lipshitz condition we can further write that 
-	\begin{align*}
+	\begin{align}
 		d_\gamma^{\alpha_1}(Fx,Fy) &\leq \max_{t \in [0, a]} \frac{1}{E_{\alpha_1}(\gamma t^{\alpha_1})|\beta_1|} \Bigl(
 			\frac{L}{\Gamma(\alpha_1)}\int_0^t (t-s)^{\alpha_1 - 1} |x(s) - y(s)|ds \\ 
 			& \ \ \ + \sum_{j=2}^N \frac{|\beta_j|}{\Gamma(\alpha_1 - \alpha_j)} \int_0^t (t-s)^{\alpha_1 - \alpha_j - 1}|x(s) - y(s))| ds \Bigr) \\
@@ -484,19 +484,19 @@ To prove this we will need several lemmas.
 			&= d_\gamma^{\alpha_1}(x,y) \max_{t \in [0, a]} \frac{1}{E_{\alpha_1}(\gamma t^{\alpha_1})|\beta_1|} \Bigl(
 			L \rli{0}{\alpha_1}{E_{\alpha_1}(\gamma t^{\alpha_1}} \\
 			& \ \ \ + \sum_{j=2}^N |\beta_j| \rli{0}{\alpha_1 - \alpha_j}{E_{\alpha_1}(\gamma t^{\alpha_1})} \Bigr). \\
-	\end{align*}
+	\end{align}
 	We can now use the results of lemmas \ref{lem-rli-mit-lef-1} and \ref{lem-rli-mit-lef-2} to write
-	\begin{align*}
+	\begin{align}
 		d_\gamma^{\alpha_1}(Fx,Fy) &\leq d_\gamma^{\alpha_1}(x,y) \max_{t \in [0, a]} \frac{1}{E_{\alpha_1}(\gamma t^{\alpha_1})|\beta_1|} \Bigl(
 			\frac{L}{\gamma}\left( E_{\alpha_1}(\gamma t^{\alpha_1}) - 1 \right) \\
 			& \ \ \ + \sum_{j=2}^N |\beta_j| t^{\alpha_1 - \alpha_j} E_{\alpha_1}(\gamma t^{\alpha_1}) \Bigr) \\
 			&= d_\gamma^{\alpha_1}(x,y) \max_{t \in [0, a]} \frac{1}{|\beta_1|} \Bigl(
 			\frac{L}{\gamma}\left( 1- \frac{1}{E_{\alpha_1}(\gamma t^{\alpha_1})} \right) + \sum_{j=2}^N |\beta_j| t^{\alpha_1 - \alpha_j}\Bigr) \\
-	\end{align*}
+	\end{align}
 	and finally we get that 
-	\begin{align*}
+	\begin{align}
 		d_\gamma^{\alpha_1}(Fx,Fy) &\leq d_\gamma^{\alpha_1}(x,y) \frac{1}{|\beta_1|}\left( \frac{L}{\gamma} + \sum_{j=2}^N |\beta_j| a^{\alpha_1 - \alpha_j} \right).
-	\end{align*}
+	\end{align}
 	By choosing $ \gamma $ sufficiently large we get that 
 	$$
 		\frac{1}{|\beta_1|}\left( \frac{L}{\gamma} + \sum_{j=2}^N |\beta_j| a^{\alpha_1 - \alpha_j} \right) < 1

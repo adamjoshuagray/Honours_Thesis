@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{MicrosoftTaskSchedular}
 Microsoft Copropration.
@@ -22,6 +22,22 @@ K.~Diethelm.
 K.~Diethelm, N.J. Ford, and A.D. Freed.
 \newblock Detailed error analysis for a fractional adams method.
 \newblock {\em Numerical Algorithms}, pages 31--52, 2004.
+
+\bibitem{Dzherbashyan1954}
+M.M. Dzherbashyan.
+\newblock On the integral representation of functions continuous on several
+  rays (generalization of the fourier integral).
+\newblock {\em Izv. Akad. Nauk Armyan. SSR, Ser. Mat}, 18:427--448, 1954.
+
+\bibitem{Bateman1955}
+A.~Erdelyi, W.~Magnus, F.~Oberhettinger, and Tricomi F.G.
+\newblock {\em Higher Trascendental Functions}, volume~3.
+\newblock McGraw-Hill Book Co., 1955.
+
+\bibitem{Gorenflo2002}
+R.~Gorenflo, J.~Loutchko, and Y.~Luchko.
+\newblock Computation of the mittag-leffler function and its derivatives.
+\newblock {\em Fractional Calculus and Applied Analysis}, 5:491--518, 2002.
 
 \bibitem{Fernando2005}
 M.~Harris.

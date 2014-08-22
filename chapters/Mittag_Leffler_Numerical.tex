@@ -11,11 +11,17 @@ converge at a satisfactory rate. [NEED REF] Also these series involve gamma func
 have a number of numerical difficulties, at least in so much as it is not quite as clear how to evaluate 
 a gamma function as it is a factorial. We discuss the evaluation of the gamma function in section \ref{sec:num-gamma}.
 
+In the following few sections we will consider contour integral representations of the Gamma function, Mittag-Leffler 
+function and the Wright functions. Many of the ideas explained in this section date back to a relatively famous series of books,
+\emph{Higher Transcendental Functions}, specifically volume 3 \cite{Bateman1955}, and a paper (in Russian) by Dzherbashyan \cite{Dzherbashyan1954} in 1954. 
+These ideas have been explained again by Podlubny \cite{Podlubny1999} and Gorenflo et. al. \cite{Gorenflo2002} considerably more recently (in 1999 and 2002 respectively). With strong reference to Podlubny's explanations we seek to give an account of these ideas and then review the work of  Gorenflo et. al. who use these results to present numerical algorithms for evaluating these functions. 
 
+ 
 \subsection{Mittag-Lefller Function}
 \subsubsection{Contour Integral Representation of $ \Gamma(z) $ and $ \frac{1}{\Gamma(z)} $}
 
 The gamma function is defined as
+
 \begin{align}
     \Gamma(z) = \int_0^\infty e^t t^{z-1} dt
 \end{align}
@@ -34,9 +40,9 @@ where $ C $ is the contour depicted in figure \ref{fig:Hankel_Loop_2}.
 This proof follows that of Podlubny \cite{Podlubny1999}.
 \begin{proof}
 Consider the contour integral
-\begin{align*}
+\begin{align}
     \int_C e^{(z-1)\log(t) - t} dt.
-\end{align*}
+\end{align}
 Due to the fact that the integrand involves a $ \log $ function it is multivalued unless we specify a branch
 cut. We will adopt a branch cut along the non-negative real axis. As long as $ \varepsilon $ 
 is chosen sufficiently small ($ \varepsilon < 1 $) then Cauchy's theorem guarentees that this contour 
@@ -51,12 +57,12 @@ As $ \varepsilon $ can be made arbitarily small we take both straight parts of t
 real but on the lower half of the contour we must replace $ \log(t) $ with $ \log(t) + 2\pi i $. 
 
 This results in 
-\begin{align*}
+\begin{align}
     \int_C e^{(z-1)\log(t)-t} dt &= \int_\infty^\varepsilon e^{(z-1)\log(t) - t} dt + \int_{C_\varepsilon} 
         e^{(z-1)log(t) - t} dt + \int_{\varepsilon, \infty} e^{(z-1)\log(t) - t + 2\pi i} dt \\
     &= \int_\infty^\varepsilon e^{-t}t^{z-1}dt + \int_{C_\varepsilon} e^{-t}t^{z-1}dt +
     e^{2(z-1)\pi i} \int_\varepsilon^\infty e^{-t}t^{z-1} dt
-\end{align*}
+\end{align}
 
 \begin{wrapfigure}{l}{210pt}
     \input{diagrams/Hankel_Loop_2.tex}
@@ -79,32 +85,32 @@ We would like to exploit this result to give a simple contour integral represent
 \begin{lemma}
     \label{lem:contour_1_gamma_1}
     A contour integral representation of $ \frac{1}{\Gamma(z)} $ is given by
-    \begin{align*}
+    \begin{align}
         \frac{1}{\Gamma(z)} = \frac{1}{2 \pi i} \int_{Ha} e^\tau \tau^{-z} d\tau
-    \end{align*}
+    \end{align}
     where the contour $ Ha $ is shown in figure \ref{fig:hankel_loop}.
 \end{lemma}
 This proof follows that of Podlubny \cite{Podlubny1999}
 \begin{proof}
     By taking the result of \ref{lem:contour_gamma} and substituting $ z-1 $ in \eqref{eq:gamma_contour}
     we get that
-    \begin{align*}
+    \begin{align}
         \int_C e^{-t} t^{-z} dt = (e^{-2 \pi i z} -1) \Gamma(1-z).
-    \end{align*}
+    \end{align}
     Performing the substitution $ \tau = -t $ rotates the contour integral clockwise $ 180 $ degrees 
     and results in 
-    \begin{align*}
+    \begin{align}
         \int_{C} e^{-t} t^{-z} dt = - e^{-z\pi i}\int_{Ha} e^{\tau} \tau^{-z} d\tau
-    \end{align*}
+    \end{align}
     and so
-    \begin{align*}
+    \begin{align}
         \Gamma(1-z) &= \frac{1}{e^{z\pi i} - e^{-z \pi i}} \int_{Ha} e^\tau \tau^{-z} d\tau \\
             &= \frac{1}{2i \sin(\pi z)}\int_{Ha} e^\tau \tau^{-z} d\tau.
-    \end{align*}
+    \end{align}
     Now taking into account the well known Euler reflection formula, $ \Gamma(z)\Gamma(1-z) = \frac{\pi}{\sin(\pi z)} $, we get
-    \begin{align*}
+    \begin{align}
         \frac{1}{\Gamma(z)} = \frac{1}{2 \pi i} \int_{Ha} e^\tau \tau^{-z} d\tau.
-    \end{align*} \qed
+    \end{align} \qed
     \begin{wrapfigure}{r}{210pt}
         \input{diagrams/Hankel_Loop.tex}
         \caption{The Hankel contour Ha}
@@ -116,8 +122,9 @@ We now wish to give a pair of contour integral representations of the function $
 which we will then use in contour integrals representing $ E_{\alpha, \beta}(z) $. 
 
 \begin{lemma}
-    The function $ \frac{1}{\Gamma(z)} $ can be represented by the following contour integrals
+    The function $ \frac{1}{\Gamma(z)} $ can be represented by the following contour integrals 
     \begin{align}
+        \label{eq:gamma_contour_1}
         \frac{1}{\Gamma(z)} = \frac{1}{2 \pi \alpha i} \int_{\gamma(\varepsilon, \mu)} 
                               e^{\zeta^{1 / \alpha}} \zeta^{(1-z-\alpha) / \alpha} d\zeta 
     \end{align}
@@ -127,6 +134,7 @@ which we will then use in contour integrals representing $ E_{\alpha, \beta}(z) 
     \end{align}
     or where $ Re(z) > 0 $
     \begin{align}
+        \label{eq:gamma_contour_2}
         \frac{1}{\Gamma(z)} = \frac{1}{4 \pi i} \int_{\gamma(\varepsilon, \pi)} e^{\zeta^{1 / 2}} \zeta^{-(z + 1) / 2} d\zeta
     \end{align}
     where the contour $ \gamma(\varepsilon, \varphi) $ is depicted in figure \ref{fig:hankel_wedge}.
@@ -138,21 +146,21 @@ Firstly we show that we can rewrite the contour integral in lemma \ref{lem:conto
 integral about $ \gamma(\varepsilon, \varphi) $ where $ \gamma(\varepsilon, \varphi) $ is shown in figure \ref{fig:hankel_wedge}. We restrict $ \varphi $ to $ \frac{\pi}{2} < \varphi \pi $. 
 
 Now lets consider the contour integral diagram in figure \ref{fig:hankel_wedge_2} and note that as $ f(\tau) := e^\tau t^{-z} $ does not have any singularities we have
-\begin{align*}
+\begin{align}
     \int_{A^+ B^+ C^+ D^+} f(\tau) d\tau = \int_{A^-D^-C^-B^-} f(\tau) = 0.
-\end{align*}
+\end{align}
 
 Considering just the arc $ A^+B^+ $ we note that $ |\tau| = R $ and hence
-\begin{align*}
+\begin{align}
     |f(\tau)| &= |e^\tau \tau^{-z}| = e^{R\cos(\arg \tau) - Re(z) \log(R) + Im(z) \arg \tau} \\
       &\leq e^{-R\cos(\pi - \phi) - x \log(R) + 2 \pi y} \\
       &\sim \frac{1}{R}e^{-R}
-\end{align*}
+\end{align}
 
 and thus by application of the ML lemma we have
-\begin{align*}
+\begin{align}
     \lim_{R \lra \infty} \int_{A^+}^{B^+} f(\tau) d\tau = 0.
-\end{align*}
+\end{align}
 
 \begin{wrapfigure}{l}{210pt}
     \input{diagrams/Hankel_Wedge.tex}
@@ -161,21 +169,21 @@ and thus by application of the ML lemma we have
 \end{wrapfigure}
 
 A completely symetric argument yields
-\begin{align*}
+\begin{align}
     \lim_{R \lra \infty} \int_{B^-}^{A^-} f(\tau) d\tau = 0
-\end{align*}
+\end{align}
 and so we can write
-\begin{align*}
+\begin{align}
     \int_{C^+}^{B_\infty^+} f(\tau)d\tau = \int_{C^+}^{D^+} f(\tau)d\tau + \int_{D^+}^{\infty^+} f(\tau)d\tau
-\end{align*}
+\end{align}
 and
-\begin{align*}
+\begin{align}
     \int_{B_\infty^-}^{C^-} f(\tau)d\tau = \int_{\infty^-}^{D^-} f(\tau)d\tau + \int_{D^-}^{C^-} f(\tau)d\tau.
-\end{align*}
+\end{align}
 Then
-\begin{align*}
+\begin{align}
     \int_{Ha} f(\tau) d\tau = \left( \int_{B_\infty^-}^{C^-} f(\tau)d\tau + \int_{C^-}^{C^+} f(\tau)d\tau +  \int_{C^+}^{B_\infty^+} f(\tau)d\tau \right) = \int_{\gamma(\varepsilon, \varphi)}e^\tau \tau^-z d\tau.
-\end{align*}
+\end{align}
 To get the final results, we perform the substitution $ \tau = \zeta^{1/\alpha} $ for $ \alpha < 2 $
 which yields
 
@@ -206,20 +214,23 @@ for $ Re(z) > 0 $.
 We now develop integral representations of the Mittag-Leffler function. These contour integral representations will form the basis of the numerical method we present for evaluating the Mittag-Leffler function.
 
 \begin{lemma}
+    \label{lem:mit_lef_contour_1}
     For $ \alpha \in \mathbb{R} $ with $ 0 < \alpha < 2 $ and $ \beta \in \mathbb{C} $ and $ \varepsilon > 0 $
     such that
-    \begin{align*}
-	\frac{\pi \alpha}{2} < \mu \leq \min\{ \pi, \pi \alpha \}
-    \end{align*}
+    \begin{align}
+        \label{eq:mit_lef_region}
+	    \frac{\pi \alpha}{2} < \mu \leq \min\{ \pi, \pi \alpha \}
+    \end{align}
     we have that
-    \begin{align*}
+    \begin{align}
 	E_{\alpha, \beta}(z) = \frac{1}{2\alpha\pi i} \int_{\gamma(\varepsilon, \mu)} \frac{e^{\zeta^{1 / \alpha}}\zeta^{(1-\beta)/\alpha}}{\zeta - z} d\zeta
-    \end{align*}
+    \end{align}
     for $ z \in G^{-}(\varepsilon, \mu) $
     and
-    \begin{align*}
+    \begin{align}
+    \label{eq:mit_lef_contour_2}
 	\frac{1}{\alpha} z^{(1-\beta) / \alpha} e^{z^{1 / \alpha}} + \frac{1}{2 \alpha\pi i} \int_{\gamma(\varepsilon, \mu)} + \frac{1}{2\alpha\pi i} \int_{\gamma(\varepsilon, \mu)} \frac{e^{\zeta^{1 / \alpha}}\zeta^{(1-\beta)/\alpha}}{\zeta - z} d\zeta
-    \end{align*}
+    \end{align}
     for $ z \in G^{+}(\varepsilon, \mu) $.
     The contour $ \gamma(\varepsilon, \mu) $ is depicted in figure \ref{fig:hankel_wedge_2} as are the regions $ G^+ $ and $ G^-$.
 \end{lemma}
@@ -227,32 +238,67 @@ This proof follows that of Podlubny \cite{Podlubny1999}.
 \begin{proof}
     Starting from the definition of the Mittag-Leffler function and the absolutely convergent nature of the Mittag-Leffler function from lemma \ref{lem:mit_conv} we have that
     
-    \begin{align*}
+    \begin{align}
 	E_{\alpha, \beta}(z) &= \sum_{k=0}^\infty \frac{z^k}{\Gamma(\alpha k + \beta)} \\
 	    &= \sum_{k=0}^\infty \frac{1}{2\pi\alpha i} z^k \int_{\gamma(\varepsilon, \mu)} e^{\zeta^{1 / \alpha}} \zeta^{(1-\beta)/\alpha - k - 1} d\zeta \\
 	&= \frac{1}{2 \pi \alpha i}  \int_{\gamma(\varepsilon, \mu)} e^{\zeta^{1 / \alpha}} \zeta^{(1-\beta)/\alpha - 1} \left(\sum_{k=0}^\infty \left( \frac{z}{\zeta}\right)^k \right) d\zeta. & \circledast
-   \end{align*}
-\end{proof}
+   \end{align}
 and if we assume that $ |z| < \varepsilon $ then
-\begin{align*}
+\begin{align}
     \left| \frac{z}{\zeta}\right| < 1
-\end{align*}
+\end{align}
 because $ \zeta \in \gamma(\varepsilon, \mu) $ and so
-\begin{align*}
+\begin{align}
    \sum_{k=0}^\infty \left( \frac{z}{\zeta} \right) = \frac{\zeta}{\zeta - z}
-\end{align*}
+\end{align}
 which means that
-\begin{align*}
+\begin{align}
     \circledast = \int_{\gamma(\varepsilon, \mu)} \frac{e^{\zeta^{1 / \alpha}}\zeta^{(1-\beta)/\alpha}}{\zeta - z} d\zeta.
-\end{align*}
+\end{align}
 
-As argued in 
+As argued in Podulbny \cite{Podlubny1999}, because of \ref{eq:mit_lef_region}, this integral is absolutely convergent in $G^-(\varepsilon, \mu) $ and is an analytic function of $ z $ and so by the principle of analytic continuation this integral equals $ E_{\alpha, \beta}(z) $ in all of $ G^-(\varepsilon, \mu) $ rather than just $ |z| < \varepsilon $.
 
+If $ z \in G^+(\varepsilon, \mu) $ we can say that $ z \in G(\delta, \mu) $ where $ \delta $ is chosen so that $ |z| < \delta $. The idea here it to get $ z $ on the other side of a contour $ \gamma(\delta, \mu) $.
+Then the above result still stands, but with a different contour. So if $ \varepsilon < |z| <\delta $ and $ -\mu < \arg(z) < \mu $ then we can use Cauchy's theorem to write
+\begin{align}
+    \frac{1}{2\alpha \pi i} \int_{\gamma(\varepsilon, \mu) - \gamma(\varepsilon, mu)} \frac{e^{\zeta^{1 / \alpha} \zeta^{(1-\beta)/\alpha}}}{\zeta - z} d \zeta = \frac{z^{(1-\beta)/\alpha} e^{z^{1/\alpha}}}{\alpha}
+\end{align}
+and hence \ref{eq:mit_lef_contour_2} follows.
+\end{proof}
+\begin{lemma}
+    If $ Re(\beta) > 0 $ then for $ \varepsilon > 0 $ we have that
+    \begin{align}
+        E_{2,\beta}(z) = \frac{1}{4\pi i} \int_{\gamma(\varepsilon, \pi)} \frac{e^{\zeta^{1/2}}\zeta^{(1-\beta) / 2}}{\zeta - z}d \zeta
+    \end{align}
+    for $ z \in G^-(\varepsilon, \pi) $ 
+
+and
+    \begin{align}
+        E_{2,\beta}(z) = \frac{1}{2} z^{(1-\beta)/2} e^{z^{1/2}} + \frac{1}{4\pi i} \int_{\gamma(\varepsilon, \pi)} \frac{e^{\zeta^{1/2}}\zeta^{(1-\beta) / 2}}{\zeta - z}d \zeta
+    \end{align}
+    for $ z \in G^+(\varepsilon, \pi) $.
+\end{lemma}
+This proof is essentially identical to that of \ref{lem:mit_lef_contour_1}, with the use of \eqref{eq:gamma_contour_2} instead of \eqref{eq:gamma_contour_1} but we go through it here explicitly for the sake of clarity. 
+\begin{proof}
+    Starting from the usual definition of the Mittag-Leffler function and replacing $ \frac{1}{\Gamma(\alpha k + \beta)} $ with the
+    contour integral representation in \eqref{eq:gamma_contour_2} we get
+    \begin{align}
+        E_{\alpha, \beta}(z) &= \frac{1}{4\pi i} \sum_{k=0}^\infty z^k \int_{\gamma(\varepsilon, \pi)} e^{\zeta^{1/2}} \zeta^{-(2k-\beta + 1)/2} d\zeta \\
+        &= \frac{1}{4 \pi i} \int_{\gamma(\varepsilon, \pi)} e^{\zeta^{1/2}} \zeta^{-(1-\beta)/2} \sum_{k=0}^\infty \left( \frac{z}{\zeta} \right)^k d\zeta \\
+        &= \frac{1}{4\pi i} \int_{\gamma(\varepsilon, \pi)} \frac{e^{\zeta^{1/2}} \zeta^{-(1-\beta)/2}}{\zeta - z} d\zeta.
+    \end{align}
+    The arguments here are the same for the interchange of the integral and the sum. The arguments about convergence an analytic continuation are also the same so long as $ z \in G^-(\varepsilon, \pi) $. 
+
+    Applying the same idea as in the previous proof we consider a \emph{larger} contour $ \gamma(\delta, \mu) $ so that $ z \in G^-(\delta, \mu) $ and apply Cauchy's theorem to arive at
+    \begin{align*}
+        E_{2,\beta}(z) = \frac{1}{2} z^{(1-\beta)/2} e^{z^{1/2}} +  \frac{1}{4\pi i} \int_{\gamma(\varepsilon, \pi)} \frac{e^{\zeta^{1/2}} \zeta^{-(1-\beta)/2}}{\zeta - z} d\zeta.
+    \end{align*}
+\end{proof}
 \subsubsection{A Numerical Algorithm for Evaluating $ E_{\alpha, \beta}(z) $}
 
 \subsection{Wright Function}
 \subsubsection{Contour Integral Representation of $ W_{\alpha, \beta}(z) $}
-\subsubsection{A Numerical Algorithm for Evaluating $ W_{\alpha, \beta} $}
+\subsubsection{A Numerical Algorithm for Evaluating $ W_{\alpha, \beta}(z) $}
 
 \subsection{Additional Notes on the Numerical Evaluation of the Gamma Function}
 \label{sec:num-gamma}

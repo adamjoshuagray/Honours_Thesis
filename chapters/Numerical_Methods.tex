@@ -7,15 +7,15 @@ In this section we describe numerical methods which can be used for solving frac
 
 We first recall that the Gr\"{u}nwald-Letnikov derivative of a function $ f $ is defined by
 
-\begin{align*}
+\begin{align}
     \glder{a}{t}{\alpha}{f}(t) = \lim_{h \lra 0} \frac{\fracdelta{a}{\alpha}{h}{f}(t)}{h^\alpha} & & \fracdelta{a}{\alpha}{h}{f}(t) = \sum_{j=0}^{\lfloor \frac{t-a}{h} \rfloor} (-1)^{j} { \alpha \choose j } f(t-jh)
-\end{align*}
+\end{align}
 
 For a very large class of functions this coincides with the Riemann-Liouville fractional derivative \cite{Podlubny1999} which we again recall here 
 
-\begin{align*}
+\begin{align}
     \rld{a}{t}{\alpha}{f}(t) = \left( \frac{d}{dt} \right)^{\lfloor \alpha \rfloor + 1} \int_{a}^{t}(t-\tau)^{\lfloor \alpha \rfloor - \alpha} f(\tau)d\tau.
-\end{align*}
+\end{align}
 
 These two definitions suggest two general methods for approximating a fractional derivative.
 
@@ -58,9 +58,9 @@ We briefly outline a method explained and analyzed in detail in \cite{Diethelm20
 In order to approximate the solution to this integral equation over the interval $ [0, T] $, we select a number of grid points $ N $ so that $ h = T / N $ and $ x_k = hk $ where $ k \in \{0, 1, ..., N\} $.
 
 We apply the approximation
-\begin{align*}
+\begin{align}
     \int_0^{x_{k+1}} (x_{k+1} - t)^{\alpha - 1} g(t)dt \approx \int_0^{x_{k+1}} (x_{k+1} - t)^{\alpha - 1} \tilde{g}_{k+1}(t)dt
-\end{align*}
+\end{align}
 where $ g(t) = f(t, y(t)) $ and $ \tilde{g}_{k+1}(t) $ is the piecewise linear approximation of $ g(t) $ with nodes at the grid-points $ x_k $. As outlined in \cite{Diethelm2004} we can approximate the integral in \eqref{eq:num_int_eq} as
 \begin{align}
     \label{eq:amb_sum_1}
@@ -165,9 +165,9 @@ For the theoretical analysis of the scheme we introduce Amdahl's Law or Amdahl's
 \begin{principle}[Amdahl]
 Let $ P $ be the proportion of a computation which can be parallelized in a given progress. Then the speedup given by
 $ Q $ cores is
-\begin{align*}
+\begin{align}
 	S(Q) = \frac{1}{(1-P)+\frac{P}{Q}}
-\end{align*}
+\end{align}
 
 \end{principle}
 
@@ -179,9 +179,9 @@ To formalize this notion we introduce the following definition.
 \label{def:amdahl_efficient}
     Let $ S(N,Q) $ represent the parallel speedup for a problem with input size $ N $ and executed with $ Q $ cores.
     Then we define the Amdahl efficiency of parallel scheme as 
-    \begin{align*}
+    \begin{align}
         E(Q) = \lim_{N \lra \infty} \frac{S(N, Q)}{Q}.
-    \end{align*}
+    \end{align}
     Further we say that a parallel scheme is Amdahl efficient with respect to its serial counterpart if $ E(p) = 1 $.
 \end{definition}
 
@@ -217,14 +217,14 @@ and by taking a weighted average sum, the total fraction of non-paralellizable c
 \end{align}
 
 Noticing the fact that the computation in the task $ I $ is insignificant compared to $ H $ and $ H_p $ we would suppose using $ Q = 2p $ cores would be in some sense optimal. Applying Amdahl's principle with the result in \ref{eq:tot_par_c} and with $ Q = 2p $ we get 
-\begin{align*}
+\begin{align}
     S(N, Q) &= S(N, 2p) \\
     &\sim \frac{1}{(\frac{2p}{N}) + \frac{1-\frac{2p}{N}}{2p} } \\
-\end{align*}
+\end{align}
 then letting $ N \lra \infty $ we get
-\begin{align*}
+\begin{align}
     E(p) = \lim_{N \lra \infty} \left(\frac{1}{(\frac{2p}{N}) + \frac{1-\frac{2p}{N}}{2p} } \right) \slash p = 1.
-\end{align*}
+\end{align}
 
 \end{proof}
 
