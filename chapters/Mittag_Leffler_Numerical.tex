@@ -225,12 +225,28 @@ We now develop integral representations of the Mittag-Leffler function. These co
 \end{lemma}
 This proof follows that of Podlubny \cite{Podlubny1999}.
 \begin{proof}
-    Starting from the definition of the Mittag-Leffler function we have that
+    Starting from the definition of the Mittag-Leffler function and the absolutely convergent nature of the Mittag-Leffler function from lemma \ref{lem:mit_conv} we have that
+    
     \begin{align*}
 	E_{\alpha, \beta}(z) &= \sum_{k=0}^\infty \frac{z^k}{\Gamma(\alpha k + \beta)} \\
-	    &= \sum_{k=0}^\infty 
-    \end{align*}
+	    &= \sum_{k=0}^\infty \frac{1}{2\pi\alpha i} z^k \int_{\gamma(\varepsilon, \mu)} e^{\zeta^{1 / \alpha}} \zeta^{(1-\beta)/\alpha - k - 1} d\zeta \\
+	&= \frac{1}{2 \pi \alpha i}  \int_{\gamma(\varepsilon, \mu)} e^{\zeta^{1 / \alpha}} \zeta^{(1-\beta)/\alpha - 1} \left(\sum_{k=0}^\infty \left( \frac{z}{\zeta}\right)^k \right) d\zeta. & \circledast
+   \end{align*}
 \end{proof}
+and if we assume that $ |z| < \varepsilon $ then
+\begin{align*}
+    \left| \frac{z}{\zeta}\right| < 1
+\end{align*}
+because $ \zeta \in \gamma(\varepsilon, \mu) $ and so
+\begin{align*}
+   \sum_{k=0}^\infty \left( \frac{z}{\zeta} \right) = \frac{\zeta}{\zeta - z}
+\end{align*}
+which means that
+\begin{align*}
+    \circledast = \int_{\gamma(\varepsilon, \mu)} \frac{e^{\zeta^{1 / \alpha}}\zeta^{(1-\beta)/\alpha}}{\zeta - z} d\zeta.
+\end{align*}
+
+As argued in 
 
 \subsubsection{A Numerical Algorithm for Evaluating $ E_{\alpha, \beta}(z) $}
 
