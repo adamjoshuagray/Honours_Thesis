@@ -122,6 +122,7 @@ We now wish to give a pair of contour integral representations of the function $
 which we will then use in contour integrals representing $ E_{\alpha, \beta}(z) $. 
 
 \begin{lemma}
+    \label{lem:1_gamma_contour}
     The function $ \frac{1}{\Gamma(z)} $ can be represented by the following contour integrals 
     \begin{align}
         \label{eq:gamma_contour_1}
@@ -294,8 +295,66 @@ This proof is essentially identical to that of \ref{lem:mit_lef_contour_1}, with
         E_{2,\beta}(z) = \frac{1}{2} z^{(1-\beta)/2} e^{z^{1/2}} +  \frac{1}{4\pi i} \int_{\gamma(\varepsilon, \pi)} \frac{e^{\zeta^{1/2}} \zeta^{-(1-\beta)/2}}{\zeta - z} d\zeta.
     \end{align*}
 \end{proof}
+We now wish to use these integral representations to develop asymptotic expansions.
+\begin{lemma}
+    F $ 0 < \alpha < 2 $ and $ \mu $ is such
+    \begin{align}
+        \frac{\pi \alpha}{2} < \mu < \min\{\pi, \pi\alpha \}
+    \end{align}
+    and $ | \arg(z) | \leq \mu $
+    then for any integer $ p \geq 1 $    
+    \begin{align}
+        E_{\alpha, \beta}(z) = \frac{1}{\alpha} z^{(1 - \beta) / \alpha} e^{z^{1/\alpha}} - \sum_{k=1}^p \frac{z^{-k}}{\Gamma(\beta - \alpha k)} + O(|z|^{-1-p})
+    \end{align}
+    as $ |z| \lra \infty $.
+\end{lemma}
+This proof follows that of Podlubny \cite{Podlubny1999}.
+\begin{proof}
+    Take some $ \varphi $ such that $ \mu < \varphi \leq \min\{\pi,\pi\alpha\} $ and set
+    $ \varepsilon  = 1 $.
+    Note that 
+    \begin{align}
+        \label{eq:geometric_expansion}
+        \frac{1}{\zeta - z} = \frac{1}{\zeta}\sum_{k=0}^p \left( \frac{\zeta}{z}\right)^k + \frac{\zeta^p}{z^p(\zeta - z)}.
+    \end{align}
+    Now substituting this result into \eqref{eq:mit_lef_contour_2}
+    we get that for $ z \in G^+(1, \varphi) $
+    \begin{align}
+        E_{\alpha, \beta}(z) &= \frac{1}{\alpha} z^{(1-\beta)/\alpha} e^{z^{1 / \alpha}} \\
+        \label{eq:mit_lef_exp_1}    
+        & \ \ \ - \sum_{k=1}^p \left( \frac{1}{2\pi\alpha i} \int_{\gamma(1,\varphi)} e^{\zeta^{1\/alpha}} \zeta^{(1-\beta)/\alpha + k - 1} d\zeta \right) z^{-k}  \\ 
+        \label{eq:mit_lef_exp_2}
+            & \ \ \ + \frac{1}{2\pi\alpha i z^p} \int_{\gamma(1,\phi)} e^{\zeta^{\alpha / 1}} \zeta^{(1-\beta)/\alpha + p} d\zeta.
+    \end{align}
+    Now \eqref{eq:mit_lef_exp_1} can be evaluated by using the result of lemma \ref{lem:1_gamma_contour} which leaves us with 
+    \begin{align}
+        \label{eq:mit_lef_asym_sum_1}
+        \sum_{k=1}^p \left( \frac{1}{2\pi\alpha i} \int_{\gamma(1,\varphi)} e^{\zeta^{1\/alpha}} \zeta^{(1-\beta)/\alpha + k - 1} d\zeta \right) z^{-k} = \sum_{k=1}^p \frac{z^{-k}}{\Gamma(\beta - \alpha k)}.
+    \end{align}
+    It remains to \emph{estimate} \eqref{eq:mit_lef_exp_2} when $ |arg(z)| \leq \mu $ and as $ |z| \lra \infty $. 
+    
+    Firstly note that
+    \begin{align}
+        \min_{\zeta \in \gamma(1, \varphi)} |\zeta - z| = |z|\sin(\varphi - \mu)
+    \end{align}
+    and therefore
+    \begin{align}
+        \label{eq:mit_lef_contour_int_conv}
+        \frac{1}{2\pi\alpha i z^p} \int_{\gamma(1,\phi)} e^{\zeta^{\alpha / 1}} \zeta^{(1-\beta)/\alpha + p} d\zeta \leq \frac{|z|^{-1-p}}{2\pi\alpha\sin(\varphi - \mu)} \underbrace{\int_{\gamma(1,\varphi)} \left| e^{\zeta^{1/\alpha}} \right| \cdot \left| \zeta^{(1-\beta)+p}\right| d\zeta}_{\circledast}.
+    \end{align}
+We wish to show that $ \circledast $ converges, which is actually not hard because 
+\begin{align}
+    \left| e^{\zeta^{1/\alpha}}\right| = e^{|\zeta|^{1/\alpha} \cos\left(\frac{\pi}{\alpha}\right)}
+\end{align}
+and $ \cos\left(\frac{\varphi}{\alpha}\right) < 0 $ because $ \frac{\pi \alpha}{2} < \varphi \leq \min\{\pi, \pi \alpha\} $. 
+This means that 
+\begin{align}
+    \label{eq:mit_lef_asym_int_1}
+    \frac{1}{2\pi\alpha i z^p} \int_{\gamma(1,\phi)} e^{\zeta^{\alpha / 1}} \zeta^{(1-\beta)/\alpha + p} d\zeta = O(|z|^{-1-p})
+\end{align}
+and so by combining \eqref{eq:mit_lef_asym_int_1} and \eqref{eq:mit_lef_asym_sum_1} with the \eqref{eq:mit_lef_contour_2} the result follows.
+\end{proof}
 \subsubsection{A Numerical Algorithm for Evaluating $ E_{\alpha, \beta}(z) $}
-
 \subsection{Wright Function}
 \subsubsection{Contour Integral Representation of $ W_{\alpha, \beta}(z) $}
 \subsubsection{A Numerical Algorithm for Evaluating $ W_{\alpha, \beta}(z) $}
