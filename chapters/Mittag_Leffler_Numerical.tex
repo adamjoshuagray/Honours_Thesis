@@ -224,7 +224,8 @@ We now develop integral representations of the Mittag-Leffler function. These co
     \end{align}
     we have that
     \begin{align}
-	E_{\alpha, \beta}(z) = \frac{1}{2\alpha\pi i} \int_{\gamma(\varepsilon, \mu)} \frac{e^{\zeta^{1 / \alpha}}\zeta^{(1-\beta)/\alpha}}{\zeta - z} d\zeta
+	    \label{eq:mit_lef_contour_1}
+        E_{\alpha, \beta}(z) = \frac{1}{2\alpha\pi i} \int_{\gamma(\varepsilon, \mu)} \frac{e^{\zeta^{1 / \alpha}}\zeta^{(1-\beta)/\alpha}}{\zeta - z} d\zeta
     \end{align}
     for $ z \in G^{-}(\varepsilon, \mu) $
     and
@@ -295,8 +296,10 @@ This proof is essentially identical to that of \ref{lem:mit_lef_contour_1}, with
         E_{2,\beta}(z) = \frac{1}{2} z^{(1-\beta)/2} e^{z^{1/2}} +  \frac{1}{4\pi i} \int_{\gamma(\varepsilon, \pi)} \frac{e^{\zeta^{1/2}} \zeta^{-(1-\beta)/2}}{\zeta - z} d\zeta.
     \end{align*}
 \end{proof}
+\subsubsection{Asymptotic Expansions of $ E_{\alpha, \beta}(z) $}
 We now wish to use these integral representations to develop asymptotic expansions.
 \begin{lemma}
+    \label{lem:mit_lef_asym_exp_1}
     F $ 0 < \alpha < 2 $ and $ \mu $ is such
     \begin{align}
         \frac{\pi \alpha}{2} < \mu < \min\{\pi, \pi\alpha \}
@@ -353,6 +356,59 @@ This means that
     \frac{1}{2\pi\alpha i z^p} \int_{\gamma(1,\phi)} e^{\zeta^{\alpha / 1}} \zeta^{(1-\beta)/\alpha + p} d\zeta = O(|z|^{-1-p})
 \end{align}
 and so by combining \eqref{eq:mit_lef_asym_int_1} and \eqref{eq:mit_lef_asym_sum_1} with the \eqref{eq:mit_lef_contour_2} the result follows.
+\end{proof}
+\begin{lemma}
+    If $ 0 \alpha < 2 $ and $ \mu $ is a real number such that
+    \begin{align}
+        \frac{\pi \alpha}{2} < \mu < \min\{\pi, \pi \alpha \}
+    \end{align}
+    then for any integer $ p \geq 1 $, if $ \mu \leq |\arg(z)| \leq \pi $ we have that
+    \begin{align}
+        E_{\alpha, \beta}(z) = - \sum_{k=1}^p \frac{z^{-k}}{\Gamma(\beta - \alpha k)} + O(|z|^{-1-p})
+    \end{align}
+    as $ |z| \lra \infty $.
+\end{lemma}
+This proof follows that of Podlubny \cite{Podlubny1999}. 
+\begin{proof}
+    Take $ \varepsilon = 1 $ and choose $ \varphi $ such that
+    \begin{align}
+        \frac{\pi \alpha}{2} < \varphi < \mu.
+    \end{align}
+    From \eqref{eq:mit_lef_contour_1} and by a similar argument as outlined in the proof of lemma \ref{lem:mit_lef_asym_exp_1} we have that
+    \begin{align}
+        E_{\alpha, \beta}(z) = -\sum_{k=1}^{p} \left( \frac{1}{2\pi\alpha i} \int_{\gamma(1, \phi)} e^{\zeta^{1/\alpha}} \zeta^{(1-\beta)/\alpha + k - 1} d\zeta\right) z^{-k} + \frac{1}{2\pi \alpha i z^p} \int_{\gamma(1, \varphi)} e^{\zeta^{1/\alpha}} \zeta^{(1-\beta)/\alpha + p} d\zeta
+    \end{align}
+    so long as $ z \in G^-(1, \phi) $. As in the proof of lemma \ref{lem:mit_lef_asym_exp_1} we can use lemma \ref{lem:1_gamma_contour} to rewrite the sum and say
+    \begin{align}
+        E_{\alpha,\beta} = - \sum_{k=1}^p \frac{z^{-k}}{\Gamma(\beta - \alpha k)} + \underbrace{\frac{1}{2\pi \alpha i z^p} \int_{\gamma(1, \varphi)} e^{\zeta^{1/\alpha}} \zeta^{(1-\beta)/\alpha + p} d\zeta}_{\circledast}
+    \end{align}
+    Using the same technique as in lemma \ref{lem:mit_lef_asym_exp_1} we can say that $ \circledast = O(|z|^{-1-p}) $ and so the result follows.
+\end{proof}
+In order to prove a useful asymptotic expansion of the Mittag-Leffler function we will need the following lemma which allows us to express higher order (in terms of $ \alpha $) Mittag-Leffler functions in terms of lower order Mittag-Leffler functions. 
+\begin{lemma}
+    \label{lem:mit_lef_summation}
+    We have the summation formula
+    \begin{align}
+        E_{\alpha, \beta}(z) = \frac{1}{2m+1} \sum_{\nu=-m}^{m-1} E_{\alpha / (2m+1), \beta}\left( z^{1/(2m+1)} e^{2i\pi\nu/(2m+1)}\right).
+    \end{align}
+\end{lemma}
+The result follows similar arguments outlined by Podlubny \cite{Podlubny1999}.
+\begin{proof}
+    Firstly note that
+    \begin{align*}
+        \sum_{\nu=0}^{m-1} e^{\frac{2\pi i \nu k}{m}} = 
+            \begin{cases}
+                m & k \equiv 0 (\mod m) \\
+                0 & k \not\equiv 0 (\mod m).
+            \end{cases}
+    \end{align*}
+    This is a well known result and follows from a simple pairing argument.
+    
+    Then we can write
+    \begin{align}
+        \sum_{\vu = 0}^{m-1} E_{\alpha,\beta}\left(ze^\frac{2\pi i \nu}{m} \right)
+            &= \sum_{\nu=0}^{m-1} \sum_{k=0}^\infty \frac{z^ke^{2k\pi i\nu / m}}{\Gamma(\alpha k + \beta)}
+    \end{align}
 \end{proof}
 \subsubsection{A Numerical Algorithm for Evaluating $ E_{\alpha, \beta}(z) $}
 \subsection{Wright Function}
