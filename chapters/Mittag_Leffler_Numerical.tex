@@ -231,7 +231,7 @@ We now develop integral representations of the Mittag-Leffler function. These co
     and
     \begin{align}
     \label{eq:mit_lef_contour_2}
-	\frac{1}{\alpha} z^{(1-\beta) / \alpha} e^{z^{1 / \alpha}} + \frac{1}{2 \alpha\pi i} \int_{\gamma(\varepsilon, \mu)} + \frac{1}{2\alpha\pi i} \int_{\gamma(\varepsilon, \mu)} \frac{e^{\zeta^{1 / \alpha}}\zeta^{(1-\beta)/\alpha}}{\zeta - z} d\zeta
+	\frac{1}{\alpha} z^{(1-\beta) / \alpha} e^{z^{1 / \alpha}} + \frac{1}{2\alpha\pi i} \int_{\gamma(\varepsilon, \mu)} \frac{e^{\zeta^{1 / \alpha}}\zeta^{(1-\beta)/\alpha}}{\zeta - z} d\zeta
     \end{align}
     for $ z \in G^{+}(\varepsilon, \mu) $.
     The contour $ \gamma(\varepsilon, \mu) $ is depicted in figure \ref{fig:hankel_wedge_2} as are the regions $ G^+ $ and $ G^-$.
@@ -358,7 +358,8 @@ This means that
 and so by combining \eqref{eq:mit_lef_asym_int_1} and \eqref{eq:mit_lef_asym_sum_1} with the \eqref{eq:mit_lef_contour_2} the result follows.
 \end{proof}
 \begin{lemma}
-    If $ 0 \alpha < 2 $ and $ \mu $ is a real number such that
+    \label{lem:mit_lef_asym_exp_2}
+    If $ 0 < \alpha < 2 $ and $ \mu $ is a real number such that
     \begin{align}
         \frac{\pi \alpha}{2} < \mu < \min\{\pi, \pi \alpha \}
     \end{align}
@@ -396,18 +397,71 @@ The result follows similar arguments outlined by Podlubny \cite{Podlubny1999}.
 \begin{proof}
     Firstly note that
     \begin{align*}
-        \sum_{\nu=0}^{m-1} e^{\frac{2\pi i \nu k}{m}} = 
+        \sum_{\nu=-m}^{m-1} e^{\frac{2\pi i \nu k}{2m+1}} = 
             \begin{cases}
-                m & k \equiv 0 (\mod m) \\
-                0 & k \not\equiv 0 (\mod m).
+                2m + 1 & k \equiv 0 (\mod 2m+1) \\
+                0 & k \not\equiv 0 (\mod 2m+1).
             \end{cases}
     \end{align*}
     This is a well known result and follows from a simple pairing argument.
     
     Then we can write
     \begin{align}
-        \sum_{\vu = 0}^{m-1} E_{\alpha,\beta}\left(ze^\frac{2\pi i \nu}{m} \right)
-            &= \sum_{\nu=0}^{m-1} \sum_{k=0}^\infty \frac{z^ke^{2k\pi i\nu / m}}{\Gamma(\alpha k + \beta)}
+        \sum_{\nu = -m}^{m-1} E_{\alpha,\beta}\left(ze^\frac{2\pi i \nu}{(2m+1)} \right)
+            &= \sum_{\nu=-m}^{m-1} \sum_{k=0}^\infty \frac{z^ke^{2k\pi i\nu / (2m+1)}}{\Gamma(\alpha k + \beta)} \\
+            &= \sum_{k=0}^\infty \sum_{\nu=-m}^{m-1} \frac{z^ke^{2k\pi i\nu / (2m+1)}}{\Gamma(\alpha k + \beta)} \\
+            &= \sum_{k=0, (2m + 1) | k}^\infty \frac{mz^k}{\Gamma(\alpha k + \beta)} \\
+            &= \sum_{k=0}^\infty \frac{(2m+1)z^{k(2m+1)}}{\Gamma((2m+1)\alpha k + \beta)} \\
+            &= E_{\alpha, \beta}((2m+1)z^{(2m+1)})
+    \end{align}
+    We can flip this result around by doing a simple change of variables in terms of $ \alpha $ and $ \beta $ so we get that
+    \begin{align}
+        E_{\alpha, \beta}(z) = \frac{1}{2m+1} \sum_{\nu = -m}^{m-1} E_{\alpha / (2m+1), \beta}\left(z^{1/(2m+1)}e^{2\pi i \nu / (2m+1)}\right)
+    \end{align}
+\end{proof}
+
+We can now use this lemma to prove a useful asymptotic expansion.
+\begin{lemma}
+    For $ \alpha \geq 2 $ then for some integer $ p $ we have that
+    \begin{align}
+        E_{\alpha, \beta} = \frac{1}{\alpha} \underbrace{\sum_n \left[ \left( x^{1/\alpha} e^{2\pi in / \alpha}\right)^{1-\beta} e^{e^{2 \pi i n / \alpha} z^{1 / \alpha}}\right]}_{\circledast} - \sum_{k=1}^{p} \frac{z^{-k}}{\Gamma(\beta - \alpha k)} + O(|z|^{-1-p})
+    \end{align}
+    as $ |z| \lra \infty $ and where $ \circledast $ is the sum over $ n $ such that 
+    \begin{align}
+        |\arg(z) + 2\pi n| \leq \frac{\pi \alpha}{2}.
+    \end{align}
+\end{lemma}
+This proof follows the ideas outlined by Podlubny \cite{Podlubny1999}.
+\begin{proof}
+    Fix $ z $ then starting with the result of \ref{lem:mit_lef_summation} we have 
+    \begin{align}
+        E_{\alpha, \beta}(z) = \frac{1}{2m+1} \sum_{\nu=-m}^{m-1} E_{\alpha / (2m+1), \beta}\left( z^{1/(2m+1)} e^{2i\pi\nu/(2m+1)}\right).
+    \end{align}
+    Choose the integer $ m \geq 1 $ such that 
+    \begin{align}
+        \frac{\alpha}{2m+1} < 2.
+    \end{align}
+    This means that all the Mittag-Leffler functions in the sum have their order (in the first parameter) strictly less than $ 2 $. 
+    
+    Select $ \mu $ such that 
+    \begin{align}
+        \frac{\pi \alpha}{2(2m+1)} < \mu < \min\left\{ \pi, \frac{\pi \alpha}{2m+1} \right\}
+    \end{align}    
+    then apply the results of 
+    lemmas \ref{lem:mit_lef_asym_exp_1} and \ref{lem:mit_lef_asym_exp_2} to get 
+    \begin{align}
+        E_{\alpha, \beta}(z) &= \frac{1}{\alpha} \underbrace{\sum_{n} \left[ \left(z^{1 / \alpha} e^{2\pi i n / \alpha} \right)^{1-\beta} e^{e^{2\pi i n / \alpha}z^{1 / \alpha} }\right]}_{\circledast \circledast} \\ 
+    & \ \ \ - \frac{1}{2m + 1} \underbrace{\sum_{\nu=-m}^m \left[ \sum_{k=1}^q \frac{z^{-k/(2m+1)}e^{-2\pi k \nu i / (2m + 1)}}{\Gamma(\beta - k\alpha / (2m + 1))} + O\left(|z|^{-(q+1)/(2m+1)}\right) \right]}_{\circledast\circledast\circledast}
+    \end{align}
+    where the sum in $ \circledast \circledast $ is taken over $ n $ such that
+    \begin{align}
+        \label{eq:mit_lef_asym_cond}
+        \left| \arg\left( z^{1/(2m+1)}e^{2\pi n i / (2m + 1)} \right)\right| \leq \mu
+    \end{align} 
+    so that the conditions of lemma \ref{lem:mit_lef_asym_exp_1} is satisfied. 
+    By writing $ z $ in terms of complex exponentials it is clear to see that the condition in \eqref{eq:mit_lef_asym_cond} is equivelent to
+    \begin{align}
+        \left| \arg(z) + 2\pi n \right| \leq (2m + 1)\mu
     \end{align}
 \end{proof}
 \subsubsection{A Numerical Algorithm for Evaluating $ E_{\alpha, \beta}(z) $}
