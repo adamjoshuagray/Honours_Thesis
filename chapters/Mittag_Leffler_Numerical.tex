@@ -387,36 +387,38 @@ This proof follows that of Podlubny \cite{Podlubny1999}.
 \end{proof}
 In order to prove a useful asymptotic expansion of the Mittag-Leffler function we will need the following lemma which allows us to express higher order (in terms of $ \alpha $) Mittag-Leffler functions in terms of lower order Mittag-Leffler functions. 
 \begin{lemma}
+    [WE MAKE A CORRECTION - CHECK - HIGH RISK OF ERROR!]
     \label{lem:mit_lef_summation}
     We have the summation formula
     \begin{align}
-        E_{\alpha, \beta}(z) = \frac{1}{2m+1} \sum_{\nu=-m}^{m-1} E_{\alpha / (2m+1), \beta}\left( z^{1/(2m+1)} e^{2i\pi\nu/(2m+1)}\right).
+        E_{\alpha, \beta}(z) = \frac{1}{2m+1} \sum_{\nu=-m}^{m} E_{\alpha / (2m+1), \beta}\left( z^{1/(2m+1)} e^{2i\pi\nu/(2m+1)}\right).
     \end{align}
 \end{lemma}
 The result follows similar arguments outlined by Podlubny \cite{Podlubny1999}.
 \begin{proof}
     Firstly note that
-    \begin{align*}
-        \sum_{\nu=-m}^{m-1} e^{\frac{2\pi i \nu k}{2m+1}} = 
+    \begin{align}
+        \label{eq:sum_identity_1}
+        \sum_{\nu=-m}^{m} e^{\frac{2\pi i \nu k}{2m+1}} = 
             \begin{cases}
                 2m + 1 & k \equiv 0 (\mod 2m+1) \\
                 0 & k \not\equiv 0 (\mod 2m+1).
             \end{cases}
-    \end{align*}
+    \end{align}
     This is a well known result and follows from a simple pairing argument.
     
     Then we can write
     \begin{align}
-        \sum_{\nu = -m}^{m-1} E_{\alpha,\beta}\left(ze^\frac{2\pi i \nu}{(2m+1)} \right)
-            &= \sum_{\nu=-m}^{m-1} \sum_{k=0}^\infty \frac{z^ke^{2k\pi i\nu / (2m+1)}}{\Gamma(\alpha k + \beta)} \\
-            &= \sum_{k=0}^\infty \sum_{\nu=-m}^{m-1} \frac{z^ke^{2k\pi i\nu / (2m+1)}}{\Gamma(\alpha k + \beta)} \\
+        \sum_{\nu = -m}{m} E_{\alpha,\beta}\left(ze^\frac{2\pi i \nu}{(2m+1)} \right)
+            &= \sum_{\nu=-m}^{m} \sum_{k=0}^\infty \frac{z^ke^{2k\pi i\nu / (2m+1)}}{\Gamma(\alpha k + \beta)} \\
+            &= \sum_{k=0}^\infty \sum_{\nu=-m}^{m} \frac{z^ke^{2k\pi i\nu / (2m+1)}}{\Gamma(\alpha k + \beta)} \\
             &= \sum_{k=0, (2m + 1) | k}^\infty \frac{mz^k}{\Gamma(\alpha k + \beta)} \\
             &= \sum_{k=0}^\infty \frac{(2m+1)z^{k(2m+1)}}{\Gamma((2m+1)\alpha k + \beta)} \\
             &= E_{\alpha, \beta}((2m+1)z^{(2m+1)})
     \end{align}
     We can flip this result around by doing a simple change of variables in terms of $ \alpha $ and $ \beta $ so we get that
     \begin{align}
-        E_{\alpha, \beta}(z) = \frac{1}{2m+1} \sum_{\nu = -m}^{m-1} E_{\alpha / (2m+1), \beta}\left(z^{1/(2m+1)}e^{2\pi i \nu / (2m+1)}\right)
+        E_{\alpha, \beta}(z) = \frac{1}{2m+1} \sum_{\nu = -m}^{m} E_{\alpha / (2m+1), \beta}\left(z^{1/(2m+1)}e^{2\pi i \nu / (2m+1)}\right)
     \end{align}
 \end{proof}
 
@@ -459,14 +461,44 @@ This proof follows the ideas outlined by Podlubny \cite{Podlubny1999}.
         \left| \arg\left( z^{1/(2m+1)}e^{2\pi n i / (2m + 1)} \right)\right| \leq \mu
     \end{align} 
     so that the conditions of lemma \ref{lem:mit_lef_asym_exp_1} is satisfied. 
+    By interchanging the order of the sums we have that
+    \begin{align}
+        E_{\alpha, \beta}(z) &= \frac{1}{\alpha} \sum_{n} \left[ \left(z^{1 / \alpha} e^{2\pi i n / \alpha} \right)^{1-\beta} e^{e^{2\pi i n / \alpha}z^{1 / \alpha} }\right] \\ 
+    & \ \ \ - \frac{1}{2m + 1} \sum_{k=1}^q \frac{z^{-k/(2m + 1)}}{\Gamma(\beta - k\alpha / (2m + 1))} \underbrace{\left[ \sum_{\nu = -m}^m e^{-2\pi k \nu i / (2m + 1)} \right]}_{\boxast} \\ 
+    & \ \ \ + O\left(|z|^{-(q+1)/(2m+1)} \right)
+    \end{align}
+    A simple corollory to the statement in \eqref{eq:sum_identity_1} is that
+    \begin{align}
+        \sum_{\nu = -m}^{m} e^{-2\pi i \nu k / (2m + 1)} = 
+        \begin{cases}
+            2m+1    & k \equiv 0 \mod (2m + 1) \\
+            0       & k \not\equiv 0 \mod (2m + 1) 
+        \end{cases}
+    \end{align}
+    which follows from reversing the order of summation in \eqref{eq:sum_identity_1}. So by choosing some integer $ p \geq 1 $ and setting $ q = (2m+1)(p+1) - 1 $ we are able to reduce the sum in $ \boxast $ and write
+     \begin{align}
+        E_{\alpha, \beta}(z) &= \frac{1}{\alpha} \sum_{n} \left[ \left(z^{1 / \alpha} e^{2\pi i n / \alpha} \right)^{1-\beta} e^{e^{2\pi i n / \alpha}z^{1 / \alpha} }\right] \\ 
+    & \ \ \ - \frac{1}{2m + 1} \sum_{k=1, (2m+1) | k}^q \frac{z^{-k/(2m + 1)}}{\Gamma(\beta - k\alpha / (2m + 1))} \\ 
+    & \ \ \ + O\left(|z|^{-1-p} \right) \\
+    &= \frac{1}{\alpha} \sum_{n} \left[ \left(z^{1 / \alpha} e^{2\pi i n / \alpha} \right)^{1-\beta} e^{e^{2\pi i n / \alpha}z^{1 / \alpha} }\right] \\ 
+    & \ \ \ - \frac{1}{2m + 1} \sum_{k=1}^p \frac{z^{-k}}{\Gamma(\beta - k\alpha)} \\ 
+    & \ \ \ + O\left(|z|^{-1-p} \right) \\
+    \end{align}  
     By writing $ z $ in terms of complex exponentials it is clear to see that the condition in \eqref{eq:mit_lef_asym_cond} is equivelent to
     \begin{align}
         \left| \arg(z) + 2\pi n \right| \leq (2m + 1)\mu
     \end{align}
+    For the sake of setting up the condition in the statement of the lemma we can always select a $ \mu $ so that the conditions
+    \begin{align}
+        | \arg(z) + 2\pi n| &\leq (2m + 1) \mu \\
+        | \arg(z) + 2\pi n| &\leq \frac{\pi \alpha}{2}
+    \end{align}
+    specify the same set of values of $ n $ and so the result follows. 
 \end{proof}
 \subsubsection{A Numerical Algorithm for Evaluating $ E_{\alpha, \beta}(z) $}
 \subsection{Wright Function}
 \subsubsection{Contour Integral Representation of $ W_{\alpha, \beta}(z) $}
+
 \subsubsection{A Numerical Algorithm for Evaluating $ W_{\alpha, \beta}(z) $}
 
 \subsection{Additional Notes on the Numerical Evaluation of the Gamma Function}
