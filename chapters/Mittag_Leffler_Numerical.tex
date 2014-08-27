@@ -296,7 +296,9 @@ This proof is essentially identical to that of \ref{lem:mit_lef_contour_1}, with
         E_{2,\beta}(z) = \frac{1}{2} z^{(1-\beta)/2} e^{z^{1/2}} +  \frac{1}{4\pi i} \int_{\gamma(\varepsilon, \pi)} \frac{e^{\zeta^{1/2}} \zeta^{-(1-\beta)/2}}{\zeta - z} d\zeta.
     \end{align*}
 \end{proof}
+We will use the results of lemma \ref{lem:mit_lef_contour_1} in developing asymptotic expansions in section \ref{sec:mit_lef_asym_exp}, which we will then go on to use in section \ref{sec:mit_lef_numerical}. Gorenflo et al. \cite{Gorenflo2002} develop alternative integral representations which are better suited to numerical evaluation. We explore these representations in the following lemmas. 
 \subsubsection{Asymptotic Expansions of $ E_{\alpha, \beta}(z) $}
+\label{sec:mit_lef_asym_exp}
 We now wish to use these integral representations to develop asymptotic expansions.
 \begin{lemma}
     \label{lem:mit_lef_asym_exp_1}
@@ -385,7 +387,7 @@ This proof follows that of Podlubny \cite{Podlubny1999}.
     \end{align}
     Using the same technique as in lemma \ref{lem:mit_lef_asym_exp_1} we can say that $ \circledast = O(|z|^{-1-p}) $ and so the result follows.
 \end{proof}
-In order to prove a useful asymptotic expansion of the Mittag-Leffler function we will need the following lemma which allows us to express higher order (in terms of $ \alpha $) Mittag-Leffler functions in terms of lower order Mittag-Leffler functions. 
+In order to prove a useful asymptotic expansion of the Mittag-Leffler function we will need the following lemma which allows us to express higher order (in terms of $ \alpha $) Mittag-Leffler functions in terms of lower order Mittag-Leffler functions. It appears the key result of the following lemma was first shown by Dzherbashyan \cite{Dzherbashyan1954} in 1954 but we will make reference to Podlubny \cite{Podlubny1999} for an modern (1999) English language source. 
 \begin{lemma}
     [WE MAKE A CORRECTION - CHECK - HIGH RISK OF ERROR!]
     \label{lem:mit_lef_summation}
@@ -422,7 +424,8 @@ The result follows similar arguments outlined by Podlubny \cite{Podlubny1999}.
     \end{align}
 \end{proof}
 
-We can now use this lemma to prove a useful asymptotic expansion.
+Although we will not directly use the following lemma in the numerical techniques outlined latter, we include this lemma here for completeness and to demonstrate the utility of the previous lemma. This is important because what it shows is that results which are restricted to $ 0 < \alpha < 2 $ can be extended to arbitary positive $ \alpha $. Although the ideas in this lemma date back to Dzherbashyan \cite{Dzherbashyan1954}, we again make reference to Podlubny \cite{Podlubny1999} as an English language source. 
+
 \begin{lemma}
     For $ \alpha \geq 2 $ then for some integer $ p $ we have that
     \begin{align}
@@ -495,8 +498,14 @@ This proof follows the ideas outlined by Podlubny \cite{Podlubny1999}.
     \end{align}
     specify the same set of values of $ n $ and so the result follows. 
 \end{proof}
+The results of lemmas \ref{lem:mit_lef_asym_exp_1} and \ref{lem:mit_lef_asym_exp_2} along with the ideas of ideas in lemma \ref{lem:mit_lef_summation} are used by 
+Gorenflo et al. \cite{Gorenflo2002} to develop numerical techniques for evaluating the Mittag-Leffler function. We will make refence to these in the next section. 
+
+
 \subsubsection{A Numerical Algorithm for Evaluating $ E_{\alpha, \beta}(z) $}
+\label{sec:mit_lef_numerical}
 \subsection{Wright Function}
+    
 \subsubsection{Contour Integral Representation of $ W_{\alpha, \beta}(z) $}
 
 \subsubsection{A Numerical Algorithm for Evaluating $ W_{\alpha, \beta}(z) $}
