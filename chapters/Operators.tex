@@ -45,6 +45,7 @@ The first property that we wish to explore is the semigroup property.
 \end{proof}
 We now derive the Laplace transform of a fractional integral of a function. This will be usefull in producing the tables [INSERT REF] of fractional integrals provided below.
 \begin{lemma}
+    \label{lem:rli_laplace}
     The laplace transform of $ \rli{0}{\alpha}{f} $ is given by
     \begin{align}
         \mathcal{L}\{ \rli{0}{\alpha}{f} \} = \frac{\mathcal{L}\{f\}}{s^\alpha}
@@ -62,4 +63,47 @@ We now derive the Laplace transform of a fractional integral of a function. This
             &= \frac{\mathcal{L}\{f\}}{s^\alpha}.
     \end{align}
 \end{proof}
+Note that this proof hinges off the Laplace convolution theorem, and so it requires that the base of the fractional derivative, $ a $, has to be $ 0 $. In a similar fashion we can deal with the fourier transform of the fractional integral but with a base, $ a $, of $ -\infty $ instead so the Fourier convolution can be invoked. We formalise that with the next lemma.
+\begin{lemma}
+    \label{lem:rli_fourier}
+    The Fourier transform of $ \rli{0}{\alpha}{f} $ is given by
+    \begin{align}
+        \mathcal{F}\{ \rli{0}{\alpha}{f} \} = \frac{\mathcal{F}\{f\}}{(-i\omega)^\alpha}.
+    \end{align}
+\end{lemma}
+\begin{proof}
+    We firstly intoduce
+    \begin{align}
+        h_+^\alpha(t) = \begin{cases}
+            \frac{t^{\alpha-1}}{\Gamma(\alpha)} & t > 0 \\
+            0   & t \leq 0
+        \end{cases} 
+    \end{align} and then note that it is clear that
+    \begin{align}
+        \rli{0}{\alpha}{f}(t) &= \frac{1}{\Gamma(\alpha)} \int_{-\infty}^t (t-\tau)^{\alpha-1} f(\tau)d\tau \\
+            &= \frac{1}{\Gamma(\alpha)} \int_{-\infty}^\infty h_+^\alpha(t-\tau)f(\tau)d\tau \\
+            &= (h_+^\alpha * f)(t)
+    \end{align}
+    where $ * $ represents the Fourier convolution.
+    By employing the Fourier convolution theorem it follows that
+    \begin{align}
+         \mathcal{F}\{ \rli{0}{\alpha}{f} \} = \mathcal{F}\{ h_+^\alpha \}\mathcal{F}\{f\}.
+    \end{align}
+    It remains only to show that $ \mathcal{F}\{h_+^\alpha\} = (-i\omega)^{-\alpha} $. To see this note that the Laplace transform of $ h_+^\alpha $ is given by
+    \begin{align}
+        \mathcal{L}\{h_+^\alpha\} = s^{-\alpha} 
+    \end{align}
+    and so by replacing $ s $ with $ -i\omega $, as in the Fourier transform we get the result. The convergence of the Fourier integral is guarenteed by Dirichlet's theorem for Fourier integrals as noted in \cite{Podlubny1999}. 
+\end{proof}
+We now use the results of lemmas \ref{lem:rli_laplace} and \ref{lem:rli_fourier} to produce the following simple table of fractional integrals. In many ways it is often easier to work with the Laplace or Fourier transforms of fractional integrals because the symbolic manipulations are almost trvial.
+\begin{figure}[H]
+    \begin{tabular}{|c|c|c|}
+        \hline
+        $ f(t) $ & $\rli{0}{\alpha}{f}(t) $ & $ \rli{-\infty}{\alpha}{f}(t) $ \\
+        \hline
+        $ t^\beta $ & $ \frac{\Gamma(\beta + 1)}{\Gamma(\alpha + \beta + 1)}t^{\alpha + \beta} $ & NA \\ 
+        $ e^{\lambda t} $ & $ t^{-\alpha} E_{1,1-\alpha}(\lambda t) $ & $ \lambda^\alpha e^{\lambda t} $ \\
+        $ t^\beta E_{\nu, \beta}(\lambda t^\nu) $ & $ t^{\beta $ & \\
+    \end{tabular}
+\end{figure}
 
