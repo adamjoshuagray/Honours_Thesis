@@ -1,0 +1,65 @@
+\section{Fractional Operators and Their Properties}
+In this section we will explore fractional order operators. We will define a fractional integral and examine two seperate definitions of the fractional derivative. We will also look at the properties of these operators and consider some of the differences between these operators and their integer order counterparts.
+
+\subsection{Riemann Liouville Fractional Integeral}
+In the introduction we considered the historical motivations of the Riemann Liouville fractional integral. Here we will reintroduce it formally and discuss it's properites.
+
+\begin{definition}[Riemann Liouville Fractional Integeral]
+\label{def:rld_1}
+The Riemann Liouville fractional integral, based at $ a \in \mathbb{R} $ and of order $ \alpha \in (0, \infty) $ of a function $ f $ is given by
+\begin{align}
+    \label{eq:rld_1}
+    \rli{\alpha}{a}{f} := \frac{1}{\Gamma(\alpha)} \int_a^t f(\tau) d\tau
+\end{align}
+\end{definition}
+From this point forward we refer to this as the \emph{fractional integral} of the function.
+
+It is possible to extend to the this defintion to $ \alpha \in \Cplx $ and $ a = \infty $. While we will touch on the $ a = -\infty $ case we will neglect discussion of $ \alpha \not\in \mathbb{R} $ and refer the interested reader to Samko et al. \cite{Samko1993}.  It is also worthy of note that some authors define a fractional operator with the limits of integration reversed. We will not deal with these operators, but instead refer the interested readoer to \cite{Samko1993}, [MORE REFS]. The definition given in \ref{def:rld_1} is the most common in the literature and is compatible with the rest of the theorems and definitions given here.
+
+Although it might seem like a good idea to describe the class of function for which the integral in \eqref{eq:rld_1} is well defined, this is a very complicated problem and we refer the interested reader to [INSERT REFS]. Although we don't deal with defining the set of admissable functions, this will not have any significant impact on the rest of our discussions because all the functions we deal with will be admissable. 
+
+The first property that we wish to explore is the semigroup property.
+\begin{lemma}
+    Two fraction integrals $ I_0^\alpha $ and $ I_0^\beta $ have the property that
+    \begin{align}
+        I_a^\alpha I_a^\beta = I_a^{\alpha + \beta} = I_a^\beta I_a^\alpha.
+    \end{align}
+\end{lemma} 
+\begin{proof}
+    For a function $ f $ we have that
+    \begin{align}
+        (I_a^\alpha I_a^\beta)(f)(t) &= \frac{1}{\Gamma(\alpha)}\int_a^t (t-\tau)^{\alpha - 1}  \frac{1}{\Gamma(\beta)}\int_a^\tau (\tau - z)^{\beta - 1}f(z) dz d\tau \\
+            &=\frac{1}{\Gamma(\alpha)\Gamma(\beta)} \int_a^t \int_a^\tau  (t-\tau)^{\alpha - 1}(\tau - z)^{\beta - 1}f(z) dz d\tau \\
+            \circledast  &= \frac{1}{\Gamma(\alpha)\Gamma(\beta)} \int_a^t \int_z^t (t-\tau)^{\alpha - 1} (\tau - z)^{\beta - 1} f(z) d\tau dz.
+    \end{align}
+    Now performing the change of variables $ x = \frac{\tau - z}{t - z} $ we get that
+    \begin{align}
+        \circledast
+        &= \frac{1}{\Gamma(\alpha)\Gamma(\beta)}\int_a^t \int_0^1 (t-z)^{\alpha - 1} (1-z)^{\alpha-1} x^{\beta - 1} (t-z)^{\beta - 1}(t-z) dx dz \\
+        &= \frac{1}{\Gamma(\alpha)\Gamma(\beta)}\int_0^1 (1-x)^{\alpha - 1} x^{\beta - 1} dx \int_a^t (t-z)^{\alpha + \beta - 1} f(z) dz \\
+        &= \frac{B(\alpha,\beta)}{\Gamma(\alpha)\Gamma(\beta)} \int_a^t (t-z)^{\alpha + \beta - 1} f(z) dz \\
+        &= \frac{1}{\Gamma(\alpha + \beta)} \int_a^t (t-z)^{\alpha + \beta - 1} f(z) dz \\
+        &= I_a^{\alpha + \beta}(f)(t).
+    \end{align}
+    This shows that $ I_a^\alpha I_a^\beta = I_a^{\alpha + \beta} $ and hence immediatly implies that $ I_a^\alpha I_a^\beta = I_a^\beta I_a^\alpha $.
+\end{proof}
+We now derive the Laplace transform of a fractional integral of a function. This will be usefull in producing the tables [INSERT REF] of fractional integrals provided below.
+\begin{lemma}
+    The laplace transform of $ \rli{0}{\alpha}{f} $ is given by
+    \begin{align}
+        \mathcal{L}\{ \rli{0}{\alpha}{f} \} = \frac{\mathcal{L}\{f\}}{s^\alpha}
+    \end{align}
+\end{lemma}
+\begin{proof}
+    Noticing that 
+    \begin{align}
+        \int_0^t (t - \tau)^{\alpha - 1} f(\tau) d\tau 
+    \end{align}
+    is the Laplace convolution of $ t^{\alpha - 1} $ and $ f(t) $ we can simply use the Laplace convolution theorem
+    to get that
+    \begin{align}
+        \mathcal{L}\{ \rli{0}{\alpha}{f} \} &= \mathcal{L}\{f\} \mathcal{L}\{ t^{\alpha - 1} \} \\
+            &= \frac{\mathcal{L}\{f\}}{s^\alpha}.
+    \end{align}
+\end{proof}
+
