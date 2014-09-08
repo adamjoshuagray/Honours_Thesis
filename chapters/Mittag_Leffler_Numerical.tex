@@ -510,6 +510,122 @@ in code available in Appendix A.
 
 \subsubsection{Stirling's Approximation}
 
+Without getting too bogged down on the historical context of Stirling approximation we would like to discuss some of the ideas behind the approximation. The main reason that we look at the Stirling approximation is because it forms the basis for the Lanczos and Spouge Approximations which are very important for modern applications. The interested reader is directed to books such as \cite{Whittaker1996, Paris2001} for a more comprehensive historical introduction of the Gamma function.
+
+The Stirling approximation relies on approximating the $ \log $ of the factorial function, instead of the factorial funtion itself.
+With that key point in mind consider,
+\begin{align}
+    \underbrace{\int_1^n \ln(x)dx}_{\circledast} &\approx \sum_{k=1}^{n} \ln(k) - \frac{1}{2}\left( \ln(1) + \ln(n)\right) \\
+    &= \sum_{k=1}^n \ln(k) - \frac{1}{2}\ln(n)
+\end{align}
+is a trapezoidal approximation of the integral $ \circledast $. Now also note that
+\begin{align}
+    \ln(n!) = \sum_{k=1}^n \ln(k)
+\end{align} 
+and so we have that
+\begin{align}
+    \label{eq:stirling_1}
+    \ln(n!) &\approx \int_1^n \ln(x) dx + \frac{1}{2} \ln(n) \\
+        &= \left(n + \frac{1}{2}\right)\ln(n) - n + 1.
+\end{align}
+While this might be an \emph{approximation} of the $ \log $ of the factorial function, we have no indication of the amount of error in the approximation. To that end we will need to employ the Euler-Maclaurin formula.
+
+\begin{lemma}[Euler Maclaurin Formula]
+    \label{lem:euler_maclaurin}
+    If $ f $ is $ p-1 $ times differentiable on $ [m, n] $ where $ m, n \in \Ntrl $ and
+    if
+    \begin{align}
+        I = \int_m^n f(x)dx
+    \end{align}
+    and
+    \begin{align}
+        S = \frac{1}{2} f(m) + f(m+1) + \cdots + f(n-1) + \frac{1}{2} f(n)
+    \end{align}
+    then
+    \begin{align}
+        S - I = \sum_{k=2}^{p} \frac{B_k}{k!} \left( f^{(k-1)}(n) - f^{(k-1)}(m) \right) + R
+    \end{align}
+    where the $ B_k $ are the Bernoulli numbers and $ R $ is an error term. 
+\end{lemma}
+The proof that follows is based on a proof by Apostol \cite{Apostol1999}.
+\begin{proof}
+    We begin by considering the Bernoulli polynomials. They are often defined \cite{Apostol1976} by
+    \begin{align}
+        B_0(x) &= 1 \\
+        B'_n(x) &= nB_{n-1}(x) \\
+        \int_0^1 B_n(x) dx &= 0 \text{ for } n \geq 1.
+    \end{align}
+    From this it is a trivial matter to calculate the first few polynomials.
+    \begin{align}
+        B_1(x) &= x - \frac{1}{2} \\
+        B_2(x) &= x^2 - x + \frac{1}{6} \\
+        B_3(x) &= x^3 - \frac{3}{2}x^2 + \frac{1}{2}x \\
+            &  \ \ \vdots
+    \end{align}
+    From this we define the Bernoulli numbers $ B_n = B_n(0) $ and the periodic Bernoulli functions 
+    \begin{align}
+        P_n(x) = B_n(x - \lfloor x \rfloor)
+    \end{align}
+    which agree with the Bernoulli polynomails on the interval $ (0,1) $ but are periodic with period $ 1 $.
+    Note that $ P_n(0) = P_n(1) = B_n $
+    and so if we consider the integral
+    \begin{align}
+        \int_k^{k+1} f(x)dx 
+    \end{align}
+    we can integrate by parts with
+    \begin{align}
+        u &= f(x) \\
+        du &= f'(x)dx \\
+        dv &= P_0(x) dx \\
+        v &= P_1(x) dx
+    \end{align}
+    to get
+    \begin{align}
+        \int_{k}^{k+1}f(x)dx &= [uv]_{k}^{k+1} - \int_k^{k+1} v du \\
+            &= \left[ f(x)P_1(x) \right]_k^{k+1} - \int_{k}^{k+1} f'(x) P_1(x) dx \\
+            &= B_1(k+1)f(k+1) - B_1(k)f(k) - \int_{k}^{k+1}f'(x)P_1(x) dx.
+    \end{align}
+    Now summing from $ k = m $ to $ k = n-1 $ we get that
+    \begin{align}
+        \sum_{k=m}^{n-1} \int_{k}^{k+1} f(x)dx &= \sum_{k=m}^{n-1} \left[ B_{1}(k+1)f(k+1) - B_1(k)f(k) - \int_{k}^{k+1}f'(x)P_1(x)dx\right] \\
+        &= \frac{f(m)}{2} + f(m+1) + \cdots + f(n-1) + \frac{f(n)}{2} - \int_{m}^{n} f'(x) P_1(x) dx
+    \end{align}
+    so by rearranging and adding $ \left( f(m) + f(n) \right) / 2 $ to both sides we get
+    \begin{align}
+        \sum_{k=m}^{n} f(k) =  \int_{m}^{n} f(x)dx + \frac{f(m) + f(n)}{2} + \underbrace{\int_{m}^{n} f'(x)P_1(x) dx}_{\circledast \circledast}
+    \end{align}
+    repeating the integration by parts on $ \circledast \circledast $ we get that
+    \begin{align}
+       \int_{m}^{n} f'(x) P_1(x)dx = \frac{B_2}{2}\left( f'(n) - f'(m) \right) - \frac{1}{2} \int_m^n f(x)P_2(x) dx
+    \end{align}
+    and thus
+    \begin{align}
+        \sum_{k=m}^n f(k) = \int_{m}^{n} f(x)dx + \frac{f(0)+f(n)}{2} + \frac{B_2}{2} \left( f'(n) - f'(m) \right) - \frac{1}{2} \int_{m}^{n} f''(x)P_2(x) dx.
+    \end{align}
+    Continuing thus
+    \begin{align}
+        \sum_{k=m}^{n} f(k) = \int_m^n f(x)dx + \sum_{k=2}^{p} \frac{B_k}{k!} \left( f^{(k-1)}(n) - f^{(k-1)}(m)\right) + R
+    \end{align}
+    where
+    \begin{align}
+        R = \frac{(-1)^{p+1}}{(2p+1)!} \int_{m}^n f^{(p+1)}(x) P_{(p+1)}(x) dx.
+    \end{align} 
+    Rearranging gives the desired result.
+\end{proof}
+It was proven by Lehmer \cite{Lehmer1940} that
+\begin{align}
+    |R| \leq \frac{2\zeta(p)}{(2\pi)^p} \int_{m}^{n} | f^{(p)}(x) | dx 
+\end{align}
+
+Returning to the original issue of the Stirling approximation we wish to formally deal with the error in the approximation \eqref{eq:stirling_1} by using lemma \ref{lem:euler_maclaurin}.
+Letting $ f(x) = \ln(x) $ in the Euler Maclaurin formula we have that
+\begin{align}
+    \ln(n!) - \frac{1}{2} = n\ln(n) - n + 1 + \sum_{k=2}^p \frac{(-1)^kB_k}{k(k-1)} \left( \frac{1}{n^{k-1}} - 1 \right) + R_{p,n}
+\end{align}
+There are essentially two sources or error, one from the Trapezodal approximation, which is encapsulated in the Euler Maclaurin formula and one from the error in the Euler Maclaurin formula itself, which gives rise to the $ R_{p,n} $ term. 
+
+
+
 \subsubsection{Lanczos Approximation}
 
 \subsubsection{Spouge Approximation}

@@ -1,5 +1,22 @@
 \begin{thebibliography}{10}
 
+\bibitem{Whittaker1996}
+{\em A Course in Modern Analysis (4th ed.)}.
+
+\bibitem{Lehmer1940}
+On the maxima and minima of bernoulli polynomials.
+\newblock {\em The American Mathematical Monthly}.
+
+\bibitem{Apostol1976}
+T.M. Apostol.
+\newblock {\em Introduction to analytic number theory}.
+\newblock Springer-Verlag, 1976.
+
+\bibitem{Apostol1999}
+T.M. Apostol.
+\newblock An elementary view of euler's summation formula.
+\newblock {\em The American Mathematical Monthly}, 106:409--418, 1999.
+
 \bibitem{MicrosoftTaskSchedular}
 Microsoft Copropration.
 \newblock Task schedulers.
@@ -44,6 +61,11 @@ M.~Harris.
 \newblock Mapping computational concepts to gpus.
 \newblock In M.~Pharr, R.~Fernando, and T.~Sweeney, editors, {\em GPU Gems 2}.
   Addison-Wesley Professional, 2005.
+
+\bibitem{Paris2001}
+R.B. Paris and D.~Kaminsky.
+\newblock {\em Asymptotics and the Mellin-Barnes Integrals}.
+\newblock Cambridge University Press, 2001.
 
 \bibitem{Podlubny1999}
 I.~Podlubny.

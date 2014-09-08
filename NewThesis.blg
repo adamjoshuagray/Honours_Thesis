@@ -2,48 +2,65 @@ This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: NewThesis.aux
 The style file: plain.bst
 Database file #1: references.bib
+I was expecting a `,' or a `}'---line 231 of file references.bib
+ :     
+ :     author      = "Whittiaker, E.T. and Watson, G.N.",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 263 of file references.bib
+ :     
+ :     author      = "Lehmer, D.H.",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "Caputo1967"
 Warning--I didn't find a database entry for "Caputo1971"
 Warning--I didn't find a database entry for "Heymans2005"
-You've used 11 entries,
+Warning--to sort, need author, editor, or key in Whittaker1996
+Warning--to sort, need author or key in Lehmer1940
+Warning--empty author and editor in Whittaker1996
+Warning--empty publisher in Whittaker1996
+Warning--empty year in Whittaker1996
+Warning--empty author in Lehmer1940
+Warning--empty year in Lehmer1940
+You've used 16 entries,
             2118 wiz_defined-function locations,
-            577 strings with 5704 characters,
-and the built_in function-call counts, 3109 in all, are:
-= -- 290
-> -- 137
+            601 strings with 6159 characters,
+and the built_in function-call counts, 4199 in all, are:
+= -- 387
+> -- 166
 < -- 2
-+ -- 56
-- -- 43
-* -- 179
-:= -- 545
-add.period$ -- 35
-call.type$ -- 11
-change.case$ -- 49
++ -- 71
+- -- 51
+* -- 246
+:= -- 715
+add.period$ -- 47
+call.type$ -- 16
+change.case$ -- 65
 chr.to.int$ -- 0
-cite$ -- 11
-duplicate$ -- 131
-empty$ -- 264
-format.name$ -- 43
-if$ -- 655
+cite$ -- 23
+duplicate$ -- 189
+empty$ -- 376
+format.name$ -- 51
+if$ -- 887
 int.to.chr$ -- 0
-int.to.str$ -- 11
-missing$ -- 14
-newline$ -- 59
-num.names$ -- 24
-pop$ -- 70
+int.to.str$ -- 16
+missing$ -- 21
+newline$ -- 81
+num.names$ -- 30
+pop$ -- 105
 preamble$ -- 1
-purify$ -- 42
+purify$ -- 56
 quote$ -- 0
-skip$ -- 79
+skip$ -- 110
 stack$ -- 0
-substring$ -- 140
-swap$ -- 19
+substring$ -- 188
+swap$ -- 24
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 36
-warning$ -- 0
-while$ -- 28
-width$ -- 13
-write$ -- 120
-(There were 3 warnings)
+type$ -- 50
+warning$ -- 7
+while$ -- 35
+width$ -- 18
+write$ -- 163
+(There were 2 error messages)
