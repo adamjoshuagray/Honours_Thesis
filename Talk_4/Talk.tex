@@ -12,6 +12,8 @@
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
+
+
 \lstset{frame=tb,
   language=Java,
   aboveskip=3mm,
@@ -28,6 +30,7 @@
   breakatwhitespace=true
   tabsize=3
 }
+
 
 \newcommand{\laplace}[1]{ \mathcal{L} \left\{ #1 \right\} }
 \newcommand{\fourier}[1]{ \mathcal{F} \left\{ #1 \right\} }
@@ -53,317 +56,299 @@
 \newcommand{\im}{\operatorname{im}}
 
 \mode<presentation>{}
-\title{Accelerating Numerical Solutions to Fractional Differential Equations}
-\subtitle{Adams Moulton Bashforth Method}
+\title{The Gamma Function}
+\subtitle{A Numerical Recipe}
 \author[Adam J. Gray]{Adam J. Gray\\{\small Supervised by: Dr Chris Tisdell}}
 \institute{
 	School of Mathematics and Statistics \\
 	University of New South Wales
 }
 
+\newtheorem{claim}{Claim}
+%\newtheorem{definition}{Definition}
+
 \begin{document}
+
 \begin{frame}
 	\titlepage
 \end{frame}
 
 
-\begin{frame}{Outline}
-    \begin{itemize}
-        \item Examine the Adams Moulton Bashforth method for a first order initial value problem.
-        \item Examine a fractional Adams Moulton Bashforth method.
-        \item Examine a parallel CPU based implementation of the scheme.
-        \item Examine a parallel GPU based implementation of the scheme.
+\begin{frame}{Overview}
+    \begin{itemize}    
+        \item Historical Background \\
+        \item Stirling Approximation \\
+        \item Lanczos Approximation \\
+%        \item Spouge Approximation
     \end{itemize}
 \end{frame}
 
-\begin{frame}{A first order problem}
-We would like to solve the following initial value problem.
-\begin{align*}
-    \frac{d}{dx} y(x) = f(x,y)
-\end{align*}
-\begin{align*}
-    y(0) = y_0
-\end{align*}
-This is equivalent to
-\begin{align*}
-    y(x) = y_0 + \int_0^x f(t, y(t))dt
-\end{align*}
+\begin{frame}{Why do we care?}
+    \begin{itemize}
+        \item The gamma function turns up everywhere in fractional calculus
+        \begin{itemize}
+            \item The definition of the Wright and Mittag-Leffler functions.
+            \item The definition of \emph{all} fractional integral and differential operators.
+            \item Part of the solution of many fractional differential equations.
+            \item Part of the solution of Abel's integral equations.
+            \item $\cdots$ 
+        \end{itemize} 
+        \item The gamma function turns up in many other fields
+        \begin{itemize}
+            \item Statistics (Beta, Gamma, Mittag-Leffler, ... distributions).
+            \item Number theory (Many theorems relate the Gamma function and the Riemann Zeta function).
+            \item $ \cdots $
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
-\begin{frame}{The first step}
-    Suppose we want to approximate the solution some small time-step $ h $ away from $ 0 $.
-    \begin{align*}
-        y(h) = y(0) + \int_0^h f(t, y(t)) dt
-    \end{align*}
-    Using a simple quadrature rule (trapezoidal) we could approximate the integral to get
-    \begin{align*}
-        y(h) = y(0) + \frac{h}{2} \left[ f(0, y(0)) + f(0, y(h)) \right]
-    \end{align*}
+\begin{frame}{History}
+    \begin{itemize}
+        \item Came out of correspondence between Euler and Goldbach. 
+        \item It was an interpolation problem.
+        \item It had been previously discussed by Stirling, D Bernoulli and Goldbach, but not solution had been found.
+        \item It was posed to Euler by Goldbach and was answered by Euler in two letters (October 1729 and January 1730).
+    \end{itemize} 
 \end{frame}
 
-\begin{frame}{Predictor Approximation of y(h)}
-    What if we approximate $ y(h) $ and use that value in the previous integral?
-    We can do this by using the rectangle quadrature rule which
-    gives us
+\begin{frame}{The Interpolation Problem}
+    Interpolate
     \begin{align*}
-        \int_0^h f(t, y(t)) dt \approx h f(0, y(0))
+        n!
     \end{align*}
-    and so we could say
-    \begin{align*}
-        y^{P}(h) = y_0 + h f(0, y(0))
-    \end{align*}
-    and putting $y^{P}(h) $ in the equation before yields
-    \begin{align*}
-        y(h) = y(0) + \frac{h}{2} \left[ f(0, y(0)) + f(0, y^P(h)) \right]
-    \end{align*}
+   % \hline
+    \\
+    Interpolation problems are interesting because they allow for an extension of meaning. They allow one to create meaning for things that don't have a physically intuitive meaning. Other examples are $ a^b $ where $ b $ is a real number, and fractional derivatives.
 \end{frame}
 
-\begin{frame}{Iterating the process}
-    The previous slides explained how to step forward one small time-step $ h $. We can now use the value calculated for $ y(h) $ as the \emph{initial value} and calculate $ y(2h) $.
-    \begin{align*}
-        y(2h) = y(h) + \frac{h}{2} \left[ f(h, y(h)), + f(2h, y^{P}(2h)) \right]
-    \end{align*}
-    with 
-    \begin{align*}
-        y^P(2h) = y(h) + hf(h, y(h)).
-    \end{align*}
-    We can restate this whole process iteratively:
-    \begin{align*}
-        y_{k+1} &= y_{k} + \frac{h}{2} \left[ f(x_k, y_k) + f(x_{k+1}, y_{k+1}^{P} ) \right] \\
-        y^{P}_{k+1} &= y_k + hf(x_k, y_k)
-    \end{align*}
-\end{frame}
+\begin{frame}{An unsatisfactory answer}
+    One could just draw a line through the points on the plane which corresponded to factorial function. This interpolation would be continuous, and would have the desired interpolation property. 
 
-\begin{frame}{Is the only way of doing things?}
-\begin{itemize}
-    \item No! 
-    
-    \item There are lots of different schemes for numerically approximating the solutions to integer order initial value problems (RK3/4, Euler, Milne, etc).
-    
-    \item In fact we have hidden the Euler method inside this method. The Euler method basically puts some small but non-zero $ h $ into the first principles definition of the derivative and solves from there.
-    
-\end{itemize}
+We want a function, and in the 18th century a function was more or less synonymous with an expression in terms of the sums, products and integrals or elementary functions. 
+
+We wanted some other way to write the factorial down. 
 
 \end{frame}
 
-\begin{frame}{Key Computational Points of this Method}
-\begin{itemize}
-    \item It's numerically stable for reasonable choices of $ f $.
-    \item It's convergent of order $ 2 $ in the sense that 
+\begin{frame}{Euler's First Solution}
+    The first solution to the problem arose when Euler noticed that
     \begin{align*}
-        \max_{j=0,1,...,N} | y(t_j) - y_j | = O(h^2) 
+        n! = \prod_{k=1}^\infty \frac{\left( 1 + \frac{1}{k}\right)^n}{1 + \frac{n}{k}}.
     \end{align*}
-    \item The computational complexity is $ O(N) $ (linear time).
-\end{itemize}
- 
-\end{frame}
+    This was the solution given in the October 1729 letter. 
 
-\begin{frame}{The Fractional Problem}
-    We wish to solve a fractional initial value problem of the form
+    Importantly Euler noticed when $ n = \frac{1}{2} $, we get the following infinite product (after manipulation)
     \begin{align*}
-        \capder{0}{x}{\alpha}{y}(x) = f(x,y)
+        \prod_{k=1}^\infty \frac{2k}{k(k+1)}
     \end{align*}
-    along with initial conditions
+    which was a famous infinite product which was shown by Wallis, to be equal to $ \frac{\pi}{2} $. 
+\end{frame}
+\begin{frame}{Euler's First Solution: Modern Context}
     \begin{align*}
-        y(0) = y_0^{(k)} & & 0 \leq k \leq \lceil \alpha \rceil - 1
-    \end{align*}
-    \hrulefill
-    \begin{align*}
-        \capder{0}{x}{\alpha}{y}(x) = \frac{1}{\Gamma( \lceil \alpha \rceil - \alpha)} \int_{0}^{x} \frac{\frac{d^{\lceil \alpha \rceil}}{dt^{\lceil \alpha \rceil}} y(t)}{(x-t)^{\lceil \alpha \rceil - \alpha + 1}}dt
+        \Gamma(t) = \lim_{n \lra \infty} \frac{n! n^t}{t(t+1) \cdots (t + n)}
     \end{align*}
 \end{frame}
+\begin{frame}{Euler's Second Solution}
+    Euler noticed that the value for $ n = \frac{1}{2} $ we ended up with a value involving $ \pi $. Based on this he deduced that an integral formulation should exist. (Based of the fact that integrals sometimes have results involving $ pi $.)
+    Euler decided to look at
+    \begin{align*}
+        \int_0^1 x^c(1-x)^ndx
+    \end{align*}
+    and special cases of this integral had already been dealt with by Wallis, Newton and Stirling. 
 
-\begin{frame}{Equivalent Integral Equation}
-The initial value problem
+    After a lot of manipulation he ended up with
     \begin{align*}
-        \capder{0}{x}{\alpha}{y}(x) = f(x,y)
-    \end{align*}
-    along with initial conditions
-    \begin{align*}
-        y(0) = y_0^{(k)} & & 0 \leq k \leq \lceil \alpha \rceil - 1
-    \end{align*}
-    is equivalent to the integral equation
-    \begin{align*}
-        y(x) = \sum_{k = 0}^{\lceil \alpha \rceil - 1} y_0^{(k)} \frac{x^k}{k!} + \frac{1}{\Gamma(\alpha)} \int_0^x (x - t)^{\alpha - 1}f(t,y(t))dt
+        n! = \int_0^1 (-\log x)^n dx.
     \end{align*}
 \end{frame}
-
-\begin{frame}{The Fractional Case}
-    \begin{align*}
-    y_{k+1} &= \sum_{j=0}^{\lceil \alpha \rceil - 1} y_{0}^{(j)} \frac{x^j_{k+1}}{j!} + \\
-    & \frac{1}{\Gamma(\alpha)} \left( \sum_{j=0}^k a_{j,k+1} f(x_j,y_j) + a_{k+1,k+1}f(x_{k+1}, y_{k+1}^P )\right) \\
-    y_{k+1}^P &= \sum_{j=0}^{\lceil \alpha \rceil - 1} \frac{x^{j}_{k+1}}{j!} y_{0}^{(j)} + \frac{1}{\Gamma(\alpha)} \sum_{j=0}^{k} b_{j,k+1} f(x_j, y_j).
-\end{align*}
-
+\begin{frame}{Euler's Second Solution}
+    Interestingly Euler went via the Beta function. So despite the fact that
+    \begin{align}
+        B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+    \end{align}
+    the Beta function arose ``before'' the Gamma function. This is actually why the Beta function is sometimes referred to as the first Eulerian integral, and the Gamma function is referred to as the second Eulerian integral.
 \end{frame}
-
-\begin{frame}{Coefficients}
-\begin{align*}
-    a_{j,k+1} &= \frac{h^\alpha}{\alpha(\alpha+1)} \times
-    \begin{cases}
-        (k^{\alpha+1}-(k-\alpha)(k+1)^\alpha) & \text{ if } j = 0 \\
-        ((k-j+2)^{\alpha + 1} + (k-j)^{\alpha+1} - 2(k-j+1)^{\alpha+1}) & \text{ if } 1 \leq j \leq k \\
-        1 & \text{ if } j = k + 1.
-    \end{cases} \\
-    b_{j,k+1} &= \frac{h^\alpha}{\alpha} \left( (k+1-j)^\alpha - (k-j)^\alpha \right).
-\end{align*}
-\end{frame}
-
-\begin{frame}{Parallel Approach}
-\resizebox{300pt}{!}{
-\input{../diagrams/AMB_y_Diagram.tex}
-}
-\end{frame}
-\begin{frame}{Parallel Formulation}
-We can requite the previous equations in the form
-\begin{align*}
-y_{j+1}^P = I_{j+1} + h^\alpha H_{j,\ell}^P + h^\alpha L_{j,\ell}^P
-\end{align*}
-and
-\begin{align*}
-y_{j+1} = I_{j+1} + h^{\alpha} H_{j,\ell} + h^\alpha L_{j,\ell}
-\end{align*}
-\end{frame}
-\begin{frame}{Parallel Formulation}
-\begin{align*}
-I_{j+1} & := \sum_{k=0}^{\lceil \alpha \rceil -1} \frac{x_{j+1}^k}{k!} y_0^{(k)} \\
-H^P_{j,\ell} & := \sum_{k=0}^{(\ell-1)p} b_{j-k} f(x_k, y_k) \\
-L_{j,\ell}^P & := \sum_{k=(\ell-1)p+1}^{j} b_{j-k} f(x_k,y_k) \\
-H_{j,\ell} & := c_j f(x_0, y_0) + \sum_{k=1}^{(\ell - 1)p} a_{j-k}f(x_k, y_k) \\
-L_{j,\ell} & := \sum_{k=(\ell-1)p + 1}^j a{j-k} f(x_k, y_k) + \frac{f(x_{j+1}, y^P_{j+1})}{\Gamma(\alpha + 2.)}
-\end{align*}
-\end{frame}
-
-\begin{frame}{Task Flow (in a single block)}
-\resizebox{200pt}{!}{
-\input{../diagrams/AMB_Task_Diagram.tex}
-}
-\end{frame}
-\begin{frame}{Is this parallelization reasonable?}
-\begin{principle}[Amdahl]
-Let $ P $ be the proportion of a computation which can be parallelized in a given progress. Then the speedup given by
-$ Q $ cores is
-\begin{align*}
-	S(Q) = \frac{1}{(1-P)+\frac{P}{Q}}
-\end{align*}
-
-\end{principle}
-
-\begin{definition}[Amdahl Efficiency]
-\label{def:amdahl_efficient}
-    Let $ S(N,Q) $ represent the parallel speedup for a problem with input size $ N $ and executed with $ Q $ cores.
-    Then we define the Amdahl efficiency of parallel scheme as 
-    \begin{align*}
-        E(Q) = \lim_{N \lra \infty} \frac{S(N, Q)}{Q}.
-    \end{align*}
-    Further we say that a parallel scheme is Amdahl efficient with respect to its serial counterpart if $ E(Q) = 1 $.
-\end{definition}
-\end{frame}
-
-
-\begin{frame}
-\begin{proposition}
-The parallel Adams Moulton Bashforth scheme is Amdahl efficient with respect to its serial counterpart.
-\end{proposition}
-\begin{proof}
-We present the parallelizable fraction of computation in each block of variables in the following table. The order column represents the number of \emph{multiply-add} operations per task.
-\end{proof}
-\resizebox{300pt}{!}{
-\begin{tabular}[ht]{|c|c|c|c|}
-\hline
-Task        & Computational Complexity  & Number of Variables per Block     & Total Complexity \\ \hline
-$ H $       & $ O(\ell p ) $            & $ p $                             & $ O(\ell p^2) $ \\ \hline
-$ H_p $     & $ O(\ell p ) $            & $ p $                             & $ O(\ell p^2) $ \\ \hline
-$ I $       & $ O( \alpha ) $           & $ p $                             & $ O(p) $ \\ \hline \hline          
-$ L $       & $ O( p ) $                & $ p $                             & $ O(p^2) $ \\ \hline
-$ L_p $     & $ O( p ) $                & $ p $                             & $ O(p^2) $ \\ \hline
-\end{tabular}
-}
-\end{frame}
-\begin{frame}
-In each block $ H $, $ H_p $ and $ I $ can be computed in parallel across all variables in the block. For the purposes of simplicity we assume that the tasks $ L $ and $ L_p $ must all be computed in serial across all variables in a block. This means that in the $ \ell$-th block the non-parallelizable fraction of computation is
-\begin{align*}
-    \overline{P}_{block}(\ell) \sim \frac{2p^2}{2p^2(\ell + 1) } \sim \frac{1}{\ell}
-\end{align*}
-
-The amount of computation in the $ \ell$-th block is $ O(\ell p^2) $ and there are $ K \approx \frac{N}{p} $ blocks in the total computation. This means that the total amount of computation is
-\begin{align*}
-    \sum_{\ell=1}^{K} \ell p^2 \sim \frac{K^2p^2}{2}
-\end{align*}
-and by taking a weighted average sum, the total fraction of non-parallelizable computation is
-\begin{align*}
-    \label{eq:tot_par_c}
-    \overline{P}_{total} \sim \sum_{\ell = 1}^{K} \frac{2\ell p^2}{K^2 \ell p^2} = \frac{2}{K} = \frac{2p}{N}.
-\end{align*}
-\end{frame}
-\begin{frame}
-Noticing the fact that the computation in the task $ I $ is insignificant compared to $ H $ and $ H_p $ we would suppose using $ Q = 2p $ cores would be in some sense optimal. Applying Amdahl's principle with the result in \ref{eq:tot_par_c} and with $ Q = 2p $ we get 
-\begin{align*}
-    S(N, Q) &= S(N, 2p) \\
-    &\sim \frac{1}{(\frac{2p}{N}) + \frac{1-\frac{2p}{N}}{2p} } \\
-\end{align*}
-then letting $ N \lra \infty $ we get
-\begin{align*}
-    E(p) = \lim_{N \lra \infty} \left(\frac{1}{(\frac{2p}{N}) + \frac{1-\frac{2p}{N}}{2p} } \right) \slash p = 1.
-\end{align*}
-\end{frame}
-
-\begin{frame}{Practical Experimentation}
-I solved the initial value problem being discussed with $ \alpha = \frac{1}{2} $ and $ y(0) = 1 $ over the interval $ [0, 1] $ using a C\# implementation of the above algorithm.
-\end{frame}
-\begin{frame}{Practical Experimentation}
-\begin{figure}[H]
-\includegraphics[scale = 0.2]{../images/Dot_Net_Performance_No_Label}
-\caption{Average runtime of the scheme for different values of $ p $ and $ N $}
-\label{fig:mono_performance_surface}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Redesigning the Algorithm for CUDA}
-    Instead of trying to compute multiple variables in parallel we just return to the original (single threaded) formulation of the scheme and compute the large sums in parallel. 
+\begin{frame}{Gamma Function}
+Through a change of variables ( $ t = -\ln(s) $ ) and a shift of argument we get the usual definition of the Gamma function.
+    \begin{definition}
         \begin{align*}
-    y_{k+1} &= \sum_{j=0}^{\lceil \alpha \rceil - 1} y_{0}^{(j)} \frac{x^j_{k+1}}{j!} + \\
-    & \frac{1}{\Gamma(\alpha)} \left( \sum_{j=0}^k a_{j,k+1} f(x_j,y_j) + a_{k+1,k+1}f(x_{k+1}, y_{k+1}^P )\right) \\
-    y_{k+1}^P &= \sum_{j=0}^{\lceil \alpha \rceil - 1} \frac{x^{j}_{k+1}}{j!} y_{0}^{(j)} + \frac{1}{\Gamma(\alpha)} \sum_{j=0}^{k} b_{j,k+1} f(x_j, y_j).
+            \Gamma(z) = \int_0^\infty x^{z-1} e^{-x} dx
+        \end{align*}
+    \end{definition}    
+\end{frame}
+\begin{frame}{Interesting Facts}
+    The modern Gamma function is such that for $ n \in \Ntrl $
+    \begin{align*}
+        (n-1)! = \Gamma(n)
+    \end{align*}
+    We can blame Legendre for that nonsense.
+
+
+    The Gamma function is the unique solution to the original interpolation function which is positive, logarithmically convex and equal to 1 at 1. This is called the  Bohr–Mollerup theorem.
+\end{frame}
+\begin{frame}{Euler: Fractional Calculus}
+    Euler noticed that
+    \begin{align*}
+        \frac{d^n}{dx^n} x^m = \frac{m!}{(m-n)!}x^{m-n}
+    \end{align*}
+    and so he immediately wrote (but in notation available to him)
+    \begin{align*}
+        \frac{d^q}{dx^q} x^q = \frac{\Gamma(n+1)}{\Gamma(n-q+1)} x^{n-q}
+    \end{align*}
+    and made use of this to give the following result
+    \begin{align*}
+        \frac{d^\frac{1}{2}}{dx^\frac{1}{2}} x = 2 \sqrt{\frac{x}{\pi}}
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Stirling Approximation}
+We wish to come up with \emph{another} way of approximating the factorial function.
+The Stirling approximation does not claim to be an exact formula for the gamma function or the factorial function, but rather
+an approximation.
+\begin{itemize}
+    \item There are several ways to come up with a \emph{Stirling} approximation.
+    \item There are several different forms of the \emph{Stirling} approximation.
+\end{itemize}
+Over the next few slides I'm going to step you through the process of coming up with the Stirling approximation.
+\end{frame}
+\begin{frame}{The Laplace Method}
+\begin{theorem}
+        If $ f : [a, b] \lra \infty $ is twice differentiable function with a unique $ x_0 \in [a,b] $ such that $ f(x_0) = \max_{[a,b]}f(x) $ and such that $ f''(x_0) < 0 $ then
+\begin{align*}
+    \lim_{n \lra \infty} \left( \frac{\int_a^b e^{nf(x)}dx}{e^{nf(x)} \sqrt{\frac{2\pi}{n(-f''(x_0))}}} \right) = 1
+\end{align*}
+\end{theorem}
+
+Although I have presented a \emph{Laplace} method here, there are actually quite significant generalisations of this method for which the proof of this method is instructive. The proof of this method / result is well beyond the scope of this talk. 
+
+We can obviously rewrite this result as
+\begin{align*}
+    \int_a^b e^{nf(x)}dx \sim e^{nf(x)} \sqrt{\frac{2\pi}{n(-f''(x_0))}}
 \end{align*}
 \end{frame}
 
-
-\begin{frame}{Quick Notes for CUDA}
-\begin{itemize}
-    \item CUDA is particularly good for SIMD type computations (same instructions multiple data). We also refer to this as data parallelism. (We have a large amount of that in this particular case)
-    \item We by calling a function in CUDA we can actually be invoking 1000s of instances of the function. 
-    \item Each instance is passed \emph{grid reference} so it knows what part of the data to work on. Groups of instances (up to 1024) can do some limited communication and perform a small set of atomic operations on shared memory. This allows us add up the sub results.
-\end{itemize}
+\begin{frame}{Applying the Laplace method to the Gamma function}
+We have that
+\begin{align*}
+    n! = \int_0^\infty x^n e^{-x} dx = \int_0^\infty e^{n\ln(x) - x} dx
+\end{align*}
+and by applying a change of variables ( $ x = ny $ ) we get that
+\begin{align*}
+    \int_0^\infty e^{n\ln(x) - x} dx = e^{n\ln(n)}n \int_0^\infty e^{n(\ln(y) - y)} dy.
+\end{align*}
+Notice that this last integral is in a form that can be attacked by the Laplace method. This would give
+\begin{align*}
+    \int_0^\infty e^{n(\ln(y) -y)} dy \sim \sqrt{\frac{2\pi}{n}}e^{-n}
+\end{align*}
+and hence after a bit of rearranging
+\begin{align*}
+    n! \sim e^{n(\ln(n) - 1)}n \sqrt{\frac{2\pi}{n}} \sim \sqrt{2\pi n} \left( \frac{n}{e}\right)^n
+\end{align*}
+    
 \end{frame}
 
-\begin{frame}{Practical Experimentation}
-I solved the same initial value problem as I did in the C\# case. 
-\begin{figure}[H]
-\includegraphics[scale = 0.2]{../images/CUDA_Performance_No_Label}
-\caption{Runtime for the scheme for various values of opsPerThread and N.}
-\label{fig:cuda_performance_surface}
+\begin{frame}
+    Freeden and Gutting presented a more precise form of Stirling's formula
+    \begin{align*}
+       \left| \frac{\Gamma(x)}{\sqrt{2\pi} x^{x-1/2}e^{-x}} - 1\right| \leq \sqrt{\frac{2}{\pi x}}.
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Lanczos Approximation}
+    \begin{block}{Why?}
+        \begin{itemize}
+            \item While the Stirling Approximation is easy to calculate it's actually not very accurate.
+            \item We want a computer calculate the Gamma function.
+            \item It was presented in the book \emph{Numerical Recipes} and so it's probably found its way into lots of production code.
+            \item It is in the GNU Scientific Library.
+        \end{itemize}
+    \end{block}
+\end{frame}
+\begin{frame}{Derivation:The Hand Waving Approach}
+Starting with the second Eulerian integral
+\begin{align*}
+    z!  &= \int_0^\infty t^{z}e^{-t} dx \\
+        & \vdots \\
+        & \text{Change of variables and other magic} \\
+        & \vdots \\
+        &= (z + \gamma + 1)^{z+1}e^{-(z + \gamma + 1)} \int_0^e \left[v(1-\log v) \right]^z v^\gamma dv
+\end{align*}
+also
+\begin{align*}
+    (z-\frac{1}{2})! = (z + \gamma + \frac{1}{2})^{z + \frac{1}{2}}e^{-(z + \gamma + \frac{1}{2})} \underbrace{\int_0^e \left[ v(1 - \log v )\right]^{z - \frac{1}{2}} v^\gamma dv}_{=: F(z)}
+\end{align*}
+
+\end{frame}
+
+\begin{frame}{Derivation:The Hand Waving Approach}
+    We are interested in $ F(z) $.
+
+    We now perform a very exotic change of variables given by the transcendental equation
+    \begin{align*}
+        v(1-\log v) = 1 - x^2
+    \end{align*}
+    along with boundary conditions
+    \begin{align*}
+        v &= 0 &\text{ corresponds to } && x &= -1 \\
+        v &= 1 &\text{ corresponds to } && x &= 0 \\
+        v &= e &\text{ corresponds to } && x &= 1
+    \end{align*}
+    so
+    \begin{align*}
+        F(z) &= \int_0^e \left[ v(1 - \log v )\right]^{z - \frac{1}{2}} v^\gamma dv
+             &= \int_{-1}^1 (1-x^2)^{z-\frac{1}{2}} v^\gamma \frac{dv}{dx} dx
+    \end{align*}
+\end{frame}
+\begin{frame}
+It turns out that this transcendental relationship can be turned into a differential equation
+\begin{align*}
+    \frac{1}{2}(v^2)' - (1-x^2)v' -2xv = 0
+\end{align*}
+along with the boundary condition
+\begin{align*}
+    v(0) = 1.
+\end{align*}
+This has solution given by a power series method
+\begin{align*}
+    v(x) = 1 + a_1x + a_2x^2 + \cdots
+\end{align*}
+where 
+\begin{align*}
+    a_1 = \sqrt{2}, a_2 = \frac{1}{3}, a_3 = \frac{-\sqrt{2}}{36}, \ldots
+\end{align*}
+\end{frame}
+\begin{frame}
+and so we can write (after much manipulation)
+\begin{align*}  
+    z! = \sqrt{2\pi} (z + \frac{1}{2})^{z+\frac{1}{2}} e^{-(z+\frac{1}{2})} \Big[ 1 - \frac{1}{24z}\frac{1}{z-1} - \frac{23}{1152}\frac{1}{(z+1)(z+2)} \\ - \frac{11237}{414720} \frac{1}{(z+1)(z+2)(z+3)} - \cdots \Big]
+\end{align*}
+This is the core of the Lanczos approximation. It actually turns out to be considerably more complicated because we need to improve the convergence properties and this is done by completely reconsidering the whole situation and choosing different coefficients in the series.
+\end{frame}
+\begin{frame}{The Whole Story}
+    \begin{align*}
+        z! = \sqrt{2\pi}\left( z + g + \frac{1}{2}\right)^{z + \frac{1}{2}} e^{-(z + g + \frac{1}{2})} A_g(z)
+    \end{align*}
+    where
+    \begin{align*}
+        A_g(z) = \frac{1}{2}p_0(g) + p_1(g) + \frac{z}{z+1} + p_2(g) \frac{z(z-1)}{(z+1)(z+2)} + \cdots
+    \end{align*}
+    where
+    \begin{align*}
+        p_k(g) = \sum_{a=0}^k C(2k+1, 2a + 1) \frac{\sqrt{2}}{\pi}(a- \frac{1}{2})!(a + g + \frac{1}{2})^{-(a + \frac{1}{2})} e^{a + g + \frac{1}{2}}
+    \end{align*}
+    where the
+    $ C(i,j) $ are the elements of the Chebyshev polynomial coefficient matrix.
+\end{frame}
+\begin{frame}{Short Code}
+\begin{figure}[scale=0.5]
+\includegraphics[scale=0.4]{code}
 \end{figure}
-
 \end{frame}
 
-\begin{frame}{Lets play...}
-Solution to the relaxation oscillation equation for $ \alpha \in [0.5, 2] $.
-\begin{figure}[H]
-\includegraphics[scale = 0.2]{../images/FDE_Solution_Surface_No_Label}
+\begin{frame}{My Favourite Picture}
+\begin{figure}[scale=0.5]
+\includegraphics[scale=0.8]{Jahnke_gamma_function}
+\caption{Hand drawn graph of the absolute value of the gamma function in the complex plane from \emph{Tables of Higher Functions} by Jahnke and Emde}
 \end{figure}
 \end{frame}
-
-\begin{frame}{Key references}
-\begin{itemize}
-\item [1] K. Diethelm. The Analysis of Fractional Differential Equations. Springer, 2010.
-
-\item [2] K. Diethelm. An efficient parallel algorithm for the numerical solution of fractional differential equations. Fractional Calculus and Applied Analysis, 14:475–490, 2011.
-
-\item [3] K. Diethelm, N.J. Ford, and A.D. Freed. Detailed error analysis for a fractional Adams method. Numerical
-Algorithms, pages 31–52, 2004.
-\end{itemize}
-\end{frame}
-
-
 \end{document}
