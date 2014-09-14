@@ -3,19 +3,16 @@
 \bibitem{Whittaker1996}
 {\em A Course in Modern Analysis (4th ed.)}.
 
-\bibitem{Lehmer1940}
-On the maxima and minima of bernoulli polynomials.
-\newblock {\em The American Mathematical Monthly}.
+\bibitem{Avramidi2000}
+I.~Avramidi.
+\newblock Lecture notes on asymptotic expansion.
+\newblock \url{http://infohost.nmt.edu/~iavramid/notes/asexp.pdf}, 2000.
+\newblock Accessed: 09-08-2014.
 
-\bibitem{Apostol1976}
-T.M. Apostol.
-\newblock {\em Introduction to analytic number theory}.
-\newblock Springer-Verlag, 1976.
-
-\bibitem{Apostol1999}
-T.M. Apostol.
-\newblock An elementary view of euler's summation formula.
-\newblock {\em The American Mathematical Monthly}, 106:409--418, 1999.
+\bibitem{Gorenflo1997}
+A.~Carpinteri and F.~Mainardi, editors.
+\newblock {\em Fractals and Fractional Calculus in Continuum Mechanics}.
+\newblock CISM Courses and Lectures. Springer Verlag, 1997.
 
 \bibitem{MicrosoftTaskSchedular}
 Microsoft Copropration.
@@ -35,6 +32,12 @@ K.~Diethelm.
   fractional differential equations.
 \newblock {\em Fractional Calculus and Applied Analysis}, 14:475--490, 2011.
 
+\bibitem{Diethelm2002}
+K.~Diethelm and N.J. Ford.
+\newblock Analysis of fractional differential equations.
+\newblock {\em Journal of Mathematical Analysis and Applications},
+  265:229--248, 2002.
+
 \bibitem{Diethelm2004}
 K.~Diethelm, N.J. Ford, and A.D. Freed.
 \newblock Detailed error analysis for a fractional adams method.
@@ -51,6 +54,11 @@ A.~Erdelyi, W.~Magnus, F.~Oberhettinger, and Tricomi F.G.
 \newblock {\em Higher Trascendental Functions}, volume~3.
 \newblock McGraw-Hill Book Co., 1955.
 
+\bibitem{Freeden2013}
+W.~Freeden and M.~Gutting.
+\newblock {\em Special Functions of Mathematical (Geo-)Physics}.
+\newblock Applied and Numerical Harmonic Analysis. Birkh{\"a}user, 2013.
+
 \bibitem{Gorenflo2002}
 R.~Gorenflo, J.~Loutchko, and Y.~Luchko.
 \newblock Computation of the mittag-leffler function and its derivatives.
@@ -62,6 +70,24 @@ M.~Harris.
 \newblock In M.~Pharr, R.~Fernando, and T.~Sweeney, editors, {\em GPU Gems 2}.
   Addison-Wesley Professional, 2005.
 
+\bibitem{Lauritzen2009}
+S.~Lauritzen.
+\newblock Laplace's method of integration.
+\newblock \url{http://www.stats.ox.ac.uk/~steffen/teaching/bs2HT9/laplace.pdf},
+  2009.
+
+\bibitem{Miller1993}
+K.S. Miller and Ross B.
+\newblock {\em An Introduction to the Fractional Calculus and Fractional
+  Differential Equations}.
+\newblock Wiley, 1993.
+
+\bibitem{Narayanan2003}
+V.A. Narayanan and Prabhu K.M.M.
+\newblock The fractional fourier transform: theory, implementation and error
+  analysis.
+\newblock {\em Microprocessors and Microsystems}, 27:511--521, 2003.
+
 \bibitem{Paris2001}
 R.B. Paris and D.~Kaminsky.
 \newblock {\em Asymptotics and the Mellin-Barnes Integrals}.
@@ -71,6 +97,12 @@ R.B. Paris and D.~Kaminsky.
 I.~Podlubny.
 \newblock {\em Fractional Differential Equations}.
 \newblock Academic Press, 1999.
+
+\bibitem{Raina1979}
+R.~K. Raina and C.~L. Koul.
+\newblock On weyl fractional calculus.
+\newblock {\em Proceedings of the American Mathematical Society}, 73:188--192,
+  Februrary 1979.
 
 \bibitem{Samko1993}
 S.G. Samko, A.A. Kilbas, and O.I. Marichev.

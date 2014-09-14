@@ -1,5 +1,6 @@
 \section{Fractional Operators and Their Properties}
-In this section we will explore fractional order operators. We will define a fractional integral and examine two seperate definitions of the fractional derivative. We will also look at the properties of these operators and consider some of the differences between these operators and their integer order counterparts.
+There are a variety of ways to define fractional differential operators. Good introductions to the various differential operators can be found in \cite{Gorenflo1997, Podlubny1999, Diethelm2002, Samko1993}. In this section, and for the rest of the thesis we will focus of three main fractional operators, the Riemann-Liouville integral and derivative and the Caputo derivative. There are an abundence of other operators such that the Miller-Ross sequential fractional derivative \cite{Miller1993, Podlubny1999}, the Weyl fractional integral \cite{Gorenflo1997, Samko1993, Raina1979}, the Caputo fractional integral \cite{Gorenflo1997}, the Gr{\"u}nwald-Letnikov fractional derivative \cite{Podlubny1999, Samko1993} and fractional operators based on ideas from Fourier analysis \cite{Narayanan2003, Samko1993}.
+
 
 \subsection{Riemann Liouville Fractional Integeral}
 In the introduction we considered the historical motivations of the Riemann Liouville fractional integral. Here we will reintroduce it formally and discuss it's properites.
@@ -9,14 +10,14 @@ In the introduction we considered the historical motivations of the Riemann Liou
 The Riemann Liouville fractional integral, based at $ a \in \mathbb{R} $ and of order $ \alpha \in (0, \infty) $ of a function $ f $ is given by
 \begin{align}
     \label{eq:rld_1}
-    \rli{\alpha}{a}{f} := \frac{1}{\Gamma(\alpha)} \int_a^t f(\tau) d\tau
+    \rli{0}{\alpha}{f}(x) := \frac{1}{\Gamma(\alpha)} \int_a^x f(t)(x-t)^{\alpha - 1} dt
 \end{align}
 \end{definition}
 From this point forward we refer to this as the \emph{fractional integral} of the function.
 
-It is possible to extend to the this defintion to $ \alpha \in \Cplx $ and $ a = \infty $. While we will touch on the $ a = -\infty $ case we will neglect discussion of $ \alpha \not\in \mathbb{R} $ and refer the interested reader to Samko et al. \cite{Samko1993}.  It is also worthy of note that some authors define a fractional operator with the limits of integration reversed. We will not deal with these operators, but instead refer the interested readoer to \cite{Samko1993}, [MORE REFS]. The definition given in \ref{def:rld_1} is the most common in the literature and is compatible with the rest of the theorems and definitions given here.
+It is possible to extend to the this defintion to $ \alpha \in \Cplx $ and $ a = \infty $. While we will touch on the $ a = -\infty $ case we will neglect discussion of $ \alpha \not\in \mathbb{R} $ and refer the interested reader to Samko et al. \cite{Samko1993}.  It is also worthy of note that some authors define a fractional operator with the limits of integration reversed. We will not deal with these operators, but instead refer the interested readoer to \cite{Samko1993, Podlubny1999}. The definition given in \ref{def:rld_1} is the most common in the literature and is compatible with the rest of the theorems and definitions given here.
 
-Although it might seem like a good idea to describe the class of function for which the integral in \eqref{eq:rld_1} is well defined, this is a very complicated problem and we refer the interested reader to [INSERT REFS]. Although we don't deal with defining the set of admissable functions, this will not have any significant impact on the rest of our discussions because all the functions we deal with will be admissable. 
+Although it might seem like a good idea to describe the class of function for which the integral in \eqref{eq:rld_1} is well defined, this is a very complicated problem and we refer the interested reader to \cite{Samko1993}. Although we don't deal with defining the set of admissable functions, this will not have any significant impact on the rest of our discussions because all the functions we deal with will be admissable. 
 
 The first property that we wish to explore is the semigroup property.
 \begin{lemma}
@@ -35,7 +36,7 @@ The first property that we wish to explore is the semigroup property.
     Now performing the change of variables $ x = \frac{\tau - z}{t - z} $ we get that
     \begin{align}
         \circledast
-        &= \frac{1}{\Gamma(\alpha)\Gamma(\beta)}\int_a^t \int_0^1 (t-z)^{\alpha - 1} (1-z)^{\alpha-1} x^{\beta - 1} (t-z)^{\beta - 1}(t-z) dx dz \\
+        &= \frac{1}{\Gamma(\alpha)\Gamma(\beta)}\int_a^t \int_0^1 (t-z)^{\alpha - 1} (1-x)^{\alpha-1} x^{\beta - 1} (t-z)^{\beta - 1}(t-z) dx dz \\
         &= \frac{1}{\Gamma(\alpha)\Gamma(\beta)}\int_0^1 (1-x)^{\alpha - 1} x^{\beta - 1} dx \int_a^t (t-z)^{\alpha + \beta - 1} f(z) dz \\
         &= \frac{B(\alpha,\beta)}{\Gamma(\alpha)\Gamma(\beta)} \int_a^t (t-z)^{\alpha + \beta - 1} f(z) dz \\
         &= \frac{1}{\Gamma(\alpha + \beta)} \int_a^t (t-z)^{\alpha + \beta - 1} f(z) dz \\
@@ -43,7 +44,7 @@ The first property that we wish to explore is the semigroup property.
     \end{align}
     This shows that $ I_a^\alpha I_a^\beta = I_a^{\alpha + \beta} $ and hence immediatly implies that $ I_a^\alpha I_a^\beta = I_a^\beta I_a^\alpha $.
 \end{proof}
-We now derive the Laplace transform of a fractional integral of a function. This will be usefull in producing the tables [INSERT REF] of fractional integrals provided below.
+We now calculate the Laplace transform of the of the Riemann Liouville fractional integral. While we will not immediatly use this result it will prove usefull when we attempt to solve fractional differential equations.
 \begin{lemma}
     \label{lem:rli_laplace}
     The laplace transform of $ \rli{0}{\alpha}{f} $ is given by
@@ -95,15 +96,75 @@ Note that this proof hinges off the Laplace convolution theorem, and so it requi
     \end{align}
     and so by replacing $ s $ with $ -i\omega $, as in the Fourier transform we get the result. The convergence of the Fourier integral is guarenteed by Dirichlet's theorem for Fourier integrals as noted in \cite{Podlubny1999}. 
 \end{proof}
-We now use the results of lemmas \ref{lem:rli_laplace} and \ref{lem:rli_fourier} to produce the following simple table of fractional integrals. In many ways it is often easier to work with the Laplace or Fourier transforms of fractional integrals because the symbolic manipulations are almost trvial.
-\begin{figure}[H]
-    \begin{tabular}{|c|c|c|}
-        \hline
-        $ f(t) $ & $\rli{0}{\alpha}{f}(t) $ & $ \rli{-\infty}{\alpha}{f}(t) $ \\
-        \hline
-        $ t^\beta $ & $ \frac{\Gamma(\beta + 1)}{\Gamma(\alpha + \beta + 1)}t^{\alpha + \beta} $ & NA \\ 
-        $ e^{\lambda t} $ & $ t^{-\alpha} E_{1,1-\alpha}(\lambda t) $ & $ \lambda^\alpha e^{\lambda t} $ \\
-        $ t^\beta E_{\nu, \beta}(\lambda t^\nu) $ & $ t^{\beta} $ \\
-    \end{tabular}
-\end{figure}
+\subsection{Riemann-Liouville Fractional Derivative}
+Although one can approach a fractional derivative from a somewhat of a \emph{first principles} approach via the Gr{\"u}nwald-Letnikov derivative \cite{Podlubny1999, Samko1993}, we will not do that here, mainly because for a large class of functions the Gr{\"u}nwald-Letnikov derivative is actually equivelent to the Riemann-Liouville fractional derivative \cite{Podlubny1999} and the Riemann-Liouville fractional derivative is more tractable from a symbolic manipulation perspective.
+
+The idea behind the Riemann-Liouville fractional derivative is to exploit the Riemann-Liouville fractional integral to give the fractional part and then just use integer order derivatives to get the correct order. For example if one wanted to calculate the $ 1/2$-th derivative of a function you would fractionally integrate by $1/2$-th and then differentiate once.
+
+We formally define the Riemann-Liouville fractional derivative of a function $ f $ as
+
+\begin{align}
+    \rld{a}{}{\alpha}{f}(x) := \frac{1}{\Gamma(n-\alpha)} \frac{d^n}{dx^n} \int_{a}^{x} \frac{f(t)}{(x-t)^{\alpha - n + 1}} dt
+\end{align}
+where $ n = \lfloor \alpha \rfloor + 1 $.
+
+Like in the case of the fractional integral we would like to investigate the semi-group properties of the Riemann-Liouville fractional derivative and the relationship between the Riemann-Liouville fractional integral and derivative.
+
+\begin{lemma}
+    The Riemann-Liouville derivative of order $ \alpha $ is the left inverse of the Riemann-Liouville integral of order $ \alpha $ in the sense
+    that
+    \begin{align}
+        \prescript{}{a}{\mathcal{D}}^\alpha I_{a}^\alpha = \operatorname{Id}
+    \end{align}
+    where $ \operatorname{Id} $ is the identity operator ( $\operatorname{Id}(f) = f $).
+\end{lemma}
+\begin{proof}
+For an admissable function $ f $ we have that
+\begin{align}
+    \prescript{}{a}{\mathcal{D}}^\alpha I_{a}^\alpha f &= \frac{1}{\Gamma(n-\alpha)\Gamma(\alpha)} \frac{d^n}{dt^n} \int_a^t (t-\tau)^{n-\alpha-1}\int_a^\tau (\tau - z)^{\alpha-1} f(z) dz d\tau \\
+    &= \frac{1}{\Gamma(n-\alpha)\Gamma(\alpha)} \frac{d^n}{dt^n} \int_a^t \int_a^\tau (t-\tau)^{n-\alpha-1}(\tau - z)^{\alpha - 1}f(z)dzd\tau \\
+    \circledast &= \frac{1}{\Gamma(n-\alpha)\Gamma(\alpha)} \frac{d^n}{dt^n} \int_a^t \int_z^t (t-\tau)^{n-\alpha-1}(\tau - z)^{\alpha - 1} f(z)d\tau dz.
+\end{align}
+Now with the change of variables $ x = \frac{\tau - z}{t - z} $ we have that
+\begin{align}
+    \circledast &= \frac{d^n}{dt^n}\frac{1}{\Gamma(n-\alpha)\Gamma(\alpha)}\int_a^t \int_0^1 (t-z)^{n-\alpha-1}(1-x)^{n-\alpha-1} x^{\alpha-1}(t-z)^{\alpha-1}(t-z)f(z)dxdz \\
+    &= \frac{1}{\Gamma(n-\alpha)\Gamma(\alpha)} \int_0^1 (1-x)^{n-\alpha-1}x^{\alpha-1} dx \frac{d^n}{dt^n}\int_a^t (t-z)^{n-1}f(z)dz \\
+    &= \frac{B(n-\alpha, \alpha)}{\Gamma(n-\alpha)\Gamma(\alpha)} \frac{d^n}{dt^n} \int_a^t (t-z)^{n-1}f(z)dz \\
+    &= \frac{d^n}{dt^n} \frac{1}{(n-1)!} \int_{a}^t(t-z)^{n-1}f(z) dz \\
+    &= f(t)
+\end{align}
+and so the result follows.
+\end{proof}
+The Riemann-Liouville fractional derivative is \emph{not} a right inverse of the fractional integral. The relationship is considerably more subtle
+and if formalized in the following lemma.
+\begin{lemma}
+    For an admissable function $ f $ we have that
+    \begin{align}
+        \left( I_a^\alpha \prescript{}{a}{\mathcal{D}}^\alpha f \right)(t) = f(t) - \sum_{k=0}^{m-1} \frac{f^{(k)}(a)t^k}{k!}.
+    \end{align}
+\end{lemma}
+\begin{proof}
+\end{proof}
+It turns out that the semi-group property that we formulated for the fractional integral does not hold for the Riemann-Liouville fractional derivative.
+That is, it is not neseccerily true that $ \prescript{}{0}{\mathcal{D}}^\alpha \prescript{}{0}{\mathcal{D}}^\beta =  \prescript{}{0}{\mathcal{D}}^{\alpha + \beta} =  \prescript{}{0}{\mathcal{D}}^\beta  \prescript{}{0}{\mathcal{D}}^\alpha $. Gorenflo and Mainardi give excelent examples of where these equalitities break down \cite{Gorenflo1997}.
+
+\begin{lemma}
+\label{lem:lap_rld}
+	The Laplace transform the of the Riemann-Liouville derivative of an admissable function $ f $ is given by
+	\begin{align}
+		\mathcal{L} \left\{ \rld{0}{}{\alpha}{f} \right\} = s^\alpha \mathcal{L} \left\{ f(x) \right\} - \sum_{k=0}^{n-1} s^{k} \rld{0}{}{\alpha-k-1}{f}(0).
+	\end{align}
+\end{lemma}
+\begin{proof}
+	See that
+	\begin{align}
+		\laplace{ \rld{0}{}{\alpha}{f} } &= \laplace{ \der{}{t}{n} \rli{0}{n-\alpha}{f} } \\
+		&= s^n\laplace{\rli{0}{n-\alpha}{f}} - \sum_{k=0}^{n-1} s^k \der{}{t}{n-k-1} \rli{0}{n-\alpha}{f}(0)
+	\end{align}
+	and by applying the result of \ref{lem:lap_rli} we get
+	\begin{align}
+			\mathcal{L} \left\{\rld{0}{}{\alpha}{f} \right\} &= s^\alpha \laplace{f} - \sum_{k=0}^{n-1} s^{k} \rld{0}{}{\alpha - k - 1}{f}(0). 
+	\end{align}
+    
+\end{proof}
 

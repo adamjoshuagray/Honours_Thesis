@@ -1,4 +1,5 @@
-This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: NewThesis.aux
 The style file: plain.bst
 Database file #1: references.bib
@@ -7,60 +8,68 @@ I was expecting a `,' or a `}'---line 231 of file references.bib
  :     author      = "Whittiaker, E.T. and Watson, G.N.",
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 263 of file references.bib
+I was expecting a `,' or a `}'---line 267 of file references.bib
  :     
  :     author      = "Lehmer, D.H.",
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 279 of file references.bib
+ :     
+ :     note        = "Accessed: 09-08-2014"
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 303 of file references.bib
+ :     
+ :     author      = "Gorenflo, R. and Mainardi, F."
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "Samko1993i"
 Warning--I didn't find a database entry for "Caputo1967"
 Warning--I didn't find a database entry for "Caputo1971"
 Warning--I didn't find a database entry for "Heymans2005"
 Warning--to sort, need author, editor, or key in Whittaker1996
-Warning--to sort, need author or key in Lehmer1940
 Warning--empty author and editor in Whittaker1996
 Warning--empty publisher in Whittaker1996
 Warning--empty year in Whittaker1996
-Warning--empty author in Lehmer1940
-Warning--empty year in Lehmer1940
-You've used 16 entries,
+You've used 21 entries,
             2118 wiz_defined-function locations,
-            601 strings with 6159 characters,
-and the built_in function-call counts, 4199 in all, are:
-= -- 387
-> -- 166
+            645 strings with 7190 characters,
+and the built_in function-call counts, 5712 in all, are:
+= -- 539
+> -- 244
 < -- 2
-+ -- 71
-- -- 51
-* -- 246
-:= -- 715
-add.period$ -- 47
-call.type$ -- 16
-change.case$ -- 65
++ -- 101
+- -- 75
+* -- 327
+:= -- 982
+add.period$ -- 66
+call.type$ -- 21
+change.case$ -- 90
 chr.to.int$ -- 0
-cite$ -- 23
-duplicate$ -- 189
-empty$ -- 376
-format.name$ -- 51
-if$ -- 887
+cite$ -- 25
+duplicate$ -- 240
+empty$ -- 499
+format.name$ -- 75
+if$ -- 1209
 int.to.chr$ -- 0
-int.to.str$ -- 16
-missing$ -- 21
-newline$ -- 81
-num.names$ -- 30
-pop$ -- 105
+int.to.str$ -- 21
+missing$ -- 25
+newline$ -- 108
+num.names$ -- 43
+pop$ -- 136
 preamble$ -- 1
-purify$ -- 56
+purify$ -- 78
 quote$ -- 0
-skip$ -- 110
+skip$ -- 149
 stack$ -- 0
-substring$ -- 188
-swap$ -- 24
+substring$ -- 260
+swap$ -- 29
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 50
-warning$ -- 7
-while$ -- 35
-width$ -- 18
-write$ -- 163
-(There were 2 error messages)
+type$ -- 66
+warning$ -- 4
+while$ -- 50
+width$ -- 23
+write$ -- 222
+(There were 4 error messages)
