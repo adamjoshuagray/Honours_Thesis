@@ -100,13 +100,22 @@ Note that this proof hinges off the Laplace convolution theorem, and so it requi
 Although one can approach a fractional derivative from a somewhat of a \emph{first principles} approach via the Gr{\"u}nwald-Letnikov derivative \cite{Podlubny1999, Samko1993}, we will not do that here, mainly because for a large class of functions the Gr{\"u}nwald-Letnikov derivative is actually equivelent to the Riemann-Liouville fractional derivative \cite{Podlubny1999} and the Riemann-Liouville fractional derivative is more tractable from a symbolic manipulation perspective.
 
 The idea behind the Riemann-Liouville fractional derivative is to exploit the Riemann-Liouville fractional integral to give the fractional part and then just use integer order derivatives to get the correct order. For example if one wanted to calculate the $ 1/2$-th derivative of a function you would fractionally integrate by $1/2$-th and then differentiate once.
-
-We formally define the Riemann-Liouville fractional derivative of a function $ f $ as
+\begin{definition}[Riemann-Liouville Fractional Derivative]
+We define the Riemann-Liouville fractional derivative of a function $ f $ as
 
 \begin{align}
+    \label{def:rld}
     \rld{a}{}{\alpha}{f}(x) := \frac{1}{\Gamma(n-\alpha)} \frac{d^n}{dx^n} \int_{a}^{x} \frac{f(t)}{(x-t)^{\alpha - n + 1}} dt
 \end{align}
 where $ n = \lfloor \alpha \rfloor + 1 $.
+\end{definition}
+Again, it should be observed that the precise definition of which functions this transform operates on is not given. As in the fractional integral case this is a complicated question, and we will simply refer to those functions for which \eqref{def:rld} is well defined as admissable functions. The interested reader is refered to \cite{Samko1993} for a discussion of these issues.
+
+We can also see rather trivially that
+\begin{align}
+    \left(\prescript{}{a}{\mathcal{D}}^\alpha{f}\right)(t) = \frac{d^n}{dt^n}\left[ I_a^{n-\alpha}f(t) \right]
+\end{align}
+which aligns with our intuative motivation of a fractional derivative above.
 
 Like in the case of the fractional integral we would like to investigate the semi-group properties of the Riemann-Liouville fractional derivative and the relationship between the Riemann-Liouville fractional integral and derivative.
 
@@ -114,7 +123,7 @@ Like in the case of the fractional integral we would like to investigate the sem
     The Riemann-Liouville derivative of order $ \alpha $ is the left inverse of the Riemann-Liouville integral of order $ \alpha $ in the sense
     that
     \begin{align}
-        \prescript{}{a}{\mathcal{D}}^\alpha I_{a}^\alpha = \operatorname{Id}
+        \left(I_a^\alpha \prescript{}{a}{\mathcal{D}}^\alpha f\right)(t) = f(t) - \sum_{j=1}^{k}\left[ \left(\prescript{}{a}{\mathcal{D}}^{\alpha - j}f \right)(t) \right]_{t=a} \frac{(t-a)^{\alpha - j}}{\Gamma(\alpha - j + 1)}
     \end{align}
     where $ \operatorname{Id} $ is the identity operator ( $\operatorname{Id}(f) = f $).
 \end{lemma}
@@ -136,14 +145,20 @@ Now with the change of variables $ x = \frac{\tau - z}{t - z} $ we have that
 and so the result follows.
 \end{proof}
 The Riemann-Liouville fractional derivative is \emph{not} a right inverse of the fractional integral. The relationship is considerably more subtle
-and if formalized in the following lemma.
+and is formalized in the following lemma.
 \begin{lemma}
     For an admissable function $ f $ we have that
     \begin{align}
-        \left( I_a^\alpha \prescript{}{a}{\mathcal{D}}^\alpha f \right)(t) = f(t) - \sum_{k=0}^{m-1} \frac{f^{(k)}(a)t^k}{k!}.
+        \left(I_a^\alpha \prescript{}{a}{\mathcal{D}}^\alpha f\right)(t) = f(t) - \sum_{j=1}^{n} \left[ \prescript{}{a}{\mathcal{D}}^{\alpha - j}f(t)\right]_{t=a} \frac{(t-a)^{\alpha - j}}{\Gamma(\alpha - j + 1)}
     \end{align}
 \end{lemma}
+The following proof follows closely to that of Podlubny \cite{Podlubny1999}.
 \begin{proof}
+    See that
+    \begin{align}
+        \left(I_a^\alpha \prescript{}{a}{\mathcal{D}}^\alpha f\right)(t) &= \frac{1}{\Gamma(\alpha)} \int_a^t (t-\tau)^{\alpha - 1} \prescript{}{a}{\mathcal{D}}^\alpha f(\tau)d\tau \\
+    &= \frac{d}{dt} \left[ \frac{1}{\Gamma(\alpha + 1)} \int_a^t (t-\tau)^\alpha \prescript{}{a}{\mathcal{D}}^\alpha f(\tau) d\tau\right]
+    \end{align}
 \end{proof}
 It turns out that the semi-group property that we formulated for the fractional integral does not hold for the Riemann-Liouville fractional derivative.
 That is, it is not neseccerily true that $ \prescript{}{0}{\mathcal{D}}^\alpha \prescript{}{0}{\mathcal{D}}^\beta =  \prescript{}{0}{\mathcal{D}}^{\alpha + \beta} =  \prescript{}{0}{\mathcal{D}}^\beta  \prescript{}{0}{\mathcal{D}}^\alpha $. Gorenflo and Mainardi give excelent examples of where these equalitities break down \cite{Gorenflo1997}.

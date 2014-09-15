@@ -521,7 +521,7 @@ We first need to introduce the Laplace method, which is a technique which is use
 \begin{theorem}[Laplace Method]
     If $ f : [a, b] \lra \infty $ is twice differentiable function with a unique $ x_0 \in [a,b] $ such that $ f(x_0) = \max_{[a,b]}f(x) $ and such that $ f''(x_0) < 0 $ then
 \begin{align}
-    \lim_{n \lra \infty} \left( \frac{\int_a^b e^{nf(x)}dx}{e^{nf(x_)} \sqrt{\frac{2\pi}{n(-f''(x_0))}}} \right) = 1
+    \lim_{n \lra \infty} \left( \frac{\int_a^b e^{nf(x)}dx}{e^{nf(x)} \sqrt{\frac{2\pi}{n(-f''(x_0))}}} \right) = 1
 \end{align}
 \end{theorem}
 The proof of this technique is fiddly. We simply wish to use it here without proving it. The interested reader is refered to \cite{Lauritzen2009, Avramidi2000} for a thorough treatment of the Laplace method. 
