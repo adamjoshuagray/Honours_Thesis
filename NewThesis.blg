@@ -23,53 +23,49 @@ I was expecting a `,' or a `}'---line 303 of file references.bib
  :     author      = "Gorenflo, R. and Mainardi, F."
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "Samko1993i"
-Warning--I didn't find a database entry for "Caputo1967"
-Warning--I didn't find a database entry for "Caputo1971"
-Warning--I didn't find a database entry for "Heymans2005"
 Warning--to sort, need author, editor, or key in Whittaker1996
 Warning--empty author and editor in Whittaker1996
 Warning--empty publisher in Whittaker1996
 Warning--empty year in Whittaker1996
-You've used 21 entries,
+You've used 24 entries,
             2118 wiz_defined-function locations,
-            645 strings with 7190 characters,
-and the built_in function-call counts, 5712 in all, are:
-= -- 539
-> -- 244
+            659 strings with 7612 characters,
+and the built_in function-call counts, 6647 in all, are:
+= -- 635
+> -- 277
 < -- 2
-+ -- 101
-- -- 75
-* -- 327
-:= -- 982
-add.period$ -- 66
-call.type$ -- 21
-change.case$ -- 90
++ -- 114
+- -- 85
+* -- 395
+:= -- 1139
+add.period$ -- 75
+call.type$ -- 24
+change.case$ -- 104
 chr.to.int$ -- 0
-cite$ -- 25
-duplicate$ -- 240
-empty$ -- 499
-format.name$ -- 75
-if$ -- 1209
+cite$ -- 28
+duplicate$ -- 273
+empty$ -- 578
+format.name$ -- 85
+if$ -- 1404
 int.to.chr$ -- 0
-int.to.str$ -- 21
-missing$ -- 25
-newline$ -- 108
-num.names$ -- 43
-pop$ -- 136
+int.to.str$ -- 24
+missing$ -- 28
+newline$ -- 123
+num.names$ -- 49
+pop$ -- 144
 preamble$ -- 1
-purify$ -- 78
+purify$ -- 89
 quote$ -- 0
-skip$ -- 149
+skip$ -- 172
 stack$ -- 0
-substring$ -- 260
-swap$ -- 29
+substring$ -- 342
+swap$ -- 32
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 66
+type$ -- 78
 warning$ -- 4
-while$ -- 50
-width$ -- 23
-write$ -- 222
+while$ -- 60
+width$ -- 26
+write$ -- 255
 (There were 4 error messages)

@@ -9,6 +9,18 @@ I.~Avramidi.
 \newblock \url{http://infohost.nmt.edu/~iavramid/notes/asexp.pdf}, 2000.
 \newblock Accessed: 09-08-2014.
 
+\bibitem{Caputo1967}
+M.~Caputo.
+\newblock Linear models of dissipation whose q is almost frequency
+  independent-ii.
+\newblock {\em Geophysical Journal of the Royal Astronomical Society},
+  13:529--539, November 1967.
+
+\bibitem{Caputo1971}
+M.~Caputo and Mainardi F.
+\newblock Linear models of dissipation in anelastic solids.
+\newblock {\em La Rivista del Nuovo Cimento}, 1:161--198, 1971.
+
 \bibitem{Gorenflo1997}
 A.~Carpinteri and F.~Mainardi, editors.
 \newblock {\em Fractals and Fractional Calculus in Continuum Mechanics}.
@@ -69,6 +81,12 @@ M.~Harris.
 \newblock Mapping computational concepts to gpus.
 \newblock In M.~Pharr, R.~Fernando, and T.~Sweeney, editors, {\em GPU Gems 2}.
   Addison-Wesley Professional, 2005.
+
+\bibitem{Heymans2005}
+N.~Heymans and I.~Podlubny.
+\newblock Physical interpretation of initial conditions for fractional
+  differential equations with riemann-liouville fractional derivatives.
+\newblock {\em Rheologica Acta}, 45(5):765--771, 2005.
 
 \bibitem{Lauritzen2009}
 S.~Lauritzen.

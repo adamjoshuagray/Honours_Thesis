@@ -4,32 +4,6 @@ In this section we establish some analytical results for ordinary fractional dif
 
 \subsection{Basic definitions}
 
-\begin{definition}[Fractional Derivatives and Integrals]
-	For $ \alpha > 0 $ we define
-	\begin{align}
-		(I_{a+}^{\alpha}f)(x) := \frac{1}{\Gamma(\alpha)}\int_a^x \frac{f(t)}{(x-t)^{1 - \alpha}} dt \\
-		(\mathcal{D}_{a+}^{\alpha}f)(x) := \frac{1}{\Gamma(n-\alpha)} \frac{d^n}{dx^n}\int_a^x \frac{f(t)}{(x-t)^{\alpha - n + 1}} dt \\
-		(\prescript{C}{}{\mathcal{D}}_{a+}^\alpha f)(x) := I_{0}^{n-\alpha} \frac{d^n}{dx^n}f(x) 
-	\end{align}
-	where $ n  = \lfloor \alpha \rfloor + 1$.
-	We will refer to $ I_{a+}^\alpha f$ as the (Riemann Louiville) integral $ f $ of over $ \alpha $ (based at $ a $).
-	Likewise we refer to $ \mathcal{D}_{a+}^\alpha f $ as the (Riemann Louiville) derivative of order $ \alpha $ (based at $ a $).
-	We also refer to $ \prescript{C}{}{\mathcal{D}}_{a+}^\alpha f $ as the Caputo derivative of order $ \alpha $ (based at $ a $).
-	
-\end{definition}
-
-For the rest of our considerations in this section we will take $ a = 0 $ (based at 0). 
-
-\subsubsection{Notes on the Caputo derivative}
-
-Although the definitions for the Riemann-Liouville differential operators can be reasoned from the Cauchy formula for repeated integration and historical contexts [INSERT CC REF] \cite{Samko1993, Podlubny1999}, the Caputo derivative is different in a number of subtle ways which make it useful from a practical standpoint. 
-
-While one can view the difference between the Riemann-Liouville fractional derivative and the Caputo fractional derivative as moving the derivative from one side of the integral sign to the other. In some sense one could say that the Caputo derivative \emph{loses} some information about the function by differentiating first. 
-
-The Caputo derivative first turned up in a 1967 paper by Caputo linear models of dissipation \cite{Caputo1967} and again in 1971 in a paper by Caputo and Mainard.  When specifying differential equations (both of the ordinary and partial type) Riemann-Liouville derivatives typically lead to intial conditions and boundary values of fractional order \cite{Caputo1971, Podlubny1999, Samko1993, Heymans2005}, however, physical intuition for what sensible values for these initial and boundary values should be is somewhat hard to come by \cite{Caputo1971, Podlubny1999, Samko1993}. The Caputo derivative, however, leads to systems where the initial and boundary values are of integer order, which leads to much greater physical usefulness. 
-
-Despite the fact that fractional differential equations with Riemann-Liouville operators in them often lead to initial and boundary conditions which are fractional, recent work has been done on interpreting these systems physically. c.f. \cite{Heymans2005}
-
 \subsection{Solution to a linear intial value problem via Laplace transforms}
 We aim to get a solution to the following fractional differential equation (in terms of Caputo derivatives)
 
@@ -47,77 +21,13 @@ along with the initial conditions
 		0 & 1 \leq k \leq \lfloor\alpha \rfloor - 1  
 	\end{cases}
 \end{align}
+It turns out that this initial value problem has the solution $ y(t) = E_\alpha \left( \beta t^\alpha \right) $. Where $ E_\alpha $ is the one parameter Mittag-Lefler function.
 
-has the solution $ y(t) = E_\alpha \left( \beta t^\alpha \right) $. Where $ E_\alpha $ is the one parameter Mittag-Lefler function.
-
-This solution can be arrived at by a Laplace transform method. For completeness we define the following fractional
-integrals and derivatives.
+This solution can be arrived at by a Laplace transform method that is very similar to how this might be done in the integer order case.
 
 We now consider the Laplace transform of the fractional integration and differentiation operators.
 
-\begin{lemma}
-\label{lem:lap_rli}
-	The Laplace transform of the Riemann-Liouville integral of a fuction $ f $ is as follows
-	$$
-		\mathcal{L} \left\{ I_0^\alpha f \right\}  = s^{-\alpha} \mathcal{L} \left\{ f \right\}.
-	$$
-\end{lemma}
-\begin{proof}
-	Since 
-	$$
-		 (I_0^\alpha f)(t) = \frac{1}{\Gamma(\alpha)} \int_0^t f(u) (t-u)^{\alpha - 1} du
-	$$
-	is just $ \frac{1}{\Gamma(\alpha)} $ times the convolution of $ f $ with $ t^{\alpha - 1} $ then by the convolution theorem
-	for Laplace transforms we have that 
-	\begin{align}
-		\mathcal{L} \left\{ I_0^\alpha f \right\} &= \frac{1}{\Gamma(\alpha)} \mathcal{L} \left\{ \int_{0}^{t} f(u) (t-u)^{\alpha - 1} du \right\} \\
-			&= \frac{1}{\Gamma(\alpha)} \mathcal{L} \left\{ f(t) \right\} \underbrace{\mathcal{L} \left\{ t^{\alpha - 1} \right\}}_{=s^{-\alpha} \Gamma(\alpha)} \\
-			&= s^{-\alpha} \mathcal{L} \left\{ f \right\}.
-	\end{align}
-\end{proof}
-
-\begin{lemma}
-\label{lem:lap_rld}
-	The Laplace transform the of the Riemann-Liouville derivative of a function $ f $ is as follows
-	\begin{align}
-		\mathcal{L} \left\{\mathcal{D}_0^\alpha f\right\} = s^\alpha \mathcal{L} \left\{ f \right\} - \sum_{k=0}^{n-1} s^{k} \left( \mathcal{D}_0^{\alpha-k-1} f\right)(0).
-	\end{align}
-\end{lemma}
-\begin{proof}
-	See that
-	\begin{align}
-		\laplace{ \rld{0}{t}{\alpha}{f} } &= \laplace{ \der{}{t}{n} \rli{0}{n-\alpha}{f} } \\
-		&= s^n\laplace{\rli{0}{n-\alpha}{f}} - \sum_{k=0}^{n-1} s^k \der{}{t}{n-k-1} \rli{0}{n-\alpha}{f}(0)
-	\end{align}
-	and by applying the result of \ref{lem:lap_rli} we get
-	\begin{align}
-			\mathcal{L} \left\{\mathcal{D}_0^\alpha f\right\} &= s^\alpha \laplace{f} - \sum_{k=0}^{n-1} s^{k} \rld{0}{\alpha - k - 1}{f}(0). 
-	\end{align}
-\end{proof}
-
-\begin{lemma}
-\label{lem:lap_cap}
-	The Laplace transform of the Caputo derivative of  a function $ f $ is given as follows
-	\begin{align}
-		\laplace{\capder{0}{t}{\alpha}{f}} = s^{\alpha - n} \left[ s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right].
-	\end{align}
-\end{lemma}
-\begin{proof}
-	See that
-	\begin{align}
-		\laplace{\capder{0}{t}{\alpha}{f}} &= \laplace{  \rli{0}{n-\alpha}{\der{f}{t}{n}}} \\
-			&= \frac{1}{\Gamma(n-\alpha)}\laplace{ \int_0^t (t-u)^{n-\alpha-1} \der{f}{t}{n} du} \\ 
-	\end{align}
-	which is the Laplace transform of a convolution so
-	\begin{align}
-		\Gamma(n-\alpha)\laplace{ \int_0^t (t-u)^{n-\alpha-1} \der{f}{t}{n} du} &= \laplace{t^{n-\alpha-1}} \laplace{\der{f}{t}{n}} \\
-		&= \frac{1}{n-\alpha} \left( s^{-(n-\alpha)} \Gamma(n-\alpha) \right) \\
-		& \ \ \ \times \left( s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right) \\
-		&= s^{\alpha - n} \left[ s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right].
-	\end{align}	
-\end{proof}
-
-We now define the Mittag-Lefler function and calculate its Laplace transform.
+	We now define the Mittag-Lefler function and calculate its Laplace transform.
 
 \begin{definition}
 	The one parameter Mittag-Lefler $ E_\alpha $ function is defined by its power series.
@@ -184,6 +94,8 @@ Using this lemma we can then go on to state and prove the following lemma.
 
 We now have sufficient tools to attack the original problem, that is finding a solution to \eqref{eq:fde-1}, \eqref{eq:fde-1-ic}.
 
+
+:wq
 \begin{lemma}
 	The initial value problem defined in \eqref{eq:fde-1} and \eqref{eq:fde-1-ic}, restated here for completeness 
 	\begin{align}
