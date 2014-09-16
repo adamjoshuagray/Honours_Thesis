@@ -101,7 +101,7 @@ Although one can approach a fractional derivative from a somewhat of a \emph{fir
 
 The idea behind the Riemann-Liouville fractional derivative is to exploit the Riemann-Liouville fractional integral to give the fractional part and then just use integer order derivatives to get the correct order. For example if one wanted to calculate the $ 1/2$-th derivative of a function you would fractionally integrate by $1/2$-th and then differentiate once.
 \begin{definition}[Riemann-Liouville Fractional Derivative]
-We define the Riemann-Liouville fractional derivative of a function $ f $ as
+We define the Riemann-Liouville fractional derivative based at $ a $ and of order $ \alpha \in (0, \infty) $ of a function $ f $ as
 
 \begin{align}
     \label{def:rld}
@@ -157,12 +157,43 @@ The following proof follows closely to that of Podlubny \cite{Podlubny1999}.
     See that
     \begin{align}
         \left(I_a^\alpha \prescript{}{a}{\mathcal{D}}^\alpha f\right)(t) &= \frac{1}{\Gamma(\alpha)} \int_a^t (t-\tau)^{\alpha - 1} \prescript{}{a}{\mathcal{D}}^\alpha f(\tau)d\tau \\
-    &= \frac{d}{dt} \left[ \frac{1}{\Gamma(\alpha + 1)} \int_a^t (t-\tau)^\alpha \prescript{}{a}{\mathcal{D}}^\alpha f(\tau) d\tau\right]
+    \label{eq:I_D_right_inverse}
+    &= \frac{d}{dt} \left[ \underbrace{\frac{1}{\Gamma(\alpha + 1)} \int_a^t (t-\tau)^\alpha \prescript{}{a}{\mathcal{D}}^\alpha f(\tau) d\tau}_{\circledast}\right].
     \end{align}
+So we turn our attention to computing $\circledast $,
+and see that
+    \begin{align}
+        \circledast &= \frac{1}{\Gamma(\alpha + 1)} \int_a^t (t-\tau)^p \frac{d}{dt^n} \left( I_a^{n - \alpha} f(\tau)\right) d\tau
+    \end{align}
+and by repeated integration by parts we get
+    \begin{align}
+        \circledast &= \frac{1}{\Gamma(\alpha - n + 1)}\int_a^t (t-\tau)^{\alpha - n} \left( I_a^{n - \alpha}f(\tau) \right) d\tau \\
+        & \ \ \ - \sum_{j=1}^n \left[ \frac{d^{n-j}}{dt^{n-j}} \left( I_a^{n - \alpha} f(t) \right) \right]_{t=a} \frac{(t-a)^{\alpha - j -1}}{\Gamma(2 + \alpha - j)} \\
+        \label{eq:negative_frac_deriv_1}
+        &= I_a^{n-\alpha - 1} \left( I_a^{\alpha - n} f(t) \right) - \sum_{j=1}^n \left[ \prescript{}{a}{\mathcal{D}}^{\alpha - j} f(t)\right]_{t=a} \frac{(t-a)^{\alpha - j + 1}}{\Gamma(2 + \alpha - j)} \\
+        \label{eq:negative_frac_deriv_2}
+        &= I_{a}^{1} f(t) - \sum_{j=1}^n \left[ \prescript{}{a}{\mathcal{D}}^{\alpha - j} f(t) \right]_{t=a} \frac{(t-a)^{\alpha - j + 1}}{\Gamma(2 + \alpha - j)}
+    \end{align}
+and then 
+by applying the derivative from \eqref{eq:I_D_right_inverse} we get the result. 
 \end{proof}
+
+The astute reader might noticed that we have heavily abused notation in \eqref{eq:negative_frac_deriv_1} and \eqref{eq:negative_frac_deriv_2} where we have permitted a negative order of differentiation in the last term of the sums. This is ok though because $ \alpha - n < 1 $ and we formalise this in the next lemma. 
+
+\begin{lemma}
+    If we permit $ -1 < \alpha < 0 $ for an order of differentiation then formally we have that
+    \begin{align}
+        \prescript{}{a}{\mathcal{D}}^\alpha = I_a^{-\alpha}.
+    \end{align}
+\end{lemma}
+The proof is trivial and follows immediatly from the definitions.
+
+
+
 It turns out that the semi-group property that we formulated for the fractional integral does not hold for the Riemann-Liouville fractional derivative.
 That is, it is not neseccerily true that $ \prescript{}{0}{\mathcal{D}}^\alpha \prescript{}{0}{\mathcal{D}}^\beta =  \prescript{}{0}{\mathcal{D}}^{\alpha + \beta} =  \prescript{}{0}{\mathcal{D}}^\beta  \prescript{}{0}{\mathcal{D}}^\alpha $. Gorenflo and Mainardi give excelent examples of where these equalitities break down \cite{Gorenflo1997}.
 
+Due to the utilitiy of the Laplace transform of the Riemann-Liouville fractional derivative we calculate it here as it will prove useful for latter results.
 \begin{lemma}
 \label{lem:lap_rld}
 	The Laplace transform the of the Riemann-Liouville derivative of an admissable function $ f $ is given by
@@ -176,10 +207,13 @@ That is, it is not neseccerily true that $ \prescript{}{0}{\mathcal{D}}^\alpha \
 		\laplace{ \rld{0}{}{\alpha}{f} } &= \laplace{ \der{}{t}{n} \rli{0}{n-\alpha}{f} } \\
 		&= s^n\laplace{\rli{0}{n-\alpha}{f}} - \sum_{k=0}^{n-1} s^k \der{}{t}{n-k-1} \rli{0}{n-\alpha}{f}(0)
 	\end{align}
-	and by applying the result of \ref{lem:lap_rli} we get
+	and by applying the result of lemma \ref{lem:lap_rli} we get
 	\begin{align}
 			\mathcal{L} \left\{\rld{0}{}{\alpha}{f} \right\} &= s^\alpha \laplace{f} - \sum_{k=0}^{n-1} s^{k} \rld{0}{}{\alpha - k - 1}{f}(0). 
-	\end{align}
-    
+	\end{align} 
 \end{proof}
 
+We also consider the Fourier transform of the Riemann-Liouville fractional derivative as it will also prove useful for latter results.
+
+\begin{lemma}
+\end{lemma}
