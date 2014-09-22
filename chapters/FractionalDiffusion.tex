@@ -1,0 +1,60 @@
+\section{Fractional Diffusion}
+In this last section we would like to take a look at fractional diffusion. This is one of the main areas where fractional calculus is getting heavily used today. Modeling over the last two decades has shown that it is extremely important for explaining anomylous diffusion in beiological contexts. It also appears to play a role in diffusion in porus media and has extensions into physics and chemistry. It is perhaps now, and in the field of fractional diffusion, that fractional calculus is finally being pulled out of the cuboard of pure mathematics and Liebniz' fabeled \emph{ueseful consequences} are finally being drawn from this field.
+
+Fractional diffusion is particularly interesting in that it is not just a phenomenological model which appears to fit with real world data better simply by virtue of its reduced parsemony. It can actually be explained by some deeper and very justifiable physical principles. In order to give a good account of these phsycial ideas and in some sense \emph{derive} fractional diffusion we will start with ordinary diffusion and then work our way to fractional diffusion by considering continuous time random walks.
+
+We will examine diffusion models with just one spacial dimension. The generalisation to multiple spacial dimeansions is straight forward and only serves to add unnecessary notational complexity.
+
+\subsection{Standard Diffusion}
+\subsubsection{Derivation}
+Starting with a discrete time, discrete step (unbiased) random walk we can arrive at a \emph{continium} approximation the random walk as follows. 
+
+If $ P(x,t) $ is the probability of being at location $ x $ at time $ t $ we have that
+\begin{align}
+    \label{eq:rw_standard}
+    P(x,t) = \frac{1}{2}P(x-\Delta x, t - \Delta t) + \frac{1}{2}P(x + \Delta x, t - \Delta t)
+\end{align}
+where $ \Delta x $ is the spacial step size and $ \Delta t $ is the time step size.
+Now taking Taylor expansions we get that
+\begin{align}
+    \label{eq:rw_pos}
+    P(x + \Delta x, t - \Delta t) &= P(x,t) + \Delta x \frac{\partial P}{\partial x} - \Delta t \frac{\partial P}{\partial t} + \frac{(\Delta x)^2}{2} \frac{\partial^2 P}{\partial x^2} + \frac{(\Delta t)^2}{2} \frac{\partial^2 P}{\partial t^2} \\ 
+    & \ \ \ - \Delta t \Delta x \frac{\partial^2 P}{\partial x \partial t} + O((\Delta t)^3) + O(( \Delta x)^3) \nonumber
+\end{align}
+and
+\begin{align}
+    \label{eq:rw_neg}
+    P(x - \Delta x, t - \Delta t) &= P(x,t) - \Delta x \frac{\partial P}{\partial x} - \Delta t \frac{\partial P}{\partial t} + \frac{(\Delta x)^2}{2} \frac{\partial^2 P}{\partial x^2} + \frac{(\Delta t)^2}{2} \frac{\partial^2 P}{\partial t^2} \\ 
+    & \ \ \ + \Delta t \Delta x \frac{\partial^2 P}{\partial x \partial t} + O((\Delta t)^3) + O(( \Delta x)^3) \nonumber
+\end{align}
+and so by substituting \eqref{eq:rw_pos} and \eqref{eq:rw_neg} into \eqref{eq:rw_standard} we get that
+\begin{align}
+    \frac{(\Delta x)^2}{2}\frac{\partial^2 P}{\partial x^2} = (\Delta t) \frac{\partial P}{\partial t} + O((\Delta t)^2) + O((\Delta x)^3).
+\end{align}
+Now sending $ \Delta x $ and $ \Delta t $ to zero \emph{at the same rate} we get that
+\begin{align*}
+    \label{eq:diffusion_standard}
+    \frac{\partial P}{\partial t} = D \frac{\partial^2 P}{\partial x^2}
+\end{align*}
+where
+\begin{align}
+    D = \lim_{\Delta x \lra 0, \Delta t \lra 0} \frac{(\Delta x)^2}{2 \Delta t}.
+\end{align}
+Note that \eqref{eq:diffusion_standard} is the standard diffusion equation.
+
+\subsubsection{Characterising Results}
+
+We will breifly go through some results which help characterise how solutions to standard diffusion behave as these same ideas will be used in characterising the fractional differential equation.
+
+\subsubsection{Analytic Solution Method}
+
+
+
+\subsection{Continuous Time Random Walks}
+
+\subsubsection{Standard Diffusion}
+\subsubsection{Fractional Diffusion}
+\subsubsection{Characterising Results for Fractional Diffusion}
+\subsubsection{Solution Method for Fractional Diffusion}
+
+\clearpage 

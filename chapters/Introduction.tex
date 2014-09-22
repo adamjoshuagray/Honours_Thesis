@@ -1,4 +1,5 @@
 \section{Introduction}
+\subsection{History}
 Fractional calculus is a field which extends all the way back to the birth of \emph{ordinary} calculus. In this section we wish to give an account of the development of this field. Like any historical recount this section will have its flaws, inaccuracies and ommissions. One can get bogged down in the historiogrraphy of the field and critise this recount as a story written with whiggish bias, but we seek to tell a story which is relevent to the rest of this thesis an contextualises modern fractional calculus.
 
 In any historical introduction to fractional calculus one almost always starts with the letters exchanged between L'Hopital and Liebniz in the fall of 1695. Upon hearing of Liebniz's calculus and the differential operator
@@ -141,20 +142,20 @@ Firstly let's consider the integral
 	I(x) := \int_a^x \frac{f(s)ds}{(x-s)^{1-\alpha}}.
 \end{equation}
 Now by substituting \eqref{eq:abel} into \eqref{eq:abel_int} we get 
-\begin{align*}
+\begin{align}
 	I(x) &= \frac{1}{\Gamma(\alpha)} \int_a^x \frac{1}{(x-s)^{1-\alpha}} \left( \int_a^s \frac{\phi(t)dt}{(s-t)^\alpha} \right) ds \\
 		&= \frac{1}{\Gamma(\alpha)} \int_a^x \left( \int_a^s \frac{\phi(t)dt}{(x-s)^{1-\alpha}(s-t)^\alpha} \right) ds
-\end{align*}
+\end{align}
 Now noting that the region of integration in $ \mathbb{R}^2 $ is just
-\begin{align*}
+\begin{align}
 	a &\leq s \leq x \\
 	a &\leq t \leq s 
-\end{align*}
+\end{align}
 which is equivalent to 
-\begin{align*}
+\begin{align}
 	t &\leq s \leq x \\
 	a &\leq t \leq x 
-\end{align*}
+\end{align}
 we can write 
 \begin{align}
 	\frac{1}{\Gamma(\alpha)} \int_a^x \left( \int_a^s \frac{\phi(t)dt}{(x-s)^{1-\alpha}(s-t)^\alpha} \right) ds 
@@ -163,25 +164,25 @@ we can write
 		&= \frac{1}{\Gamma(\alpha)} \int_a^x \phi(t) \left( \int_t^x (x-s)^{\alpha-1}(s-t)^{-\alpha} ds\right) dt. 
 \end{align}
 Now performing the substitution $ \tau = \frac{s-t}{x-t} $ yields 
-\begin{align*}
+\begin{align}
 	\int_t^x (x-s)^{\alpha-1}(s-t)^{-\alpha} ds &= \int_0^1 \tau^{-\alpha} (1-\tau)^{\alpha - 1} d\tau \\
 		&= B(1-\alpha,\alpha) \\
 		&= \Gamma(1-\alpha)\Gamma(\alpha)
-\end{align*}
+\end{align}
 and so \eqref{eqn:prebeta} becomes
-\begin{align*}
+\begin{align}
 	\frac{1}{\Gamma(\alpha)} \int_a^x \phi(t) \left( \int_t^x (x-s)^{\alpha-1}(s-t)^{-\alpha} ds\right) dt
 		&= \frac{1}{\Gamma(\alpha)} \int_a^x \phi(t) \Gamma(\alpha)\Gamma(1-\alpha) dt \\
 		&= \Gamma(1-\alpha)\int_a^x \phi(t) dt. 
-\end{align*}
+\end{align}
 So we have that 
-\begin{align*}
+\begin{align}
 	\int_a^x \frac{f(s)ds}{(x-s)^{1-\alpha}} &= \Gamma(1-\alpha)\int_a^x \phi(t) dt
-\end{align*}
+\end{align}
 and by differentiating we get
-\begin{align*}
+\begin{align}
 	\phi(x) &= \frac{1}{\Gamma(1-\alpha)} \frac{d}{dx} \int_a^x \frac{f(s)ds}{(x-s)^{1-\alpha}}
-\end{align*}
+\end{align}
 and so we have in some sense solved Abel's integral equation. Notice that we have not discussed which functions $ f $ are suitable. This is a bit of a tricky question and not really informative in the context of the rest of this thesis so we refer the interested reader to \cite{Samko1993}. 
 
 As mentioned earlier Abel solved this integral qequation in the context of the Tautochrone problem which corresponded to $ \alpha = \frac{1}{2} $. Abel seemingly had no actual desire to define a fractional integral or derivative but it turns out this problem can be recast in terms of fractional integral equation using a Riemann Liouiville fractional integral and the result is in some sense a statement of a deneralised fundamental theorem of calculus. We'll leave these ideas and turn our attention to the development of the Riemann-Liouville fractional integral and derivative and return to see how these ideas relate.
