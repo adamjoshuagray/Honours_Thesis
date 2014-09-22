@@ -1,0 +1,46 @@
+\section{Introduction}
+Fractional calculus is a field which extends all the way back to the birth of \emph{ordinary} calculus. In this section we wish to give an account of the development of this field. Like any historical recount this section will have its flaws, inaccuracies and ommissions. One can get bogged down in the historiogrraphy of the field and critise this recount as a story written with whiggish bias, but we seek to tell a story which is relevent to the rest of this thesis an contextualises modern fractional calculus.
+
+In any historical introduction to fractional calculus one almost always starts with the letters exchanged between L'Hopital and Liebniz in the fall of 1695. Upon hearing of Liebniz's calculus and the differential operator
+\begin{align}
+    \frac{d}{dx}
+\end{align}
+and it's generalisation
+\begin{align}
+    \frac{d^n}{dx^n}
+\end{align}
+L'Hopital asked Liebniz what it would mean to set $ n = \frac{1}{2} $. Liebniz responded saying that 
+\begin{align}
+    d^\frac{1}{2}x = x\sqrt{dx:x}
+\end{align} and adding that
+``It will lead to a paradox, from which one day useful consequences will be drawn'' (Or at least that what most modern translations say) \cite{Abbas2012}. The notation is unfamiliar to modern mathematics, but this comment actually doesn't really reveal anything about how one might go about computing
+\begin{align}
+    \frac{d^\frac{1}{2}f}{dx^\frac{1}{2}}.
+\end{align}
+
+Two years latter in letters to J. Wallis and J. Bernoulli Euler proposed a possible approach to dealing with fractional derivatives of exponential functions \cite{Abbas2012}. He noticed that
+\begin{align}
+    \label{eq:euler_frac}
+    \frac{d^m}{dx^m} e^nx = n^me^{nx} 
+\end{align}
+and proposed that one could simply consider non-integer values of $ m $ in order to define a fraction differential operator. 
+It is perhaps on this note that we should point out that the name \emph{fractional} calculus is a bit of a misnomer. As in the case above we do not require $ m \in \mathbb{Q} $, but rather are allowed to select $ m \in \mathbb{R} $ or even $ m \in \mathbb{C} $.
+
+Given the definition / motivation in \eqref{eq:euler_frac} one might be tempted to use this result and extend it to other functions via the theory of Fourier Analysis. We need to keep in mind, however, that this was the lat $ 17$th century and so Fourier had yet to be born, let alone develop the idea of Fourier decomposition and Fourier basis. This meant that at the time there was not \emph{obvious} way to extend this definition to other functions.
+
+Jumping forward a quarter of a century we arive at the contributions of Euler. Euler made extremely important contributions in field of special functions, especially the Gamma function which turns out to be crucial in defining fractional integrals and fractional derivatives.
+
+The Gamma function is essentially a solution to an interpolation problem, that is how to extend the factorial function to non-integer values of the argument. 
+
+Although the problem of extending the factorial function had been considered by Daniel Bernoulli and Christian Goldbach in the 1720’s, it was eventually Euler who in a two letters, dated 13th October 1729 and 8th January 1730 respectively, gave two different representations of the factorial which could easily be extended to non-integer values. These were
+\begin{align}
+    n! = \prod_{k=1}^\infty \frac{\left(1+\frac{1}{k}\right)^n}{1 + \frac{n}{k}}
+\end{align}
+and
+\begin{align}
+    n! = \int_0^1 (-\ln(s))^n ds.
+\end{align}
+
+    Upon finding the first representation Euler could have simply stopped. He had found a formula which extended the factorial function to non-integer values. However he noticed that a special case of the 
+
+\clearpage
