@@ -82,7 +82,7 @@ Note that this proof hinges off the Laplace convolution theorem, and so it requi
     \end{align} and then note that it is clear that
     \begin{align}
         \rli{0}{\alpha}{f}(t) &= \frac{1}{\Gamma(\alpha)} \int_{-\infty}^t (t-\tau)^{\alpha-1} f(\tau)d\tau \\
-            &= \frac{1}{\Gamma(\alpha)} \int_{-\infty}^\infty h_+^\alpha(t-\tau)f(\tau)d\tau \\
+            &= \int_{-\infty}^\infty h_+^\alpha(t-\tau)f(\tau)d\tau \\
             &= (h_+^\alpha * f)(t)
     \end{align}
     where $ * $ represents the Fourier convolution.
@@ -109,10 +109,14 @@ We define the Riemann-Liouville fractional derivative based at $ a $ and of orde
 \end{align}
 where $ n = \lfloor \alpha \rfloor + 1 $.
 \end{definition}
+We will not continually specify this condition on $ n $ and in future cases the definition of $ n $ when dealing with fractional derivatives (both Riemann-Liouville and Caputo) the context should make the condition on $ n $ clear.
+
+
 Again, it should be observed that the precise definition of which functions this transform operates on is not given. As in the fractional integral case this is a complicated question, and we will simply refer to those functions for which \eqref{def:rld} is well defined as admissable functions. The interested reader is refered to \cite{Samko1993} for a discussion of these issues.
 
 We can also see rather trivially that
 \begin{align}
+    \label{eq:rld_rli_rel}
     \left(\prescript{}{a}{\mathcal{D}}^\alpha{f}\right)(t) = \frac{d^n}{dt^n}\left[ I_a^{n-\alpha}f(t) \right]
 \end{align}
 which aligns with our intuative motivation of a fractional derivative above.
@@ -120,6 +124,7 @@ which aligns with our intuative motivation of a fractional derivative above.
 Like in the case of the fractional integral we would like to investigate the semi-group properties of the Riemann-Liouville fractional derivative and the relationship between the Riemann-Liouville fractional integral and derivative.
 
 \begin{lemma}
+    \label{lem:rld_left_inverse}
     The Riemann-Liouville derivative of order $ \alpha $ is the left inverse of the Riemann-Liouville integral of order $ \alpha $ in the sense
     that
     \begin{align}
@@ -147,6 +152,7 @@ and so the result follows.
 The Riemann-Liouville fractional derivative is \emph{not} a right inverse of the fractional integral. The relationship is considerably more subtle
 and is formalized in the following lemma.
 \begin{lemma}
+    \label{lem:rld_right_res}
     For an admissable function $ f $ we have that
     \begin{align}
         \left(I_a^\alpha \prescript{}{a}{\mathcal{D}}^\alpha f\right)(t) = f(t) - \sum_{j=1}^{n} \left[ \prescript{}{a}{\mathcal{D}}^{\alpha - j}f(t)\right]_{t=a} \frac{(t-a)^{\alpha - j}}{\Gamma(\alpha - j + 1)}
@@ -216,4 +222,138 @@ Due to the utilitiy of the Laplace transform of the Riemann-Liouville fractional
 We also consider the Fourier transform of the Riemann-Liouville fractional derivative as it will also prove useful for latter results.
 
 \begin{lemma}
+    \label{lem:rld_fourier}
+    For an admissable function $ f $ the Fourier transform of the Riemann-Liouville fractional derivative with $ a = -\infty $ and of order $ \alpha $ is given by
+    \begin{align}
+        \mathcal{F}\left\{ \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) \right\} = (-i\omega)^{\alpha} \mathcal{F}\left\{ f(t) \right\}.
+    \end{align}
 \end{lemma}
+\begin{proof}
+    Since it is possible to regard the Riemann-Liouville fractional derivative in terms of the composition of integer order derivatives with the fractional integral this proof follows quickly from the result of lemma \ref{lem:rli_fourier}.
+    Firstly we have that
+    \begin{align}
+        \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) = \frac{d^n}{dt^n} \left[ I_{-\infty}^{n - \alpha} f(t)\right]
+    \end{align}
+    and so by elementry results for Fourier transforms we have that
+    \begin{align}
+        \mathcal{F}\left\{ \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) \right\}  &=
+        \mathcal{F}\left\{ \frac{d^n}{dt^n} \left[ I_{-\infty}^{n-\alpha} f(t) \right] \right\} \\
+        &= (-i\omega)^{n} \mathcal{F}\left\{ I_{-\infty}^{n-\alpha} f(t) \right\}
+    \end{align}
+    and then by using the result of lemma \ref{lem:rli_fourier} we have that
+    \begin{align}
+        (-i\omega)^{n} \mathcal{F}\left\{ I_{-\infty}^{n-\alpha} f(t) \right\} &= (-i\omega)^{n}(-i\omega)^{\alpha - n}\mathcal{F}\left\{ f(t)\right\} \\
+        &= (-i\omega)^\alpha  \mathcal{F}\left\{ f(t) \right\}
+    \end{align}
+\end{proof}
+
+\subsection{Caputo Fractional Derivative}
+We now turn our attention to the last fractional differential operator that we will study in detail, the Caputo fractional derivative. 
+The Caputo derivative first turned up in a 1967 paper by Caputo on linear models of dissipation \cite{Caputo1967} and again in 1971 in a paper by Caputo and Mainardi \cite{Caputo1971}.  When specifying differential equations (both of the ordinary and partial type) Riemann-Liouville derivatives typically lead to intial conditions and boundary values of fractional order \cite{Caputo1971, Podlubny1999, Samko1993, Heymans2005}, however, physical intuition for what sensible values for these initial and boundary values can be is somewhat hard to come by \cite{Caputo1971, Podlubny1999, Samko1993, Gorenflo1997}. The Caputo derivative, however, leads to systems where the initial and boundary values are of integer order, which leads to much greater physical usefulness \cite{Podlubny1999, Samko1993, Gorenflo1997}
+
+Despite the fact that fractional differential equations with Riemann-Liouville operators in them often lead to initial and boundary conditions which are fractional, recent work has been done on interpreting these systems physically. c.f. \cite{Heymans2005}
+
+We will now make formal a definition of the Caputo fractional derivative.
+\begin{definition}
+    We define the Caputo fractional derivative based at $ a $ and of order $\alpha \in (0, \infty) $ of an admissable function $ f $, as
+    \begin{align*}
+        \capder{a}{}{\alpha}{f}(x)      := \frac{1}{\Gamma(n - \alpha)} \int_a^x \frac{\frac{d^n}{dt^n}f(t)}{(x-t)^{\alpha -n + 1}} dt
+    \end{align*}
+    where $ n = \lfloor \alpha \rfloor + 1 $.
+\end{definition}
+Here an admissable function is taken to have the same general meaning as described in the Riemann-Liouville fractional integral and derivative cases.
+
+We can easily see that
+\begin{align}
+    \label{eq:cap_rli_rel}
+    \capder{a}{}{\alpha}{f}(x) = I_a^{n-\alpha} \frac{d^n}{dx^n} f(x)
+\end{align}
+and when we compare this observation with that in \eqref{eq:rld_rli_rel} we see that the Caputo derivative essentially amounts to swapping the order of fractional integration and integer differentiation when compared to the Riemann-Liouville fractional derivative.
+
+We would now like to develop similar a relationship between $ \prescript{C}{a}{\mathcal{D}}^\alpha $ and $ I_a^\alpha $ as was done for $ \prescript{}{a}{\mathcal{D}}^\alpha $ but to do that we will first give a relationship between the Riemann-Liouville fractional derivative and the Caputo fractional derivative.
+
+\begin{lemma}
+    \label{lem:cap_rld_rel}
+    For an admissable function $ f $ we have that
+    \begin{align}
+        \left(\prescript{C}{a}{\mathcal{D}}^\alpha f\right)(t) = \left( \prescript{}{a}{\mathcal{D}}^\alpha f \right)(t) - \sum_{k=0}^{n-1} \frac{t^{k-\alpha}}{\Gamma(k - \alpha + 1)}f^{(k)}(a).
+    \end{align}
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{lemma}
+    For an admissable function $ f $ we have that
+    \begin{align}
+        \left(\prescript{C}{a}{\mathcal{D}}^\alpha I_a^\alpha f\right)(t) = f(t) - \sum_{k=0}^{n-1} \frac{t^{k-\alpha}}{\Gamma(k-\alpha+1)} \left[\frac{d^k}{dt^k}I_a^\alpha f(t) \right]_{t=a}
+    \end{align}
+\end{lemma}
+The proof is immediate from lemmas \ref{lem:rld_left_inverse} and \ref{lem:cap_rld_rel}.
+A similar but more complicated result exists for $  I_a^\alpha \prescript{C}{a}{\mathcal{D}}^\alpha $ by using the result of lemma \ref{lem:rld_right_res} but we will not need it for future results so we omit it. What will prove useful are results for the Laplace and Fourier transforms of the Caputo fractional derivative of a fucntion.
+
+\begin{lemma}
+\label{lem:cap_laplace}
+    The Laplace transform of the Caputo derivative of an admissable function $ f $ is given by
+    \begin{align}
+        \laplace{\capder{0}{t}{\alpha}{f}} = s^{\alpha - n} \left[ s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right].
+    \end{align}
+\end{lemma}
+\begin{proof}
+    See that
+    \begin{align}
+        \laplace{\capder{0}{t}{\alpha}{f}} &= \laplace{  \rli{0}{n-\alpha}{\der{f}{t}{n}}} \\
+            &= \frac{1}{\Gamma(n-\alpha)}\laplace{ \int_0^t (t-u)^{n-\alpha-1} \der{f}{t}{n} du} \\ 
+    \end{align}
+    which is the Laplace transform of a convolution so
+    \begin{align}
+        \Gamma(n-\alpha)\laplace{ \int_0^t (t-u)^{n-\alpha-1} \der{f}{t}{n} du} &= \laplace{t^{n-\alpha-1}} \laplace{\der{f}{t}{n}} \\
+        &= \frac{1}{n-\alpha} \left( s^{-(n-\alpha)} \Gamma(n-\alpha) \right) \\
+        & \ \ \ \times \left( s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right) \\
+        &= s^{\alpha - n} \left[ s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right].
+    \end{align}
+\end{proof}
+
+\begin{lemma}
+    \label{lem:cap_fourier}
+    For an admissable function $ f $ the Fourier transform of the Riemann-Liouville fractional derivative with $ a = -\infty $ and of order $ \alpha $ is given by
+    \begin{align}
+        \mathcal{F}\left\{ \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) \right\} = (-i\omega)^{\alpha} \mathcal{F}\left\{ f(t) \right\}.
+    \end{align}
+\end{lemma}
+\begin{proof}
+This proof follows in much the same way as the proof of lemma \ref{lem:rld_fourier}.
+Firstly we have that
+    \begin{align}
+        \left(\prescript{C}{-\infty}{\mathcal{D}}^\alpha f\right)(t) =  I_{-\infty}^{n - \alpha} \frac{d^n}{dt^n}f(t)
+    \end{align}
+    and so by using the result of lemma \ref{lem:rli_fourier} we have that
+    \begin{align}
+        \mathcal{F}\left\{ \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) \right\}  &=
+        \mathcal{F}\left\{ \left[ I_{-\infty}^{n-\alpha} \frac{d^n}{dt^n}f(t) \right] \right\} \\
+        &= (-i\omega)^{\alpha - n} \mathcal{F}\left\{ \frac{d^n}{dt^n}f(t) \right\}
+    \end{align}
+    and then by using elementry Fourier transform results we get
+    \begin{align}
+        (-i\omega)^{\alpha -n} \mathcal{F}\left\{ I_{-\infty}^{n-\alpha} f(t) \right\} &= (-i\omega)^{\alpha - n}(-i\omega)^{n}\mathcal{F}\left\{ f(t)\right\} \\
+        &= (-i\omega)^\alpha  \mathcal{F}\left\{ f(t) \right\}
+    \end{align}
+\end{proof}
+A carefull reader might notice that the results of lemmas \ref{lem:rld_fourier} and \ref{lem:cap_fourier} are the same. This coincidence is actually hiding a more remarkable result which we formalise in the following lemma.
+
+\begin{lemma}
+    For an admissable function $ f $ such that $ \lim_{t \lra -\infty} f^{(k)}(t) = 0 $ for all $ 0 \leq k \leq n-1 $ with $ n $ defined from $ \alpha $ in the usual way we have that
+    \begin{align}
+        \left(\prescript{C}{-\infty}{\mathcal{D}}^\alpha f\right)(t) = \left( \prescript{}{-\infty}{\mathcal{D}}^\alpha f \right)(t).
+    \end{align}
+\end{lemma}
+
+\begin{proof}
+    By using the result of lemma \ref{lem:cap_rld_rel} we have that
+    \begin{align}
+        \prescript{C}{-\infty}{\mathcal{D}}^\alpha f(t) &= \prescript{}{-\infty}{\mathcal{D}}^\alpha f(t) - \sum_{k=0}^{n-1} \frac{t^{k-\alpha}}{\Gamma(k - \alpha + 1)}\lim_{a \lra -\infty}f^{(k)}(a) \\
+    &=  \prescript{}{-\infty}{\mathcal{D}}^\alpha f(t). 
+    \end{align}
+\end{proof}
+The restriction on $ f $ is not as limiting as one might imagine because for the Fourier transform to have nice properties such as being an automorphism one would want $ f $ to come from some sort of Schwartz space and the membership criteria for a Schwartz space are considerably more restrictive than the conditions given in the above lemma. In fact in defining precisely which functions are \emph{admissable} one ends up having to place similar conditions on $ f $. This is not a rabbit hole that we wish to explore further, however, and we refer the interested reader to \cite{Samko1993} for a more thorough discussion of the matter. 
+\clearpage
