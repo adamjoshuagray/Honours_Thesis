@@ -6,6 +6,7 @@ Fractional diffusion is particularly interesting in that it is not just a phenom
 We will examine diffusion models with just one spacial dimension. The generalisation to multiple spacial dimeansions is straight forward and only serves to add unnecessary notational complexity.
 
 \subsection{Standard Diffusion}
+\label{sec:std_diff_derivation}
 \subsubsection{Derivation}
 Starting with a discrete time, discrete step (unbiased) random walk we can arrive at a \emph{continium} approximation the random walk as follows. 
 
@@ -40,8 +41,7 @@ where
 \begin{align}
     D = \lim_{\Delta x \lra 0, \Delta t \lra 0} \frac{(\Delta x)^2}{2 \Delta t}.
 \end{align}
-Note that \eqref{eq:diffusion_standard} is the standard diffusion equation.
-
+Note that \eqref{eq:diffusion_standard} looks like the standard diffusion equation except it is in terms of probabilities instead of concentrations. By taking an ensamble of points we can reason that there is a direct correspondence between probabilities and the concentrations.
 \subsubsection{Characterising Results}
 
 We will breifly go through some results which help characterise how solutions to standard diffusion behave as these same ideas will be used in characterising the fractional differential equation.
@@ -78,7 +78,7 @@ We define $ a_n(x,t|x_0,t_0) $ as the conditional probability density which desc
 Like in the case of standard diffusion we can give a recurrence relationship which begins the characterise this density. We can say that
 \begin{align}
     \label{eq:fractional_recurrence}
-    a_{n+1}(x,t)|x_0,t_0) = \int_{-\infty}^\infty \int_{t_0}^t \Psi(x - u, t - \tau)a_n(u, \tau|x_0, t_0) d\tau du
+    a_{n+1}(x,t|x_0,t_0) = \int_{-\infty}^\infty \int_{t_0}^t \Psi(x - u, t - \tau)a_n(u, \tau|x_0, t_0) d\tau du
 \end{align}
 where $ \Psi(x - u, t - \tau) $ is the probability density which describes the probability that we take a step of size $ x - u $ after waiting for a time $ t - \tau $. 
 
@@ -90,9 +90,122 @@ We can write down the condition probability density for the random walk arriving
 \end{align}
 by summing over the all the possible numbers of steps taken to arrive at $ x $. 
 
-By performing this sum over \eqref{
+By performing this same sum over \eqref{eq:fractional_recurrence} we get that
+\begin{align}
+   \sum_{n=1}^\infty a_{n+1}(x,t|x_0,t_0) &= \sum_{n=1}^\infty \int_{-\infty}^\infty \int_{t_0}^t \Psi(x - u, t - \tau)a_n(u, \tau|x_0, t_0) d\tau du \\
+    \label{eq:added_initial_condition}
+    a(x,t|x_0,t_0) - \delta_{x_0}(x) \delta_{t_0}(t) &=  \int_{-\infty}^\infty \int_{t_0}^t \sum_{n=0}^\infty \Psi(x - u, t - \tau)a_n(u, \tau|x_0, t_0) d\tau du \\
+    &= \int_{-\infty}^\infty \int_{t_0}^t  \Psi(x - u, t - \tau)a(u, \tau|x_0, t_0) d\tau du.
+\end{align}
+Notice that in \eqref{eq:added_initial_condition} we have subtracted $ \delta_{x_0}(x) \delta_{t_0}(t) $ from the left hand side. This is done to ballance the sums otherwise we would be missing a term on the left hand side. This can be interpreted as an initial condition on the random walk which says that at $ x = x_0, t= t_0 $ we have $ a(x,t|x_0,t_0) = 1 $ which is an obvious requirement as it would not make sense otherwise, given the definition of $ a $.
 
+We now turn our attention to the \emph{being density} which we define as the probability density which describes that probability that at a time $ t $ the random walk is at $ x $. Note that this is different to the arrival density which describes the probability of \emph{arriving at} $ x $ at time $ t $. 
+
+Using the definition of $ \phi $ above it is clear to see that the survival probability density $ \Phi $ which describes the probability of \emph{not} making a step at time $ t $ is 
+\begin{align}
+    \label{eq:Phi_def}
+    \Phi(t) = 1 - \int_0^t \phi(\tau) d\tau
+\end{align}
+
+From this it makes sense to define the being density $ b $ by
+\begin{align}
+    b(x,t|x_0,t_0) &= \int_{t_0}^t a(x,t-\tau)|x_0, t_0) \Phi(\tau)d\tau \\
+    &= \int_{t_0}^t a(x,\tau|x_0,t_0)\Phi(t-\tau)d\tau.
+\end{align}
+
+Without loss of generality we can set $ t_0 = 0 $ because we can always shift our problem in time. Doing this has the advantage that in the following arguments we can easily invoke the Laplace convolution theorem which usually requires the base of the integral to be $ 0 $. 
+
+Summarising results we have that 
+\begin{align}
+    \label{eq:arival_density}
+    a(x,t|x_0, 0) = \int_{-\infty}^\infty \int_0^t \Psi(x-u, t-\tau)x(u,\tau|x_0, 0) d\tau du + \delta_{x_0}(x)\delta(t)
+\end{align}
+and
+\begin{align}
+    \label{eq:being_density}
+    b(x,t|x_0,0) = \int_0^t a(x,\tau|x_0, 0)\Phi(t-\tau)d\tau. 
+\end{align}
+Now denoting Laplace transforms by writing $ \hat{f}(s) = \mathcal{L}\{ f(t)  \}  $ and by taking a Laplace transform of \eqref{eq:arival_density} we get 
+\begin{align}
+    \label{eq:arrival_laplace}
+    \hat{a}(x,s|x_0,0) = \int_{-\infty}^\infty \hat{\Psi}(u, s) \hat{a}(x-u,s|x_0,0) du + \delta_{x_0}(x).
+\end{align}
+This follows from the Laplace convolution theorem and the Laplace transform of the $ \delta $ function.
+By also taking the Laplace transform of \eqref{eq:being_density} and using the Laplace convolution theorem we get
+\begin{align}
+    \label{eq:being_laplace}
+    \hat{b}(x,s|x_0, 0) = \hat{a}(x,s|x_0,0)\hat{\Phi}(s).
+\end{align}
+By subsituting \eqref{eq:arrival_laplace} into \eqref{eq:being_laplace} we get
+\begin{align}
+    \hat{b}(x,s|x_0,0) &= \underbrace{\int_{-\infty}^\infty \hat{\Psi}(u,s)\hat{\Phi}(s)\hat{a}(x-u,s|x_0,0)du}_{\circledast} + \hat{\Phi}(s) \delta_{x_0}{x}
+\end{align}
+and if we put \eqref{eq:being_laplace} in $ \circledast $ we finally get
+\begin{align}
+    \label{eq:master_laplace}
+    \hat{b}(x,s|x_0,0) = \int_{-\infty}^\infty \hat{\Psi}(u,s) \hat{b}(x-u,s|x_0,0)du + \hat{\Phi}(s)\delta_{x_0}(x).
+\end{align}
+It is worth of note that we can take the inverse Laplace transform to get what is known as the continuous time random walk master equation
+\begin{align}
+    b(x,t|x_0,0) = \int_{-\infty}^\infty \int_0^t \Psi(x-u,t-\tau) b(u,\tau|x_0,0) dtdu + \Phi(t)\delta_{x_0}(x)
+\end{align}
+however we will try to decouple \eqref{eq:master_laplace} futher in what follows by applying a Fourier transform.
+
+Firstly we will appeal to the same reasoning used in the last part of section \ref{sec:std_diff_derivation} to replace the probability density $ b $ with the concentration $ c $. The point of doing this is that it allows us to talk about an ensamble of points with an initial distribution $ c(x_0,0) $, instead of just the starting location of just one point.
+
+This means that \eqref{eq:being_laplace} can be rewritten as
+\begin{align}
+    \hat{c}(x,s) = \int_{-\infty}^\infty \hat{\Psi}(u,s) \hat{c}(x-u,s)du + \hat{\Phi}(s)c(x,0).
+\end{align}
+ 
+Now note that using \eqref{eq:Phi_def} and the Laplace transform of an integral we can write
+\begin{align}
+    \hat{\Phi}(s) = \frac{1}{s} - \frac{\phi(s)}{s}.
+\end{align}
+Now using the factorisation of $ \Psi $ mentioned above we can rewrite \eqref{eq:master_laplace} as
+\begin{align}
+    \hat{c}(x,s) = \int_{-\infty}^\infty \hat{\phi}(s) \lambda(u)\hat{b}(x-u,s)du + \left( \frac{1}{s} - \frac{\phi(s)}{s}\right)c(x,0).
+\end{align}
+Now denoting the Fourier transform of a function $ f $ by $ F(\omega) = \mathcal{F}\{f(x)\} $ and by invoking the Fourier convolution theorem we can write
+\begin{align}
+    \hat{C}(\omega,s) &= \mathcal{F}\left\{  \hat{\phi}(s) \int_{-\infty}^\infty \lambda(u)\hat{c}(x-u,s)du + \left( \frac{1}{s} - \frac{\phi(s)}{s}\right)c(x,0) \right\} \\
+    \label{eq:fourier_laplace}
+    &= \hat{\phi}(s) \Lambda(\omega) \hat{C}(\omega,s) + \left( \frac{1}{s} - \frac{\hat{\phi}(s)}{s} \right)C(\omega,0).
+\end{align}
+This is essentially as far as we will go without specifying the distributions $ \lambda $ or $ \phi $. Different specifications for $ \lambda $ and $ \phi $ will result in different forms of diffusion. 
 \subsubsection{Standard Diffusion}
+In this section we will show that in the context of the model in the above section we can arive at standard diffusion just like in section \ref{sec:std_diff_derivation} by saying the step length is \emph{normally} distributed and the waiting time between jumps is \emph{exponentially} distributed.
+
+If we set
+\begin{align}
+    \lambda(x) = \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(-\frac{x^2}{2\sigma^2}\right)
+\end{align}
+and 
+\begin{align}
+    \phi(t) = \frac{1}{\alpha} \exp\left(-\frac{t}{\alpha}\right)
+\end{align}
+which is to say that the step size $ \Delta x \sim \mathcal{N}(0,\sigma^2) $ and the time step $ \Delta t \sim \operatorname{Exp}(\frac{1}{\alpha}) $.
+
+In this case we have that
+\begin{align}
+    \Lambda(\omega) &= \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2}\sigma^2 \omega^2} \\
+    \label{eq:fourier_exp_normal}
+        &= \frac{1}{\sqrt{2\pi}} - \frac{\sigma^2 \omega^2}{2\sqrt{2 \pi}} + O(\omega^4)
+\end{align}
+and
+\begin{align}
+    \hat{\phi}(s) &= \frac{1}{1 + \alpha s} \\
+    \label{eq:laplace_exp_exponential}
+        &= 1 - \alpha s + O(s^2) 
+\end{align}
+By putting \eqref{eq:fourier_exp_normal} and \eqref{eq:laplace_exp_exponential} into \eqref{eq:fourier_laplace} we get that
+\begin{align}
+    \hat{C}(\omega,s) = \frac{1}{\sqrt{2\pi}}(1 - \alpha s)\left( 1 - \frac{\sigma^2 \omega^2}{2}\right)\hat{C}(\omega,s) + \alpha C(\omega, 0) 
+\end{align}
+and so
+\begin{align}
+    s\hat{C}(\omega,s) = \frac{1}{\sqrt{2\pi}}(s - \alpha s^2)\left( 1 - \frac{\sigma^2 \omega^2}{2}\right)\hat{C}(\omega,s) + \alpha C(\omega, 0) 
+\end{align}
 \subsubsection{Fractional Diffusion}
 \subsubsection{Characterising Results for Fractional Diffusion}
 \subsubsection{Solution Method for Fractional Diffusion}
