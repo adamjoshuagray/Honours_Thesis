@@ -1,0 +1,120 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: NewThesis.aux
+The style file: plain.bst
+Database file #1: references.bib
+I was expecting a `,' or a `}'---line 231 of file references.bib
+ :     
+ :     author      = "Whittiaker, E.T. and Watson, G.N.",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 267 of file references.bib
+ :     
+ :     author      = "Lehmer, D.H.",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 279 of file references.bib
+ :     
+ :     note        = "Accessed: 09-08-2014"
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 303 of file references.bib
+ :     
+ :     author      = "Gorenflo, R. and Mainardi, F."
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+<<<<<<< HEAD
+Warning--I didn't find a database entry for "Caputo1967"
+Warning--I didn't find a database entry for "Caputo1971"
+Warning--I didn't find a database entry for "Heymans2005"
+=======
+>>>>>>> da25e797a25205772bcb3f7d122ce8f7e909966f
+Warning--to sort, need author, editor, or key in Whittaker1996
+Warning--empty author and editor in Whittaker1996
+Warning--empty publisher in Whittaker1996
+Warning--empty year in Whittaker1996
+<<<<<<< HEAD
+You've used 22 entries,
+            2118 wiz_defined-function locations,
+            647 strings with 7287 characters,
+and the built_in function-call counts, 5994 in all, are:
+= -- 563
+> -- 262
+< -- 2
++ -- 108
+- -- 81
+* -- 344
+:= -- 1032
+add.period$ -- 69
+call.type$ -- 22
+change.case$ -- 95
+chr.to.int$ -- 0
+cite$ -- 26
+duplicate$ -- 252
+empty$ -- 521
+format.name$ -- 81
+if$ -- 1267
+int.to.chr$ -- 0
+int.to.str$ -- 22
+missing$ -- 27
+newline$ -- 113
+num.names$ -- 45
+pop$ -- 146
+preamble$ -- 1
+purify$ -- 83
+quote$ -- 0
+skip$ -- 155
+stack$ -- 0
+substring$ -- 265
+swap$ -- 30
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 68
+warning$ -- 4
+while$ -- 52
+width$ -- 24
+write$ -- 232
+=======
+You've used 24 entries,
+            2118 wiz_defined-function locations,
+            659 strings with 7612 characters,
+and the built_in function-call counts, 6647 in all, are:
+= -- 635
+> -- 277
+< -- 2
++ -- 114
+- -- 85
+* -- 395
+:= -- 1139
+add.period$ -- 75
+call.type$ -- 24
+change.case$ -- 104
+chr.to.int$ -- 0
+cite$ -- 28
+duplicate$ -- 273
+empty$ -- 578
+format.name$ -- 85
+if$ -- 1404
+int.to.chr$ -- 0
+int.to.str$ -- 24
+missing$ -- 28
+newline$ -- 123
+num.names$ -- 49
+pop$ -- 144
+preamble$ -- 1
+purify$ -- 89
+quote$ -- 0
+skip$ -- 172
+stack$ -- 0
+substring$ -- 342
+swap$ -- 32
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 78
+warning$ -- 4
+while$ -- 60
+width$ -- 26
+write$ -- 255
+>>>>>>> da25e797a25205772bcb3f7d122ce8f7e909966f
+(There were 4 error messages)

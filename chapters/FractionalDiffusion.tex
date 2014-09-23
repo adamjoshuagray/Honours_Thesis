@@ -48,9 +48,49 @@ We will breifly go through some results which help characterise how solutions to
 
 \subsubsection{Analytic Solution Method}
 
+There are actually relatively few situations where we can solve the diffusion equation in terms of named functions. Often these are solved by application of a Fourier transform and involve the error function which we define here for completeness.
 
+\begin{definition}[Error Function]
+    We define the error function as
+    \begin{align}
+        \erf(x) = \frac{2}{\sqrt{\pi}} \int_0^x e^{-t^2} dt
+    \end{align}
+    and the compelementry error function as
+    \begin{align}
+        \erfc(x) = \frac{2}{\sqrt{\pi}} \int_x^\infty e^{-t^2} dt.
+    \end{align}
+\end{definition}
+It is rather elementry to show that
+\begin{align}
+    \int_0^\infty e^{-t^2} dt = \frac{2}{\sqrt{\pi}}
+\end{align}
+and hence we have $ \erfc(x) = 1 - \erf(x) $.
 
 \subsection{Continuous Time Random Walks}
+In the section above \emph{derived} the standard diffusion equation from a random walk. What was important about this derivation was that we took a discrete time / discrete space model, (descritized by $ \Delta t $ and $ \Delta x $ respectively) turned it into a continuous model by taking $ \Delta x $ and $ \Delta t $ to zero at the same rate. 
+
+In this section we explore another method for dealing with random walks. One where the step size is distributed according to some probability distribution and the waiting time between steps is distributed according to some other distribution.
+
+We will need to deal with two main densities in this process, the \emph{arrival density} and the \emph{being density}. 
+
+We define $ a_n(x,t|x_0,t_0) $ as the conditional probability density which describes the probability that after $ n $ steps the random walk discussed above which started at $ x_0 $ at time $ t_0 $ arrives at $ x $ at time $ t $. 
+
+Like in the case of standard diffusion we can give a recurrence relationship which begins the characterise this density. We can say that
+\begin{align}
+    \label{eq:fractional_recurrence}
+    a_{n+1}(x,t)|x_0,t_0) = \int_{-\infty}^\infty \int_{t_0}^t \Psi(x - u, t - \tau)a_n(u, \tau|x_0, t_0) d\tau du
+\end{align}
+where $ \Psi(x - u, t - \tau) $ is the probability density which describes the probability that we take a step of size $ x - u $ after waiting for a time $ t - \tau $. 
+
+The probability distribution $ \Psi $ characterises both the waiting time distribution and the step size distribution. We will assume that the waiting times and step sizes are independent of each other and hence we can \emph{factorize} this distribution as $ \Psi(x - u, t - \tau) = \lambda(x - u)\phi(t - \tau) $ where $ \lambda $ the step size probability density function and $ \phi $ is the waiting time probability density function.
+
+We can write down the condition probability density for the random walk arriving at $ x $ at time $ t $ after \emph{any} number of steps from the starting position $ x_0 $ at $ t_0 $ as
+\begin{align}
+    a(x,t|x_0,t_0) = \sum_{n=0}^\infty a_n(x,t|x_0,t_0) 
+\end{align}
+by summing over the all the possible numbers of steps taken to arrive at $ x $. 
+
+By performing this sum over \eqref{
 
 \subsubsection{Standard Diffusion}
 \subsubsection{Fractional Diffusion}
