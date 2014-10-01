@@ -1,22 +1,4 @@
 \relax 
-<<<<<<< HEAD
-\ifx\hyper@anchor\@undefined
-\global \let \oldcontentsline\contentsline
-\gdef \contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
-\global \let \oldnewlabel\newlabel
-\gdef \newlabel#1#2{\newlabelxx{#1}#2}
-\gdef \newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
-\AtEndDocument{\let \contentsline\oldcontentsline
-\let \newlabel\oldnewlabel}
-\else
-\global \let \hyper@last\relax 
-\fi
-
-\citation{Abbas2012}
-\citation{Abbas2012}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}}
-\newlabel{eq:euler_frac}{{5}{1}{Introduction\relax }{equation.1.5}{}}
-=======
 \providecommand\hyper@newdestlabel[2]{}
 \providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
 \HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
@@ -34,7 +16,33 @@
 \gdef\HyperFirstAtBeginDocument#1{#1}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
->>>>>>> da25e797a25205772bcb3f7d122ce8f7e909966f
+\citation{Abbas2012}
+\citation{Abbas2012}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}History}{1}{subsection.1.1}}
+<<<<<<< HEAD
+\newlabel{eq:euler_frac}{{5}{1}{History\relax }{equation.1.5}{}}
+\newlabel{eq:euler_prod}{{6}{2}{History\relax }{equation.1.6}{}}
+\newlabel{eq:euler_log}{{7}{2}{History\relax }{equation.1.7}{}}
+\newlabel{eq:euler_frac_deriv}{{17}{3}{History\relax }{equation.1.17}{}}
+\newlabel{eq:Euler_Leibniz_Sum}{{23}{4}{History\relax }{equation.1.23}{}}
+\newlabel{eq:fourier_frac}{{28}{4}{History\relax }{equation.1.28}{}}
+\newlabel{eq:abel}{{29}{5}{History\relax }{equation.1.29}{}}
+\newlabel{eq:abel_int}{{30}{5}{History\relax }{equation.1.30}{}}
+\newlabel{eqn:prebeta}{{37}{5}{History\relax }{equation.1.37}{}}
+\citation{Samko1993}
+=======
+\newlabel{eq:euler_frac}{{5}{1}{History}{equation.1.5}{}}
+\newlabel{eq:euler_prod}{{6}{2}{History}{equation.1.6}{}}
+\newlabel{eq:euler_log}{{7}{2}{History}{equation.1.7}{}}
+\newlabel{eq:euler_frac_deriv}{{17}{3}{History}{equation.1.17}{}}
+\newlabel{eq:Euler_Leibniz_Sum}{{23}{3}{History}{equation.1.23}{}}
+\newlabel{eq:fourier_frac}{{28}{4}{History}{equation.1.28}{}}
+\newlabel{eq:abel}{{29}{4}{History}{equation.1.29}{}}
+\newlabel{eq:abel_int}{{30}{4}{History}{equation.1.30}{}}
+\citation{Samko1993}
+\newlabel{eqn:prebeta}{{37}{5}{History}{equation.1.37}{}}
+>>>>>>> 403e648036663ed925ce90a295ed775ce6b5692f
 \citation{Gorenflo1997,Podlubny1999,Diethelm2002,Samko1993}
 \citation{Miller1993,Podlubny1999}
 \citation{Gorenflo1997,Samko1993,Raina1979}
@@ -45,394 +53,405 @@
 \citation{Samko1993,Podlubny1999}
 \citation{Samko1993}
 <<<<<<< HEAD
-\@writefile{toc}{\contentsline {section}{\numberline {2}Fractional Operators and Their Properties}{3}{section.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Riemann Liouville Fractional Integeral}{3}{subsection.2.1}}
-\newlabel{def:rld_1}{{1}{3}{Riemann Liouville Fractional Integeral\relax }{definition.1}{}}
-\newlabel{eq:rld_1}{{8}{3}{Riemann Liouville Fractional Integeral\relax }{equation.2.8}{}}
-\newlabel{lem:rli_laplace}{{2}{4}{Riemann Liouville Fractional Integeral\relax }{lemma.2}{}}
-\newlabel{lem:rli_fourier}{{3}{4}{Riemann Liouville Fractional Integeral\relax }{lemma.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Fractional Operators and Their Properties}{7}{section.2}}
+\newlabel{sec:operators}{{2}{7}{Fractional Operators and Their Properties\relax }{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Riemann Liouville Fractional Integeral}{7}{subsection.2.1}}
+\newlabel{def:rld_1}{{1}{7}{Riemann Liouville Fractional Integeral\relax }{definition.1}{}}
+\newlabel{eq:rld_1}{{45}{7}{Riemann Liouville Fractional Integeral\relax }{equation.2.45}{}}
+\newlabel{lem:rli_laplace}{{2}{8}{Riemann Liouville Fractional Integeral\relax }{lemma.2}{}}
+\newlabel{lem:rli_fourier}{{3}{8}{Riemann Liouville Fractional Integeral\relax }{lemma.3}{}}
 =======
-\@writefile{toc}{\contentsline {section}{\numberline {1}Fractional Operators and Their Properties}{1}{section.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Riemann Liouville Fractional Integeral}{1}{subsection.1.1}}
-\newlabel{def:rld_1}{{1}{1}{Riemann Liouville Fractional Integeral}{definition.1}{}}
-\newlabel{eq:rld_1}{{1}{1}{Riemann Liouville Fractional Integeral}{equation.1.1}{}}
-\newlabel{lem:rli_laplace}{{2}{2}{}{lemma.2}{}}
-\newlabel{lem:rli_fourier}{{3}{2}{}{lemma.3}{}}
->>>>>>> da25e797a25205772bcb3f7d122ce8f7e909966f
+\@writefile{toc}{\contentsline {section}{\numberline {2}Fractional Operators and Their Properties}{6}{section.2}}
+\newlabel{sec:operators}{{2}{6}{Fractional Operators and Their Properties}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Riemann Liouville Fractional Integeral}{6}{subsection.2.1}}
+\newlabel{def:rld_1}{{1}{6}{Riemann Liouville Fractional Integeral}{definition.1}{}}
+\newlabel{eq:rld_1}{{45}{6}{Riemann Liouville Fractional Integeral}{equation.2.45}{}}
+\newlabel{lem:rli_laplace}{{2}{7}{}{lemma.2}{}}
+\newlabel{lem:rli_fourier}{{3}{7}{}{lemma.3}{}}
+>>>>>>> 403e648036663ed925ce90a295ed775ce6b5692f
 \citation{Podlubny1999}
 \citation{Podlubny1999,Samko1993}
 \citation{Podlubny1999}
 \citation{Samko1993}
 <<<<<<< HEAD
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Riemann-Liouville Fractional Derivative}{5}{subsection.2.2}}
-\newlabel{def:rld}{{29}{5}{Riemann-Liouville Fractional Derivative\relax }{equation.2.29}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Riemann-Liouville Fractional Derivative}{9}{subsection.2.2}}
+\newlabel{def:rld}{{66}{9}{Riemann-Liouville Fractional Derivative\relax }{equation.2.66}{}}
 \citation{Podlubny1999}
-\newlabel{eq:I_D_right_inverse}{{42}{6}{Riemann-Liouville Fractional Derivative\relax }{equation.2.42}{}}
+\newlabel{eq:rld_rli_rel}{{67}{10}{Riemann-Liouville Fractional Derivative\relax }{equation.2.67}{}}
+\newlabel{lem:rld_left_inverse}{{4}{10}{Riemann-Liouville Fractional Derivative\relax }{lemma.4}{}}
+\newlabel{lem:rld_right_res}{{5}{10}{Riemann-Liouville Fractional Derivative\relax }{lemma.5}{}}
 \citation{Gorenflo1997}
-\newlabel{eq:negative_frac_deriv_1}{{46}{7}{Riemann-Liouville Fractional Derivative\relax }{equation.2.46}{}}
-\newlabel{eq:negative_frac_deriv_2}{{47}{7}{Riemann-Liouville Fractional Derivative\relax }{equation.2.47}{}}
-\newlabel{lem:lap_rld}{{7}{7}{Riemann-Liouville Fractional Derivative\relax }{lemma.7}{}}
-\citation{Samko1993,Podlubny1999}
+\newlabel{eq:I_D_right_inverse}{{79}{11}{Riemann-Liouville Fractional Derivative\relax }{equation.2.79}{}}
+\newlabel{eq:negative_frac_deriv_1}{{83}{11}{Riemann-Liouville Fractional Derivative\relax }{equation.2.83}{}}
+\newlabel{eq:negative_frac_deriv_2}{{84}{11}{Riemann-Liouville Fractional Derivative\relax }{equation.2.84}{}}
 =======
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Riemann-Liouville Fractional Derivative}{3}{subsection.1.2}}
-\newlabel{def:rld}{{22}{3}{Riemann-Liouville Fractional Derivative}{equation.1.22}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Riemann-Liouville Fractional Derivative}{8}{subsection.2.2}}
+\newlabel{def:rld}{{66}{8}{Riemann-Liouville Fractional Derivative}{equation.2.66}{}}
 \citation{Podlubny1999}
-\newlabel{eq:rld_rli_rel}{{23}{4}{Riemann-Liouville Fractional Derivative}{equation.1.23}{}}
-\newlabel{lem:rld_left_inverse}{{4}{4}{}{lemma.4}{}}
-\newlabel{lem:rld_right_res}{{5}{4}{}{lemma.5}{}}
+\newlabel{eq:rld_rli_rel}{{67}{9}{Riemann-Liouville Fractional Derivative}{equation.2.67}{}}
+\newlabel{lem:rld_left_inverse}{{4}{9}{}{lemma.4}{}}
+\newlabel{lem:rld_right_res}{{5}{9}{}{lemma.5}{}}
 \citation{Gorenflo1997}
-\newlabel{eq:I_D_right_inverse}{{35}{5}{Riemann-Liouville Fractional Derivative}{equation.1.35}{}}
-\newlabel{eq:negative_frac_deriv_1}{{39}{5}{Riemann-Liouville Fractional Derivative}{equation.1.39}{}}
-\newlabel{eq:negative_frac_deriv_2}{{40}{5}{Riemann-Liouville Fractional Derivative}{equation.1.40}{}}
->>>>>>> da25e797a25205772bcb3f7d122ce8f7e909966f
+\newlabel{eq:I_D_right_inverse}{{79}{10}{Riemann-Liouville Fractional Derivative}{equation.2.79}{}}
+\newlabel{eq:negative_frac_deriv_1}{{83}{10}{Riemann-Liouville Fractional Derivative}{equation.2.83}{}}
+\newlabel{eq:negative_frac_deriv_2}{{84}{10}{Riemann-Liouville Fractional Derivative}{equation.2.84}{}}
+>>>>>>> 403e648036663ed925ce90a295ed775ce6b5692f
 \citation{Caputo1967}
 \citation{Caputo1971}
 \citation{Caputo1971,Podlubny1999,Samko1993,Heymans2005}
-<<<<<<< HEAD
-\citation{Caputo1971,Podlubny1999,Samko1993}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Analytical Results for Ordinary Fractional Differential Equations}{8}{section.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Basic definitions}{8}{subsection.3.1}}
-\citation{Heymans2005}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Notes on the Caputo derivative}{9}{subsubsection.3.1.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Solution to a linear intial value problem via Laplace transforms}{9}{subsection.3.2}}
-\newlabel{eq:fde-1}{{56}{9}{Solution to a linear intial value problem via Laplace transforms\relax }{equation.3.56}{}}
-\newlabel{eq:fde-1-ic}{{57}{9}{Solution to a linear intial value problem via Laplace transforms\relax }{equation.3.57}{}}
-\newlabel{lem:lap_rli}{{9}{9}{Solution to a linear intial value problem via Laplace transforms\relax }{lemma.9}{}}
-\newlabel{lem:lap_rld}{{10}{10}{Solution to a linear intial value problem via Laplace transforms\relax }{lemma.10}{}}
-\newlabel{lem:lap_cap}{{11}{10}{Solution to a linear intial value problem via Laplace transforms\relax }{lemma.11}{}}
-\newlabel{lem:mit_conv}{{12}{11}{Solution to a linear intial value problem via Laplace transforms\relax }{lemma.12}{}}
-\newlabel{lem:lap_mit}{{13}{11}{Solution to a linear intial value problem via Laplace transforms\relax }{lemma.13}{}}
-\citation{Podlubny1999}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Solution to a multi-order initial value problem via Laplace transforms}{13}{subsection.3.3}}
-\newlabel{eq:fde-multi-order}{{89}{13}{Solution to a multi-order initial value problem via Laplace transforms\relax }{equation.3.89}{}}
-\newlabel{def:mit-lef-2}{{5}{13}{Solution to a multi-order initial value problem via Laplace transforms\relax }{definition.5}{}}
-\newlabel{lem:lap_mit_2}{{15}{13}{Solution to a multi-order initial value problem via Laplace transforms\relax }{lemma.15}{}}
-\citation{Tisdell2012}
-\citation{Podlubny1999}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Existence and uniquness of solutions to initial value problems}{16}{subsection.3.4}}
-\newlabel{sec:existence_uniq}{{3.4}{16}{Existence and uniquness of solutions to initial value problems\relax }{subsection.3.4}{}}
-\newlabel{thm-existence-uniq}{{1}{16}{Existence and uniquness of solutions to initial value problems\relax }{theorem.1}{}}
-\newlabel{eq-fde-ivp-1}{{114}{16}{Existence and uniquness of solutions to initial value problems\relax }{equation.3.114}{}}
-\newlabel{eq-fde-ivp-ic-1}{{115}{16}{Existence and uniquness of solutions to initial value problems\relax }{equation.3.115}{}}
-\newlabel{lem-rli-mit-lef-1}{{18}{16}{Existence and uniquness of solutions to initial value problems\relax }{lemma.18}{}}
-\newlabel{lem-rli-mit-lef-2}{{19}{17}{Existence and uniquness of solutions to initial value problems\relax }{lemma.19}{}}
-=======
 \citation{Caputo1971,Podlubny1999,Samko1993,Gorenflo1997}
 \citation{Podlubny1999,Samko1993,Gorenflo1997}
-\newlabel{lem:lap_rld}{{7}{6}{}{lemma.7}{}}
-\newlabel{lem:rld_fourier}{{8}{6}{}{lemma.8}{}}
+<<<<<<< HEAD
+\newlabel{lem:lap_rld}{{7}{12}{Riemann-Liouville Fractional Derivative\relax }{lemma.7}{}}
+\newlabel{lem:rld_fourier}{{8}{12}{Riemann-Liouville Fractional Derivative\relax }{lemma.8}{}}
 \citation{Heymans2005}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Caputo Fractional Derivative}{7}{subsection.1.3}}
-\newlabel{eq:cap_rli_rel}{{52}{7}{Caputo Fractional Derivative}{equation.1.52}{}}
-\newlabel{lem:cap_rld_rel}{{9}{7}{}{lemma.9}{}}
-\newlabel{lem:cap_laplace}{{11}{8}{}{lemma.11}{}}
-\newlabel{lem:cap_fourier}{{12}{8}{}{lemma.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Caputo Fractional Derivative}{13}{subsection.2.3}}
+\newlabel{eq:cap_rli_rel}{{96}{13}{Caputo Fractional Derivative\relax }{equation.2.96}{}}
+\newlabel{lem:cap_rld_rel}{{9}{13}{Caputo Fractional Derivative\relax }{lemma.9}{}}
+\newlabel{lem:cap_laplace}{{11}{14}{Caputo Fractional Derivative\relax }{lemma.11}{}}
+\newlabel{lem:cap_fourier}{{12}{14}{Caputo Fractional Derivative\relax }{lemma.12}{}}
 \citation{Samko1993}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Analytical Results for Ordinary Fractional Differential Equations}{10}{section.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Basic definitions}{10}{subsection.2.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Solution to a linear intial value problem via Laplace transforms}{10}{subsection.2.2}}
-\newlabel{eq:fde-1}{{72}{10}{Solution to a linear intial value problem via Laplace transforms}{equation.2.72}{}}
-\newlabel{eq:fde-1-ic}{{73}{10}{Solution to a linear intial value problem via Laplace transforms}{equation.2.73}{}}
-\newlabel{lem:mit_conv}{{14}{10}{}{lemma.14}{}}
-\newlabel{lem:lap_mit}{{15}{11}{}{lemma.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Analytical Results for Ordinary Fractional Differential Equations}{16}{section.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Basic definitions}{16}{subsection.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Solution to a linear intial value problem via Laplace transforms}{16}{subsection.3.2}}
+\newlabel{eq:fde-1}{{116}{16}{Solution to a linear intial value problem via Laplace transforms\relax }{equation.3.116}{}}
+\newlabel{eq:fde-1-ic}{{117}{16}{Solution to a linear intial value problem via Laplace transforms\relax }{equation.3.117}{}}
+\newlabel{lem:mit_conv}{{14}{16}{Solution to a linear intial value problem via Laplace transforms\relax }{lemma.14}{}}
+\newlabel{lem:lap_mit}{{15}{17}{Solution to a linear intial value problem via Laplace transforms\relax }{lemma.15}{}}
 \citation{Podlubny1999}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Solution to a multi-order initial value problem via Laplace transforms}{12}{subsection.2.3}}
-\newlabel{eq:fde-multi-order}{{90}{12}{Solution to a multi-order initial value problem via Laplace transforms}{equation.2.90}{}}
-\newlabel{def:mit-lef-2}{{5}{13}{Two Paramter Mittag-Lefler Function}{definition.5}{}}
-\newlabel{lem:lap_mit_2}{{17}{13}{}{lemma.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Solution to a multi-order initial value problem via Laplace transforms}{18}{subsection.3.3}}
+\newlabel{eq:fde-multi-order}{{134}{18}{Solution to a multi-order initial value problem via Laplace transforms\relax }{equation.3.134}{}}
+\newlabel{def:mit-lef-2}{{5}{19}{Solution to a multi-order initial value problem via Laplace transforms\relax }{definition.5}{}}
+\newlabel{lem:lap_mit_2}{{17}{19}{Solution to a multi-order initial value problem via Laplace transforms\relax }{lemma.17}{}}
 \citation{Tisdell2012}
 \citation{Podlubny1999}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Existence and uniquness of solutions to initial value problems}{15}{subsection.2.4}}
-\newlabel{sec:existence_uniq}{{2.4}{15}{Existence and uniquness of solutions to initial value problems}{subsection.2.4}{}}
-\newlabel{thm-existence-uniq}{{1}{15}{Uniqueness}{theorem.1}{}}
-\newlabel{eq-fde-ivp-1}{{115}{15}{Uniqueness}{equation.2.115}{}}
-\newlabel{eq-fde-ivp-ic-1}{{116}{15}{Uniqueness}{equation.2.116}{}}
-\newlabel{lem-rli-mit-lef-1}{{20}{15}{}{lemma.20}{}}
-\newlabel{lem-rli-mit-lef-2}{{21}{16}{}{lemma.21}{}}
->>>>>>> da25e797a25205772bcb3f7d122ce8f7e909966f
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Existence and uniquness of solutions to initial value problems}{21}{subsection.3.4}}
+\newlabel{sec:existence_uniq}{{3.4}{21}{Existence and uniquness of solutions to initial value problems\relax }{subsection.3.4}{}}
+\newlabel{thm-existence-uniq}{{1}{21}{Existence and uniquness of solutions to initial value problems\relax }{theorem.1}{}}
+\newlabel{eq-fde-ivp-1}{{159}{21}{Existence and uniquness of solutions to initial value problems\relax }{equation.3.159}{}}
+\newlabel{eq-fde-ivp-ic-1}{{160}{21}{Existence and uniquness of solutions to initial value problems\relax }{equation.3.160}{}}
+\newlabel{lem-rli-mit-lef-1}{{20}{21}{Existence and uniquness of solutions to initial value problems\relax }{lemma.20}{}}
+\newlabel{lem-rli-mit-lef-2}{{21}{22}{Existence and uniquness of solutions to initial value problems\relax }{lemma.21}{}}
+=======
+\newlabel{lem:lap_rld}{{7}{11}{}{lemma.7}{}}
+\newlabel{lem:rld_fourier}{{8}{11}{}{lemma.8}{}}
+\citation{Heymans2005}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Caputo Fractional Derivative}{12}{subsection.2.3}}
+\newlabel{eq:cap_rli_rel}{{96}{12}{Caputo Fractional Derivative}{equation.2.96}{}}
+\newlabel{lem:cap_rld_rel}{{9}{12}{}{lemma.9}{}}
+\newlabel{lem:cap_laplace}{{11}{13}{}{lemma.11}{}}
+\newlabel{lem:cap_fourier}{{12}{13}{}{lemma.12}{}}
+\citation{Samko1993}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Analytical Results for Ordinary Fractional Differential Equations}{15}{section.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Basic definitions}{15}{subsection.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Solution to a linear intial value problem via Laplace transforms}{15}{subsection.3.2}}
+\newlabel{eq:fde-1}{{116}{15}{Solution to a linear intial value problem via Laplace transforms}{equation.3.116}{}}
+\newlabel{eq:fde-1-ic}{{117}{15}{Solution to a linear intial value problem via Laplace transforms}{equation.3.117}{}}
+\newlabel{lem:mit_conv}{{14}{15}{}{lemma.14}{}}
+\newlabel{lem:lap_mit}{{15}{16}{}{lemma.15}{}}
+\citation{Podlubny1999}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Solution to a multi-order initial value problem via Laplace transforms}{17}{subsection.3.3}}
+\newlabel{eq:fde-multi-order}{{134}{17}{Solution to a multi-order initial value problem via Laplace transforms}{equation.3.134}{}}
+\newlabel{def:mit-lef-2}{{5}{18}{Two Paramter Mittag-Lefler Function}{definition.5}{}}
+\newlabel{lem:lap_mit_2}{{17}{18}{}{lemma.17}{}}
+\citation{Tisdell2012}
+\citation{Podlubny1999}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Existence and uniquness of solutions to initial value problems}{20}{subsection.3.4}}
+\newlabel{sec:existence_uniq}{{3.4}{20}{Existence and uniquness of solutions to initial value problems}{subsection.3.4}{}}
+\newlabel{thm-existence-uniq}{{1}{20}{Uniqueness}{theorem.1}{}}
+\newlabel{eq-fde-ivp-1}{{159}{20}{Uniqueness}{equation.3.159}{}}
+\newlabel{eq-fde-ivp-ic-1}{{160}{20}{Uniqueness}{equation.3.160}{}}
+\newlabel{lem-rli-mit-lef-1}{{20}{20}{}{lemma.20}{}}
+\newlabel{lem-rli-mit-lef-2}{{21}{21}{}{lemma.21}{}}
+>>>>>>> 403e648036663ed925ce90a295ed775ce6b5692f
 \citation{Podlubny1999}
 \citation{Diethelm2011}
 \citation{Podlubny1999}
 \citation{Podlubny1999}
 \citation{Diethelm2011}
-<<<<<<< HEAD
-\@writefile{toc}{\contentsline {section}{\numberline {4}Numerical Methods for Fractional Differential Equations}{20}{section.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Approximations of Fractional Derivatives and Integrals}{20}{subsection.4.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Gr\"{u}nwald-Letnikov Approximation}{20}{subsubsection.4.1.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Numerical Methods for Fractional Differential Equations}{25}{section.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Approximations of Fractional Derivatives and Integrals}{25}{subsection.4.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Gr\"{u}nwald-Letnikov Approximation}{25}{subsubsection.4.1.1}}
 \citation{Diethelm2010}
 \citation{Diethelm2004}
 \citation{Diethelm2004}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Quadrature Approximation}{21}{subsubsection.4.1.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}An Initial Value Problem}{21}{subsubsection.4.1.3}}
-\newlabel{eq:num_ivp_1}{{164}{21}{An Initial Value Problem\relax }{equation.4.164}{}}
-\newlabel{eq:num_ivp_2}{{165}{21}{An Initial Value Problem\relax }{equation.4.165}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.4}The Adams Moulton Bashforth Scheme}{21}{subsubsection.4.1.4}}
-\newlabel{sec:amb_desc}{{4.1.4}{21}{The Adams Moulton Bashforth Scheme\relax }{subsubsection.4.1.4}{}}
-\newlabel{eq:num_int_eq}{{166}{21}{The Adams Moulton Bashforth Scheme\relax }{equation.4.166}{}}
+<<<<<<< HEAD
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Quadrature Approximation}{26}{subsubsection.4.1.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}An Initial Value Problem}{26}{subsubsection.4.1.3}}
+\newlabel{eq:num_ivp_1}{{209}{26}{An Initial Value Problem\relax }{equation.4.209}{}}
+\newlabel{eq:num_ivp_2}{{210}{26}{An Initial Value Problem\relax }{equation.4.210}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.4}The Adams Moulton Bashforth Scheme}{26}{subsubsection.4.1.4}}
+\newlabel{sec:amb_desc}{{4.1.4}{26}{The Adams Moulton Bashforth Scheme\relax }{subsubsection.4.1.4}{}}
+\newlabel{eq:num_int_eq}{{211}{26}{The Adams Moulton Bashforth Scheme\relax }{equation.4.211}{}}
 =======
-\@writefile{toc}{\contentsline {section}{\numberline {3}Numerical Methods for Fractional Differential Equations}{19}{section.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Approximations of Fractional Derivatives and Integrals}{19}{subsection.3.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Gr\"{u}nwald-Letnikov Approximation}{19}{subsubsection.3.1.1}}
-\citation{Diethelm2010}
-\citation{Diethelm2004}
-\citation{Diethelm2004}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Quadrature Approximation}{20}{subsubsection.3.1.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}An Initial Value Problem}{20}{subsubsection.3.1.3}}
-\newlabel{eq:num_ivp_1}{{165}{20}{An Initial Value Problem}{equation.3.165}{}}
-\newlabel{eq:num_ivp_2}{{166}{20}{An Initial Value Problem}{equation.3.166}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.4}The Adams Moulton Bashforth Scheme}{20}{subsubsection.3.1.4}}
-\newlabel{sec:amb_desc}{{3.1.4}{20}{The Adams Moulton Bashforth Scheme}{subsubsection.3.1.4}{}}
-\newlabel{eq:num_int_eq}{{167}{20}{The Adams Moulton Bashforth Scheme}{equation.3.167}{}}
->>>>>>> da25e797a25205772bcb3f7d122ce8f7e909966f
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Quadrature Approximation}{25}{subsubsection.4.1.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}An Initial Value Problem}{25}{subsubsection.4.1.3}}
+\newlabel{eq:num_ivp_1}{{209}{25}{An Initial Value Problem}{equation.4.209}{}}
+\newlabel{eq:num_ivp_2}{{210}{25}{An Initial Value Problem}{equation.4.210}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.4}The Adams Moulton Bashforth Scheme}{25}{subsubsection.4.1.4}}
+\newlabel{sec:amb_desc}{{4.1.4}{25}{The Adams Moulton Bashforth Scheme}{subsubsection.4.1.4}{}}
+\newlabel{eq:num_int_eq}{{211}{25}{The Adams Moulton Bashforth Scheme}{equation.4.211}{}}
+>>>>>>> 403e648036663ed925ce90a295ed775ce6b5692f
 \citation{Diethelm2004}
 \citation{Diethelm2004}
 \citation{Diethelm2011}
 \citation{Diethelm2011}
 \citation{Diethelm2011}
 <<<<<<< HEAD
-\newlabel{eq:amb_sum_1}{{168}{22}{The Adams Moulton Bashforth Scheme\relax }{equation.4.168}{}}
-\newlabel{eq:amb_y_corr}{{170}{22}{The Adams Moulton Bashforth Scheme\relax }{equation.4.170}{}}
-\newlabel{eq:amb_sum_2}{{171}{22}{The Adams Moulton Bashforth Scheme\relax }{equation.4.171}{}}
-\newlabel{eq:amb_y_pred}{{173}{22}{The Adams Moulton Bashforth Scheme\relax }{equation.4.173}{}}
+\newlabel{eq:amb_sum_1}{{213}{27}{The Adams Moulton Bashforth Scheme\relax }{equation.4.213}{}}
+\newlabel{eq:amb_y_corr}{{215}{27}{The Adams Moulton Bashforth Scheme\relax }{equation.4.215}{}}
+\newlabel{eq:amb_sum_2}{{216}{27}{The Adams Moulton Bashforth Scheme\relax }{equation.4.216}{}}
+\newlabel{eq:amb_y_pred}{{218}{27}{The Adams Moulton Bashforth Scheme\relax }{equation.4.218}{}}
 \citation{Diethelm2011}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.5}Parallelizing: A Task Based Approach}{23}{subsubsection.4.1.5}}
-\newlabel{sec:parallel_c}{{4.1.5}{23}{Parallelizing: A Task Based Approach\relax }{subsubsection.4.1.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Computation diagram for the values in the vector (array) $ \mathbf  {y} $.}}{23}{figure.1}}
-\newlabel{fig:comp_diag}{{1}{23}{Computation diagram for the values in the vector (array) $ \mathbf {y} $}{figure.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Task flow diagram for each block in the case when $ p = 2 $}}{25}{figure.2}}
-\newlabel{fig:AMB_Task_Flow}{{2}{25}{Task flow diagram for each block in the case when $ p = 2 $\relax }{figure.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.6}Analysis of the Performance of the Scheme in C\# and MONO}{26}{subsubsection.4.1.6}}
-\newlabel{def:amdahl_efficient}{{6}{26}{Analysis of the Performance of the Scheme in C\# and MONO\relax }{definition.6}{}}
-\newlabel{eq:tot_par_c}{{185}{27}{Analysis of the Performance of the Scheme in C\# and MONO\relax }{equation.4.185}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.5}Parallelizing: A Task Based Approach}{28}{subsubsection.4.1.5}}
+\newlabel{sec:parallel_c}{{4.1.5}{28}{Parallelizing: A Task Based Approach\relax }{subsubsection.4.1.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Computation diagram for the values in the vector (array) $ \mathbf  {y} $.}}{28}{figure.1}}
+\newlabel{fig:comp_diag}{{1}{28}{Computation diagram for the values in the vector (array) $ \mathbf {y} $}{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Task flow diagram for each block in the case when $ p = 2 $}}{30}{figure.2}}
+\newlabel{fig:AMB_Task_Flow}{{2}{30}{Task flow diagram for each block in the case when $ p = 2 $\relax }{figure.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.6}Analysis of the Performance of the Scheme in C\# and MONO}{31}{subsubsection.4.1.6}}
+\newlabel{def:amdahl_efficient}{{6}{31}{Analysis of the Performance of the Scheme in C\# and MONO\relax }{definition.6}{}}
+\newlabel{eq:tot_par_c}{{230}{32}{Analysis of the Performance of the Scheme in C\# and MONO\relax }{equation.4.230}{}}
 \citation{MicrosoftTaskSchedular}
 \citation{Diethelm2011}
 \citation{Diethelm2011}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Average runtime of the scheme for different values of $ p $ and $ N $. }}{28}{figure.3}}
-\newlabel{fig:mono_performance_surface}{{3}{28}{Average runtime of the scheme for different values of $ p $ and $ N $. \relax }{figure.3}{}}
-\newlabel{tab:mono_speedup}{{4.1.6}{28}{Analysis of the Performance of the Scheme in C\# and MONO\relax }{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Average runtime of the scheme for different values of $ p $ and $ N $. }}{33}{figure.3}}
+\newlabel{fig:mono_performance_surface}{{3}{33}{Average runtime of the scheme for different values of $ p $ and $ N $. \relax }{figure.3}{}}
+\newlabel{tab:mono_speedup}{{4.1.6}{33}{Analysis of the Performance of the Scheme in C\# and MONO\relax }{figure.3}{}}
 \citation{Fernando2005}
 \citation{Diethelm2011}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.7}Parallelizing: A CUDA Approach}{29}{subsubsection.4.1.7}}
-\newlabel{sec:parallel_cuda}{{4.1.7}{29}{Parallelizing: A CUDA Approach\relax }{subsubsection.4.1.7}{}}
-\citation{Diethelm2011}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Runtime for the scheme for various values of opsPerThread and N.}}{30}{figure.4}}
-\newlabel{fig:cuda_performance_surface}{{4}{30}{Runtime for the scheme for various values of opsPerThread and N}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.7}Parallelizing: A CUDA Approach}{34}{subsubsection.4.1.7}}
+\newlabel{sec:parallel_cuda}{{4.1.7}{34}{Parallelizing: A CUDA Approach\relax }{subsubsection.4.1.7}{}}
 =======
-\newlabel{eq:amb_sum_1}{{169}{21}{The Adams Moulton Bashforth Scheme}{equation.3.169}{}}
-\newlabel{eq:amb_y_corr}{{171}{21}{The Adams Moulton Bashforth Scheme}{equation.3.171}{}}
-\newlabel{eq:amb_sum_2}{{172}{21}{The Adams Moulton Bashforth Scheme}{equation.3.172}{}}
-\newlabel{eq:amb_y_pred}{{174}{21}{The Adams Moulton Bashforth Scheme}{equation.3.174}{}}
+\newlabel{eq:amb_sum_1}{{213}{26}{The Adams Moulton Bashforth Scheme}{equation.4.213}{}}
+\newlabel{eq:amb_y_corr}{{215}{26}{The Adams Moulton Bashforth Scheme}{equation.4.215}{}}
+\newlabel{eq:amb_sum_2}{{216}{26}{The Adams Moulton Bashforth Scheme}{equation.4.216}{}}
+\newlabel{eq:amb_y_pred}{{218}{26}{The Adams Moulton Bashforth Scheme}{equation.4.218}{}}
 \citation{Diethelm2011}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.5}Parallelizing: A Task Based Approach}{22}{subsubsection.3.1.5}}
-\newlabel{sec:parallel_c}{{3.1.5}{22}{Parallelizing: A Task Based Approach}{subsubsection.3.1.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Computation diagram for the values in the vector (array) $ \mathbf  {y} $.}}{22}{figure.1}}
-\newlabel{fig:comp_diag}{{1}{22}{Computation diagram for the values in the vector (array) $ \mathbf {y} $}{figure.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Task flow diagram for each block in the case when $ p = 2 $}}{24}{figure.2}}
-\newlabel{fig:AMB_Task_Flow}{{2}{24}{Task flow diagram for each block in the case when $ p = 2 $}{figure.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.6}Analysis of the Performance of the Scheme in C\# and MONO}{25}{subsubsection.3.1.6}}
-\newlabel{def:amdahl_efficient}{{6}{25}{Amdahl Efficiency}{definition.6}{}}
-\newlabel{eq:tot_par_c}{{186}{26}{Analysis of the Performance of the Scheme in C\# and MONO}{equation.3.186}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.5}Parallelizing: A Task Based Approach}{27}{subsubsection.4.1.5}}
+\newlabel{sec:parallel_c}{{4.1.5}{27}{Parallelizing: A Task Based Approach}{subsubsection.4.1.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Computation diagram for the values in the vector (array) $ \mathbf  {y} $.}}{27}{figure.1}}
+\newlabel{fig:comp_diag}{{1}{27}{Computation diagram for the values in the vector (array) $ \mathbf {y} $}{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Task flow diagram for each block in the case when $ p = 2 $}}{29}{figure.2}}
+\newlabel{fig:AMB_Task_Flow}{{2}{29}{Task flow diagram for each block in the case when $ p = 2 $}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.6}Analysis of the Performance of the Scheme in C\# and MONO}{30}{subsubsection.4.1.6}}
+\newlabel{def:amdahl_efficient}{{6}{30}{Amdahl Efficiency}{definition.6}{}}
+\newlabel{eq:tot_par_c}{{230}{31}{Analysis of the Performance of the Scheme in C\# and MONO}{equation.4.230}{}}
 \citation{MicrosoftTaskSchedular}
 \citation{Diethelm2011}
 \citation{Diethelm2011}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Average runtime of the scheme for different values of $ p $ and $ N $. }}{27}{figure.3}}
-\newlabel{fig:mono_performance_surface}{{3}{27}{Average runtime of the scheme for different values of $ p $ and $ N $}{figure.3}{}}
-\newlabel{tab:mono_speedup}{{3.1.6}{27}{Analysis of the Performance of the Scheme in C\# and MONO}{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Average runtime of the scheme for different values of $ p $ and $ N $. }}{32}{figure.3}}
+\newlabel{fig:mono_performance_surface}{{3}{32}{Average runtime of the scheme for different values of $ p $ and $ N $}{figure.3}{}}
+\newlabel{tab:mono_speedup}{{4.1.6}{32}{Analysis of the Performance of the Scheme in C\# and MONO}{figure.3}{}}
 \citation{Fernando2005}
 \citation{Diethelm2011}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.7}Parallelizing: A CUDA Approach}{28}{subsubsection.3.1.7}}
-\newlabel{sec:parallel_cuda}{{3.1.7}{28}{Parallelizing: A CUDA Approach}{subsubsection.3.1.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.7}Parallelizing: A CUDA Approach}{33}{subsubsection.4.1.7}}
+\newlabel{sec:parallel_cuda}{{4.1.7}{33}{Parallelizing: A CUDA Approach}{subsubsection.4.1.7}{}}
+>>>>>>> 403e648036663ed925ce90a295ed775ce6b5692f
 \citation{Diethelm2011}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Runtime for the scheme for various values of opsPerThread and N.}}{29}{figure.4}}
-\newlabel{fig:cuda_performance_surface}{{4}{29}{Runtime for the scheme for various values of opsPerThread and N}{figure.4}{}}
->>>>>>> da25e797a25205772bcb3f7d122ce8f7e909966f
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Runtime for the scheme for various values of opsPerThread and N.}}{35}{figure.4}}
+\newlabel{fig:cuda_performance_surface}{{4}{35}{Runtime for the scheme for various values of opsPerThread and N}{figure.4}{}}
 \citation{Bateman1955}
 \citation{Dzherbashyan1954}
 \citation{Podlubny1999}
 \citation{Gorenflo2002}
 \citation{Podlubny1999}
 <<<<<<< HEAD
-\@writefile{toc}{\contentsline {section}{\numberline {5}Numerical Evaluation of Special Functions}{31}{section.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Mittag-Lefller Function}{31}{subsection.5.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}Contour Integral Representation of $ \Gamma (z) $ and $ \frac  {1}{\Gamma (z)} $}{31}{subsubsection.5.1.1}}
-\newlabel{lem:contour_gamma}{{20}{31}{Contour Integral Representation of $ \Gamma (z) $ and $ \frac {1}{\Gamma (z)} $\relax }{lemma.20}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Numerical Evaluation of Special Functions}{36}{section.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Mittag-Lefller Function}{36}{subsection.5.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}Contour Integral Representation of $ \Gamma (z) $ and $ \frac  {1}{\Gamma (z)} $}{36}{subsubsection.5.1.1}}
+\newlabel{lem:contour_gamma}{{22}{36}{Contour Integral Representation of $ \Gamma (z) $ and $ \frac {1}{\Gamma (z)} $\relax }{lemma.22}{}}
 \citation{Podlubny1999}
 \citation{Podlubny1999}
-\newlabel{eq:gamma_contour}{{196}{32}{Contour Integral Representation of $ \Gamma (z) $ and $ \frac {1}{\Gamma (z)} $\relax }{equation.5.196}{}}
-\newlabel{lem:contour_1_gamma_1}{{21}{32}{Contour Integral Representation of $ \Gamma (z) $ and $ \frac {1}{\Gamma (z)} $\relax }{lemma.21}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The Hankel contour C}}{33}{figure.5}}
-\newlabel{fig:Hankel_Loop_2}{{5}{33}{The Hankel contour C\relax }{figure.5}{}}
-\newlabel{lem:1_gamma_contour}{{22}{33}{Contour Integral Representation of $ \Gamma (z) $ and $ \frac {1}{\Gamma (z)} $\relax }{lemma.22}{}}
-\newlabel{eq:gamma_contour_1}{{203}{33}{Contour Integral Representation of $ \Gamma (z) $ and $ \frac {1}{\Gamma (z)} $\relax }{equation.5.203}{}}
+\newlabel{eq:gamma_contour}{{241}{37}{Contour Integral Representation of $ \Gamma (z) $ and $ \frac {1}{\Gamma (z)} $\relax }{equation.5.241}{}}
+\newlabel{lem:contour_1_gamma_1}{{23}{37}{Contour Integral Representation of $ \Gamma (z) $ and $ \frac {1}{\Gamma (z)} $\relax }{lemma.23}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The Hankel contour C}}{38}{figure.5}}
+\newlabel{fig:Hankel_Loop_2}{{5}{38}{The Hankel contour C\relax }{figure.5}{}}
+\newlabel{lem:1_gamma_contour}{{24}{38}{Contour Integral Representation of $ \Gamma (z) $ and $ \frac {1}{\Gamma (z)} $\relax }{lemma.24}{}}
+\newlabel{eq:gamma_contour_1}{{248}{38}{Contour Integral Representation of $ \Gamma (z) $ and $ \frac {1}{\Gamma (z)} $\relax }{equation.5.248}{}}
 \citation{Podlubny1999}
-\newlabel{eq:gamma_contour_2}{{205}{34}{Contour Integral Representation of $ \Gamma (z) $ and $ \frac {1}{\Gamma (z)} $\relax }{equation.5.205}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The Hankel contour Ha}}{34}{figure.6}}
-\newlabel{fig:hankel_loop}{{6}{34}{The Hankel contour Ha\relax }{figure.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The Hankel countour $ \gamma (\varepsilon , \varphi ) $}}{35}{figure.7}}
-\newlabel{fig:hankel_wedge}{{7}{35}{The Hankel countour $ \gamma (\varepsilon , \varphi ) $\relax }{figure.7}{}}
-\citation{Podlubny1999}
-\citation{Podlubny1999}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}Contour Integral Representation of $ E_{\alpha , \beta } $ }{36}{subsubsection.5.1.2}}
-\newlabel{lem:mit_lef_contour_1}{{23}{36}{Contour Integral Representation of $ E_{\alpha , \beta } $ \relax }{lemma.23}{}}
-\newlabel{eq:mit_lef_region}{{217}{36}{Contour Integral Representation of $ E_{\alpha , \beta } $ \relax }{equation.5.217}{}}
-\newlabel{eq:mit_lef_contour_1}{{218}{36}{Contour Integral Representation of $ E_{\alpha , \beta } $ \relax }{equation.5.218}{}}
-\newlabel{eq:mit_lef_contour_2}{{219}{36}{Contour Integral Representation of $ E_{\alpha , \beta } $ \relax }{equation.5.219}{}}
-\citation{Podlubny1999}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}Asymptotic Expansions of $ E_{\alpha , \beta }(z) $}{38}{subsubsection.5.1.3}}
-\newlabel{lem:mit_lef_asym_exp_1}{{25}{38}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{lemma.25}{}}
-\newlabel{eq:geometric_expansion}{{234}{38}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{equation.5.234}{}}
-\newlabel{eq:mit_lef_exp_1}{{236}{38}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{equation.5.236}{}}
-\newlabel{eq:mit_lef_exp_2}{{237}{38}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{equation.5.237}{}}
-\newlabel{eq:mit_lef_asym_sum_1}{{238}{38}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{equation.5.238}{}}
-\newlabel{eq:mit_lef_contour_int_conv}{{240}{38}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{equation.5.240}{}}
+\newlabel{eq:gamma_contour_2}{{250}{39}{Contour Integral Representation of $ \Gamma (z) $ and $ \frac {1}{\Gamma (z)} $\relax }{equation.5.250}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The Hankel contour Ha}}{39}{figure.6}}
+\newlabel{fig:hankel_loop}{{6}{39}{The Hankel contour Ha\relax }{figure.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The Hankel countour $ \gamma (\varepsilon , \varphi ) $}}{40}{figure.7}}
+\newlabel{fig:hankel_wedge}{{7}{40}{The Hankel countour $ \gamma (\varepsilon , \varphi ) $\relax }{figure.7}{}}
 \citation{Podlubny1999}
 \citation{Podlubny1999}
-\newlabel{eq:mit_lef_asym_int_1}{{242}{39}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{equation.5.242}{}}
-\newlabel{lem:mit_lef_asym_exp_2}{{26}{39}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{lemma.26}{}}
-\newlabel{lem:mit_lef_summation}{{27}{39}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{lemma.27}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}Contour Integral Representation of $ E_{\alpha , \beta } $ }{41}{subsubsection.5.1.2}}
+\newlabel{lem:mit_lef_contour_1}{{25}{41}{Contour Integral Representation of $ E_{\alpha , \beta } $ \relax }{lemma.25}{}}
+\newlabel{eq:mit_lef_region}{{262}{41}{Contour Integral Representation of $ E_{\alpha , \beta } $ \relax }{equation.5.262}{}}
+\newlabel{eq:mit_lef_contour_1}{{263}{41}{Contour Integral Representation of $ E_{\alpha , \beta } $ \relax }{equation.5.263}{}}
+\newlabel{eq:mit_lef_contour_2}{{264}{41}{Contour Integral Representation of $ E_{\alpha , \beta } $ \relax }{equation.5.264}{}}
 \citation{Podlubny1999}
-\newlabel{eq:sum_identity_1}{{249}{40}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{equation.5.249}{}}
-\newlabel{eq:mit_lef_asym_cond}{{263}{41}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{equation.5.263}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}Asymptotic Expansions of $ E_{\alpha , \beta }(z) $}{43}{subsubsection.5.1.3}}
+\newlabel{lem:mit_lef_asym_exp_1}{{27}{43}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{lemma.27}{}}
+\newlabel{eq:geometric_expansion}{{279}{43}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{equation.5.279}{}}
+\newlabel{eq:mit_lef_exp_1}{{281}{43}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{equation.5.281}{}}
+\newlabel{eq:mit_lef_exp_2}{{282}{43}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{equation.5.282}{}}
+\newlabel{eq:mit_lef_asym_sum_1}{{283}{43}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{equation.5.283}{}}
+\newlabel{eq:mit_lef_contour_int_conv}{{285}{43}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{equation.5.285}{}}
+\citation{Podlubny1999}
+\citation{Podlubny1999}
+\newlabel{eq:mit_lef_asym_int_1}{{287}{44}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{equation.5.287}{}}
+\newlabel{lem:mit_lef_asym_exp_2}{{28}{44}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{lemma.28}{}}
+\newlabel{lem:mit_lef_summation}{{29}{44}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{lemma.29}{}}
+\citation{Podlubny1999}
+\newlabel{eq:sum_identity_1}{{294}{45}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{equation.5.294}{}}
+\newlabel{eq:mit_lef_asym_cond}{{308}{46}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $\relax }{equation.5.308}{}}
 \citation{Whittaker1996,Paris2001}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.4}A Numerical Algorithm for Evaluating $ E_{\alpha , \beta }(z) $}{42}{subsubsection.5.1.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Wright Function}{42}{subsection.5.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Contour Integral Representation of $ W_{\alpha , \beta }(z) $}{42}{subsubsection.5.2.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}A Numerical Algorithm for Evaluating $ W_{\alpha , \beta }(z) $}{42}{subsubsection.5.2.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Additional Notes on the Numerical Evaluation of the Gamma Function}{42}{subsection.5.3}}
-\newlabel{sec:num-gamma}{{5.3}{42}{Additional Notes on the Numerical Evaluation of the Gamma Function\relax }{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.4}A Numerical Algorithm for Evaluating $ E_{\alpha , \beta }(z) $}{47}{subsubsection.5.1.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Wright Function}{47}{subsection.5.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Contour Integral Representation of $ W_{\alpha , \beta }(z) $}{47}{subsubsection.5.2.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}A Numerical Algorithm for Evaluating $ W_{\alpha , \beta }(z) $}{47}{subsubsection.5.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Additional Notes on the Numerical Evaluation of the Gamma Function}{47}{subsection.5.3}}
+\newlabel{sec:num-gamma}{{5.3}{47}{Additional Notes on the Numerical Evaluation of the Gamma Function\relax }{subsection.5.3}{}}
 \citation{Lauritzen2009,Avramidi2000}
 \citation{Freeden2013}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Stirling's Approximation}{43}{subsubsection.5.3.1}}
-\newlabel{eq:gamma_factorial}{{281}{43}{Stirling's Approximation\relax }{equation.5.281}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Lanczos Approximation}{44}{subsubsection.5.3.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}Spouge Approximation}{44}{subsubsection.5.3.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces  Integration contour for $ \gamma (\varepsilon , \varphi ) $}}{44}{figure.8}}
-\newlabel{fig:hankel_wedge_2}{{8}{44}{ Integration contour for $ \gamma (\varepsilon , \varphi ) $\relax }{figure.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Appendix A: Adams-Moulton-Bashforth FDE Solver Code}{45}{section.6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}C\# Implementation of AMB FDE Solver}{45}{subsection.6.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.1}Program.cs}{45}{subsubsection.6.1.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.2}SpecialFunctions.cs}{49}{subsubsection.6.1.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}CUDA C/C++ Implementation of AMB FDE Solver}{50}{subsection.6.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}FDE\_Solver.cu}{50}{subsubsection.6.2.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Appendix B}{56}{section.7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Runtimes for C\# implementation described in section \ref  {sec:amb_desc}}{56}{subsection.7.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Runtimes for CUDA implementation described in section \ref  {sec:parallel_cuda}}{56}{subsection.7.2}}
-\newlabel{tab:cuda_runtimes}{{7.2}{56}{Runtimes for CUDA implementation described in section \ref {sec:parallel_cuda}\relax }{subsection.7.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Stirling's Approximation}{48}{subsubsection.5.3.1}}
+\newlabel{eq:gamma_factorial}{{326}{48}{Stirling's Approximation\relax }{equation.5.326}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Lanczos Approximation}{49}{subsubsection.5.3.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}Spouge Approximation}{49}{subsubsection.5.3.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces  Integration contour for $ \gamma (\varepsilon , \varphi ) $}}{49}{figure.8}}
+\newlabel{fig:hankel_wedge_2}{{8}{49}{ Integration contour for $ \gamma (\varepsilon , \varphi ) $\relax }{figure.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Fractional Diffusion}{50}{section.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Standard Diffusion}{50}{subsection.6.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.1}Derivation}{50}{subsubsection.6.1.1}}
+\newlabel{eq:rw_standard}{{332}{50}{Derivation\relax }{equation.6.332}{}}
+\newlabel{eq:rw_pos}{{333}{50}{Derivation\relax }{equation.6.333}{}}
+\newlabel{eq:rw_neg}{{334}{50}{Derivation\relax }{equation.6.334}{}}
+\newlabel{eq:diffusion_standard}{{336}{50}{Derivation\relax }{equation.6.336}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.2}Characterising Results}{51}{subsubsection.6.1.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.3}Analytic Solution Method}{51}{subsubsection.6.1.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Continuous Time Random Walks}{51}{subsection.6.2}}
+\newlabel{eq:fractional_recurrence}{{340}{51}{Continuous Time Random Walks\relax }{equation.6.340}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Appendix A: Adams-Moulton-Bashforth FDE Solver Code}{52}{section.7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}C\# Implementation of AMB FDE Solver}{52}{subsection.7.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.1}Program.cs}{52}{subsubsection.7.1.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.2}SpecialFunctions.cs}{56}{subsubsection.7.1.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}CUDA C/C++ Implementation of AMB FDE Solver}{57}{subsection.7.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.1}FDE\_Solver.cu}{57}{subsubsection.7.2.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Appendix B}{63}{section.8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Runtimes for C\# implementation described in section \ref  {sec:amb_desc}}{63}{subsection.8.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Runtimes for CUDA implementation described in section \ref  {sec:parallel_cuda}}{63}{subsection.8.2}}
+\newlabel{tab:cuda_runtimes}{{8.2}{63}{Runtimes for CUDA implementation described in section \ref {sec:parallel_cuda}\relax }{subsection.8.2}{}}
+=======
+\@writefile{toc}{\contentsline {section}{\numberline {5}Numerical Evaluation of Special Functions}{35}{section.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Mittag-Lefller Function}{35}{subsection.5.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}Contour Integral Representation of $ \Gamma (z) $ and $ \frac  {1}{\Gamma (z)} $}{35}{subsubsection.5.1.1}}
+\newlabel{lem:contour_gamma}{{22}{35}{}{lemma.22}{}}
+\citation{Podlubny1999}
+\citation{Podlubny1999}
+\newlabel{eq:gamma_contour}{{241}{36}{Contour Integral Representation of $ \Gamma (z) $ and $ \frac {1}{\Gamma (z)} $}{equation.5.241}{}}
+\newlabel{lem:contour_1_gamma_1}{{23}{36}{}{lemma.23}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The Hankel contour C}}{37}{figure.5}}
+\newlabel{fig:Hankel_Loop_2}{{5}{37}{The Hankel contour C}{figure.5}{}}
+\newlabel{lem:1_gamma_contour}{{24}{37}{}{lemma.24}{}}
+\newlabel{eq:gamma_contour_1}{{248}{37}{}{equation.5.248}{}}
+\citation{Podlubny1999}
+\newlabel{eq:gamma_contour_2}{{250}{38}{}{equation.5.250}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The Hankel contour Ha}}{38}{figure.6}}
+\newlabel{fig:hankel_loop}{{6}{38}{The Hankel contour Ha}{figure.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The Hankel countour $ \gamma (\varepsilon , \varphi ) $}}{39}{figure.7}}
+\newlabel{fig:hankel_wedge}{{7}{39}{The Hankel countour $ \gamma (\varepsilon , \varphi ) $}{figure.7}{}}
+\citation{Podlubny1999}
+\citation{Podlubny1999}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}Contour Integral Representation of $ E_{\alpha , \beta } $ }{40}{subsubsection.5.1.2}}
+\newlabel{lem:mit_lef_contour_1}{{25}{40}{}{lemma.25}{}}
+\newlabel{eq:mit_lef_region}{{262}{40}{}{equation.5.262}{}}
+\newlabel{eq:mit_lef_contour_1}{{263}{40}{}{equation.5.263}{}}
+\newlabel{eq:mit_lef_contour_2}{{264}{40}{}{equation.5.264}{}}
+\citation{Podlubny1999}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}Asymptotic Expansions of $ E_{\alpha , \beta }(z) $}{42}{subsubsection.5.1.3}}
+\newlabel{lem:mit_lef_asym_exp_1}{{27}{42}{}{lemma.27}{}}
+\newlabel{eq:geometric_expansion}{{279}{42}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $}{equation.5.279}{}}
+\newlabel{eq:mit_lef_exp_1}{{281}{42}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $}{equation.5.281}{}}
+\newlabel{eq:mit_lef_exp_2}{{282}{42}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $}{equation.5.282}{}}
+\newlabel{eq:mit_lef_asym_sum_1}{{283}{42}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $}{equation.5.283}{}}
+\newlabel{eq:mit_lef_contour_int_conv}{{285}{42}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $}{equation.5.285}{}}
+\citation{Podlubny1999}
+\citation{Podlubny1999}
+\newlabel{eq:mit_lef_asym_int_1}{{287}{43}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $}{equation.5.287}{}}
+\newlabel{lem:mit_lef_asym_exp_2}{{28}{43}{}{lemma.28}{}}
+\newlabel{lem:mit_lef_summation}{{29}{43}{WE MAKE A CORRECTION - CHECK - HIGH RISK OF ERROR!}{lemma.29}{}}
+\citation{Podlubny1999}
+\newlabel{eq:sum_identity_1}{{294}{44}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $}{equation.5.294}{}}
+\newlabel{eq:mit_lef_asym_cond}{{308}{45}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $}{equation.5.308}{}}
+\citation{Whittaker1996,Paris2001}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.4}A Numerical Algorithm for Evaluating $ E_{\alpha , \beta }(z) $}{46}{subsubsection.5.1.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Wright Function}{46}{subsection.5.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Contour Integral Representation of $ W_{\alpha , \beta }(z) $}{46}{subsubsection.5.2.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}A Numerical Algorithm for Evaluating $ W_{\alpha , \beta }(z) $}{46}{subsubsection.5.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Additional Notes on the Numerical Evaluation of the Gamma Function}{46}{subsection.5.3}}
+\newlabel{sec:num-gamma}{{5.3}{46}{Additional Notes on the Numerical Evaluation of the Gamma Function}{subsection.5.3}{}}
+\citation{Lauritzen2009,Avramidi2000}
+\citation{Freeden2013}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Stirling's Approximation}{47}{subsubsection.5.3.1}}
+\newlabel{eq:gamma_factorial}{{326}{47}{Stirling's Approximation}{equation.5.326}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Lanczos Approximation}{48}{subsubsection.5.3.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}Spouge Approximation}{48}{subsubsection.5.3.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces  Integration contour for $ \gamma (\varepsilon , \varphi ) $}}{48}{figure.8}}
+\newlabel{fig:hankel_wedge_2}{{8}{48}{Integration contour for $ \gamma (\varepsilon , \varphi ) $}{figure.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Fractional Diffusion}{49}{section.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Standard Diffusion}{49}{subsection.6.1}}
+\newlabel{sec:std_diff_derivation}{{6.1}{49}{Standard Diffusion}{subsection.6.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.1}Derivation}{49}{subsubsection.6.1.1}}
+\newlabel{eq:rw_standard}{{332}{49}{Derivation}{equation.6.332}{}}
+\newlabel{eq:rw_pos}{{333}{49}{Derivation}{equation.6.333}{}}
+\newlabel{eq:rw_neg}{{334}{49}{Derivation}{equation.6.334}{}}
+\newlabel{eq:diffusion_standard}{{336}{50}{Derivation}{equation.6.336}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.2}Characterising Results}{50}{subsubsection.6.1.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.3}Analytic Solution Method}{50}{subsubsection.6.1.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Continuous Time Random Walks}{51}{subsection.6.2}}
+\newlabel{eq:fractional_recurrence}{{340}{51}{Continuous Time Random Walks}{equation.6.340}{}}
+\newlabel{eq:added_initial_condition}{{343}{51}{Continuous Time Random Walks}{equation.6.343}{}}
+\newlabel{eq:Phi_def}{{345}{52}{Continuous Time Random Walks}{equation.6.345}{}}
+\newlabel{eq:arival_density}{{348}{52}{Continuous Time Random Walks}{equation.6.348}{}}
+\newlabel{eq:being_density}{{349}{52}{Continuous Time Random Walks}{equation.6.349}{}}
+\newlabel{eq:arrival_laplace}{{350}{52}{Continuous Time Random Walks}{equation.6.350}{}}
+\newlabel{eq:being_laplace}{{351}{52}{Continuous Time Random Walks}{equation.6.351}{}}
+\newlabel{eq:master_laplace}{{353}{52}{Continuous Time Random Walks}{equation.6.353}{}}
+\newlabel{eq:fourier_laplace}{{359}{53}{Continuous Time Random Walks}{equation.6.359}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}Standard Diffusion}{53}{subsubsection.6.2.1}}
+\newlabel{eq:fourier_exp_normal}{{363}{54}{Standard Diffusion}{equation.6.363}{}}
+\newlabel{eq:laplace_exp_exponential}{{365}{54}{Standard Diffusion}{equation.6.365}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2}Fractional Diffusion}{54}{subsubsection.6.2.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.3}Characterising Results for Fractional Diffusion}{54}{subsubsection.6.2.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.4}Solution Method for Fractional Diffusion}{54}{subsubsection.6.2.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Appendix A: Adams-Moulton-Bashforth FDE Solver Code}{55}{section.7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}C\# Implementation of AMB FDE Solver}{55}{subsection.7.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.1}Program.cs}{55}{subsubsection.7.1.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.2}SpecialFunctions.cs}{59}{subsubsection.7.1.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}CUDA C/C++ Implementation of AMB FDE Solver}{60}{subsection.7.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2.1}FDE\_Solver.cu}{60}{subsubsection.7.2.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Appendix B}{66}{section.8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Runtimes for C\# implementation described in section \ref  {sec:amb_desc}}{66}{subsection.8.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Runtimes for CUDA implementation described in section \ref  {sec:parallel_cuda}}{66}{subsection.8.2}}
+\newlabel{tab:cuda_runtimes}{{8.2}{66}{Runtimes for CUDA implementation described in section \ref {sec:parallel_cuda}}{subsection.8.2}{}}
+>>>>>>> 403e648036663ed925ce90a295ed775ce6b5692f
 \bibstyle{plain}
 \bibdata{references}
 \bibcite{Whittaker1996}{1}
 \bibcite{Abbas2012}{2}
 \bibcite{Avramidi2000}{3}
-\bibcite{Gorenflo1997}{4}
-\bibcite{MicrosoftTaskSchedular}{5}
-\bibcite{Diethelm2010}{6}
-\bibcite{Diethelm2011}{7}
-\bibcite{Diethelm2002}{8}
-\bibcite{Diethelm2004}{9}
-\bibcite{Dzherbashyan1954}{10}
-\bibcite{Bateman1955}{11}
-\bibcite{Freeden2013}{12}
-\bibcite{Gorenflo2002}{13}
-\bibcite{Fernando2005}{14}
-\bibcite{Lauritzen2009}{15}
-\bibcite{Miller1993}{16}
-\bibcite{Narayanan2003}{17}
-\bibcite{Paris2001}{18}
-\bibcite{Podlubny1999}{19}
-\bibcite{Raina1979}{20}
-\bibcite{Samko1993}{21}
-\bibcite{Tisdell2012}{22}
-=======
-\@writefile{toc}{\contentsline {section}{\numberline {4}Numerical Evaluation of Special Functions}{30}{section.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Mittag-Lefller Function}{30}{subsection.4.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Contour Integral Representation of $ \Gamma (z) $ and $ \frac  {1}{\Gamma (z)} $}{30}{subsubsection.4.1.1}}
-\newlabel{lem:contour_gamma}{{22}{30}{}{lemma.22}{}}
-\citation{Podlubny1999}
-\citation{Podlubny1999}
-\newlabel{eq:gamma_contour}{{197}{31}{Contour Integral Representation of $ \Gamma (z) $ and $ \frac {1}{\Gamma (z)} $}{equation.4.197}{}}
-\newlabel{lem:contour_1_gamma_1}{{23}{31}{}{lemma.23}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The Hankel contour C}}{32}{figure.5}}
-\newlabel{fig:Hankel_Loop_2}{{5}{32}{The Hankel contour C}{figure.5}{}}
-\newlabel{lem:1_gamma_contour}{{24}{32}{}{lemma.24}{}}
-\newlabel{eq:gamma_contour_1}{{204}{32}{}{equation.4.204}{}}
-\citation{Podlubny1999}
-\newlabel{eq:gamma_contour_2}{{206}{33}{}{equation.4.206}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The Hankel contour Ha}}{33}{figure.6}}
-\newlabel{fig:hankel_loop}{{6}{33}{The Hankel contour Ha}{figure.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The Hankel countour $ \gamma (\varepsilon , \varphi ) $}}{34}{figure.7}}
-\newlabel{fig:hankel_wedge}{{7}{34}{The Hankel countour $ \gamma (\varepsilon , \varphi ) $}{figure.7}{}}
-\citation{Podlubny1999}
-\citation{Podlubny1999}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Contour Integral Representation of $ E_{\alpha , \beta } $ }{35}{subsubsection.4.1.2}}
-\newlabel{lem:mit_lef_contour_1}{{25}{35}{}{lemma.25}{}}
-\newlabel{eq:mit_lef_region}{{218}{35}{}{equation.4.218}{}}
-\newlabel{eq:mit_lef_contour_1}{{219}{35}{}{equation.4.219}{}}
-\newlabel{eq:mit_lef_contour_2}{{220}{35}{}{equation.4.220}{}}
-\citation{Podlubny1999}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}Asymptotic Expansions of $ E_{\alpha , \beta }(z) $}{37}{subsubsection.4.1.3}}
-\newlabel{lem:mit_lef_asym_exp_1}{{27}{37}{}{lemma.27}{}}
-\newlabel{eq:geometric_expansion}{{235}{37}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $}{equation.4.235}{}}
-\newlabel{eq:mit_lef_exp_1}{{237}{37}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $}{equation.4.237}{}}
-\newlabel{eq:mit_lef_exp_2}{{238}{37}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $}{equation.4.238}{}}
-\newlabel{eq:mit_lef_asym_sum_1}{{239}{37}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $}{equation.4.239}{}}
-\newlabel{eq:mit_lef_contour_int_conv}{{241}{37}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $}{equation.4.241}{}}
-\citation{Podlubny1999}
-\citation{Podlubny1999}
-\newlabel{eq:mit_lef_asym_int_1}{{243}{38}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $}{equation.4.243}{}}
-\newlabel{lem:mit_lef_asym_exp_2}{{28}{38}{}{lemma.28}{}}
-\newlabel{lem:mit_lef_summation}{{29}{38}{WE MAKE A CORRECTION - CHECK - HIGH RISK OF ERROR!}{lemma.29}{}}
-\citation{Podlubny1999}
-\newlabel{eq:sum_identity_1}{{250}{39}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $}{equation.4.250}{}}
-\newlabel{eq:mit_lef_asym_cond}{{264}{40}{Asymptotic Expansions of $ E_{\alpha , \beta }(z) $}{equation.4.264}{}}
-\citation{Whittaker1996,Paris2001}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.4}A Numerical Algorithm for Evaluating $ E_{\alpha , \beta }(z) $}{41}{subsubsection.4.1.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Wright Function}{41}{subsection.4.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Contour Integral Representation of $ W_{\alpha , \beta }(z) $}{41}{subsubsection.4.2.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}A Numerical Algorithm for Evaluating $ W_{\alpha , \beta }(z) $}{41}{subsubsection.4.2.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Additional Notes on the Numerical Evaluation of the Gamma Function}{41}{subsection.4.3}}
-\newlabel{sec:num-gamma}{{4.3}{41}{Additional Notes on the Numerical Evaluation of the Gamma Function}{subsection.4.3}{}}
-\citation{Lauritzen2009,Avramidi2000}
-\citation{Freeden2013}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Stirling's Approximation}{42}{subsubsection.4.3.1}}
-\newlabel{eq:gamma_factorial}{{282}{42}{Stirling's Approximation}{equation.4.282}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Lanczos Approximation}{43}{subsubsection.4.3.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.3}Spouge Approximation}{43}{subsubsection.4.3.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces  Integration contour for $ \gamma (\varepsilon , \varphi ) $}}{43}{figure.8}}
-\newlabel{fig:hankel_wedge_2}{{8}{43}{Integration contour for $ \gamma (\varepsilon , \varphi ) $}{figure.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Appendix A: Adams-Moulton-Bashforth FDE Solver Code}{44}{section.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}C\# Implementation of AMB FDE Solver}{44}{subsection.5.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}Program.cs}{44}{subsubsection.5.1.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}SpecialFunctions.cs}{48}{subsubsection.5.1.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}CUDA C/C++ Implementation of AMB FDE Solver}{49}{subsection.5.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}FDE\_Solver.cu}{49}{subsubsection.5.2.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Appendix B}{55}{section.6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Runtimes for C\# implementation described in section \ref  {sec:amb_desc}}{55}{subsection.6.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Runtimes for CUDA implementation described in section \ref  {sec:parallel_cuda}}{55}{subsection.6.2}}
-\newlabel{tab:cuda_runtimes}{{6.2}{55}{Runtimes for CUDA implementation described in section \ref {sec:parallel_cuda}}{subsection.6.2}{}}
-\bibstyle{plain}
-\bibdata{references}
-\bibcite{Whittaker1996}{1}
-\bibcite{Avramidi2000}{2}
-\bibcite{Caputo1967}{3}
-\bibcite{Caputo1971}{4}
-\bibcite{Gorenflo1997}{5}
-\bibcite{MicrosoftTaskSchedular}{6}
-\bibcite{Diethelm2010}{7}
-\bibcite{Diethelm2011}{8}
-\bibcite{Diethelm2002}{9}
-\bibcite{Diethelm2004}{10}
-\bibcite{Dzherbashyan1954}{11}
-\bibcite{Bateman1955}{12}
-\bibcite{Freeden2013}{13}
-\bibcite{Gorenflo2002}{14}
-\bibcite{Fernando2005}{15}
-\bibcite{Heymans2005}{16}
-\bibcite{Lauritzen2009}{17}
-\bibcite{Miller1993}{18}
-\bibcite{Narayanan2003}{19}
-\bibcite{Paris2001}{20}
-\bibcite{Podlubny1999}{21}
-\bibcite{Raina1979}{22}
-\bibcite{Samko1993}{23}
-\bibcite{Tisdell2012}{24}
->>>>>>> da25e797a25205772bcb3f7d122ce8f7e909966f
+\bibcite{Caputo1967}{4}
+\bibcite{Caputo1971}{5}
+\bibcite{Gorenflo1997}{6}
+\bibcite{MicrosoftTaskSchedular}{7}
+\bibcite{Diethelm2010}{8}
+\bibcite{Diethelm2011}{9}
+\bibcite{Diethelm2002}{10}
+\bibcite{Diethelm2004}{11}
+\bibcite{Dzherbashyan1954}{12}
+\bibcite{Bateman1955}{13}
+\bibcite{Freeden2013}{14}
+\bibcite{Gorenflo2002}{15}
+\bibcite{Fernando2005}{16}
+\bibcite{Heymans2005}{17}
+\bibcite{Lauritzen2009}{18}
+\bibcite{Miller1993}{19}
+\bibcite{Narayanan2003}{20}
+\bibcite{Paris2001}{21}
+\bibcite{Podlubny1999}{22}
+\bibcite{Raina1979}{23}
+\bibcite{Samko1993}{24}
+\bibcite{Tisdell2012}{25}

@@ -1,8 +1,8 @@
 \section{Introduction}
 \subsection{History}
-Fractional calculus is a field which extends all the way back to the birth of \emph{ordinary} calculus. In this section we wish to give an account of the development of this field. Like any historical recount this section will have its flaws, inaccuracies and ommissions. One can get bogged down in the historiogrraphy of the field and critise this recount as a story written with whiggish bias, but we seek to tell a story which is relevent to the rest of this thesis an contextualises modern fractional calculus.
+Fractional calculus is a field which extends all the way back to the birth of \emph{ordinary} calculus. In this section we wish to give an account of the development of this field. Like any historical recount this section will have its flaws, inaccuracies and omissions. One can get bogged down in the historiography of the field and criticise this recount as a story written with whiggish bias, but we seek to tell a story which is relevant to the rest of this thesis an contextualize modern fractional calculus.
 
-In any historical introduction to fractional calculus one almost always starts with the letters exchanged between L'Hopital and Liebniz in the fall of 1695. Upon hearing of Liebniz's calculus and the differential operator
+In any historical introduction to fractional calculus one almost always starts with the letters exchanged between L'Hopital and Leibniz in the fall of 1695. Upon hearing of Leibniz's calculus and the differential operator
 \begin{align}
     \frac{d}{dx}
 \end{align}
@@ -10,7 +10,7 @@ and it's generalisation
 \begin{align}
     \frac{d^n}{dx^n}
 \end{align}
-L'Hopital asked Liebniz what it would mean to set $ n = \frac{1}{2} $. Liebniz responded saying that 
+L'Hopital asked Leibniz what it would mean to set $ n = \frac{1}{2} $. Leibniz responded saying that 
 \begin{align}
     d^\frac{1}{2}x = x\sqrt{dx:x}
 \end{align} and adding that
@@ -27,9 +27,9 @@ Two years latter in letters to J. Wallis and J. Bernoulli Euler proposed a possi
 and proposed that one could simply consider non-integer values of $ m $ in order to define a fraction differential operator. 
 It is perhaps on this note that we should point out that the name \emph{fractional} calculus is a bit of a misnomer. As in the case above we do not require $ m \in \mathbb{Q} $, but rather are allowed to select $ m \in \mathbb{R} $ or even $ m \in \mathbb{C} $.
 
-Given the definition / motivation in \eqref{eq:euler_frac} one might be tempted to use this result and extend it to other functions via the theory of Fourier Analysis. We need to keep in mind, however, that this was the lat $ 17$th century and so Fourier had yet to be born, let alone develop the idea of Fourier decomposition and Fourier basis. This meant that at the time there was not \emph{obvious} way to extend this definition to other functions.
+Given the definition / motivation in \eqref{eq:euler_frac} one might be tempted to use this result and extend it to other functions via the theory of Fourier Analysis. We need to keep in mind, however, that this was the late $ 17$th century and so Fourier had yet to be born, let alone develop the idea of Fourier decomposition and Fourier basis. This meant that at the time there was not \emph{obvious} way to extend this definition to other functions.
 
-Jumping forward a quarter of a century we arive at the contributions of Euler. Euler made extremely important contributions in field of special functions, especially the Gamma function which turns out to be crucial in defining fractional integrals and fractional derivatives.
+Jumping forward a quarter of a century we arrive at the contributions of Euler. Euler made extremely important contributions in field of special functions, especially the Gamma function which turns out to be crucial in defining fractional integrals and fractional derivatives.
 
 The Gamma function is essentially a solution to an interpolation problem, that is how to extend the factorial function to non-integer values of the argument. 
 
@@ -70,13 +70,13 @@ but this result is actually more easily obtained as a special case of Euler's in
 \end{align}
 but Euler had not yet developed this.
 
-The fact that Euler had $ \frac{1}{2} ! = \frac{\sqrt{\pi}}{2} $ pequed his curiosity and on nothing more than what appears to have been a hunch he went looking for an integral representation of $ n! $.
-He arived at \eqref{eq:euler_log} and it is here that our story returns to the history of fractional calculus. Aware of the fact that a meaning for $ \frac{d^\frac{1}{2}}{dx^\frac{1}{2}} $ was sought he noted that
+The fact that Euler had $ \frac{1}{2} ! = \frac{\sqrt{\pi}}{2} $ piqued his curiosity and on nothing more than what appears to have been a hunch he went looking for an integral representation of $ n! $.
+He arrived at \eqref{eq:euler_log} and it is here that our story returns to the history of fractional calculus. Aware of the fact that a meaning for $ \frac{d^\frac{1}{2}}{dx^\frac{1}{2}} $ was sought he noted that
 \begin{align}
     \label{eq:euler_frac_deriv}
     \frac{d^m}{dx^m} x^n = \frac{n!}{(n-m)!}x^{n-m}
 \end{align}
-and then suggested that using either \eqref{eq:euler_prod} or \eqref{eq:euler_log} could give the necessery extension of meaning in order to define the derivative of the power function for noninteger orders of differentiation. In fact using Wallis' result along with a slight extension he was able to suggest that
+and then suggested that using either \eqref{eq:euler_prod} or \eqref{eq:euler_log} could give the necessary extension of meaning in order to define the derivative of the power function for non-integer orders of differentiation. In fact using Wallis' result along with a slight extension he was able to suggest that
 \begin{align}
     \frac{d^\frac{1}{2}}{dx^\frac{1}{2}} x = \sqrt{\frac{4x}{\pi}}.
 \end{align}
@@ -89,9 +89,9 @@ Firstly note that if we take $ n = 1 $ in \eqref{eq:euler_frac_deriv} we get tha
     &= \frac{1}{m+1} x^{m+1} \\
     &= \int_0^x t^m dt
 \end{align} 
-which is consitant with the fundamental theorem of calculus. We discuss a modern version of this result in section \ref{sec:operators} of this thesis. 
+which is consistent with the fundamental theorem of calculus. We discuss a modern version of this result in section \ref{sec:operators} of this thesis. 
 
-Also in some formal sense this definition of the fractional derivative is consistant with that of Liebniz in that if we take a Talyor expansion of the exponential function we get that
+Also in some formal sense this definition of the fractional derivative is consistent with that of Leibniz in that if we take a Taylor expansion of the exponential function we get that
 \begin{align}
     e^{mx} = \sum_{k=0}^\infty \frac{m^k}{k!} x^k
 \end{align}
@@ -112,7 +112,7 @@ Letting $ j = k - r $ we have
 \end{align*}
 and so in some formal sense these two definitions would at first glance appear to be consistent with each other.
 
-This analysis has several problems. Firstly although the idea of expressing functions in terms of an inifinite series dates back to perhaps the $ 14$th century the formal notiton of a Taylor series dates back to $1715$ and Brook Taylor, only a few years before Euler's work in this field and it is not clear that such techniques would have been available to Euler. 
+This analysis has several problems. Firstly although the idea of expressing functions in terms of an infinite series dates back to perhaps the $ 14$th century the formal notion of a Taylor series dates back to $1715$ and Brook Taylor, only a few years before Euler's work in this field and it is not clear that such techniques would have been available to Euler. 
 
 Secondly, and more importantly from a mathematical point of view, is the slight of hand played in \eqref{eq:Euler_Leibniz_Sum} where we essentially assume that if $ m > n $, $ \frac{d^m}{dx^m} x^n = 0 $. This is not the case if $ m \not\in \mathbb{Z} $. For example, using Euler's definition above we would have that
 \begin{align}
@@ -129,7 +129,7 @@ could give meaning to fractional derivative of a function. This appear to have b
 
 The history of more modern fractional differential operators really begins with the Abel integral equation which was solved by Abel in papers dating back to 1823 and 1826. It was originally posed and solved in the context of the Tautochrone problem, which is finding the curve for which objects sliding under gravity without the effects of friction take equal times to reach their lowest point, independent of their starting point.
 
-Abel's intergral equation (of the first kind) is 
+Abel's integral equation (of the first kind) is 
 \begin{align}
     \label{eq:abel}
     \frac{1}{\Gamma(\alpha)} \int_0^x \frac{\phi(t)dt}{(x-t)^{1-\alpha}} = f(x) 
@@ -185,7 +185,7 @@ and by differentiating we get
 \end{align}
 and so we have in some sense solved Abel's integral equation. Notice that we have not discussed which functions $ f $ are suitable. This is a bit of a tricky question and not really informative in the context of the rest of this thesis so we refer the interested reader to \cite{Samko1993}. 
 
-As mentioned earlier Abel solved this integral qequation in the context of the Tautochrone problem which corresponded to $ \alpha = \frac{1}{2} $. Abel seemingly had no actual desire to define a fractional integral or derivative but it turns out this problem can be recast in terms of fractional integral equation using a Riemann Liouiville fractional integral and the result is in some sense a statement of a deneralised fundamental theorem of calculus. We'll leave these ideas and turn our attention to the development of the Riemann-Liouville fractional integral and derivative and return to see how these ideas relate.
+As mentioned earlier Abel solved this integral equation in the context of the Tautochrone problem which corresponded to $ \alpha = \frac{1}{2} $. Abel seemingly had no actual desire to define a fractional integral or derivative but it turns out this problem can be recast in terms of fractional integral equation using a Riemann Liouville fractional integral and the result is in some sense a statement of a generalised fundamental theorem of calculus. We'll leave these ideas and turn our attention to the development of the Riemann-Liouville fractional integral and derivative and return to see how these ideas relate.
 
 
 \clearpage
