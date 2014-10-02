@@ -204,15 +204,56 @@ and so we have in some sense solved Abel's integral equation. Notice that we hav
 
 As mentioned earlier Abel solved this integral equation in the context of the Tautochrone problem which corresponded to $ \alpha = \frac{1}{2} $. Abel seemingly had no actual desire to define a fractional integral or derivative but it turns out this problem can be recast in terms of fractional integral equation using a Riemann Liouville fractional integral and the result is in some sense a statement of a generalised fundamental theorem of calculus. We'll leave these ideas and turn our attention to the development of the Riemann-Liouville fractional integral and derivative and return to see how these ideas relate.
 
+\begin{wrapfigure}{R}{0.3\textwidth}
+    \includegraphics[scale=0.5]{images/Joseph_liouville}
+    \caption{An updated and unattributed early photograph of Joseph Liouville.}
+\end{wrapfigure}
+
+It was in a collection of letters over six years from 1832 to 1837 that Liouville outlined ideas which hold any reasonable resemblance to modern fraction calculus. 
+
+The first idea explored for a fractional derivative by Liouville bears someone of a resemblance to that of Fourier and Euler. 
+
+If a function $ f $ can be expanded as 
+\begin{align}
+	f(x) = \sum_{k=0}^\infty c_k e^{a_kx}
+\end{align}
+then the fractional derivative of $ f $ of order $ \alpha $ could be written as
+\begin{align}
+	\frac{d^\alpha}{dx^\alpha} f(x) = \sum_{k=0}^\infty c_k a_k^\alpha e^{a_k x}
+\end{align}
+Note that by allowing complex values for $ a_k $ this is essentially a Fourier series and so the resemblance to Fourier's definition is apparent.
+
+Despite the fact that we could view this series as a Fourier series, its not clear that this was done. Then the convergence of the series is tricky and it makes any consideration of the fractional derivative of $ f $ restrictive. 
+
+In this series of letters he went on to derive a fractional integral
+\begin{align}
+	I^\alpha f(x) = \frac{1}{(-1)^\alpha \Gamma(\alpha)} \int_0^\infty f(x + t)t^{\alpha - 1} dt
+\end{align}
+
+Papers in 1832 and 1837 by Liouville were really the first papers which discussed an application of a fractional calculus, specifically to the solution of linear ordinary differential equations. 
+
+He also discussed the idea of a fractional difference 
+quotient.
+Liouville didn't go far with this idea and it was considerably latter in 1867 and 1868 that Gr{\"u}nwald and respectively Letnikov dealt with this idea in much more depth. 
+ 
 \begin{wrapfigure}{l}{0.3\textwidth}
     \includegraphics[scale=0.6]{images/Georg_Friedrich_Bernhard_Riemann}
     \caption{An 1863 image of Bernhard Riemann.}
 \end{wrapfigure}
 
+As a student in 1847 Riemann arrived at the fractional integral
+\begin{align}
+	I^\alpha f(x) = \frac{1}{\Gamma(\alpha)} \int_0^x \frac{f(t)dt}{(x-t)^{1-\alpha}}
+\end{align}
 
-\begin{wrapfigure}{R}{0.3\textwidth}
-    \includegraphics[scale=0.5]{images/Joseph_liouville}
-    \caption{An updated and unattributed early photograph of Joseph Liouville.}
-\end{wrapfigure}
+Interestingly it wasn't until 10 years after his death in 1866 that this definition was published. Given the similarity of these fractional integrals these two ideas have been combined and named the Riemann Liouville fractional integral. This particular definition has become extremely significant and it forms the basis for modern fractional calculus. 
+
+With a bit of technical fiddling it is quite easy to come up with a Riemann-Liouville fractional derivative. The idea behind this is discussed in section \ref{sec:operators}.
+
+Although over the next hundred years or so there was significant development of other forms of fractional operators such the Gr{\u"}nwald Letnikov, Weyl, Miller Ross fractional derivatives. As we won't really explore these operators wi e will skip forward to Caputo in 1967. 
+
+One of the problems with the Riemann-Liouville fractional derivative is that for many fractional differential equations the associated initial or boundary conditions must be of fractional order. Also the Riemann-Liouville fractional derivative of a constant is not zero. 
+
+In two papers in 1967 and 1971 Michele Caputo\cite{Caputo1967} \cite{Caputo1971}, introduced a new fractional differential operator. These papers dealt with linear models of dissipation and interestingly this new operator resolved the issues to do with initial and boundary conditions along with the property that the Caputo fractional derivative of a constant is zero. It is perhaps interesting to note that this operator arose from purely physical considerations. 
 
 \clearpage
