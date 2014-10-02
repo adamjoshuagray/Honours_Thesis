@@ -1,8 +1,5 @@
 \begin{thebibliography}{10}
 
-\bibitem{Whittaker1996}
-{\em A Course in Modern Analysis (4th ed.)}.
-
 \bibitem{Abbas2012}
 S.~Abbas, M.~Benchohra, and N'Gu{\'e}r{\'e}kata G.M.
 \newblock {\em Topics in Fractional Differential Equations}.
@@ -25,11 +22,6 @@ M.~Caputo.
 M.~Caputo and Mainardi F.
 \newblock Linear models of dissipation in anelastic solids.
 \newblock {\em La Rivista del Nuovo Cimento}, 1:161--198, 1971.
-
-\bibitem{Gorenflo1997}
-A.~Carpinteri and F.~Mainardi, editors.
-\newblock {\em Fractals and Fractional Calculus in Continuum Mechanics}.
-\newblock CISM Courses and Lectures. Springer Verlag, 1997.
 
 \bibitem{MicrosoftTaskSchedular}
 Microsoft Copropration.
@@ -81,6 +73,11 @@ R.~Gorenflo, J.~Loutchko, and Y.~Luchko.
 \newblock Computation of the mittag-leffler function and its derivatives.
 \newblock {\em Fractional Calculus and Applied Analysis}, 5:491--518, 2002.
 
+\bibitem{Gorenflo1997}
+R.~Gorenflo and F.~Mainardi.
+\newblock {\em Fractals and Fractional Calculus in Continuum Mechanics}.
+\newblock CISM Courses and Lectures. Springer Verlag, 1997.
+
 \bibitem{Fernando2005}
 M.~Harris.
 \newblock Mapping computational concepts to gpus.
@@ -98,6 +95,7 @@ S.~Lauritzen.
 \newblock Laplace's method of integration.
 \newblock \url{http://www.stats.ox.ac.uk/~steffen/teaching/bs2HT9/laplace.pdf},
   2009.
+\newblock Accessed: 09-08-2014.
 
 \bibitem{Miller1993}
 K.S. Miller and Ross B.
@@ -137,5 +135,10 @@ C.C. Tisdell.
 \newblock On the application of sequential and fixed-point methods to
   fractional differential equations of arbitrary order.
 \newblock {\em Journal of Integral Equations}, 24, 2012.
+
+\bibitem{Whittaker1996}
+E.T. Whittiaker and G.N. Watson.
+\newblock {\em A Course in Modern Analysis (4th ed.)}, volume~2.
+\newblock Cambridge University Press, 1996.
 
 \end{thebibliography}
