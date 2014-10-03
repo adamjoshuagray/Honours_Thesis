@@ -107,7 +107,7 @@ Note that this proof hinges off the Laplace convolution theorem, and so it requi
     and so by replacing $ s $ with $ -i\omega $, as in the Fourier transform we get the result. The convergence of the Fourier integral is guarenteed by Dirichlet's theorem for Fourier integrals as noted in \cite{Podlubny1999}. 
 \end{proof}
 \subsection{Riemann-Liouville Fractional Derivative}
-Although one can approach a fractional derivative from somewhat of a \emph{first principles} approach via the Gr{\"u}nwald-Letnikov derivative \cite{Podlubny1999, Samko1993}, we will not do that here, mainly because for a large class of functions the Gr{\"u}nwald-Letnikov derivative is actually equivelent to the Riemann-Liouville fractional derivative \cite{Podlubny1999} and the Riemann-Liouville fractional derivative is more tractable from a symbolic manipulation perspective.
+Although one can approach a fractional derivative from a somewhat of a \emph{first principles} approach via the Gr{\"u}nwald-Letnikov derivative \cite{Podlubny1999, Samko1993}, we will not do that here, mainly because for a large class of functions the Gr{\"u}nwald-Letnikov derivative is actually equivelent to the Riemann-Liouville fractional derivative \cite{Podlubny1999} and the Riemann-Liouville fractional derivative is more tractable from a symbolic manipulation perspective.
 
 The idea behind the Riemann-Liouville fractional derivative is to exploit the Riemann-Liouville fractional integral to give the fractional part and then just use integer order derivatives to get the correct order. For example if one wanted to calculate the $ 1/2$-th derivative of a function you would fractionally integrate by $1/2$-th and then differentiate once.
 \begin{definition}[Riemann-Liouville Fractional Derivative]
@@ -159,9 +159,6 @@ Now with the change of variables $ x = \frac{\tau - z}{t - z} $ we have that
 \end{align}
 and so the result follows.
 \end{proof}
-
-We should note that  by selecting $ \alpha \in \Ntrl $ we could see almost by definition that that the Riemann-Liouville fracitonal derivative coincides with the ordinary derivative, however,  we could also use this lemma to see it as well.
-
 The Riemann-Liouville fractional derivative is \emph{not} a right inverse of the fractional integral. The relationship is considerably more subtle and is formalized in the following lemma.
 \begin{lemma}
     \label{lem:rld_right_res}
@@ -196,7 +193,7 @@ and then
 by applying the derivative from \eqref{eq:I_D_right_inverse} we get the result. 
 \end{proof}
 
-The astute reader might noticed that we have abused notation in \eqref{eq:negative_frac_deriv_1} and \eqref{eq:negative_frac_deriv_2} where we have permitted a negative order of differentiation in the last term of the sums. This is ok though because $ \alpha - n < 1 $ and we formalise this in the next lemma. 
+The astute reader might noticed that we have heavily abused notation in \eqref{eq:negative_frac_deriv_1} and \eqref{eq:negative_frac_deriv_2} where we have permitted a negative order of differentiation in the last term of the sums. This is ok though because $ \alpha - n < 1 $ and we formalise this in the next lemma. 
 
 \begin{lemma}
     If we permit $ -1 < \alpha < 0 $ for an order of differentiation then formally we have that
@@ -225,7 +222,7 @@ Due to the utilitiy of the Laplace transform of the Riemann-Liouville fractional
 		\laplace{ \rld{0}{}{\alpha}{f} } &= \laplace{ \der{}{t}{n} \rli{0}{n-\alpha}{f} } \\
 		&= s^n\laplace{\rli{0}{n-\alpha}{f}} - \sum_{k=0}^{n-1} s^k \der{}{t}{n-k-1} \rli{0}{n-\alpha}{f}(0)
 	\end{align}
-	and by applying the result of lemma \ref{lem:rli_laplace} we get
+	and by applying the result of lemma \ref{lem:lap_rli} we get
 	\begin{align}
 			\mathcal{L} \left\{\rld{0}{}{\alpha}{f} \right\} &= s^\alpha \laplace{f} - \sum_{k=0}^{n-1} s^{k} \rld{0}{}{\alpha - k - 1}{f}(0). 
 	\end{align} 

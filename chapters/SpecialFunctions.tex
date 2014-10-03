@@ -1,0 +1,76 @@
+
+\section{Special Functions}
+
+The field of fractional calculus is intimately linked with the field of special functions. To express the fractional derivative
+of many functions one has to consider special functions. Just like the field of \emph{ordinary} calculus has collections of functions which have a number of desirable properties like invariance (exponential) and \emph{periodic invariance} (sine, cosine, hyperboid sine, hyperbolic cosine), fractional calculus has functions which have a very similar role.
+
+We will look in detail at two functions, the Mittag-Leffler function and the Wright function. It may seem that just looking at two functions will be limiting, but this is not the case. Both of these functions are generalisations of more \emph{ordinary} functions and they are general enough to serve considerable utility. That being said the field of fractional calculus is surounded by a virtual zoo of special functions including the Meijer G-function, Fox-H function, the generalised hypergeometric functions, MacRobert E-function and the Mainardi function. This list could be made arbitrarily large by simply reading more and more litrature on the subject, but these functions give us a way of formalising remarkable relationships.
+
+\subsection{Mittag-Leffler Function}
+
+Just like the exponential function has an invariance property under differentiation, we would like a function that has a similar property for fractional differentiation. With that in mind we define the Mittag-Leffler function.
+
+\begin{definition}
+    Define the two parameter Mittag-Leffler function as
+    \begin{align}
+        E_{\alpha, \beta}(z) = \sum_{k=0}^\infty \frac{z^k}{\Gamma(\alpha k + \beta)}.
+    \end{align}
+\end{definition}
+The reason we defined it as the \emph{two paramter} Mittag-Leffler function is because some authors use the phrase Mittag-Leffler function to refer to a one parameter form, $ E_{\alpha}(z) = E_{\alpha, 1}(z) $. The two parameter version of this function is in common use and some more general results can be shown about the two paramter form. For the rest of our disucssions we will use the phrase Mittag-Leffler function to refer to the two paramter version.
+
+The first thing that any reader should notice about the Mittag-Leffer function is that it is an immediate generalisation of the exponential function, with $ E_{1, 1}(z) = \exp(z) $. 
+
+It should be clear to see that at least for $ \alpha, \beta \in \mathbb{R} $ this series uniformly converges on compact subsets in much that same way that that the series for the exponential function converges. This fact is important as it will allow us to interchange sums and integrals in several of the results which follow.
+
+Interestingly a considerable number of other functions can be expressed in terms of Mittag-Leffler functions. By setting $ \alpha = 0, \beta = 1 $ we can easily see that we have a geometric series and so when $ |z| < 1 $ we have
+\begin{align}
+    E_{0,1}(z) = \frac{1}{z}.
+\end{align}
+
+Setting $ \alpha = 2, \beta = 1 $ we get
+\begin{align}
+    E_{2,1}(z) &= \sum_{k=0}^\infty \frac{z^k}{\Gamma(2k + 1)} \\
+            &= \sum_{k=0}^\infty \frac{z^k}{(2k)!}
+\end{align}
+Now also notice that Taylor expansion of $ \cosh(\sqrt{z}) $ about 0 is
+\begin{align}
+    \cosh(\sqrt{z}) = \sum_{k=0}^\infty \frac{z^k}{(2k)!}
+\end{align}
+and so $ E_{2,1}(z) = \cosh(\sqrt{z}) $. 
+
+There are considerably more relationships. We refer the interested reader to \cite{Podlubny1999} or \cite{Samko1993} for a more extensive listing of these relationships.
+
+We will now calculate the Laplace transform of some special cases of the Mittag-Leffler function. These will prove useful for latter results. 
+
+\begin{lemma}
+    The Laplace transform of $ E_{\alpha, 1}(z) $ is given by
+    \begin{align}
+        \mathcal{L} \left\{ E_{\alpha, 1}(z) \right\} &= \frac{s^{\alpha - 1}}{s^\alpha - \gamma}.
+    \end{align}
+\end{lemma}
+\begin{proof}
+    We have that
+    \begin{align}
+        \mathcal{L}\left\{ E_{\alpha, 1}(\gamma z^\alpha)\right\} &= \int_0^\infty e^{-st} \sum_{k=0}^\infty \frac{(\gamma t^\alpha)^k}{\Gamma(\alpha k + 1)} dt \\
+        &= \sum_{k=0}^\infty \int_0^\infty \frac{e^{-st} (\gamma t^\alpha)^k}{\Gamma(\alpha k + 1)} dt \\
+        \circledast &= \sum_{k=0}^\infty \frac{\gamma^k}{\Gamma(\alpha k + 1)}\int_0^\infty e^{-st}t^{\alpha k} dt.
+    \end{align}
+    With a change of variables $ x = st $ we get that
+    \begin{align}
+        \circledast &= \sum_{k=0}^\infty \frac{\gamma^k s^{-(\alpha k+1)}}{\Gamma(\alpha k + 1)} \int_0^\infty e^{-x} x^\alpha kdx \\
+        &= \sum_{k=0}^\infty \frac{\gamma^k s^{-(\alpha k + 1)\Gamma(\alpha k + 1)}}{\Gamma(\alpha k + 1)} \\
+        &= \sum_{k=0}^\infty \gamma^k s^{-(\alpha k+1)} \\
+        &= \frac{s^{\alpha - 1}}{s^\alpha - \gamma}.
+    \end{align}
+    So we have that
+    \begin{align}
+        \mathcal{L}\left\{ E_{\alpha,1}( \gamma t^\alpha ) \right\} = \frac{s^{\alpha - 1}}{s^\alpha - \gamma}
+    \end{align}
+\end{proof}
+
+It should be easy to see that 
+\begin{align}
+    \frac{d}{dz}E_{\alpha, \beta}(z) = \sum_{k=1}^\infty \frac{z^{k-1}}{}
+\end{align}
+
+\clearpage
