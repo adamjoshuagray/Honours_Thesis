@@ -61,7 +61,7 @@ We now calculate the Laplace transform of the of the Riemann-Liouville fractiona
 \begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}
     \label{lem:rli_laplace}
-    The laplace transform of $ \rli{0}{\alpha}{f} $ is given by
+    The Laplace transform of $ \rli{0}{\alpha}{f} $ is given by
     \begin{align}
         \mathcal{L}\{ \rli{0}{\alpha}{f} \} = \frac{\mathcal{L}\{f\}}{s^\alpha}
     \end{align}
@@ -85,7 +85,7 @@ Note that this proof hinges off the Laplace convolution theorem, and so it requi
     \label{lem:rli_fourier}
     The Fourier transform of $ \rli{0}{\alpha}{f} $ is given by
     \begin{align}
-        \mathcal{F}\{ \rli{0}{\alpha}{f} \} = \frac{\mathcal{F}\{f\}}{(-i\omega)^\alpha}.
+        \mathcal{F}\{ \rli{0}{\alpha}{f} \} = \frac{\mathcal{F}\{f\}}{(i\omega)^\alpha}.
     \end{align}
 \end{lemma}
 \end{mdframed}
@@ -107,11 +107,11 @@ Note that this proof hinges off the Laplace convolution theorem, and so it requi
     \begin{align}
          \mathcal{F}\{ \rli{0}{\alpha}{f} \} = \mathcal{F}\{ h_+^\alpha \}\mathcal{F}\{f\}.
     \end{align}
-    It remains only to show that $ \mathcal{F}\{h_+^\alpha\} = (-i\omega)^{-\alpha} $. To see this note that the Laplace transform of $ h_+^\alpha $ is given by
+    It remains only to show that $ \mathcal{F}\{h_+^\alpha\} = (i\omega)^{-\alpha} $. To see this note that the Laplace transform of $ h_+^\alpha $ is given by
     \begin{align}
         \mathcal{L}\{h_+^\alpha\} = s^{-\alpha} 
     \end{align}
-    and so by replacing $ s $ with $ -i\omega $, as in the Fourier transform we get the result. The convergence of the Fourier integral is guaranteed by Dirichlet's theorem for Fourier integrals as noted in \cite{Podlubny1999}. 
+    and so by replacing $ s $ with $ i\omega $, as in the Fourier transform we get the result. The convergence of the Fourier integral is guaranteed by Dirichlet's theorem for Fourier integrals as noted in \cite{Podlubny1999}. 
 \end{proof}
 \subsection{Riemann-Liouville Fractional Derivative}
 Although one can approach a fractional derivative from somewhat of a \emph{first principles} approach via the Gr{\"u}nwald-Letnikov derivative \cite{Podlubny1999, Samko1993}, we will not do that here, mainly because for a large class of functions the Gr{\"u}nwald-Letnikov derivative is actually equivalent to the Riemann-Liouville fractional derivative \cite{Podlubny1999} and the Riemann-Liouville fractional derivative is more tractable from a symbolic manipulation perspective.
@@ -147,9 +147,8 @@ Like in the case of the fractional integral we would like to investigate the sem
     The Riemann-Liouville derivative of order $ \alpha $ is the left inverse of the Riemann-Liouville integral of order $ \alpha $ in the sense
     that
     \begin{align}
-        \left(I_a^\alpha \prescript{}{a}{\mathcal{D}}^\alpha f\right)(t) = f(t) - \sum_{j=1}^{k}\left[ \left(\prescript{}{a}{\mathcal{D}}^{\alpha - j}f \right)(t) \right]_{t=a} \frac{(t-a)^{\alpha - j}}{\Gamma(\alpha - j + 1)}
+        \left(I_a^\alpha \prescript{}{a}{\mathcal{D}}^\alpha f\right)(t) = f(t) - \sum_{j=1}^{k}\left[ \left(\prescript{}{a}{\mathcal{D}}^{\alpha - j}f \right)(t) \right]_{t=a} \frac{(t-a)^{\alpha - j}}{\Gamma(\alpha - j + 1)}.
     \end{align}
-    where $ \operatorname{Id} $ is the identity operator ( $\operatorname{Id}(f) = f $).
 \end{lemma}
 \end{mdframed}
 \begin{proof}
@@ -252,7 +251,7 @@ We also consider the Fourier transform of the Riemann-Liouville fractional deriv
     \label{lem:rld_fourier}
     For an admissable function $ f $ the Fourier transform of the Riemann-Liouville fractional derivative with $ a = -\infty $ and of order $ \alpha $ is given by
     \begin{align}
-        \mathcal{F}\left\{ \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) \right\} = (-i\omega)^{\alpha} \mathcal{F}\left\{ f(t) \right\}.
+        \mathcal{F}\left\{ \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) \right\} = (i\omega)^{\alpha} \mathcal{F}\left\{ f(t) \right\}.
     \end{align}
 \end{lemma}
 \end{mdframed}
@@ -266,12 +265,12 @@ We also consider the Fourier transform of the Riemann-Liouville fractional deriv
     \begin{align}
         \mathcal{F}\left\{ \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) \right\}  &=
         \mathcal{F}\left\{ \frac{d^n}{dt^n} \left[ I_{-\infty}^{n-\alpha} f(t) \right] \right\} \\
-        &= (-i\omega)^{n} \mathcal{F}\left\{ I_{-\infty}^{n-\alpha} f(t) \right\}
+        &= (i\omega)^{n} \mathcal{F}\left\{ I_{-\infty}^{n-\alpha} f(t) \right\}
     \end{align}
     and then by using the result of lemma \ref{lem:rli_fourier} we have that
     \begin{align}
-        (-i\omega)^{n} \mathcal{F}\left\{ I_{-\infty}^{n-\alpha} f(t) \right\} &= (-i\omega)^{n}(-i\omega)^{\alpha - n}\mathcal{F}\left\{ f(t)\right\} \\
-        &= (-i\omega)^\alpha  \mathcal{F}\left\{ f(t) \right\}
+        (i\omega)^{n} \mathcal{F}\left\{ I_{-\infty}^{n-\alpha} f(t) \right\} &= (-i\omega)^{n}(-i\omega)^{\alpha - n}\mathcal{F}\left\{ f(t)\right\} \\
+        &= (i\omega)^\alpha  \mathcal{F}\left\{ f(t) \right\}
     \end{align}
 \end{proof}
 
@@ -304,7 +303,7 @@ Another very useful result is the fractional derivative of a power function.
         \prescript{}{0}{\mathcal{D}}^\alpha z^{\nu}  = \frac{\Gamma(\nu + 1)}{\Gamma(\nu+1-\alpha)}z^{\nu - \alpha}.
     \end{align}
 \end{proof}
-It should be noted that this result aggrees with early historical results about how a fractional derivative of a power function should look.
+It should be noted that this result agrees with early historical results about how a fractional derivative of a power function should look.
 
 \subsection{Caputo Fractional Derivative}
 We now turn our attention to the last fractional differential operator that we will study in detail, the Caputo fractional derivative. 
@@ -380,7 +379,7 @@ A similar but more complicated result exists for $  I_a^\alpha \prescript{C}{a}{
     \label{lem:cap_fourier}
     For an admissable function $ f $ the Fourier transform of the Riemann-Liouville fractional derivative with $ a = -\infty $ and of order $ \alpha $ is given by
     \begin{align}
-        \mathcal{F}\left\{ \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) \right\} = (-i\omega)^{\alpha} \mathcal{F}\left\{ f(t) \right\}.
+        \mathcal{F}\left\{ \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) \right\} = (i\omega)^{\alpha} \mathcal{F}\left\{ f(t) \right\}.
     \end{align}
 \end{lemma}
 \end{mdframed}
@@ -394,15 +393,15 @@ Firstly we have that
     \begin{align}
         \mathcal{F}\left\{ \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) \right\}  &=
         \mathcal{F}\left\{ \left[ I_{-\infty}^{n-\alpha} \frac{d^n}{dt^n}f(t) \right] \right\} \\
-        &= (-i\omega)^{\alpha - n} \mathcal{F}\left\{ \frac{d^n}{dt^n}f(t) \right\}
+        &= (i\omega)^{\alpha - n} \mathcal{F}\left\{ \frac{d^n}{dt^n}f(t) \right\}
     \end{align}
-    and then by using elementry Fourier transform results we get
+    and then by using elementary Fourier transform results we get
     \begin{align}
-        (-i\omega)^{\alpha -n} \mathcal{F}\left\{ I_{-\infty}^{n-\alpha} f(t) \right\} &= (-i\omega)^{\alpha - n}(-i\omega)^{n}\mathcal{F}\left\{ f(t)\right\} \\
-        &= (-i\omega)^\alpha  \mathcal{F}\left\{ f(t) \right\}
+        (-i\omega)^{\alpha -n} \mathcal{F}\left\{ I_{-\infty}^{n-\alpha} f(t) \right\} &= (-i\omega)^{\alpha - n}(i\omega)^{n}\mathcal{F}\left\{ f(t)\right\} \\
+        &= (i\omega)^\alpha  \mathcal{F}\left\{ f(t) \right\}
     \end{align}
 \end{proof}
-A carefull reader might notice that the results of lemmas \ref{lem:rld_fourier} and \ref{lem:cap_fourier} are the same. This coincidence is actually hiding a more remarkable result which we formalise in the following lemma.
+A careful reader might notice that the results of lemmas \ref{lem:rld_fourier} and \ref{lem:cap_fourier} are the same. This coincidence is actually hiding a more remarkable result which we formalise in the following lemma.
 \begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}
     For an admissible function $ f $ such that $ \lim_{t \lra -\infty} f^{(k)}(t) = 0 $ for all $ 0 \leq k \leq n-1 $ with $ n $ defined from $ \alpha $ in the usual way we have that
