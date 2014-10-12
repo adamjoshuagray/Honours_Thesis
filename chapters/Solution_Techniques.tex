@@ -122,6 +122,7 @@ Its not just ordinary fractional differential equations that can be solved by an
 
 \begin{mdframed}[innertopmargin=10pt]
 \begin{proposition}
+    \label{prop:nig_frac}
     The following time fractional partial differential equation \footnote{Here $ \prescript{}{0}{\mathcal{D}}^\alpha_t $ refers to the Riemann-Liouville fractional derivative with respect to $ t $.}
     \begin{align}
         \label{eq:nig_frac}
@@ -185,6 +186,47 @@ Its not just ordinary fractional differential equations that can be solved by an
     
     Note that this fractional partial differential equation is essentially a time fractional heat equation. It's actually known as the Nigmatullin fractional diffusion equation \cite{Podlubny1999, Nigmatullin1986}. Interestingly Nigmatullin has published many papers on physical notions and examples of fractional differential equations and this particular version of the diffusion equation can be seen as having physical significance \cite{Nigmatullin1986, Nigmatullin1992}. 
     
-    It should be noted that by replacing 
+It should be noted that by replacing the Riemann-Liouville fractional derivative with a Caputo fractional derivative we get a similar result \cite{Nikolova2010}. We'll formalize this assertion with the following proposition.
 
+\begin{mdframed}[innertopmargin=10pt]
+\begin{proposition}
+    The following time fractional partial differential equation
+    \begin{align}
+        \label{eq:nig_frac_2}
+        \prescript{C}{0}{\mathcal{D}}^\alpha_t u(x,t) = \lambda^2 \frac{\partial^2}{\partial x^2}u(x,t)
+    \end{align}
+    with $ 0 < \alpha < 1 $
+    along with the initial condition
+    \begin{align}
+        u(x,t)|_{t=0} = \psi(x)
+    \end{align}
+    has a solution given by
+    \begin{align}
+        u(x,t) = \int_{-\infty}^\infty \xi(x - \eta, t)\psi(\eta)d\eta
+    \end{align}
+    where
+    \begin{align}
+        \xi(x,t) = \frac{1}{2\pi} \int_{-\infty}^\infty e^{-i\omega x}E_{\alpha, 1}(-\lambda^2 \omega^2 t^\alpha) d\omega.
+    \end{align}
+\end{proposition}
+\end{mdframed}
+This proof follows in much the same way as for proposition \ref{prop:nig_frac} but with lemma \ref{lem:cap_laplace} instead of lemma \ref{lem:lap_rld}. We also use the same notation as in the previous solution.
+\begin{proof}
+Taking the Fourier and Laplace transforms of \eqref{eq:nig_frac_2} with the help of lemma \ref{lem:cap_laplace} results in
+\begin{align}
+    s^{\alpha}\hat{U}(\omega, s) - s^{\alpha-1}\hat{\psi}(\omega) = -\lambda^2\omega^2\hat{U}(\omega, s)
+\end{align}
+and thus
+\begin{align}
+    \hat{U}(\omega,s) = \frac{s^{\alpha-1}\hat{\psi}(\omega)}{(s^\alpha + \lambda^2\omega^2)}.
+\end{align}
+Again, inverting the Laplace transform with the help of \ref{lem:lap_mit_2} we get that
+\begin{align}
+    \hat{u}(\omega,t) = E_{\alpha,1}(\omega^2\lambda^2t^\alpha) \hat{\psi}(\omega)
+\end{align}
+and now by following exactly the same steps as for proposition \ref{prop:nig_frac} the result follows. 
+\end{proof}
+Due to the fact that this fractional partial differential equation is specified with an integer order initial condition it is in some sense more usefull from a physical modeling perspective. 
+
+Both of the equations looked at so far have been time fractional. We would also like to look at space fractional versions of the diffusion equation. 
 \clearpage
