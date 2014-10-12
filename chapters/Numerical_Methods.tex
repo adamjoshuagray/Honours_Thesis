@@ -162,6 +162,7 @@ The red arrow illustrate the interdependency of variables within a block. The se
 We wish to analyze the performance of this scheme both from the a theoretical standpoint and from at practical standpoint. 
 
 For the theoretical analysis of the scheme we introduce Amdahl's Law or Amdahl's principle.
+\begin{mdframed}[innertopmargin=10pt]
 \begin{principle}[Amdahl]
 Let $ P $ be the proportion of a computation which can be parallelized in a given progress. Then the speedup given by
 $ Q $ cores is
@@ -170,11 +171,12 @@ $ Q $ cores is
 \end{align}
 
 \end{principle}
+\end{mdframed}
 
 This law was first introduced in a 1967 paper by computer architect Amdahl. We introduce a new notion of Amdahl efficiency to characterize the how \emph{good} a parallel algorithm is in comparison with it serial counterpart in the limit of large input. 
 
 To formalize this notion we introduce the following definition.
-
+\begin{mdframed}[innertopmargin=10pt]
 \begin{definition}[Amdahl Efficiency]
 \label{def:amdahl_efficient}
     Let $ S(N,Q) $ represent the parallel speedup for a problem with input size $ N $ and executed with $ Q $ cores.
@@ -184,10 +186,13 @@ To formalize this notion we introduce the following definition.
     \end{align}
     Further we say that a parallel scheme is Amdahl efficient with respect to its serial counterpart if $ E(p) = 1 $.
 \end{definition}
+\end{mdframed}
 
+\begin{mdframed}[innertopmargin=10pt]
 \begin{proposition}
 The parallel Adams Moulton Bashforth scheme is Amdahl efficient with respect to its serial counterpart.
 \end{proposition}
+\end{mdframed}
 \begin{proof}
 We present the paralellizable fraction of computation in each block of variables in the following table. The order column represents the number of \emph{multiply-add} operations per task.
 

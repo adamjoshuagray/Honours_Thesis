@@ -4,18 +4,19 @@
 The field of fractional calculus is intimately linked with the field of special functions. To express the fractional derivative
 of many functions one has to consider special functions. Just like the field of \emph{ordinary} calculus has collections of functions which have a number of desirable properties like invariance (exponential) and \emph{periodic invariance} (sine, cosine, hyperboid sine, hyperbolic cosine), fractional calculus has functions which have a very similar role.
 
-We will look in detail at two functions, the Mittag-Leffler function and the Wright function. It may seem that just looking at two functions will be limiting, but this is not the case. Both of these functions are generalisations of more \emph{ordinary} functions and they are general enough to serve considerable utility. That being said the field of fractional calculus is surounded by a virtual zoo of special functions including the Meijer G-function, Fox-H function, the generalised hypergeometric functions, MacRobert E-function and the Mainardi function. This list could be made arbitrarily large by simply reading more and more litrature on the subject, but these functions give us a way of formalising remarkable relationships.
+We will look in detail at two functions, the Mittag-Leffler function and the Wright function. It may seem that just looking at two functions will be limiting, but this is not the case. Both of these functions are generalisations of more \emph{ordinary} functions and they are general enough to serve considercompbz332979re8able utility. That being said the field of fractional calculus is surounded by a virtual zoo of special functions including the Meijer G-function, Fox-H function, the generalised hypergeometric functions, MacRobert E-function and the Mainardi function. This list could be made arbitrarily large by simply reading more and more litrature on the subject, but these functions give us a way of formalising remarkable relationships.
 
 \subsection{Mittag-Leffler Function}
 
 Just like the exponential function has an invariance property under differentiation, we would like a function that has a similar property for fractional differentiation. With that in mind we define the Mittag-Leffler function.
-
+\begin{mdframed}[innertopmargin=10pt]
 \begin{definition}
     Define the two parameter Mittag-Leffler function as
     \begin{align}
         E_{\alpha, \beta}(z) = \sum_{k=0}^\infty \frac{z^k}{\Gamma(\alpha k + \beta)}.
     \end{align}
 \end{definition}
+\end{mdframed}
 The reason we defined it as the \emph{two paramter} Mittag-Leffler function is because some authors use the phrase Mittag-Leffler function to refer to a one parameter form, $ E_{\alpha}(z) = E_{\alpha, 1}(z) $. The two parameter version of this function is in common use and some more general results can be shown about the two paramter form. For the rest of our disucssions we will use the phrase Mittag-Leffler function to refer to the two paramter version.
 
 The first thing that any reader should notice about the Mittag-Leffer function is that it is an immediate generalisation of the exponential function, with $ E_{1, 1}(z) = \exp(z) $. 
@@ -41,13 +42,15 @@ and so $ E_{2,1}(z) = \cosh(\sqrt{z}) $.
 There are considerably more relationships. We refer the interested reader to \cite{Podlubny1999} or \cite{Samko1993} for a more extensive listing of these relationships.
 
 We will now calculate the Laplace transform of some special cases of the Mittag-Leffler function. These will prove useful for latter results. 
-
+\begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}
+    \label{lem:lap_mit}
     The Laplace transform of $ E_{\alpha, 1}(z) $ is given by
     \begin{align}
         \mathcal{L} \left\{ E_{\alpha, 1}(z) \right\} &= \frac{s^{\alpha - 1}}{s^\alpha - \gamma}.
     \end{align}
 \end{lemma}
+\end{mdframed}
 \begin{proof}
     We have that
     \begin{align}
@@ -68,9 +71,74 @@ We will now calculate the Laplace transform of some special cases of the Mittag-
     \end{align}
 \end{proof}
 
+
+The follopwing lemma is essentially a generalisation of lemma \ref{lem:lap_mit} but it is important as we will make use of it in future results.
+\begin{mdframed}[innertopmargin=10pt]
+\begin{lemma}
+	\label{lem:lap_mit_2}
+	The Laplace transform of $ t^{\alpha m + \gamma - 1}E_{\alpha, \gamma}^{(m)}(t) $ is given by
+	\begin{align}
+		\laplace{ t^{\alpha m + \gamma - 1}E_{\alpha,\gamma}^{(m)} (\beta t^\alpha)} = \frac{m!s^{\alpha-\gamma}}{(s^\alpha - \beta)^{m+1}}
+	\end{align}
+\end{lemma}
+\end{mdframed}
+\begin{proof}
+	Firstly see that
+	\begin{align}
+		E_{\alpha,\gamma}^{(m)}(t) &= \sum_{k=m}^{\infty} \frac{\frac{k!}{(k-m)!}t^{k-m}}{\gamma(\alpha k + \gamma)} \\
+			&= \sum_{k=0}^{\infty} \frac{(k+m)!t^k}{k!\Gamma(\alpha k + \gamma)}
+	\end{align}
+	so we have that
+	\begin{align}
+		E_{\alpha, \gamma}^{(m)}(\beta t^\alpha) &= \sum_{k=0}^{\infty} \frac{(k+m)!t^{\alpha k} \beta^k}{k! \Gamma(\alpha (k+m) + \gamma)}.
+	\end{align}
+	We can then write that
+	\begin{align}
+		\laplace{t^{\alpha m + \gamma - 1}E_{\alpha, \gamma}^{(m)}(t)} &= \int_0^\infty t^{\alpha m + \gamma - 1}  \sum_{k=0}^{\infty} \frac{(k+m)!t^{\alpha k} \beta^k}{k! \Gamma(\alpha (k+m) + \gamma)} \\
+			&= \sum_{k=0}^\infty \frac{\beta^k (k+m)!}{\Gamma(\alpha(k+m) + \gamma) k!} \underbrace{\int_0^\infty e^{-st} t^{\alpha (k+m) + \gamma - 1}dt}_{\circledast}.
+	\end{align}
+	Considering just $ \circledast $ and performing the substitution $ x = st $ we get that 
+	\begin{align}
+		\circledast &= s^{-\alpha(k+m) - \gamma} \int_0^\infty e^{-x} x^{\alpha (k+m) + \gamma - 1} dx \\
+			&= s^{-\alpha(k+m) - \gamma} \Gamma(\alpha(k+m) + \gamma)
+	\end{align}
+	and so 
+	\begin{align}
+		\laplace{t^{\alpha m + \gamma - 1}E_{\alpha, \gamma}^{(m)}(t)} = s^{-\alpha m - \gamma}\sum_{k=0}^\infty \left(\frac{\beta}{s^\alpha}\right)^k\frac{(k+m)!}{k!} .
+	\end{align}
+	Now by the derivative rule for geometric series we get
+	\begin{align}
+		\sum_{k=0}^\infty \left(\frac{\beta}{s^\alpha}\right)^k\frac{(k+m)!}{k!} &= \frac{m!}{(1-\frac{\beta}{s^\alpha})^{m+1}} \\
+			&= \frac{s^{\alpha(m+1)} m!}{(s^\alpha - \beta)^{m+1}}
+	\end{align}
+	and so 
+	\begin{align}
+		\laplace{t^{\alpha m + \gamma - 1}E_{\alpha, \gamma}^{(m)}(t)} = \frac{m!s^{\alpha-\gamma}}{(s^\alpha - \beta)^{m+1}}.
+	\end{align}
+\end{proof}
+
+The most general result we will present on the Laplace transforms is given in the following lemma. This result will then be used in further lemmas to show some invariance properties of the Mittag-Leffler function.
+
 It should be easy to see that 
 \begin{align}
-    \frac{d}{dz}E_{\alpha, \beta}(z) = \sum_{k=1}^\infty \frac{z^{k-1}}{}
+    \frac{d}{dz}E_{\alpha, \beta}(z) = \sum_{k=0}^\infty \frac{(k+1)z^k}{\Gamma(\alpha(k+1) + \beta)}
 \end{align}
+and further that
+\begin{align}
+    \label{eq:mit_int_der}
+    \frac{d^n}{dz^n} E_{\alpha, \beta}(z) = \sum_{k=0}^\infty \frac{z^k}{\Gamma(\alpha(k+n)+\beta)}\prod_{j=1}^n(k+j).
+\end{align}
+So the Mittag-Leffler function retains a \emph{similar} structure under differentiation. Obviously if $ \alpha = 1 $ and $ \beta = 1 $ this just reduces to the invariance of the exponential function under the differentiation map. It turns out that there are a whole collection of near-invariance and invariance properties of the Mittag-Leffler function. For a very general result we have the following lemma from \cite{Podlubny1999}.
+\begin{mdframed}[innertopmargin=10pt]
+\begin{lemma}
+    We have that the fractional derivative of $ z^{\alpha k+\beta-1}E_{\alpha,\beta}^{(k)}(\lambda z^\alpha) $ is given by 
+    \begin{align}
+        \prescript{}{0}{\mathcal{D}}^\gamma z^{\alpha k+\beta-1}E_{\alpha,\beta}^{(k)}(\lambda z^\alpha) = z^{\alpha k + \beta - \gamma - 1 } E_{\alpha,\beta-\gamma}^{(k)}(\lambda z^\alpha)
+    \end{align}
+\end{lemma}
+\end{mdframed}
+\begin{proof}
+    We could prove this result by using lemma \ref{lem:rld_power} and equation \eqref{eq:mit_int_der} but that turns out to be very convoluted. A simpler method is to get this result in Laplace space.
+\end{proof}
 
 \clearpage

@@ -2,8 +2,6 @@
 %\addcontentsline{toc}{section}{Solution to a Simple Fractional Differential Equation}
 In this section we establish some analytical results for ordinary fractional differential equations. These results allow us to solve some simple initial value problems and establish a theoretical framework from which results in other sections can draw.
 
-\subsection{Basic definitions}
-
 \subsection{Solution to a linear intial value problem via Laplace transforms}
 We aim to get a solution to the following fractional differential equation (in terms of Caputo derivatives)
 
@@ -25,77 +23,11 @@ It turns out that this initial value problem has the solution $ y(t) = E_\alpha 
 
 This solution can be arrived at by a Laplace transform method that is very similar to how this might be done in the integer order case.
 
-We now consider the Laplace transform of the fractional integration and differentiation operators.
 
-	We now define the Mittag-Lefler function and calculate its Laplace transform.
 
-\begin{definition}
-	The one parameter Mittag-Lefler $ E_\alpha $ function is defined by its power series.
-	$$
-		E_\alpha(t) = \sum_{k=0}^{\infty} \frac{t^k}{\Gamma(\alpha k + 1)}
-	$$
-\end{definition}
-It is clear to see the definition of this function is inspired by the exponential function. Before we can calculate the 
-Laplace transform of the Mittag-Lefler function we have to prove a simple lemma about the convergence of the 
-series which is used in its definition.
-
-\begin{lemma}
-\label{lem:mit_conv}
-
-	The series
-	$$
-		\sum_{k=0}^{\infty} \frac{t^k}{\Gamma(\alpha k + 1)} 
-	$$
-  	converges absolutely for all $ t \in \mathbb{R} $.
-\end{lemma}
-\begin{proof}
-	Let $ a_k = \frac{t^k}{\Gamma(\alpha k + 1) }$ and see that
-	$$ \lvert \frac{a_{k+1}}{a_k} \rvert = |t| \frac{\Gamma(\alpha k + 1) }{\Gamma(\alpha(k+1) + 1)} $$
-	and that hence 
-	$$
-		\lim_{k \longrightarrow \infty} \lvert \frac{a_{k+1}}{a_k} \rvert = 0
-	$$
-	for all $ t \in \mathbb{R} $ so by the ratio test, the series $ \sum_{k=0}^{\infty} \frac{t^k}{\Gamma(\alpha k + 1)}  $
-	converges for all $ t \in \mathbb{R} $.
-\end{proof}
-
-Using this lemma we can then go on to state and prove the following lemma.
-
-\begin{lemma}
-\label{lem:lap_mit}
-	\begin{align}	
-		\laplace{ E_\alpha (\beta t^\alpha)} = \frac{s^{\alpha - 1}}{s^\alpha - \beta}
-	\end{align}
-\end{lemma}
-\begin{proof}
-	See that
-	\begin{align}
-		\laplace{ E_\alpha (\beta t^\alpha)} = \int_0^\infty e^{-st} \sum_{k=0}^\infty \frac{(\beta t^\alpha)^k}{\Gamma(\alpha k+1)} dt
-	\end{align}
-	and because the series converges absolutely for all $ t \in \mathbb{R} $ (lemma \ref{lem:mit_conv}) we may interchange the integral
-	and the sum to get
-	\begin{align}
-		\int_0^\infty e^{-st} \sum_{k=0}^\infty \frac{(\beta t^\alpha)^k}{\Gamma(\alpha k+1)} dt &= \sum_{k=0}^\infty \int_0^\infty e^{-st} \frac{(\beta t^\alpha)^k}{\Gamma(\alpha k + 1)} dt \\
-			&= \sum_0^\infty \frac{\beta^k}{\Gamma(\alpha k + 1)} \int_0^\infty e^{-st} t^{\alpha k} dt. \\
-	\end{align}
-	By performing the change of variables $ x =st $ we get that 
-	\begin{align}
-		\sum_0^\infty \frac{\beta^k}{\Gamma(\alpha k + 1)} \int_0^\infty e^{-st} t^{\alpha k} dt 
-			&= \sum_0^\infty \frac{\beta^k s^{-(k+1)}}{\Gamma(\alpha k + 1)} \underbrace{\int_0^\infty e^{-x} x^{\alpha k} dx}_{\Gamma(\alpha k + 1)} \\
-			&= \sum_{k=0}^\infty \beta^{k} s^{-(\alpha k + 1)} \\
-			&= \frac{s^{\alpha-1}}{s^\alpha - \beta}.		
-	\end{align}
-	So we have that 
-	\begin{align}	
-		\laplace{ E_\alpha (\beta t^\alpha)} = \frac{s^{\alpha - 1}}{s^\alpha - \beta}
-	\end{align}	
-	as required.
-\end{proof}
 
 We now have sufficient tools to attack the original problem, that is finding a solution to \eqref{eq:fde-1}, \eqref{eq:fde-1-ic}.
 
-
-:wq
 \begin{lemma}
 	The initial value problem defined in \eqref{eq:fde-1} and \eqref{eq:fde-1-ic}, restated here for completeness 
 	\begin{align}
@@ -149,61 +81,6 @@ where $ 0 < \lambda < \Lambda < 1 $.
 Firstly note that this differential equation is in terms of Riemann-Liouville derivatives. If we were to specify
 initial conditions we would be compelled to specify them in terms of fractional derivatives, so we leave them
 unspecified here to see the solution in general.
-
-Again we will introduce a definition and prove a lemma which we will need to get a solution to \ref{eq:fde-multi-order}
-
-\begin{definition}[Two Paramter Mittag-Lefler Function]
-	\label{def:mit-lef-2}
-	We define the two paramter Mittag-Lefler function with the power series
-	\begin{align}
-		E_{\alpha, \gamma}(t) &:= \sum_{k=0}^\infty \frac{t^k}{\Gamma(\alpha k + \gamma)}.
-	\end{align}
-	Note that this is just a generalisation of the one paramter Mittag-Lefler function, in that
-	$ E_{\alpha}(t) = E_{\alpha, 1}(t) $.
-\end{definition}
-
-The follopwing lemma is essentially a generalisation of lemma \ref{lem:lap_mit}.
-\begin{lemma}
-	\label{lem:lap_mit_2}
-	The Laplace transform of $ t^{\alpha m + \gamma - 1}E_{\alpha, \gamma}^{(m)}(t) $ is given by
-	\begin{align}
-		\laplace{ t^{\alpha m + \gamma - 1}E_{\alpha,\gamma}^{(m)} (\beta t^\alpha)} = \frac{m!s^{\alpha-\gamma}}{(s^\alpha - \beta)^{m+1}}
-	\end{align}
-\end{lemma}
-\begin{proof}
-	Firstly see that
-	\begin{align}
-		E_{\alpha,\gamma}^{(m)}(t) &= \sum_{k=m}^{\infty} \frac{\frac{k!}{(k-m)!}t^{k-m}}{\gamma(\alpha k + \gamma)} \\
-			&= \sum_{k=0}^{\infty} \frac{(k+m)!t^k}{k!\Gamma(\alpha k + \gamma)}
-	\end{align}
-	so we have that
-	\begin{align}
-		E_{\alpha, \gamma}^{(m)}(\beta t^\alpha) &= \sum_{k=0}^{\infty} \frac{(k+m)!t^{\alpha k} \beta^k}{k! \Gamma(\alpha (k+m) + \gamma)}.
-	\end{align}
-	We can then write that
-	\begin{align}
-		\laplace{t^{\alpha m + \gamma - 1}E_{\alpha, \gamma}^{(m)}(t)} &= \int_0^\infty t^{\alpha m + \gamma - 1}  \sum_{k=0}^{\infty} \frac{(k+m)!t^{\alpha k} \beta^k}{k! \Gamma(\alpha (k+m) + \gamma)} \\
-			&= \sum_{k=0}^\infty \frac{\beta^k (k+m)!}{\Gamma(\alpha(k+m) + \gamma) k!} \underbrace{\int_0^\infty e^{-st} t^{\alpha (k+m) + \gamma - 1}dt}_{\circledast}.
-	\end{align}
-	Considering just $ \circledast $ and performing the substitution $ x = st $ we get that 
-	\begin{align}
-		\circledast &= s^{-\alpha(k+m) - \gamma} \int_0^\infty e^{-x} x^{\alpha (k+m) + \gamma - 1} dx \\
-			&= s^{-\alpha(k+m) - \gamma} \Gamma(\alpha(k+m) + \gamma)
-	\end{align}
-	and so 
-	\begin{align}
-		\laplace{t^{\alpha m + \gamma - 1}E_{\alpha, \gamma}^{(m)}(t)} = s^{-\alpha m - \gamma}\sum_{k=0}^\infty \left(\frac{\beta}{s^\alpha}\right)^k\frac{(k+m)!}{k!} .
-	\end{align}
-	Now by the derivative rule for geometric series we get
-	\begin{align}
-		\sum_{k=0}^\infty \left(\frac{\beta}{s^\alpha}\right)^k\frac{(k+m)!}{k!} &= \frac{m!}{(1-\frac{\beta}{s^\alpha})^{m+1}} \\
-			&= \frac{s^{\alpha(m+1)} m!}{(s^\alpha - \beta)^{m+1}}
-	\end{align}
-	and so 
-	\begin{align}
-		\laplace{t^{\alpha m + \gamma - 1}E_{\alpha, \gamma}^{(m)}(t)} = \frac{m!s^{\alpha-\gamma}}{(s^\alpha - \beta)^{m+1}}.
-	\end{align}
-\end{proof}
 
 \begin{lemma}
 	The initial value problem, \ref{eq:fde-multi-order}, restated here for completeness,

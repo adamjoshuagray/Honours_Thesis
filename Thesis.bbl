@@ -5,12 +5,6 @@ S.~Abbas, M.~Benchohra, and N'Gu{\'e}r{\'e}kata G.M.
 \newblock {\em Topics in Fractional Differential Equations}.
 \newblock Springer, 2012.
 
-\bibitem{Avramidi2000}
-I.~Avramidi.
-\newblock Lecture notes on asymptotic expansion.
-\newblock \url{http://infohost.nmt.edu/~iavramid/notes/asexp.pdf}, 2000.
-\newblock Accessed: 09-08-2014.
-
 \bibitem{Caputo1967}
 M.~Caputo.
 \newblock Linear models of dissipation whose q is almost frequency
@@ -52,27 +46,6 @@ K.~Diethelm, N.J. Ford, and A.D. Freed.
 \newblock Detailed error analysis for a fractional adams method.
 \newblock {\em Numerical Algorithms}, pages 31--52, 2004.
 
-\bibitem{Dzherbashyan1954}
-M.M. Dzherbashyan.
-\newblock On the integral representation of functions continuous on several
-  rays (generalization of the fourier integral).
-\newblock {\em Izv. Akad. Nauk Armyan. SSR, Ser. Mat}, 18:427--448, 1954.
-
-\bibitem{Bateman1955}
-A.~Erdelyi, W.~Magnus, F.~Oberhettinger, and Tricomi F.G.
-\newblock {\em Higher Trascendental Functions}, volume~3.
-\newblock McGraw-Hill Book Co., 1955.
-
-\bibitem{Freeden2013}
-W.~Freeden and M.~Gutting.
-\newblock {\em Special Functions of Mathematical (Geo-)Physics}.
-\newblock Applied and Numerical Harmonic Analysis. Birkh{\"a}user, 2013.
-
-\bibitem{Gorenflo2002}
-R.~Gorenflo, J.~Loutchko, and Y.~Luchko.
-\newblock Computation of the mittag-leffler function and its derivatives.
-\newblock {\em Fractional Calculus and Applied Analysis}, 5:491--518, 2002.
-
 \bibitem{Gorenflo1997}
 R.~Gorenflo and F.~Mainardi.
 \newblock {\em Fractals and Fractional Calculus in Continuum Mechanics}.
@@ -90,13 +63,6 @@ N.~Heymans and I.~Podlubny.
   differential equations with riemann-liouville fractional derivatives.
 \newblock {\em Rheologica Acta}, 45(5):765--771, 2005.
 
-\bibitem{Lauritzen2009}
-S.~Lauritzen.
-\newblock Laplace's method of integration.
-\newblock \url{http://www.stats.ox.ac.uk/~steffen/teaching/bs2HT9/laplace.pdf},
-  2009.
-\newblock Accessed: 09-08-2014.
-
 \bibitem{Miller1993}
 K.S. Miller and Ross B.
 \newblock {\em An Introduction to the Fractional Calculus and Fractional
@@ -108,11 +74,6 @@ V.A. Narayanan and Prabhu K.M.M.
 \newblock The fractional fourier transform: theory, implementation and error
   analysis.
 \newblock {\em Microprocessors and Microsystems}, 27:511--521, 2003.
-
-\bibitem{Paris2001}
-R.B. Paris and D.~Kaminsky.
-\newblock {\em Asymptotics and the Mellin-Barnes Integrals}.
-\newblock Cambridge University Press, 2001.
 
 \bibitem{Podlubny1999}
 I.~Podlubny.
@@ -135,10 +96,5 @@ C.C. Tisdell.
 \newblock On the application of sequential and fixed-point methods to
   fractional differential equations of arbitrary order.
 \newblock {\em Journal of Integral Equations}, 24, 2012.
-
-\bibitem{Whittaker1996}
-E.T. Whittiaker and G.N. Watson.
-\newblock {\em A Course in Modern Analysis (4th ed.)}, volume~2.
-\newblock Cambridge University Press, 1996.
 
 \end{thebibliography}
