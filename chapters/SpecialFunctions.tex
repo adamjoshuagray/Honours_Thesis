@@ -72,7 +72,7 @@ We will now calculate the Laplace transform of some special cases of the Mittag-
 \end{proof}
 
 
-The follopwing lemma is essentially a generalisation of lemma \ref{lem:lap_mit} but it is important as we will make use of it in future results.
+The following lemma is essentially a generalisation of lemma \ref{lem:lap_mit} but it is important as we will make use of it in future results.
 \begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}
 	\label{lem:lap_mit_2}
@@ -117,9 +117,9 @@ The follopwing lemma is essentially a generalisation of lemma \ref{lem:lap_mit} 
 	\end{align}
 \end{proof}
 
-The most general result we will present on the Laplace transforms is given in the following lemma. This result will then be used in further lemmas to show some invariance properties of the Mittag-Leffler function.
+We will use this result in solving fractional differential equations, along with proving some invariance results about the Mittag-Leffler function.
 
-It should be easy to see that 
+It should be clear that
 \begin{align}
     \frac{d}{dz}E_{\alpha, \beta}(z) = \sum_{k=0}^\infty \frac{(k+1)z^k}{\Gamma(\alpha(k+1) + \beta)}
 \end{align}
@@ -131,6 +131,7 @@ and further that
 So the Mittag-Leffler function retains a \emph{similar} structure under differentiation. Obviously if $ \alpha = 1 $ and $ \beta = 1 $ this just reduces to the invariance of the exponential function under the differentiation map. It turns out that there are a whole collection of near-invariance and invariance properties of the Mittag-Leffler function. For a very general result we have the following lemma from \cite{Podlubny1999}.
 \begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}
+    \label{lem:rld_mittag}
     We have that the fractional derivative of $ z^{\alpha k+\beta-1}E_{\alpha,\beta}^{(k)}(\lambda z^\alpha) $ is given by 
     \begin{align}
         \prescript{}{0}{\mathcal{D}}^\gamma z^{\alpha k+\beta-1}E_{\alpha,\beta}^{(k)}(\lambda z^\alpha) = z^{\alpha k + \beta - \gamma - 1 } E_{\alpha,\beta-\gamma}^{(k)}(\lambda z^\alpha)
@@ -139,6 +140,28 @@ So the Mittag-Leffler function retains a \emph{similar} structure under differen
 \end{mdframed}
 \begin{proof}
     We could prove this result by using lemma \ref{lem:rld_power} and equation \eqref{eq:mit_int_der} but that turns out to be very convoluted. A simpler method is to get this result in Laplace space.
+    Using lemma \ref{lem:lap_rld} we have that 
+    \begin{align}
+        \mathcal{L}\left\{ \prescript{}{0}{\mathcal{D}}^\gamma z^{\alpha k+\beta-1}E_{\alpha,\beta}^{(k)}(\lambda z^\alpha) \right\} = s^\gamma \mathcal{L}\left\{z^{\alpha k+\beta-1}E_{\alpha,\beta}^{(k)}(\lambda z^\alpha) \right\}
+    \end{align}
+    and by using the result of lemma \ref{lem:lap_mit_2} we have
+    \begin{align}
+        \mathcal{L}\left\{z^{\alpha k+\beta-1}E_{\alpha,\beta}^{(k)}(\lambda z^\alpha) \right\} = \frac{k!s^{\alpha - \beta}}{(s^\alpha - \lambda)^{k+1}}
+    \end{align}
+    which means that
+    \begin{align}
+        \mathcal{L}\left\{ \prescript{}{0}{\mathcal{D}}^\gamma z^{\alpha k+\beta-1}E_{\alpha,\beta}^{(k)}(\lambda z^\alpha) \right\} = \frac{k!s^{\alpha - (\beta - \gamma)}}{(s^\alpha - \lambda)^{k+1}}
+    \end{align}
+    and by inverting the Laplace transform by using the result of lemma \ref{lem:lap_mit_2} again we get that
+    \begin{align}
+        \prescript{}{0}{\mathcal{D}}^\gamma z^{\alpha k+\beta-1}E_{\alpha,\beta}^{(k)}(\lambda z^\alpha) = z^{\alpha k + \beta - \gamma - 1 } E_{\alpha,\beta-\gamma}^{(k)}(\lambda z^\alpha).
+    \end{align}
 \end{proof}
+We can already use this result to construction fractional differential equations for which some form of the Mittag-Leffler function would the the solution to. 
 
+It's not hard to see that by setting $ \gamma = \alpha = n $ with $ n \in \Ntrl $ and selecting $ \beta \in \{ 0 , 1, \ldots, m\} $ we have that
+\begin{align}
+    \frac{d^n}{dz^n} z^{\beta - 1} E_{n,\beta}(z^n) = z^{\beta - 1}E_{n,\beta}(z^n)
+\end{align}
+which generalises the derivative invariance property of exponential functions.
 \clearpage

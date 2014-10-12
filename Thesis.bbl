@@ -5,6 +5,18 @@ S.~Abbas, M.~Benchohra, and N'Gu{\'e}r{\'e}kata G.M.
 \newblock {\em Topics in Fractional Differential Equations}.
 \newblock Springer, 2012.
 
+\bibitem{Arikoglu2007}
+A.~Arikoglu and I.~Ozkol.
+\newblock Solution of fractional differential equations by using differential
+  transform method.
+\newblock {\em Chaos, Solitons \& Fractals}, 34(5):1473--1481, 2007.
+
+\bibitem{Butera2014}
+S.~Butera and M.~Di~Paola.
+\newblock Fractional differential equations solved using mellin transform.
+\newblock {\em Communications in Nonlinear Science and Numerical Simulation},
+  19:2220--2227, 2014.
+
 \bibitem{Caputo1967}
 M.~Caputo.
 \newblock Linear models of dissipation whose q is almost frequency
@@ -51,6 +63,11 @@ R.~Gorenflo and F.~Mainardi.
 \newblock {\em Fractals and Fractional Calculus in Continuum Mechanics}.
 \newblock CISM Courses and Lectures. Springer Verlag, 1997.
 
+\bibitem{Gorenflo1997b}
+R.~Gorenflo and F.~Mainardi.
+\newblock {\em Fractional calculus}.
+\newblock Springer, 1997.
+
 \bibitem{Fernando2005}
 M.~Harris.
 \newblock Mapping computational concepts to gpus.
@@ -63,6 +80,11 @@ N.~Heymans and I.~Podlubny.
   differential equations with riemann-liouville fractional derivatives.
 \newblock {\em Rheologica Acta}, 45(5):765--771, 2005.
 
+\bibitem{Kober1940}
+H.~Kober.
+\newblock On fractional integrals and derivatives.
+\newblock {\em The Quarterly Journal of Mathematics}, 11:193--211, 1940.
+
 \bibitem{Miller1993}
 K.S. Miller and Ross B.
 \newblock {\em An Introduction to the Fractional Calculus and Fractional
@@ -74,6 +96,17 @@ V.A. Narayanan and Prabhu K.M.M.
 \newblock The fractional fourier transform: theory, implementation and error
   analysis.
 \newblock {\em Microprocessors and Microsystems}, 27:511--521, 2003.
+
+\bibitem{Nigmatullin1986}
+R.R. Nigmatullin.
+\newblock The realization of the generalized transfer equation in a medium with
+  fractal geometry.
+\newblock {\em physica status solidi (b)}, 133(1):425--430, 1986.
+
+\bibitem{Nigmatullin1992}
+R.R. Nigmatullin.
+\newblock Fractional integral and its physical interpretation.
+\newblock {\em Theoretical and Mathematical Physics}, 90(3):242--251, 1992.
 
 \bibitem{Podlubny1999}
 I.~Podlubny.

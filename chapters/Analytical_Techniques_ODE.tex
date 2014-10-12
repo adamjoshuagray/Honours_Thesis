@@ -2,131 +2,7 @@
 %\addcontentsline{toc}{section}{Solution to a Simple Fractional Differential Equation}
 In this section we establish some analytical results for ordinary fractional differential equations. These results allow us to solve some simple initial value problems and establish a theoretical framework from which results in other sections can draw.
 
-\subsection{Solution to a linear intial value problem via Laplace transforms}
-We aim to get a solution to the following fractional differential equation (in terms of Caputo derivatives)
 
-\begin{align}
-	\label{eq:fde-1}
-	\left( \prescript{C}{}{\mathcal{D}_0^\alpha}y \right)(t) = \beta y(t) 
-\end{align}
-
-along with the initial conditions 
-\begin{align}
-	\label{eq:fde-1-ic}
-	y^{(k)}(0) = 
-	\begin{cases}
-		1 & k = 0 \\
-		0 & 1 \leq k \leq \lfloor\alpha \rfloor - 1  
-	\end{cases}
-\end{align}
-It turns out that this initial value problem has the solution $ y(t) = E_\alpha \left( \beta t^\alpha \right) $. Where $ E_\alpha $ is the one parameter Mittag-Lefler function.
-
-This solution can be arrived at by a Laplace transform method that is very similar to how this might be done in the integer order case.
-
-
-
-
-We now have sufficient tools to attack the original problem, that is finding a solution to \eqref{eq:fde-1}, \eqref{eq:fde-1-ic}.
-
-\begin{lemma}
-	The initial value problem defined in \eqref{eq:fde-1} and \eqref{eq:fde-1-ic}, restated here for completeness 
-	\begin{align}
-		\left( \prescript{C}{}{\mathcal{D}_0^\alpha}y \right)(t) = \beta y(t) 
-	\end{align}
-
-	along with the initial conditions 
-	\begin{align}
-		y^{(k)}(0) = 
-		\begin{cases}
-			1 & k = 0 \\
-			0 & 1 \leq k \leq \lfloor \alpha \rfloor - 1  
-		\end{cases}
-	\end{align}
-	has solution $ y(t) = E_\alpha \left( \beta t^\alpha \right) $.
-\end{lemma}
-\begin{proof}
-	Taking the Laplace transform of both sides of \eqref{eq:fde-1} yields
-	\begin{align}
-		\laplace{\capder{0}{t}{\alpha}{y}} &= \beta \laplace{y} \\
-		s^{-(n+\alpha)} \left[s^n \laplace{y} - \sum_{k=0}^{n-1} s^{n-k-1} y^{(k)}(0) \right] &= \beta \laplace{y}
-	\end{align}
-	by the result of lemma \ref{lem:lap_cap}. 
-	Then taking into account \eqref{eq:fde-1-ic} we get
-	\begin{align}
-		s^{-(n+\alpha)} \left[s^n \laplace{y} - s^{n-1}\right] &= \beta \laplace{y}
-	\end{align}
-	and so 
-	\begin{align}
-		\laplace{y} = \frac{s^{\alpha-1}}{s^\alpha - \beta}.
-	\end{align}
-	By using the result of lemma \ref{lem:lap_mit} we have that 
-	\begin{align}
-		y(t) = E_\alpha(\beta t^\alpha)
-	\end{align}
-\end{proof}
-
-\subsection{Solution to a multi-order initial value problem via Laplace transforms}
-%\addcontentsline{toc}{section}{Solution to a Multi-Order Fractional Differential Equation}
-This section follows the technique outlined in \cite{Podlubny1999}.
-
-We wish to consider the following differential equation
-\begin{align}
-	\label{eq:fde-multi-order}
-	\rld{0}{\Lambda}{y}(t) + \rld{0}{\lambda}{y}(t) = f(t)
-\end{align}
-
-where $ 0 < \lambda < \Lambda < 1 $.
-
-
-Firstly note that this differential equation is in terms of Riemann-Liouville derivatives. If we were to specify
-initial conditions we would be compelled to specify them in terms of fractional derivatives, so we leave them
-unspecified here to see the solution in general.
-
-\begin{lemma}
-	The initial value problem, \ref{eq:fde-multi-order}, restated here for completeness,
-	\begin{align}
-		\rld{0}{\Lambda}{y}(t) + \rld{0}{\lambda}{y}(t) = f(t)
-	\end{align}
-	has solution, given by
-	\begin{align}
-		y(t) = C g(t) + \int_0^t g(t-\tau)f(\tau) d\tau
-	\end{align}
-	where
-	\begin{align}
-		C &= \rld{0}{\Lambda-1}{y}(0) + \rld{0}{\lambda-1}{y}(0) \\
-		g(t) &= t^{\Lambda - 1} E_{\Lambda - \lambda, \Lambda}(-t^{\Lambda - \lambda}).
-	\end{align}
-\end{lemma}
-
-\begin{proof}
-
-	Taking the Laplace transform of both sides of \ref{eq:fde-multi-order} and using the result of lemma \ref{lem:lap_rld}
-	we get that 
-	\begin{align}
-		\laplace{\rld{0}{\Lambda}{y}(t)} + \laplace{\rld{0}{\lambda}{y}(t)} &= \laplace{f(t)} \\
-		s^\Lambda Y(s) + s^\lambda Y(s) - \rld{0}{\Lambda-1}{y}(0) - \rld{0}{\lambda-1}{y}(0) &= F(s).
-	\end{align}
-	Note that $$ C = \rld{0}{\Lambda-1}{y}(0) + \rld{0}{\lambda-1}{y}(0) $$ is a constant so we write
-	\begin{align}
-		Y(s) &= \frac{C + F(s)}{s^\Lambda + s^\lambda} \\
-			&= \left( C + F(s)\right) \frac{s^{-\lambda}}{s^{\Lambda-\lambda} + 1}.
-	\end{align}
-	
-	Let $$ G(s) = \frac{s^{-\lambda}}{s^{\Lambda-\lambda} + 1} $$
-	and by using lemma \ref{lem:lap_mit_2} with $ \alpha = \Lambda - \lambda $ and $ \gamma = \Lambda $
-	we get that $$ g(s) = t^{\Lambda  -1}E_{\Lambda - \lambda, \Lambda}(-t^{\Lambda - \lambda}) $$ where 
-	$$ \laplace{g(t)} = G(s) $$.
-	
-	Then using the Laplace convolution theorem we get that 
-	\begin{align}
-		y(t) = C g(t) + \int_0^t g(t-\tau)f(\tau) d\tau
-	\end{align}
-	where
-	\begin{align}
-		C &= \rld{0}{\Lambda-1}{y}(0) + \rld{0}{\lambda-1}{y}(0) \\
-		g(t) &= t^{\Lambda - 1} E_{\Lambda - \lambda, \Lambda}(-t^{\Lambda - \lambda}).
-	\end{align}
-\end{proof}
 
 \subsection{Existence and uniquness of solutions to initial value problems}
 \label{sec:existence_uniq}
@@ -136,7 +12,7 @@ we wish to consider the existence an uniqueness of solutions to a class fraction
 This generalizes a result and technique of Tisdell \cite{Tisdell2012} but a similar result for Miller-Ross sequential
 fractional differential equations can be found in \cite{Podlubny1999}.
 
-
+\begin{mdframed}[innertopmargin=10pt]
 \begin{theorem}[Uniqueness]
 \label{thm-existence-uniq}
 Consider the following intial value problem,
@@ -154,15 +30,16 @@ Consider the following intial value problem,
 		$$ S:= \{ (t,p) \in \Rl^2 : t \in [0, a], p \in \Rl \} $$
 	Let $ f : S \lra \Rl $ be continuous. If there is a positive constant L such that 
 		$$ |f(t,u) - f(t,v)| \leq L|u-v|, \text{ for all } (t,u), (t,v) \in S $$
-	and the constants $ \{ \alpha_j \}_{j = 1}^{N} $, $ \{ \beta_j \}_{j=1}^N $
-	are such that
+and the set of constants $ \{ \alpha_j \}_{j = 1}^{N} $, $ \{ \beta_j \}_{j=1}^N $
+such that
 	$$
-		\sum_{j=2}^N \left|\beta_j\right| a^{\alpha_1 - \alpha_j} < 1
+		\sum_{j=2}^N \left|\frac{\beta_j}{\beta_1}\right| a^{\alpha_1 - \alpha_j} < 1
 	$$
 	then the intial value problem defined in \ref{eq-fde-ivp-1} and \ref{eq-fde-ivp-ic-1} has a unique solution.
 \end{theorem}
+\end{mdframed}
 To prove this we will need several lemmas. 
-
+\begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}
 	The IVP defined in \eqref{eq-fde-ivp-1}, \eqref{eq-fde-ivp-ic-1} is equivalent to the integral equation
 	\begin{align}
@@ -171,6 +48,7 @@ To prove this we will need several lemmas.
 			\int_{0}^{t}(t-s)^{\alpha_1 - \alpha_j - 1}\left(x(s) - \sum_{k=1}^{n_j}\frac{A_ks^k}{k!} \right) ds \Bigr)
 	\end{align}
 \end{lemma}
+\end{mdframed}
 \begin{proof}
 	Apply $ \rli{0}{\alpha}{} $ to both sides of \eqref{eq-fde-ivp-1} and recognize that
 	$$
@@ -179,13 +57,14 @@ To prove this we will need several lemmas.
 	where $ n = \lceil \alpha \rceil - 1 $.
 \end{proof}
 
-
+\begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}	
 \label{lem-rli-mit-lef-1}
 	\begin{align}
 		\rli{0}{\xi}{E_\alpha(\gamma t^\alpha)} \leq t^\xi E_\alpha(\gamma t^\alpha)
 	\end{align}
 \end{lemma}
+\end{mdframed}
 \begin{proof}
 	See that
 	\begin{align}
@@ -209,13 +88,14 @@ To prove this we will need several lemmas.
 	\end{align}
 \end{proof}
 
-
+\begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}	
 \label{lem-rli-mit-lef-2}
 	\begin{align}
 		\rli{0}{\alpha}{E_\alpha(\gamma t^\alpha)} = \frac{1}{\gamma} \left( E_\alpha(\gamma t^\alpha) - 1 \right)
 	\end{align}
 \end{lemma}
+\end{mdframed}
 \begin{proof}
 	See that
 	\begin{align}
