@@ -1,6 +1,6 @@
 \section{Fractional Operators and Their Properties}
 \label{sec:operators}
-There are a variety of ways to define fractional differential operators. Good introductions to the various differential operators can be found in \cite{Gorenflo1997, Podlubny1999, Diethelm2002, Samko1993}. In this section, and for the rest of the thesis we will focus of three main fractional operators, the Riemann-Liouville integral and derivative and the Caputo derivative. There are an abundance of other operators such that the Miller-Ross sequential fractional derivative \cite{Miller1993, Podlubny1999}, the Weyl fractional integral \cite{Gorenflo1997, Samko1993, Raina1979}, the Caputo fractional integral \cite{Gorenflo1997}, the Gr{\"u}nwald-Letnikov fractional derivative \cite{Podlubny1999, Samko1993} and fractional operators based on ideas from Fourier analysis \cite{Narayanan2003, Samko1993}.
+There are a variety of ways to define fractional differential operators. Good introductions to the various differential operators can be found in \cite{Gorenflo1997, Podlubny1999, Diethelm2002, Samko1993}. In this section, and for the rest of the thesis we will focus of three main fractional operators, the Riemann-Liouville integral and derivative, the Caputo derivative and the Gr{\"u}nwald-Letnikov derivative. There are an abundance of other operators such that the Miller-Ross sequential fractional derivative \cite{Miller1993, Podlubny1999}, the Weyl fractional integral \cite{Gorenflo1997, Samko1993, Raina1979}, the Caputo fractional integral \cite{Gorenflo1997} and fractional operators based on ideas from Fourier analysis \cite{Narayanan2003, Samko1993}.
 
 
 \subsection{Riemann Liouville Fractional Integral}
@@ -418,4 +418,49 @@ A careful reader might notice that the results of lemmas \ref{lem:rld_fourier} a
     \end{align}
 \end{proof}
 The restriction on $ f $ is not as limiting as one might imagine because for the Fourier transform to have nice properties such as being an automorphism one would want $ f $ to come from some sort of Schwartz space and the membership criteria for a Schwartz space are considerably more restrictive than the conditions given in the above lemma. In fact in defining precisely which functions are \emph{admissable} one ends up having to place similar conditions on $ f $. This is not a rabbit hole that we wish to explore further, however, and we refer the interested reader to \cite{Samko1993} for a more thorough discussion of the matter. 
+
+\subsection{Gr{\"u}nwald-Letnikov Derivative} 
+We actually won't make much use of the Gr{\"u}nwald-Letnikov derivative in future discussions, however, any treatment of fractional calculus would be incomplete without at least a brief discussion of this operator.
+
+In some sense we could say that the Gr{\"u}nwald-Letnikov derivative is a \emph{first principles} derivative. 
+
+We define the first derivative of a function $ f : R \lra R $ as 
+\begin{align}
+	\frac{df(x)}{dx} = \lim_{h\lra 0} \frac{f(x)-f(x-h)}{h}
+\end{align}\footnote{Obviously we could have also chosen a forward difference. The arguments that follow would be essentially the same.} 
+and if this limit exists we say that the function is differentiable. It turns out, rather unsurprisingly, that we can extend this definition to higher orders by writing
+\begin{align}
+	\frac{d^nf(x)}{dx^n} = \lim_{h\lra0} \frac{\Delta^n f(x)}{h^n}
+\end{align}
+where
+\begin{align}
+	\Delta f(x) &= f(x) - f(x-h) \\
+	\Delta^2 f(x) &= \Delta[f(x) - f(x-h)] \\
+	&\vdots \\
+	\Delta^n f(x) &= \sum_{k=0}^n {n\choose k} (-1)^kf(x-jh).
+\end{align}
+Usually binomial coefficients are written in terms of integers, but as
+\begin{align}
+	{n \choose k } = \frac{n!}{k!(n-k)!}
+\end{align}
+we could just generalise this with gamma functions to take non-integer values of $ n $.
+This would give us
+\begin{align}
+	{ \alpha \choose k } = \frac{\Gamma(\alpha + 1)}{k! \Gamma(\alpha - k + 1)}.
+\end{align}
+So it makes sense to make the following definition.
+\begin{mdframed}[innertopmargin=10pt]
+	\begin{definition}[Gr{\"u}nwald-Letnikov Derivative]
+		We define the Gr{\"u}nwald-Letnikov derivative of an admissible function $ f $ as
+		\begin{align}
+			\label{eq:glet-der}
+			\frac{d^\alpha f(x)}{dx^\alpha} = \lim_{h \lra 0} h^{-\alpha} \sum_{k=0}^\infty {\alpha \choose k} (-1)^k f(x - kh)
+		\end{align}
+	\end{definition}
+\end{mdframed}
+Note that the binomial sum has become an infinite binomial series. This makes sense because unlike in the integer case $ { \alpha \choose k } $ does not become $ 0 $ for $ k > \alpha $ when $ \alpha \not\in \Ntrl $.
+In this case we can make some comment on what the set of \emph{admissible functions} includes. Several authors have showed that if $ f : \mathbb{R} \lra \mathbb{R} $ is bounded and has derivatives up to $ \lceil alpha \rceil $ then the fractional derivative \eqref{eq:glet-der} exists \cite{Meerschaert2011, Podlubny1999}. 
+Podlubny also showed that if $ f : \mathbb{R} \lra \mathbb{R} $ is $ n - 1 $ times continuously differentiable and that $ f^{(n)} $ is integrable then the Riemann-Liouville fractional derivative exists and coincides with Gr{\"u}nwald-Letnikov derivative. 
+
+
 \clearpage
