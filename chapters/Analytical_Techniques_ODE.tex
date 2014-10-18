@@ -1,10 +1,69 @@
-\section{Existance and Uniquness Results for Ordinary Fractional Differential Equations.}
+\section{Existance and Uniquness Results for Ordinary Fractional Differential Equations}
 In this section we establish some analytical results for ordinary fractional differential equations. These results allow us to solve some simple initial value problems and establish a theoretical framework from which results in other sections can draw.
 
- Equations}
-After looking at the solution to a couple of fractional differential equations 
-we wish to consider the existence an uniqueness of solutions to a class fractional differential equations. 
-This generalizes a result and technique outlined by Tisdell \cite{Tisdell2012} and Podlubny \cite{Podlubny1999} but a similar result for Miller-Ross sequential
+We will first outline a set of ideas which can guarentee the existence of a solution to an initial value problem involving fractional derivatives. These ideas are outlined in \cite{Tisdell2012} but we present these ideas here because they form the basis for a generalisation we would like to present in theorem \ref{thm-existence-uniq}.
+
+\begin{mdframed}[innertopmargin=10pt]
+\begin{propdef}
+    Let $ \beta > 0, \alpha > 0 $ and $ a > 0 $. For $ x,y \in C([0,a]) $ the function
+    \begin{align}
+        d_{\beta}(x,y) := \max_{t \in [0,a]} \frac{|x(t) - y(t)|}{E_{\alpha,1}(\beta t^\alpha)}
+    \end{align}
+    defines a metric on the space of functions $ C([0,a]) $. 
+\end{propdef}
+\end{mdframed}
+
+This metric, as presented by Tisdell, \cite{Tisdell2012}, is a generalisation of the Bielecki metric \cite{Tisdell2012, Bielecki1956}. 
+
+\begin{proof}
+    It is well known that $ d(x,y) = \max_{t \in [0,a]}|x(t) - y(t)| $ defines a metric on $C([0,a]) $. Now it is easy to see that for $ t > 0 $, $ E_{\alpha,1}(\beta t^\alpha) >0 $. It is also well known that $ E_{\alpha,1}(t) $ is continuous on $ [0, a] $ so it follows that $ d_{\beta}(x,y) $ is a metric.
+\end{proof}
+
+\begin{mdframed}[innertopmargin=10pt]
+\begin{lemma}
+    The metric space $ (C([0,a]), d_\beta) $ is complete.
+\end{lemma}
+\end{mdframed}
+\begin{proof}
+    We only have to show that $ d_\beta $ is equivelent to the max metric ($ d(x,y) = \max_{t \in [0,a]}|x(t) - y(t)| $) to get this result because it is well known that $ (C([0,a]), d) $ is a complete metric space.
+    It is easy to see that $ E_{\alpha, 1}(\beta t^\alpha) $ is strictly increasing on $ [0, a] $ and so 
+    \begin{align}
+        \frac{1}{E_{\alpha, 1}(\beta t^\alpha)} d(x,y) \leq d_\beta(x,y) \leq d(x,y).
+    \end{align}
+    This shows that the metrics are equivelent and hence $ (C([0,a]), d_\beta) $ is complete.
+\end{proof}
+
+Using these definitions and results we can now say something about the existance and uniqueness of solutions to an initial value problem. The following lemma is from Tisdell \cite{Tisdell2012}.
+
+\begin{mdframed}[innertopmargin=10pt]
+\begin{theorem}[Uniqueness]
+    \label{thm:unique-tisdell}
+    Consider the initial value problem 
+    \begin{align}
+        \label{eq:ivp_uniq_1}    
+        \prescript{C}{0}{\mathcal{D}}x(t) = f(t,x(t))
+    \end{align}
+    \begin{align}
+        \label{eq:ivp_uniq_ic_1}
+        x(0) = a_0, x'(0) = a_1, \ldots, x^{(n-1)}(0) = a_{n-1}.
+    \end{align}
+    Let 
+	\begin{align}
+	    S:= \{ (t,p) \in \Rl^2 : t \in [0, a], p \in \Rl \} 
+	\end{align}
+	and let $ f : S \lra \mathcal{R} $ be continuous. If there is a positive constant $ L $ such that 
+	\begin{align}
+	    |f(t,u) - f(t,v)| \leq L|u-v| 
+	\end{align}   
+	for all $ (t,u), (t,v) \in S $
+	then \eqref{eq:ivp_uniq_1} and \eqref{eq:ivp_uniq_ic_1} has a unique solution on $ [0, a] $.
+\end{theorem}
+\end{mdframed}
+\begin{proof}
+    TODO
+\end{proof}
+
+This generalizes the result above by Tisdell \cite{Tisdell2012} but a similar result for Miller-Ross sequential
 fractional differential equations can be found in \cite{Podlubny1999}.
 
 \begin{mdframed}[innertopmargin=10pt]
@@ -18,20 +77,24 @@ Consider the following intial value problem,
 		\label{eq-fde-ivp-ic-1}
 		x(0) = A_0, x_1(0) = A_1, \ldots, x^{n_N}(0) = A_{n_N}
 	\end{align}
-	where $ \alpha_1 > \alpha_2 > \ldots > \alpha_N $, 
-	$ n_j = \lceil \alpha_j \rceil - 1 $ and $ \beta_1 = 1 $.
+	where $ \alpha_1 > \alpha_2 > \ldots > \alpha_N $.
 	
 	Define
-		$$ S:= \{ (t,p) \in \Rl^2 : t \in [0, a], p \in \Rl \} $$
+		\begin{align}
+		 S:= \{ (t,p) \in \Rl^2 : t \in [0, a], p \in \Rl \} 
+		\end{align}
 	Let $ f : S \lra \Rl $ be continuous. If there is a positive constant L such that 
-		$$ |f(t,u) - f(t,v)| \leq L|u-v|, \text{ for all } (t,u), (t,v) \in S $$
+		\begin{align}
+		\label{eq:uniq-lipshitz}
+		|f(t,u) - f(t,v)| \leq L|u-v|, \text{ for all } (t,u), (t,v) \in S
+		\end{align}
 and the set of constants $ \{ \alpha_j \}_{j = 1}^{N} $, $ \{ \beta_j \}_{j=1}^N $
 such that
 	\begin{align}
 	    \label{eq:fde-uniq-cond}
 		\sum_{j=2}^N |\beta_j| a^{\alpha_1 - \alpha_j} \frac{E_{\alpha_1,1+\alpha_1-\alpha_j}(\gamma t^{\alpha_1})}{E_{\alpha_1,1}(\gamma t^{\alpha_1})} < 1
 	\end{align}
-	then the intial value problem defined in \ref{eq-fde-ivp-1} and \ref{eq-fde-ivp-ic-1} has a unique solution.
+	then the intial value problem defined in \ref{eq-fde-ivp-1} and \ref{eq-fde-ivp-ic-1} has a unique solution on $ [0, a] $.
 \end{theorem}
 \end{mdframed}
 To prove this we will need several lemmas. 
@@ -46,7 +109,7 @@ To prove this we will need several lemmas.
 \end{lemma}
 \end{mdframed}
 \begin{proof}
-	Apply $ \prescript{}{0}{I}^\alpha $ to both sides of \eqref{eq-fde-ivp-1} and then apply lemma \ref{lem:rli-cap}.
+	Apply $ I_0^\alpha $ to both sides of \eqref{eq-fde-ivp-1} and then apply lemma \ref{lem:rli-cap}.
 \end{proof}
 
 \begin{mdframed}[innertopmargin=10pt]
@@ -114,7 +177,7 @@ I_0^\alpha E_{\alpha,1}(\gamma t^\alpha) = \frac{1}{\gamma} \left( E_{\alpha,1}(
 			 \frac{1}{\Gamma(\alpha_1)}\int_0^t (t-s)^{\alpha_1 - 1} |f(s,x(s)) - f(s,y(s))|ds \\ 
 			& \ \ \ + \sum_{j=2}^N \frac{|\beta_j|}{\Gamma(\alpha_1 - \alpha_j)} \int_0^t (t-s)^{\alpha_1 - \alpha_j - 1}|x(s) - y(s))| ds \Bigr).
 	\end{align}
-	By exploiting the Lipshitz condition we can further write that 
+	By exploiting the Lipshitz condition \eqref{eq:uniq-lipshitz} we can further write that 
 	\begin{align}
 		d_\gamma^{\alpha_1}(Fx,Fy) &\leq \max_{t \in [0, a]} \frac{1}{E_{\alpha_1}(\gamma t^{\alpha_1})|\beta_1|} \Bigl(
 			\frac{L}{\Gamma(\alpha_1)}\int_0^t (t-s)^{\alpha_1 - 1} |x(s) - y(s)|ds \\ 
@@ -154,7 +217,7 @@ guarentees uniqueness on some closed interval starting at $ 0 $ for both cases. 
 to note that this result can be extended to differential equations involving Riemann-Liouville derivatives, by 
 virtue of the correspondence between the Caputo derivative and the Riemann-Liouville derivative \cite{Podlubny1999}. 
 
-This result could be improved by removing the condition the condition in  \eqref{eq:fde-uniq-cond}. This would could be achieved if the following conjecture holds true.
+This result could be improved by removing the condition  in \eqref{eq:fde-uniq-cond}. This would could be achieved if the following conjecture holds true.
 \begin{mdframed}[innertopmargin=10pt]
 \begin{conjecture}
     For $ \alpha, \beta, \varepsilon > 0 $ we conjecture that
@@ -164,11 +227,16 @@ This result could be improved by removing the condition the condition in  \eqref
 \end{conjecture}
 \end{mdframed}
 \emph{Justification}
-Proving this is has proved rather tricky. The figure \ref{fig:mittag-quotient} shows that for $ \alpha = 1, \beta = 1 $ and $ \varepsilon = 0.1 $ it appears to hold true. It should be noted that even for relatively large values of $ \varepsilon $m ( $ \varepsilon = 0.1 $ ) $, z $ needs to be extremely large, ($ z \sim 10^{14} $), for the quotient to get within $ 0.04 $ of $ 0 $. 
+Proving this is has proved rather tricky. The figure \ref{fig:mittag-quotient} shows that for $ \alpha = 1, \beta = 1 $ and $ \varepsilon = 0.1 $ it appears to hold true. It should be noted that even for relatively large values of $ \varepsilon $m ( $ \varepsilon = 0.1 $ ) $, z $ needs to be extremely large, ($ z \sim 10^{14} $), for the quotient to get within $ 0.04 $ of $ 0 $. Even if this result does not hold a weaker result which states that the limit approaches a non-zero constant would considerably simplify the condition in \eqref{eq:fde-uniq-cond}.
 \begin{figure}[H]
 \includegraphics[scale=0.6]{images/Mittag-Leffler-Quotient}
 \caption{$ E_{\alpha, \beta + \varepsilon}(z) / E_{\alpha, \beta}(z) $ for $ \alpha = 1, \beta = 1 $ and $ \varepsilon = 0.1 $.}
 \label{fig:mittag-quotient}
 \end{figure}
 
+Both theorems \ref{thm:unique-tisdell} and \ref{thm-existence-uniq} are important as they give us some guarentees about the existance and uniqueness of solutions the initial value problems involving fractional derivatives. The generalisation in \ref{thm-existence-uniq} is important as it could be applied to showing the existance of solutions equations like the Bagley-Torvick equation which is a multi-order fractional differential equation that models the motion of a plate in a viscus fluid \cite{Diethelm2002-3, Podlubny1999, Torvik1984}.
+
+In fact these results can be taken quite a bit further. The proof techniques used in theorems \ref{thm:unique-tisdell} and \ref{thm-existence-uniq} suggest a constructive method for arriving at a solution to fractional differential equations. This is formalised by Tisdell \cite{Tisdell2012} through the method of successive approximations. A similar idea is also outlined in \cite{Podlubny1999}.
+
+\clearpage
 
