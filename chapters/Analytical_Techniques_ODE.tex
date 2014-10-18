@@ -1,15 +1,10 @@
-\section{Analytical Results for Ordinary Fractional Differential Equations}
-%\addcontentsline{toc}{section}{Solution to a Simple Fractional Differential Equation}
+\section{Existance and Uniquness Results for Ordinary Fractional Differential Equations.}
 In this section we establish some analytical results for ordinary fractional differential equations. These results allow us to solve some simple initial value problems and establish a theoretical framework from which results in other sections can draw.
 
-
-
-\subsection{Existence and uniquness of solutions to initial value problems}
-\label{sec:existence_uniq}
-%\addcontentsline{toc}{section}{Existence and Uniquness of Fractional Differential Equations}
+ Equations}
 After looking at the solution to a couple of fractional differential equations 
 we wish to consider the existence an uniqueness of solutions to a class fractional differential equations. 
-This generalizes a result and technique of Tisdell \cite{Tisdell2012} but a similar result for Miller-Ross sequential
+This generalizes a result and technique outlined by Tisdell \cite{Tisdell2012} and Podlubny \cite{Podlubny1999} but a similar result for Miller-Ross sequential
 fractional differential equations can be found in \cite{Podlubny1999}.
 
 \begin{mdframed}[innertopmargin=10pt]
@@ -32,9 +27,10 @@ Consider the following intial value problem,
 		$$ |f(t,u) - f(t,v)| \leq L|u-v|, \text{ for all } (t,u), (t,v) \in S $$
 and the set of constants $ \{ \alpha_j \}_{j = 1}^{N} $, $ \{ \beta_j \}_{j=1}^N $
 such that
-	$$
-		\sum_{j=2}^N \left|\frac{\beta_j}{\beta_1}\right| a^{\alpha_1 - \alpha_j} < 1
-	$$
+	\begin{align}
+	    \label{eq:fde-uniq-cond}
+		\sum_{j=2}^N |\beta_j| a^{\alpha_1 - \alpha_j} \frac{E_{\alpha_1,1+\alpha_1-\alpha_j}(\gamma t^{\alpha_1})}{E_{\alpha_1,1}(\gamma t^{\alpha_1})} < 1
+	\end{align}
 	then the intial value problem defined in \ref{eq-fde-ivp-1} and \ref{eq-fde-ivp-ic-1} has a unique solution.
 \end{theorem}
 \end{mdframed}
@@ -50,73 +46,52 @@ To prove this we will need several lemmas.
 \end{lemma}
 \end{mdframed}
 \begin{proof}
-	Apply $ \rli{0}{\alpha}{} $ to both sides of \eqref{eq-fde-ivp-1} and recognize that
-	$$
-		\rli{0}{\alpha}{\capder{0}{t}{\alpha}{x}}(t) = x(t) + \sum_{k=0}^{n} \frac{x^{(k)}(0)t^{k}}{k!}
-	$$
-	where $ n = \lceil \alpha \rceil - 1 $.
+	Apply $ \prescript{}{0}{I}^\alpha $ to both sides of \eqref{eq-fde-ivp-1} and then apply lemma \ref{lem:rli-cap}.
 \end{proof}
 
 \begin{mdframed}[innertopmargin=10pt]
-\begin{lemma}	
+\begin{lemma}
 \label{lem-rli-mit-lef-1}
+For $ \xi > 0 $, $ \gamma > 0 $ and $ \alpha > 0 $ we have that
 	\begin{align}
-		\rli{0}{\xi}{E_\alpha(\gamma t^\alpha)} \leq t^\xi E_\alpha(\gamma t^\alpha)
+		{I}^\xi_0 E_{\alpha,1}(\gamma t^\alpha) = t^\xi E_{\alpha,1+\xi}(\gamma t^\alpha).
 	\end{align}
 \end{lemma}
 \end{mdframed}
 \begin{proof}
-	See that
+	This can be proved rather easily with Laplace transform methods.
+	By using the results of lemmas \ref{lem:rli_laplace} and \ref{lem:lap_mit} we have that
 	\begin{align}
-		\rli{0}{\xi}{E_\alpha(\gamma t^\alpha)} &= \frac{1}{\Gamma(\xi)} \int_0^t E_\alpha(\gamma s^\alpha)(t-s)^{\xi - 1} ds \\
-			&= \frac{1}{\Gamma(\xi)} \int_0^t \sum_{k=0}^\infty \frac{\gamma^k s^{\alpha k}}{\Gamma(\alpha k + 1)} (t-s)^{\xi - 1} ds \\
-			&= \frac{1}{\Gamma(\xi)} \sum_{k=0}^\infty \frac{\gamma^k}{\Gamma(\alpha k + 1)} \underbrace{\int_0^t s^{\alpha k}(t-s)^{\xi - 1} ds}_\circledast.
+	    \mathcal{L}\{ I_0^\xi E_{\alpha, 1}(\gamma t^\alpha) \} = \frac{s^{\alpha-\xi-1}}{s^\alpha - \gamma}
 	\end{align}
-	Letting $ \tau = \frac{s}{t} $ we have that 
-	\begin{align}
-		\circledast &= \int_0^1 (t\tau)^{\alpha k} (t - t\tau)^{\xi - 1} t d\tau \\
-			&= t^{\alpha k + \xi}\int_0^1 (\tau)^{\alpha k} (1 - 1\tau)^{\xi - 1} d\tau \\
-			&= t^{\alpha k + \xi} B(\alpha k + 1, \xi) \\
-			&= t^{\alpha k + \xi} \frac{\Gamma(\alpha k + 1) \Gamma(\xi)}{\Gamma(\alpha k + \xi + 1)}.
-	\end{align}
-	This means that 
-	\begin{align}
-		\rli{0}{\xi}{E_\alpha(\gamma t^\alpha)} &= \sum_{k=0}^\infty \frac{\gamma^k t^{\alpha k + \xi}}{\Gamma(\alpha k + \xi + 1)} \\
-			&= t^{\xi}\sum_{k=0}^\infty\frac{\gamma^k t^{\alpha k}}{\Gamma(\alpha k + \xi + 1)} \\
-			&\leq t^{\xi}\sum_{k=0}^\infty\frac{\gamma^k t^{\alpha k}}{\Gamma(\alpha k + 1)} \\
-			&= t^{\xi} E_\alpha(\gamma t^\alpha).
-	\end{align}
+	then by inverting the with the help of lemma \ref{lem:lap_mit_2} we have the result.
 \end{proof}
 
 \begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}	
 \label{lem-rli-mit-lef-2}
+For $ \gamma > 0 $ and $ \alpha > 0 $ we have that
 	\begin{align}
-		\rli{0}{\alpha}{E_\alpha(\gamma t^\alpha)} = \frac{1}{\gamma} \left( E_\alpha(\gamma t^\alpha) - 1 \right)
+		I_0^\alpha E_{\alpha,1}(\gamma t^\alpha) = \frac{1}{\gamma} \left( E_{\alpha,1}(\gamma t^\alpha) - 1 \right).
 	\end{align}
 \end{lemma}
 \end{mdframed}
 \begin{proof}
-	See that
+	Again this is easy to prove with in Laplace space.
+	By using the results of lemmas \ref{lem:rli_laplace} and \ref{lem:lap_mit} we have that
 	\begin{align}
-		\rli{0}{\alpha}{E_\alpha(\gamma t^\alpha)} &= \frac{1}{\Gamma(\alpha)} \int_0^t E_\alpha (\gamma s^\alpha)(t-s)^{\alpha - 1} ds \\
-			&= \frac{1}{\Gamma(\alpha)} \sum_{k=0}^\infty \frac{\gamma^k}{\Gamma(\alpha k + 1)} \underbrace{\int_0^t s^{\alpha k} (t-s)^\alpha ds}_{\circledast}.
+    	\mathcal{L}\{ I_0^\alpha E_{\alpha, 1}(\gamma t^\alpha) \} = \frac{s^{-1}}{s^\alpha - \gamma}
 	\end{align}
-
-	Letting $ \tau = \frac{s}{t} $ we have that 
+	also note that
 	\begin{align}
-		\circledast &= \int_0^1 (t\tau)^{\alpha k}(t-t\tau)^{\alpha - 1} t d\tau \\
-			&= t^{\alpha (k + 1)}\int_0^1 \tau^{\alpha k}(1-\tau)^{\alpha - 1} d\tau \\
-			&= t^{\alpha (k + 1)}B(\alpha k + 1, \alpha) \\
-			&= t^{\alpha (k + 1)} \frac{\Gamma(\alpha k + 1) \Gamma(\alpha)}{\Gamma(\alpha(k + 1) + 1)}.
+	    \mathcal{L}\left\{ \frac{1}{\gamma}( E_{\alpha, 1}(\gamma t^\alpha) - 1) \right\} &= \frac{1}{\gamma} \left( \frac{s^{\alpha-1}}{s^\alpha - \gamma} - \frac{1}{s} \right) \\
+	    &= \frac{1}{\gamma}\left( \frac{s^\alpha - s^\alpha + \gamma}{s(s^\alpha - \gamma)}\right) \\
+	    &= \frac{1}{\gamma}\left(\frac{\gamma s^{-1}}{s^\alpha - \gamma}\right) \\
+	    &= \frac{s^{-1}}{s^\alpha - \gamma}
 	\end{align}
-	This then means that 
-	
+	and so it is clear that
 	\begin{align}
-		\rli{0}{\alpha}{E_\alpha(\gamma t^\alpha)} &= \sum_{k=0}^\infty \frac{\gamma^k t^{\alpha(k+1)}}{\Gamma(\alpha(k + 1) + 1)} \\
-			&= \frac{1}{\gamma}\sum_{k=1}^\infty \frac{\gamma^k t^{\alpha k}}{\Gamma(\alpha k+ 1)} \\
-			&= \frac{1}{\gamma}\left( \sum_{k=0}^\infty \frac{\gamma^k t^{\alpha k}}{\Gamma(\alpha k+ 1)} - 1\right) \\
-			&= \frac{1}{\gamma}\left( E_\alpha(\gamma t^\alpha) - 1 \right).
+I_0^\alpha E_{\alpha,1}(\gamma t^\alpha) = \frac{1}{\gamma} \left( E_{\alpha,1}(\gamma t^\alpha) - 1 \right).
 	\end{align}
 \end{proof}
 
@@ -129,7 +104,7 @@ To prove this we will need several lemmas.
 			& \ \ \ - \sum_{j=2}^{N} \frac{\beta_j}{\Gamma(\alpha_1 - \alpha_j)}\int_{0}^{t}(t-s)^{\alpha_1 - \alpha_j - 1}\left(x(s) - \sum_{k=1}^{n_j}\frac{A_ks^k}{k!} \right) ds \Bigr)
 	\end{align}
 	is contractive in the metric space $ \left( C[0,a], d^{\alpha_1}_\gamma \right) $ where 
-	$$ d_\gamma^{\alpha_1}(x,y) = \max_{t \in [0, a]} \frac{|x(t) - y(t)|}{E_{\alpha_1}(\gamma t^{\alpha_1})}. $$
+	$$ d_\gamma^{\alpha_1}(x,y) = \max_{t \in [0, a]} \frac{|x(t) - y(t)|}{E_{\alpha_1,1}(\gamma t^{\alpha_1})}. $$
 	To see this note that
 	\begin{align}
 		d_\gamma^{\alpha_1}(Fx,Fy) &= \max_{t \in [0, a]}  \frac{1}{E_{\alpha_1}(\gamma t^{\alpha_1})} 
@@ -156,19 +131,19 @@ To prove this we will need several lemmas.
 	\end{align}
 	We can now use the results of lemmas \ref{lem-rli-mit-lef-1} and \ref{lem-rli-mit-lef-2} to write
 	\begin{align}
-		d_\gamma^{\alpha_1}(Fx,Fy) &\leq d_\gamma^{\alpha_1}(x,y) \max_{t \in [0, a]} \frac{1}{E_{\alpha_1}(\gamma t^{\alpha_1})|\beta_1|} \Bigl(
-			\frac{L}{\gamma}\left( E_{\alpha_1}(\gamma t^{\alpha_1}) - 1 \right) \\
-			& \ \ \ + \sum_{j=2}^N |\beta_j| t^{\alpha_1 - \alpha_j} E_{\alpha_1}(\gamma t^{\alpha_1}) \Bigr) \\
+		d_\gamma^{\alpha_1}(Fx,Fy) &\leq d_\gamma^{\alpha_1}(x,y) \max_{t \in [0, a]} \frac{1}{E_{\alpha_1, 1}(\gamma t^{\alpha_1})|\beta_1|} \Bigl(
+			\frac{L}{\gamma}\left( E_{\alpha_1,1}(\gamma t^{\alpha_1}) - 1 \right) \\
+			& \ \ \ + \sum_{j=2}^N |\beta_j| t^{\alpha_1 - \alpha_j} E_{\alpha_1, 1 + \alpha_1 - \alpha_j}(\gamma t^{\alpha_1}) \Bigr) \\
 			&= d_\gamma^{\alpha_1}(x,y) \max_{t \in [0, a]} \frac{1}{|\beta_1|} \Bigl(
-			\frac{L}{\gamma}\left( 1- \frac{1}{E_{\alpha_1}(\gamma t^{\alpha_1})} \right) + \sum_{j=2}^N |\beta_j| t^{\alpha_1 - \alpha_j}\Bigr) \\
+			\frac{L}{\gamma}\left( 1- \frac{1}{E_{\alpha_1}(\gamma t^{\alpha_1})} \right) + \sum_{j=2}^N |\beta_j| t^{\alpha_1 - \alpha_j}\frac{E_{\alpha_1,1+\alpha_1-\alpha_j}(\gamma t^{\alpha_1})}{E_{\alpha_1,1}(\gamma t^{\alpha_1})}\Bigr) \\
 	\end{align}
 	and finally we get that 
 	\begin{align}
-		d_\gamma^{\alpha_1}(Fx,Fy) &\leq d_\gamma^{\alpha_1}(x,y) \frac{1}{|\beta_1|}\left( \frac{L}{\gamma} + \sum_{j=2}^N |\beta_j| a^{\alpha_1 - \alpha_j} \right).
+		d_\gamma^{\alpha_1}(Fx,Fy) &\leq d_\gamma^{\alpha_1}(x,y) \frac{1}{|\beta_1|}\left( \frac{L}{\gamma} + \sum_{j=2}^N |\beta_j| a^{\alpha_1 - \alpha_j} \frac{E_{\alpha_1,1+\alpha_1-\alpha_j}(\gamma t^{\alpha_1})}{E_{\alpha_1,1}(\gamma t^{\alpha_1})} \right).
 	\end{align}
 	By choosing $ \gamma $ sufficiently large we get that 
 	$$
-		\frac{1}{|\beta_1|}\left( \frac{L}{\gamma} + \sum_{j=2}^N |\beta_j| a^{\alpha_1 - \alpha_j} \right) < 1
+		\frac{1}{|\beta_1|}\left( \frac{L}{\gamma} + \sum_{j=2}^N |\beta_j| a^{\alpha_1 - \alpha_j} \frac{E_{\alpha_1,1+\alpha_1-\alpha_j}(\gamma t^{\alpha_1})}{E_{\alpha_1,1}(\gamma t^{\alpha_1})} \right) < 1
 	$$
 	and so $ F $ is a contractive mapping and thus the IVP defined in \eqref{eq-fde-ivp-1}, \eqref{eq-fde-ivp-ic-1} has a unique solution on $ [0, a] $.
 \end{proof}
@@ -178,3 +153,22 @@ for the differential equations in (\ref{eq:fde-1}, \ref{eq:fde-1-ic}) and \ref{e
 guarentees uniqueness on some closed interval starting at $ 0 $ for both cases. Its also important
 to note that this result can be extended to differential equations involving Riemann-Liouville derivatives, by 
 virtue of the correspondence between the Caputo derivative and the Riemann-Liouville derivative \cite{Podlubny1999}. 
+
+This result could be improved by removing the condition the condition in  \eqref{eq:fde-uniq-cond}. This would could be achieved if the following conjecture holds true.
+\begin{mdframed}[innertopmargin=10pt]
+\begin{conjecture}
+    For $ \alpha, \beta, \varepsilon > 0 $ we conjecture that
+    \begin{align}
+        \lim_{z\lra \infty} \frac{E_{\alpha, \beta + \varepsilon}(z)}{E_{\alpha, \beta}(z)} = 0.
+    \end{align}
+\end{conjecture}
+\end{mdframed}
+\emph{Justification}
+Proving this is has proved rather tricky. The figure \ref{fig:mittag-quotient} shows that for $ \alpha = 1, \beta = 1 $ and $ \varepsilon = 0.1 $ it appears to hold true. It should be noted that even for relatively large values of $ \varepsilon $m ( $ \varepsilon = 0.1 $ ) $, z $ needs to be extremely large, ($ z \sim 10^{14} $), for the quotient to get within $ 0.04 $ of $ 0 $. 
+\begin{figure}[H]
+\includegraphics[scale=0.6]{images/Mittag-Leffler-Quotient}
+\caption{$ E_{\alpha, \beta + \varepsilon}(z) / E_{\alpha, \beta}(z) $ for $ \alpha = 1, \beta = 1 $ and $ \varepsilon = 0.1 $.}
+\label{fig:mittag-quotient}
+\end{figure}
+
+
