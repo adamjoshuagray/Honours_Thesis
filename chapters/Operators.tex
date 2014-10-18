@@ -306,6 +306,7 @@ Another very useful result is the fractional derivative of a power function.
 It should be noted that this result agrees with early historical results about how a fractional derivative of a power function should look.
 
 \subsection{Caputo Fractional Derivative}
+\label{subsec:caputo}
 We now turn our attention to the last fractional differential operator that we will study in detail, the Caputo fractional derivative. 
 The Caputo derivative first turned up in a 1967 paper by Caputo on linear models of dissipation \cite{Caputo1967} and again in 1971 in a paper by Caputo and Mainardi \cite{Caputo1971}.  When specifying differential equations (both of the ordinary and partial type) Riemann-Liouville derivatives typically lead to intial conditions and boundary values of fractional order \cite{Caputo1971, Podlubny1999, Samko1993, Heymans2005}, however, physical intuition for what sensible values for these initial and boundary values can be is somewhat hard to come by \cite{Caputo1971, Podlubny1999, Samko1993, Gorenflo1997}. The Caputo derivative, however, leads to systems where the initial and boundary values are of integer order, which leads to much greater physical usefulness \cite{Podlubny1999, Samko1993, Gorenflo1997}
 
@@ -329,6 +330,20 @@ We can easily see that
 and when we compare this observation with that in \eqref{eq:rld_rli_rel} we see that the Caputo derivative essentially amounts to swapping the order of fractional integration and integer differentiation when compared to the Riemann-Liouville fractional derivative.
 
 We would now like to develop similar a relationship between $ \prescript{C}{a}{\mathcal{D}}^\alpha $ and $ I_a^\alpha $ as was done for $ \prescript{}{a}{\mathcal{D}}^\alpha $ but to do that we will first give a relationship between the Riemann-Liouville fractional derivative and the Caputo fractional derivative.
+
+\begin{mdframed}[innertopmargin=10pt]
+\begin{lemma}
+    \label{lem:rli-cap}
+    For an admissable function $ f $ we have that,
+    \begin{align}
+		    \left(\prescript{}{0}{I}^\alpha \prescript{C}{0}{\mathcal{D}}^\alpha \right)(t) = f(t) + \sum_{k=0}^{n} \frac{f^{(k)}(0)t^{k}}{k!}.
+    \end{align}
+\end{lemma}
+\end{mdframed}
+\begin{proof}
+    TODO
+\end{proof}
+
 \begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}
     \label{lem:cap_rld_rel}
