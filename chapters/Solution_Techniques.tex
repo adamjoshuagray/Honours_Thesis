@@ -47,6 +47,11 @@ The following proposition gives a result to a single order linear fractional dif
 \end{proof}
 Note that for this fractional differential equation it was specified in terms of Caputo fractional derivatives. It is important to note that this fractional differential equation is coupled with integer order initial conditions. As noted previously this makes Caputo fractional derivatives particularly useful from an applications standpoint.
 
+\begin{figure}
+    \includegraphics[scale=0.7]{images/Mittag-Leffler-Solution}
+    \caption{Various solution curves for \eqref{eq:fde-1} with $ \beta = 1 $ and the initial conditions specified in \eqref{eq:fde-1-ic}}.
+\end{figure}
+
 \subsection{Solution to a multi-order initial value problem via Laplace transforms}
 %\addcontentsline{toc}{section}{Solution to a Multi-Order Fractional Differential Equation}
 The Laplace transform technique can be applied to multi-order fractional differential equations as well. The following proposition demonstrates how.
@@ -54,15 +59,16 @@ The Laplace transform technique can be applied to multi-order fractional differe
 \begin{lemma}
 	The initial value problem,
 	\begin{align}
-		\rld{0}{\Lambda}{y}(t) + \rld{0}{\lambda}{y}(t) = f(t)
+	    \label{eq:fde-multi-order}
+	    \prescript{}{0}{\mathcal{D}}^{\Lambda}y(t) + \prescript{}{0}{\mathcal{D}}^{\lambda}y(t) = f(t)
 	\end{align}
 	has solution, given by
 	\begin{align}
 		y(t) = C g(t) + \int_0^t g(t-\tau)f(\tau) d\tau
 	\end{align}
-	where
+where
 	\begin{align}
-		C &= \rld{0}{\Lambda-1}{y}(0) + \rld{0}{\lambda-1}{y}(0) \\
+		C &= \prescript{}{0}{\mathcal{D}}^{\Lambda-1}y(0) + \prescript{}{0}{\mathcal{D}}^{\lambda-1}y(0) \\
 		g(t) &= t^{\Lambda - 1} E_{\Lambda - \lambda, \Lambda}(-t^{\Lambda - \lambda}).
 	\end{align}
 \end{lemma}
@@ -73,12 +79,12 @@ This proof follows the technique outlined in \cite{Podlubny1999}.
 	Taking the Laplace transform of both sides of \ref{eq:fde-multi-order} and using the result of lemma \ref{lem:lap_rld}
 	we get that 
 	\begin{align}
-		\laplace{\rld{0}{\Lambda}{y}(t)} + \laplace{\rld{0}{\lambda}{y}(t)} &= \laplace{f(t)} \\
-		s^\Lambda Y(s) + s^\lambda Y(s) - \rld{0}{\Lambda-1}{y}(0) - \rld{0}{\lambda-1}{y}(0) &= F(s).
+		\laplace{\prescript{}{0}{\mathcal{D}}^{\Lambda}y(t)} + \laplace{\prescript{}{0}{\mathcal{D}}^{\Lambda}y(t)} &= \laplace{f(t)} \\
+		s^\Lambda Y(s) + s^\lambda Y(s) - \prescript{}{0}{\mathcal{D}}^{\Lambda-1}y(0) - \prescript{}{0}{\mathcal{D}}^{\lambda-1}y(0) &= F(s).
 	\end{align}
 	Note that 
 	\begin{align}
-	    C = \rld{0}{\Lambda-1}{y}(0) + \rld{0}{\lambda-1}{y}(0)
+	    C &= \prescript{}{0}{\mathcal{D}}^{\Lambda-1}y(0) + \prescript{}{0}{\mathcal{D}}^{\lambda-1}y(0) 
 	\end{align}
 	 
 	is a constant so we write
@@ -94,7 +100,7 @@ This proof follows the technique outlined in \cite{Podlubny1999}.
 	and by using lemma \ref{lem:lap_mit_2} with $ \alpha = \Lambda - \lambda $ and $ \gamma = \Lambda $
 	we get that 
 	\begin{align}
-	    g(s) = t^{\Lambda  -1}E_{\Lambda - \lambda, \Lambda}(-t^{\Lambda - \lambda})
+	    g(t) = t^{\Lambda  -1}E_{\Lambda - \lambda, \Lambda}(-t^{\Lambda - \lambda})
 	\end{align} where $ \laplace{g(t)} = G(s) $.
 	
 	Then using the Laplace convolution theorem we get that 
@@ -103,13 +109,22 @@ This proof follows the technique outlined in \cite{Podlubny1999}.
 	\end{align}
 	where
 	\begin{align}
-		C &= \rld{0}{\Lambda-1}{y}(0) + \rld{0}{\lambda-1}{y}(0) \\
+		C &= \prescript{}{0}{\mathcal{D}}^{\Lambda-1}y(0) + \prescript{}{0}{\mathcal{D}}^{\lambda-1}y(0)  \\
 		g(t) &= t^{\Lambda - 1} E_{\Lambda - \lambda, \Lambda}(-t^{\Lambda - \lambda}).
 	\end{align}
 \end{proof}
+
+\begin{figure}[H]
+    \includegraphics[scale=0.7]{images/Mittag-Leffler-Solution-2}
+    \caption{A solution curve for \eqref{eq:fde-multi-order}, with $ C = 1, \Lambda = \frac{3}{2}, \lambda = \frac{1}{2} $ and $ f(t) = \cos(t) $. }.
+\end{figure}
+
 Also note that this differential equation is in terms of Riemann-Liouville derivatives. If we were to specify
 initial conditions we would be compelled to specify them in terms of fractional derivatives, so we leave them
 unspecified here to see the solution in general.
+
+
+
 
 \subsection{Other techniques for ordinary fractional differential equations}
 
@@ -184,7 +199,7 @@ Its not just ordinary fractional differential equations that can be solved by an
     \end{align}
     but showing this result requires a number of techniques not otherwise explored in this thesis.
     
-    Note that this fractional partial differential equation is essentially a time fractional heat equation. It's actually known as the Nigmatullin fractional diffusion equation \cite{Podlubny1999, Nigmatullin1986}. Interestingly Nigmatullin has published many papers on physical notions and examples of fractional differential equations and this particular version of the diffusion equation can be seen as having physical significance \cite{Nigmatullin1986, Nigmatullin1992}. 
+    Note that this fractional partial differential equation is essentially a time fractional heat equation. It's actually known as the Nigmatullin fractional diffusion equation \cite{Podlubny1999, Nigmatullin1986}. Interestingly Nigmatullin has published many papers on physical notions and examples of fractional differential equations and this particular version of the diffusion equation can be seen as having physical significance \cite{Nigmatullin1986, Nigmatullin1992, Meerschaert2011}. 
     
 It should be noted that by replacing the Riemann-Liouville fractional derivative with a Caputo fractional derivative we get a similar result \cite{Nikolova2010, }. We'll formalize this assertion with the following proposition.
 
