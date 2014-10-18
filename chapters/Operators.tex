@@ -1,6 +1,6 @@
 \section{Fractional Operators and Their Properties}
 \label{sec:operators}
-There are a variety of ways to define fractional differential operators. Good introductions to the various differential operators can be found in \cite{Gorenflo1997, Podlubny1999, Diethelm2002, Samko1993}. In this section, and for the rest of the thesis we will focus of three main fractional operators, the Riemann-Liouville integral and derivative and the Caputo derivative. There are an abundance of other operators such that the Miller-Ross sequential fractional derivative \cite{Miller1993, Podlubny1999}, the Weyl fractional integral \cite{Gorenflo1997, Samko1993, Raina1979}, the Caputo fractional integral \cite{Gorenflo1997}, the Gr{\"u}nwald-Letnikov fractional derivative \cite{Podlubny1999, Samko1993} and fractional operators based on ideas from Fourier analysis \cite{Narayanan2003, Samko1993}.
+There are a variety of ways to define fractional differential operators. Good introductions to the various differential operators can be found in \cite{Gorenflo1997, Podlubny1999, Diethelm2002, Samko1993}. In this section, and for the rest of the thesis we will focus of three main fractional operators, the Riemann-Liouville integral and derivative, the Caputo derivative and the Gr{\"u}nwald-Letnikov derivative. There are an abundance of other operators such that the Miller-Ross sequential fractional derivative \cite{Miller1993, Podlubny1999}, the Weyl fractional integral \cite{Gorenflo1997, Samko1993, Raina1979}, the Caputo fractional integral \cite{Gorenflo1997} and fractional operators based on ideas from Fourier analysis \cite{Narayanan2003, Samko1993}.
 
 
 \subsection{Riemann Liouville Fractional Integral}
@@ -61,7 +61,7 @@ We now calculate the Laplace transform of the of the Riemann-Liouville fractiona
 \begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}
     \label{lem:rli_laplace}
-    The laplace transform of $ \rli{0}{\alpha}{f} $ is given by
+    The Laplace transform of $ \rli{0}{\alpha}{f} $ is given by
     \begin{align}
         \mathcal{L}\{ \rli{0}{\alpha}{f} \} = \frac{\mathcal{L}\{f\}}{s^\alpha}
     \end{align}
@@ -85,7 +85,7 @@ Note that this proof hinges off the Laplace convolution theorem, and so it requi
     \label{lem:rli_fourier}
     The Fourier transform of $ \rli{0}{\alpha}{f} $ is given by
     \begin{align}
-        \mathcal{F}\{ \rli{0}{\alpha}{f} \} = \frac{\mathcal{F}\{f\}}{(-i\omega)^\alpha}.
+        \mathcal{F}\{ \rli{-\infty}{\alpha}{f} \} = \frac{\mathcal{F}\{f\}}{(i\omega)^\alpha}.
     \end{align}
 \end{lemma}
 \end{mdframed}
@@ -105,13 +105,13 @@ Note that this proof hinges off the Laplace convolution theorem, and so it requi
     where $ * $ represents the Fourier convolution.
     By employing the Fourier convolution theorem it follows that
     \begin{align}
-         \mathcal{F}\{ \rli{0}{\alpha}{f} \} = \mathcal{F}\{ h_+^\alpha \}\mathcal{F}\{f\}.
+         \mathcal{F}\{ \rli{-\infty}{\alpha}{f} \} = \mathcal{F}\{ h_+^\alpha \}\mathcal{F}\{f\}.
     \end{align}
-    It remains only to show that $ \mathcal{F}\{h_+^\alpha\} = (-i\omega)^{-\alpha} $. To see this note that the Laplace transform of $ h_+^\alpha $ is given by
+    It remains only to show that $ \mathcal{F}\{h_+^\alpha\} = (i\omega)^{-\alpha} $. To see this note that the Laplace transform of $ h_+^\alpha $ is given by
     \begin{align}
         \mathcal{L}\{h_+^\alpha\} = s^{-\alpha} 
     \end{align}
-    and so by replacing $ s $ with $ -i\omega $, as in the Fourier transform we get the result. The convergence of the Fourier integral is guaranteed by Dirichlet's theorem for Fourier integrals as noted in \cite{Podlubny1999}. 
+    and so by replacing $ s $ with $ i\omega $, as in the Fourier transform we get the result. The convergence of the Fourier integral is guaranteed by Dirichlet's theorem for Fourier integrals as noted in \cite{Podlubny1999}. 
 \end{proof}
 \subsection{Riemann-Liouville Fractional Derivative}
 Although one can approach a fractional derivative from somewhat of a \emph{first principles} approach via the Gr{\"u}nwald-Letnikov derivative \cite{Podlubny1999, Samko1993}, we will not do that here, mainly because for a large class of functions the Gr{\"u}nwald-Letnikov derivative is actually equivalent to the Riemann-Liouville fractional derivative \cite{Podlubny1999} and the Riemann-Liouville fractional derivative is more tractable from a symbolic manipulation perspective.
@@ -147,9 +147,8 @@ Like in the case of the fractional integral we would like to investigate the sem
     The Riemann-Liouville derivative of order $ \alpha $ is the left inverse of the Riemann-Liouville integral of order $ \alpha $ in the sense
     that
     \begin{align}
-        \left(I_a^\alpha \prescript{}{a}{\mathcal{D}}^\alpha f\right)(t) = f(t) - \sum_{j=1}^{k}\left[ \left(\prescript{}{a}{\mathcal{D}}^{\alpha - j}f \right)(t) \right]_{t=a} \frac{(t-a)^{\alpha - j}}{\Gamma(\alpha - j + 1)}
+        \left(I_a^\alpha \prescript{}{a}{\mathcal{D}}^\alpha f\right)(t) = f(t) - \sum_{j=1}^{k}\left[ \left(\prescript{}{a}{\mathcal{D}}^{\alpha - j}f \right)(t) \right]_{t=a} \frac{(t-a)^{\alpha - j}}{\Gamma(\alpha - j + 1)}.
     \end{align}
-    where $ \operatorname{Id} $ is the identity operator ( $\operatorname{Id}(f) = f $).
 \end{lemma}
 \end{mdframed}
 \begin{proof}
@@ -252,7 +251,7 @@ We also consider the Fourier transform of the Riemann-Liouville fractional deriv
     \label{lem:rld_fourier}
     For an admissable function $ f $ the Fourier transform of the Riemann-Liouville fractional derivative with $ a = -\infty $ and of order $ \alpha $ is given by
     \begin{align}
-        \mathcal{F}\left\{ \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) \right\} = (-i\omega)^{\alpha} \mathcal{F}\left\{ f(t) \right\}.
+        \mathcal{F}\left\{ \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) \right\} = (i\omega)^{\alpha} \mathcal{F}\left\{ f(t) \right\}.
     \end{align}
 \end{lemma}
 \end{mdframed}
@@ -266,12 +265,12 @@ We also consider the Fourier transform of the Riemann-Liouville fractional deriv
     \begin{align}
         \mathcal{F}\left\{ \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) \right\}  &=
         \mathcal{F}\left\{ \frac{d^n}{dt^n} \left[ I_{-\infty}^{n-\alpha} f(t) \right] \right\} \\
-        &= (-i\omega)^{n} \mathcal{F}\left\{ I_{-\infty}^{n-\alpha} f(t) \right\}
+        &= (i\omega)^{n} \mathcal{F}\left\{ I_{-\infty}^{n-\alpha} f(t) \right\}
     \end{align}
     and then by using the result of lemma \ref{lem:rli_fourier} we have that
     \begin{align}
-        (-i\omega)^{n} \mathcal{F}\left\{ I_{-\infty}^{n-\alpha} f(t) \right\} &= (-i\omega)^{n}(-i\omega)^{\alpha - n}\mathcal{F}\left\{ f(t)\right\} \\
-        &= (-i\omega)^\alpha  \mathcal{F}\left\{ f(t) \right\}
+        (i\omega)^{n} \mathcal{F}\left\{ I_{-\infty}^{n-\alpha} f(t) \right\} &= (-i\omega)^{n}(-i\omega)^{\alpha - n}\mathcal{F}\left\{ f(t)\right\} \\
+        &= (i\omega)^\alpha  \mathcal{F}\left\{ f(t) \right\}
     \end{align}
 \end{proof}
 
@@ -304,7 +303,7 @@ Another very useful result is the fractional derivative of a power function.
         \prescript{}{0}{\mathcal{D}}^\alpha z^{\nu}  = \frac{\Gamma(\nu + 1)}{\Gamma(\nu+1-\alpha)}z^{\nu - \alpha}.
     \end{align}
 \end{proof}
-It should be noted that this result aggrees with early historical results about how a fractional derivative of a power function should look.
+It should be noted that this result agrees with early historical results about how a fractional derivative of a power function should look.
 
 \subsection{Caputo Fractional Derivative}
 We now turn our attention to the last fractional differential operator that we will study in detail, the Caputo fractional derivative. 
@@ -380,7 +379,7 @@ A similar but more complicated result exists for $  I_a^\alpha \prescript{C}{a}{
     \label{lem:cap_fourier}
     For an admissable function $ f $ the Fourier transform of the Riemann-Liouville fractional derivative with $ a = -\infty $ and of order $ \alpha $ is given by
     \begin{align}
-        \mathcal{F}\left\{ \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) \right\} = (-i\omega)^{\alpha} \mathcal{F}\left\{ f(t) \right\}.
+        \mathcal{F}\left\{ \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) \right\} = (i\omega)^{\alpha} \mathcal{F}\left\{ f(t) \right\}.
     \end{align}
 \end{lemma}
 \end{mdframed}
@@ -394,15 +393,15 @@ Firstly we have that
     \begin{align}
         \mathcal{F}\left\{ \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) \right\}  &=
         \mathcal{F}\left\{ \left[ I_{-\infty}^{n-\alpha} \frac{d^n}{dt^n}f(t) \right] \right\} \\
-        &= (-i\omega)^{\alpha - n} \mathcal{F}\left\{ \frac{d^n}{dt^n}f(t) \right\}
+        &= (i\omega)^{\alpha - n} \mathcal{F}\left\{ \frac{d^n}{dt^n}f(t) \right\}
     \end{align}
-    and then by using elementry Fourier transform results we get
+    and then by using elementary Fourier transform results we get
     \begin{align}
-        (-i\omega)^{\alpha -n} \mathcal{F}\left\{ I_{-\infty}^{n-\alpha} f(t) \right\} &= (-i\omega)^{\alpha - n}(-i\omega)^{n}\mathcal{F}\left\{ f(t)\right\} \\
-        &= (-i\omega)^\alpha  \mathcal{F}\left\{ f(t) \right\}
+        (-i\omega)^{\alpha -n} \mathcal{F}\left\{ I_{-\infty}^{n-\alpha} f(t) \right\} &= (-i\omega)^{\alpha - n}(i\omega)^{n}\mathcal{F}\left\{ f(t)\right\} \\
+        &= (i\omega)^\alpha  \mathcal{F}\left\{ f(t) \right\}
     \end{align}
 \end{proof}
-A carefull reader might notice that the results of lemmas \ref{lem:rld_fourier} and \ref{lem:cap_fourier} are the same. This coincidence is actually hiding a more remarkable result which we formalise in the following lemma.
+A careful reader might notice that the results of lemmas \ref{lem:rld_fourier} and \ref{lem:cap_fourier} are the same. This coincidence is actually hiding a more remarkable result which we formalise in the following lemma.
 \begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}
     For an admissible function $ f $ such that $ \lim_{t \lra -\infty} f^{(k)}(t) = 0 $ for all $ 0 \leq k \leq n-1 $ with $ n $ defined from $ \alpha $ in the usual way we have that
@@ -419,4 +418,49 @@ A carefull reader might notice that the results of lemmas \ref{lem:rld_fourier} 
     \end{align}
 \end{proof}
 The restriction on $ f $ is not as limiting as one might imagine because for the Fourier transform to have nice properties such as being an automorphism one would want $ f $ to come from some sort of Schwartz space and the membership criteria for a Schwartz space are considerably more restrictive than the conditions given in the above lemma. In fact in defining precisely which functions are \emph{admissable} one ends up having to place similar conditions on $ f $. This is not a rabbit hole that we wish to explore further, however, and we refer the interested reader to \cite{Samko1993} for a more thorough discussion of the matter. 
+
+\subsection{Gr{\"u}nwald-Letnikov Derivative} 
+We actually won't make much use of the Gr{\"u}nwald-Letnikov derivative in future discussions, however, any treatment of fractional calculus would be incomplete without at least a brief discussion of this operator.
+
+In some sense we could say that the Gr{\"u}nwald-Letnikov derivative is a \emph{first principles} derivative. 
+
+We define the first derivative of a function $ f : R \lra R $ as 
+\begin{align}
+	\frac{df(x)}{dx} = \lim_{h\lra 0} \frac{f(x)-f(x-h)}{h}
+\end{align}\footnote{Obviously we could have also chosen a forward difference. The arguments that follow would be essentially the same.} 
+and if this limit exists we say that the function is differentiable. It turns out, rather unsurprisingly, that we can extend this definition to higher orders by writing
+\begin{align}
+	\frac{d^nf(x)}{dx^n} = \lim_{h\lra0} \frac{\Delta^n f(x)}{h^n}
+\end{align}
+where
+\begin{align}
+	\Delta f(x) &= f(x) - f(x-h) \\
+	\Delta^2 f(x) &= \Delta[f(x) - f(x-h)] \\
+	&\vdots \\
+	\Delta^n f(x) &= \sum_{k=0}^n {n\choose k} (-1)^kf(x-jh).
+\end{align}
+Usually binomial coefficients are written in terms of integers, but as
+\begin{align}
+	{n \choose k } = \frac{n!}{k!(n-k)!}
+\end{align}
+we could just generalise this with gamma functions to take non-integer values of $ n $.
+This would give us
+\begin{align}
+	{ \alpha \choose k } = \frac{\Gamma(\alpha + 1)}{k! \Gamma(\alpha - k + 1)}.
+\end{align}
+So it makes sense to make the following definition.
+\begin{mdframed}[innertopmargin=10pt]
+	\begin{definition}[Gr{\"u}nwald-Letnikov Derivative]
+		We define the Gr{\"u}nwald-Letnikov derivative of an admissible function $ f $ as
+		\begin{align}
+			\label{eq:glet-der}
+			\frac{d^\alpha f(x)}{dx^\alpha} = \lim_{h \lra 0} h^{-\alpha} \sum_{k=0}^\infty {\alpha \choose k} (-1)^k f(x - kh)
+		\end{align}
+	\end{definition}
+\end{mdframed}
+Note that the binomial sum has become an infinite binomial series. This makes sense because unlike in the integer case $ { \alpha \choose k } $ does not become $ 0 $ for $ k > \alpha $ when $ \alpha \not\in \Ntrl $.
+In this case we can make some comment on what the set of \emph{admissible functions} includes. Several authors have showed that if $ f : \mathbb{R} \lra \mathbb{R} $ is bounded and has derivatives up to $ \lceil alpha \rceil $ then the fractional derivative \eqref{eq:glet-der} exists \cite{Meerschaert2011, Podlubny1999}. 
+Podlubny also showed that if $ f : \mathbb{R} \lra \mathbb{R} $ is $ n - 1 $ times continuously differentiable and that $ f^{(n)} $ is integrable then the Riemann-Liouville fractional derivative exists and coincides with Gr{\"u}nwald-Letnikov derivative. 
+
+
 \clearpage
