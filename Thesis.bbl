@@ -11,6 +11,13 @@ A.~Arikoglu and I.~Ozkol.
   transform method.
 \newblock {\em Chaos, Solitons \& Fractals}, 34(5):1473--1481, 2007.
 
+\bibitem{Bielecki1956}
+A.~Bielecki.
+\newblock Une remarque sur l'application de la méthode de
+  banach-caccioppoli-tikhonov dans la théorie de l'équations difféentielles
+  ordinaires.
+\newblock {\em Bulletin of the Polish Academy of Sciences}, 4:261--264, 1956.
+
 \bibitem{Butera2014}
 S.~Butera and M.~Di~Paola.
 \newblock Fractional differential equations solved using mellin transform.
@@ -58,6 +65,11 @@ K.~Diethelm, N.J. Ford, and A.D. Freed.
 \newblock Detailed error analysis for a fractional adams method.
 \newblock {\em Numerical Algorithms}, pages 31--52, 2004.
 
+\bibitem{Diethelm2002-3}
+Kai Diethelm and J~Ford.
+\newblock Numerical solution of the bagley-torvik equation.
+\newblock {\em BIT Numerical Mathematics}, 42(3):490--507, 2002.
+
 \bibitem{Gorenflo1997}
 R.~Gorenflo and F.~Mainardi.
 \newblock {\em Fractals and Fractional Calculus in Continuum Mechanics}.
@@ -84,6 +96,11 @@ N.~Heymans and I.~Podlubny.
 H.~Kober.
 \newblock On fractional integrals and derivatives.
 \newblock {\em The Quarterly Journal of Mathematics}, 11:193--211, 1940.
+
+\bibitem{Meerschaert2011}
+Mark~M Meerschaert and Alla Sikorskii.
+\newblock {\em Stochastic models for fractional calculus}, volume~43.
+\newblock Walter de Gruyter, 2011.
 
 \bibitem{Miller1993}
 K.S. Miller and Ross B.
@@ -134,6 +151,12 @@ S.G. Samko, A.A. Kilbas, and O.I. Marichev.
 C.C. Tisdell.
 \newblock On the application of sequential and fixed-point methods to
   fractional differential equations of arbitrary order.
-\newblock {\em Journal of Integral Equations}, 24, 2012.
+\newblock {\em Journal of Integral Equations and Applications}, 24, 2012.
+
+\bibitem{Torvik1984}
+Peter~J Torvik and Ronald~L Bagley.
+\newblock On the appearance of the fractional derivative in the behavior of
+  real materials.
+\newblock {\em Journal of Applied Mechanics}, 51(2):294--298, 1984.
 
 \end{thebibliography}

@@ -5,26 +5,13 @@ In this section we describe numerical methods which can be used for solving frac
 
 \subsection{Approximations of Fractional Derivatives and Integrals}
 
-We first recall that the Gr\"{u}nwald-Letnikov derivative of a function $ f $ is defined by
-
-\begin{align}
-    \glder{a}{t}{\alpha}{f}(t) = \lim_{h \lra 0} \frac{\fracdelta{a}{\alpha}{h}{f}(t)}{h^\alpha} & & \fracdelta{a}{\alpha}{h}{f}(t) = \sum_{j=0}^{\lfloor \frac{t-a}{h} \rfloor} (-1)^{j} { \alpha \choose j } f(t-jh)
-\end{align}
-
-For a very large class of functions this coincides with the Riemann-Liouville fractional derivative \cite{Podlubny1999} which we again recall here 
-
-\begin{align}
-    \rld{a}{t}{\alpha}{f}(t) = \left( \frac{d}{dt} \right)^{\lfloor \alpha \rfloor + 1} \int_{a}^{t}(t-\tau)^{\lfloor \alpha \rfloor - \alpha} f(\tau)d\tau.
-\end{align}
-
-These two definitions suggest two general methods for approximating a fractional derivative.
-
 \subsubsection{Gr\"{u}nwald-Letnikov Approximation}
 In much the same was as we might use a finite difference method to approximate an integer order derivative we apply a similar approach here. By choosing some small, but non-zero value of $ h $ we can approximate the fractional derivative of a function by
 \begin{align}
-    \widehat{ \glder{a}{t}{\alpha}{f}(t) } = \frac{1}{h^\alpha} \sum_{j=0}^n (-1)^j {\alpha \choose j} f(t - jh).
+    \widehat{ \frac{d^\alpha f(t)}{dt^\alpha} } = \frac{1}{h^\alpha} \sum_{j=0}^n (-1)^j {\alpha \choose j} f(t - jh).
 \end{align}
 
+Also note that we have \emph{chopped} off the top of the series, taking on the first $ n $ terms in the sum. 
 It can be shown \cite{Podlubny1999} that this yields a first order approximation of the Riemann-Liouville fractional derivative.
 \subsubsection{Quadrature Approximation}
 A completely different approach is to use a quadrature rule to evaluate the integral from the Riemann-Liouville definition. If one is simply evaluating a derivative this method is not ideal because it also requires the approximation of an integer order derivative. If, however, we wish to calculate a fractional integral, such as might be required in a numerical FDE solver, then the quadrature method may be a more practical method.
@@ -41,7 +28,7 @@ Lets consider the initial value problem
     \label{eq:num_ivp_2}
     y^{(k)}(0) &= y_{0}^{(k)} 
 \end{align}
-for $ 0 \leq k < \lfloor \alpha \rfloor $. Note that this initial value problem is stated in terms of Caputo derivatives. The motivation for such initial value problems was discussed in [INSERT CC REF].
+for $ 0 \leq k < \lfloor \alpha \rfloor $. Note that this initial value problem is stated in terms of Caputo derivatives. The motivation for such initial value problems was discussed in section \ref{subsec:caputo}.
 
 One of the most important things to note about this equation is that for non-integer values of $ \alpha $ it is non-local, in the sense that the value of the solution at $ y(x_0+h) $ depends not only on $ y(x_0) $ but also on $ y(x), x \in [0, x_0] $ \cite{Diethelm2010}. This is in contrast to ordinary differential equations and this fact is what makes fractional differential equations considerably more complex to solve. Even multi-step methods which can be used to solve ordinary differential equations, only rely on some \emph{fixed} number previous time steps. As a solution to a fractional differential equation progresses it relies on more and more previous time steps. As one might suspect this fundamentally increases the computational complexity of the schemes used to solve fractional differential equations as compared with the schemes used to solve traditional ordinary differential equations. \footnote{It is possible to reduce these computations to look at some large but fixed number of previous grid-
 points 
@@ -49,7 +36,7 @@ but this results in a speed vs. accuracy tradeoff which will be discussed in sec
 
 \subsubsection{The Adams Moulton Bashforth Scheme}
 \label{sec:amb_desc}
-We briefly outline a method explained and analyzed in detail in \cite{Diethelm2004}. As shown in section \ref{sec:existence_uniq} the initial value problem \eqref{eq:num_ivp_1}, \eqref{eq:num_ivp_2} is equivalent to the Volterra equation.
+We briefly outline a method explained and analyzed in detail in \cite{Diethelm2004}. As shown in the proof of theorem \ref{thm:unique-tisdell} the initial value problem \eqref{eq:num_ivp_1}, \eqref{eq:num_ivp_2} is equivalent to the Volterra equation.
 
 \begin{align}
     \label{eq:num_int_eq}
@@ -299,5 +286,9 @@ Firstly we note the size of the problems being solved here. The last point on th
 As can be seen from this chart, as $ N $ increases it makes sense to perform more operations per thread. This arises from the fact that there is an overhead in dealing with each thread and this overhead becomes significant as $ N $ gets large. This effect is also exacerbated by the fact that for small values of $ N $ the overhead of managing more threads on the GPU is offset by the increased parallelism that a smaller number of operations per thread affords. Once, however, every core is being utilized it makes sense to start to increase the number of operations per thread as $ N $ is increased.
 
 The speedup from running these computation on CUDA is enormous. It is arguable that any advantage achieved through reducing the number of messages passed between multiple threads and nodes by using the scheme outlined in \cite{Diethelm2011} and in section \ref{sec:parallel_c}, is completely outweighed by the sheer speed of computation on a GPU. 
+
+\subsubsection{Short-Memory-Principle}
+
+We can actually completely change the complexity class of the problem by improving our solution so as to take advantage of the so-called \emph{short memory principle} \cite{Podlubny1999}.
 
 \clearpage 
