@@ -241,7 +241,7 @@ L_{j,\ell} & := \sum_{k=(\ell-1)p + 1}^j a{j-k} f(x_k, y_k) + \frac{f(x_{j+1}, y
 \end{frame}
 \begin{frame}{Is this parallelization reasonable?}
 \begin{principle}[Amdahl]
-Let $ P $ be the proportion of a computation which can be parallelized in a given progress. Then the speedup given by
+Let $ P $ be the proportion of a computation which can be parallelized in a given progress. Then the speed-up given by
 $ Q $ cores is
 \begin{align*}
 	S(Q) = \frac{1}{(1-P)+\frac{P}{Q}}
@@ -251,7 +251,7 @@ $ Q $ cores is
 
 \begin{definition}[Amdahl Efficiency]
 \label{def:amdahl_efficient}
-    Let $ S(N,Q) $ represent the parallel speedup for a problem with input size $ N $ and executed with $ Q $ cores.
+    Let $ S(N,Q) $ represent the parallel speed-up for a problem with input size $ N $ and executed with $ Q $ cores.
     Then we define the Amdahl efficiency of parallel scheme as 
     \begin{align*}
         E(Q) = \lim_{N \lra \infty} \frac{S(N, Q)}{Q}.
