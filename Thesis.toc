@@ -1,44 +1,44 @@
-\contentsline {section}{\numberline {1}Historical Introduction}{4}{section.1}
-\contentsline {section}{\numberline {2}Fractional Operators and Their Properties}{11}{section.2}
-\contentsline {subsection}{\numberline {2.1}Riemann Liouville Fractional Integral}{11}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Riemann-Liouville Fractional Derivative}{13}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Caputo Fractional Derivative}{18}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Gr{\"u}nwald-Letnikov Derivative}{21}{subsection.2.4}
-\contentsline {section}{\numberline {3}Special Functions}{22}{section.3}
-\contentsline {subsection}{\numberline {3.1}Mittag-Leffler Function}{22}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Wright Function}{26}{subsection.3.2}
-\contentsline {section}{\numberline {4}Solution Methods for Fractional Differential Equations}{27}{section.4}
-\contentsline {subsection}{\numberline {4.1}Solution to a linear intial value problem via Laplace transforms}{27}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Solution to a multi-order initial value problem via Laplace transforms}{28}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Other techniques for ordinary fractional differential equations}{30}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Solutions to partial fractional differential equations}{30}{subsection.4.4}
-\contentsline {section}{\numberline {5}Existance and Uniquness Results for Ordinary Fractional Differential Equations}{33}{section.5}
-\contentsline {section}{\numberline {6}Numerical Methods for Fractional Differential Equations}{39}{section.6}
-\contentsline {subsection}{\numberline {6.1}Approximations of Fractional Derivatives and Integrals}{39}{subsection.6.1}
-\contentsline {subsubsection}{\numberline {6.1.1}Gr\"{u}nwald-Letnikov Approximation}{39}{subsubsection.6.1.1}
-\contentsline {subsubsection}{\numberline {6.1.2}Quadrature Approximation}{39}{subsubsection.6.1.2}
-\contentsline {subsubsection}{\numberline {6.1.3}An Initial Value Problem}{40}{subsubsection.6.1.3}
-\contentsline {subsubsection}{\numberline {6.1.4}The Adams Moulton Bashforth Scheme}{40}{subsubsection.6.1.4}
-\contentsline {subsubsection}{\numberline {6.1.5}Parallelizing: A Task Based Approach}{41}{subsubsection.6.1.5}
-\contentsline {subsubsection}{\numberline {6.1.6}Analysis of the Performance of the Scheme in C\# and MONO}{45}{subsubsection.6.1.6}
-\contentsline {subsubsection}{\numberline {6.1.7}Parallelizing: A CUDA Approach}{48}{subsubsection.6.1.7}
-\contentsline {subsubsection}{\numberline {6.1.8}Short-Memory-Principle}{50}{subsubsection.6.1.8}
-\contentsline {section}{\numberline {7}Fractional Diffusion}{51}{section.7}
-\contentsline {subsection}{\numberline {7.1}Standard Diffusion}{51}{subsection.7.1}
-\contentsline {subsubsection}{\numberline {7.1.1}Derivation}{51}{subsubsection.7.1.1}
-\contentsline {subsubsection}{\numberline {7.1.2}Characterising Results}{52}{subsubsection.7.1.2}
-\contentsline {subsubsection}{\numberline {7.1.3}Analytic Solution Method}{52}{subsubsection.7.1.3}
-\contentsline {subsection}{\numberline {7.2}Continuous Time Random Walks}{53}{subsection.7.2}
-\contentsline {subsubsection}{\numberline {7.2.1}Standard Diffusion}{55}{subsubsection.7.2.1}
-\contentsline {subsubsection}{\numberline {7.2.2}Fractional Diffusion}{56}{subsubsection.7.2.2}
-\contentsline {subsubsection}{\numberline {7.2.3}Characterising Results for Fractional Diffusion}{56}{subsubsection.7.2.3}
-\contentsline {subsubsection}{\numberline {7.2.4}Solution Method for Fractional Diffusion}{56}{subsubsection.7.2.4}
-\contentsline {section}{\numberline {8}Appendix A: Adams-Moulton-Bashforth FDE Solver Code}{57}{section.8}
-\contentsline {subsection}{\numberline {8.1}C\# Implementation of AMB FDE Solver}{57}{subsection.8.1}
-\contentsline {subsubsection}{\numberline {8.1.1}Program.cs}{57}{subsubsection.8.1.1}
-\contentsline {subsubsection}{\numberline {8.1.2}SpecialFunctions.cs}{61}{subsubsection.8.1.2}
-\contentsline {subsection}{\numberline {8.2}CUDA C/C++ Implementation of AMB FDE Solver}{62}{subsection.8.2}
-\contentsline {subsubsection}{\numberline {8.2.1}FDE\_Solver.cu}{62}{subsubsection.8.2.1}
-\contentsline {section}{\numberline {9}Appendix B}{68}{section.9}
-\contentsline {subsection}{\numberline {9.1}Runtimes for C\# implementation described in section \ref {sec:amb_desc}}{68}{subsection.9.1}
-\contentsline {subsection}{\numberline {9.2}Runtimes for CUDA implementation described in section \ref {sec:parallel_cuda}}{68}{subsection.9.2}
+\contentsline {section}{\numberline {1}Historical Introduction}{5}{section.1}
+\contentsline {section}{\numberline {2}Fractional Operators and Their Properties}{12}{section.2}
+\contentsline {subsection}{\numberline {2.1}Riemann Liouville Fractional Integral}{12}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Riemann-Liouville Fractional Derivative}{14}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Caputo Fractional Derivative}{19}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Gr{\"u}nwald-Letnikov Derivative}{22}{subsection.2.4}
+\contentsline {section}{\numberline {3}Special Functions}{23}{section.3}
+\contentsline {subsection}{\numberline {3.1}Mittag-Leffler Function}{23}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Wright Function}{27}{subsection.3.2}
+\contentsline {section}{\numberline {4}Solution Methods for Fractional Differential Equations}{28}{section.4}
+\contentsline {subsection}{\numberline {4.1}Solution to a linear intial value problem via Laplace transforms}{28}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Solution to a multi-order initial value problem via Laplace transforms}{29}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Other techniques for ordinary fractional differential equations}{31}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Solutions to partial fractional differential equations}{31}{subsection.4.4}
+\contentsline {section}{\numberline {5}Existance and Uniquness Results for Ordinary Fractional Differential Equations}{34}{section.5}
+\contentsline {section}{\numberline {6}Numerical Methods for Fractional Differential Equations}{40}{section.6}
+\contentsline {subsection}{\numberline {6.1}Approximations of Fractional Derivatives and Integrals}{40}{subsection.6.1}
+\contentsline {subsubsection}{\numberline {6.1.1}Gr\"{u}nwald-Letnikov Approximation}{40}{subsubsection.6.1.1}
+\contentsline {subsubsection}{\numberline {6.1.2}Quadrature Approximation}{40}{subsubsection.6.1.2}
+\contentsline {subsubsection}{\numberline {6.1.3}An Initial Value Problem}{41}{subsubsection.6.1.3}
+\contentsline {subsubsection}{\numberline {6.1.4}The Adams Moulton Bashforth Scheme}{41}{subsubsection.6.1.4}
+\contentsline {subsubsection}{\numberline {6.1.5}Parallelizing: A Task Based Approach}{42}{subsubsection.6.1.5}
+\contentsline {subsubsection}{\numberline {6.1.6}Analysis of the Performance of the Scheme in C\# and MONO}{46}{subsubsection.6.1.6}
+\contentsline {subsubsection}{\numberline {6.1.7}Parallelizing: A CUDA Approach}{49}{subsubsection.6.1.7}
+\contentsline {subsubsection}{\numberline {6.1.8}Short-Memory-Principle}{51}{subsubsection.6.1.8}
+\contentsline {section}{\numberline {7}Fractional Diffusion}{52}{section.7}
+\contentsline {subsection}{\numberline {7.1}Standard Diffusion}{52}{subsection.7.1}
+\contentsline {subsubsection}{\numberline {7.1.1}Derivation}{52}{subsubsection.7.1.1}
+\contentsline {subsubsection}{\numberline {7.1.2}Characterising Results}{53}{subsubsection.7.1.2}
+\contentsline {subsubsection}{\numberline {7.1.3}Analytic Solution Method}{53}{subsubsection.7.1.3}
+\contentsline {subsection}{\numberline {7.2}Continuous Time Random Walks}{54}{subsection.7.2}
+\contentsline {subsubsection}{\numberline {7.2.1}Standard Diffusion}{56}{subsubsection.7.2.1}
+\contentsline {subsubsection}{\numberline {7.2.2}Fractional Diffusion}{57}{subsubsection.7.2.2}
+\contentsline {subsubsection}{\numberline {7.2.3}Characterising Results for Fractional Diffusion}{57}{subsubsection.7.2.3}
+\contentsline {subsubsection}{\numberline {7.2.4}Solution Method for Fractional Diffusion}{57}{subsubsection.7.2.4}
+\contentsline {section}{\numberline {8}Appendix A: Adams-Moulton-Bashforth FDE Solver Code}{58}{section.8}
+\contentsline {subsection}{\numberline {8.1}C\# Implementation of AMB FDE Solver}{58}{subsection.8.1}
+\contentsline {subsubsection}{\numberline {8.1.1}Program.cs}{58}{subsubsection.8.1.1}
+\contentsline {subsubsection}{\numberline {8.1.2}SpecialFunctions.cs}{62}{subsubsection.8.1.2}
+\contentsline {subsection}{\numberline {8.2}CUDA C/C++ Implementation of AMB FDE Solver}{63}{subsection.8.2}
+\contentsline {subsubsection}{\numberline {8.2.1}FDE\_Solver.cu}{63}{subsubsection.8.2.1}
+\contentsline {section}{\numberline {9}Appendix B}{69}{section.9}
+\contentsline {subsection}{\numberline {9.1}Runtimes for C\# implementation described in section \ref {sec:amb_desc}}{69}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}Runtimes for CUDA implementation described in section \ref {sec:parallel_cuda}}{69}{subsection.9.2}
