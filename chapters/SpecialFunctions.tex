@@ -4,7 +4,209 @@
 The field of fractional calculus is intimately linked with the field of special functions. To express the fractional derivative
 of many functions one has to consider special functions. Just like the field of \emph{ordinary} calculus has collections of functions which have a number of desirable properties like invariance (exponential) and \emph{periodic invariance} (sine, cosine, hyperbolic sine, hyperbolic cosine), fractional calculus has functions which have a very similar role.
 
-We will look in detail at two functions, the Mittag-Leffler function and the Wright function. It may seem that just looking at two functions will be limiting, but this is not the case. Both of these functions are generalisations of more \emph{ordinary} functions and they are general enough to serve considerable utility. That being said the field of fractional calculus is surrounded by a virtual zoo of special functions including the Meijer G-function, Fox-H function, the generalised hyper-geometric functions, MacRobert E-function and the Mainardi function. This list could be made arbitrarily large by simply reading more and more literature on the subject, but these functions give us a way of formalising remarkable relationships.
+We will look in detail at three functions, the Gamma function, the Mittag-Leffler function and the Wright function. It may seem that just looking at three functions will be limiting, but this is not the case. Both the Mittag-Leffler function and the Wright Function generalisations of more \emph{ordinary} functions and they are general enough to serve considerable utility. The Gamma function is important in the definition of both of these functions and a collection of other special functions. The field of fractional calculus is surrounded by a virtual zoo of special functions including the Meijer G-function, Fox-H function, the generalised hyper-geometric functions, MacRobert E-function and the Mainardi function. This list could be made arbitrarily large by simply reading more and more literature on the subject, but these functions give us a way of formalising remarkable relationships. [TODO ADD REFS]
+
+\subsection{Gamma Function}
+
+\begin{mdframed}[innertopmargin=10pt]
+\begin{definition}
+Define the gamma function $ \Gamma : \mathbb{R} \setminus \{ 0, -1, -2, \ldots \} \lra \mathbb{R}  $
+
+\begin{align}
+    \Gamma(z) = \int_0^\infty e^t t^{z-1} dt.
+\end{align}
+\end{definition}
+\end{mdframed}
+
+
+The idea will be to \emph{lift} this integral into the complex plain to get a contour integral representation of $ \Gamma(z) $.
+
+\begin{mdframed}[innertopmargin=10pt]
+\begin{lemma}
+    \label{lem:contour_gamma}
+    A contour integral representation of $ \Gamma(z) $ is given by
+    \begin{align}
+        \Gamma(z) = \frac{1}{e^{2 \pi i z} - 1} \int_{C} e^{-t}d^{z-1} dt
+    \end{align}
+where $ C $ is the contour depicted in figure \ref{fig:Hankel_Loop_2}.
+\end{lemma}
+\end{mdframed}
+
+\begin{wrapfigure}{l}{210pt}
+    \input{diagrams/Hankel_Loop_2.tex}
+    \caption{The Hankel contour C}
+    \label{fig:Hankel_Loop_2}
+\end{wrapfigure}
+
+
+This proof follows that of Podlubny \cite{Podlubny1999}.
+\begin{proof}
+Consider the contour integral
+\begin{align}
+    \int_C e^{(z-1)\log(t) - t} dt.
+\end{align}
+Due to the fact that the integrand involves a $ \log $ function it is multivalued unless we specify a branch
+cut. We will adopt a branch cut along the non-negative real axis. As long as $ \varepsilon $ 
+is chosen sufficiently small ($ \varepsilon < 1 $) then Cauchy's theorem guarantees that this contour 
+integral has the same value for all choices of $ \varepsilon > 0 $ because the integrand has only one
+singularity at $ t = 0 $.
+
+Now consider the contour in three pieces, $ C_{\varepsilon} $, the circle of radius $ \varepsilon $ 
+centred at 0, $ (\varepsilon, \infty) $, the bottom half of the contour and $ (\infty, \varepsilon) $, 
+the top half of the contour. 
+
+As $ \varepsilon $ can be made arbitrarily small we take both straight parts of the contour to be
+real but on the lower half of the contour we must replace $ \log(t) $ with $ \log(t) + 2\pi i $. 
+
+This results in 
+\begin{align}
+    \int_C e^{(z-1)\log(t)-t} dt &= \int_\infty^\varepsilon e^{(z-1)\log(t) - t} dt + \int_{C_\varepsilon} 
+        e^{(z-1)log(t) - t} dt + \int_{\varepsilon, \infty} e^{(z-1)\log(t) - t + 2\pi i} dt \\
+    &= \int_\infty^\varepsilon e^{-t}t^{z-1}dt + \int_{C_\varepsilon} e^{-t}t^{z-1}dt +
+    e^{2(z-1)\pi i} \int_\varepsilon^\infty e^{-t}t^{z-1} dt
+\end{align}
+
+
+It can be shown by simple application of the ML lemma, as in \cite{Podlubny1999}, that the integral along
+$ C_\varepsilon $ goes to zero as $ \varepsilon \lra 0 $.
+
+Taking $ \varepsilon \lra 0 $ in the other two integrals and rearranging gives us the result
+\begin{align}
+    \label{eq:gamma_contour}
+    \int_0^\infty e^{-t} t^{z-1} dt = \frac{1}{e^{2 \pi i z} - 1} \int_c e^{-t}t^{x-1} dt
+\end{align}
+\end{proof}
+
+We would like to exploit this result to give a simple contour integral representation of $ \frac{1}{\Gamma(z)} $.
+\begin{mdframed}[innertopmargin=10pt]
+\begin{lemma}
+    \label{lem:contour_1_gamma_1}
+    A contour integral representation of $ \frac{1}{\Gamma(z)} $ is given by
+    \begin{align}
+        \frac{1}{\Gamma(z)} = \frac{1}{2 \pi i} \int_{Ha} e^\tau \tau^{-z} d\tau
+    \end{align}
+    where the contour $ Ha $ is shown in figure \ref{fig:hankel_loop}.
+\end{lemma}
+\end{mdframed}
+This proof follows that of Podlubny \cite{Podlubny1999}
+\begin{proof}
+    By taking the result of \ref{lem:contour_gamma} and substituting $ z-1 $ in \eqref{eq:gamma_contour}
+    we get that
+    \begin{align}
+        \int_C e^{-t} t^{-z} dt = (e^{-2 \pi i z} -1) \Gamma(1-z).
+    \end{align}
+    Performing the substitution $ \tau = -t $ rotates the contour integral clockwise $ 180 $ degrees 
+    and results in 
+    \begin{align}
+        \int_{C} e^{-t} t^{-z} dt = - e^{-z\pi i}\int_{Ha} e^{\tau} \tau^{-z} d\tau
+    \end{align}
+    and so
+    \begin{align}
+        \Gamma(1-z) &= \frac{1}{e^{z\pi i} - e^{-z \pi i}} \int_{Ha} e^\tau \tau^{-z} d\tau \\
+            &= \frac{1}{2i \sin(\pi z)}\int_{Ha} e^\tau \tau^{-z} d\tau.
+    \end{align}
+    Now taking into account the well known Euler reflection formula, $ \Gamma(z)\Gamma(1-z) = \frac{\pi}{\sin(\pi z)} $, we get
+    \begin{align}
+        \frac{1}{\Gamma(z)} = \frac{1}{2 \pi i} \int_{Ha} e^\tau \tau^{-z} d\tau.
+    \end{align} \qed
+    \begin{wrapfigure}{r}{210pt}
+        \input{diagrams/Hankel_Loop.tex}
+        \caption{The Hankel contour Ha}
+        \label{fig:hankel_loop}
+    \end{wrapfigure}
+\end{proof}
+
+We now wish to give a pair of contour integral representations of the function $ \frac{1}{\Gamma(z)} $
+which we will then use in contour integrals representing $ E_{\alpha, \beta}(z) $. 
+\begin{mdframed}[innertopmargin=10pt]
+\begin{lemma}
+    \label{lem:1_gamma_contour}
+    The function $ \frac{1}{\Gamma(z)} $ can be represented by the following contour integrals 
+    \begin{align}
+        \label{eq:gamma_contour_1}
+        \frac{1}{\Gamma(z)} = \frac{1}{2 \pi \alpha i} \int_{\gamma(\varepsilon, \mu)} 
+                              e^{\zeta^{1 / \alpha}} \zeta^{(1-z-\alpha) / \alpha} d\zeta 
+    \end{align}
+    where
+    \begin{align}
+        \left( \alpha < 2, \frac{\pi \alpha}{2} < \mu < \min\{ \pi, \pi \alpha \} \right)
+    \end{align}
+    or where $ Re(z) > 0 $
+    \begin{align}
+        \label{eq:gamma_contour_2}
+        \frac{1}{\Gamma(z)} = \frac{1}{4 \pi i} \int_{\gamma(\varepsilon, \pi)} e^{\zeta^{1 / 2}} \zeta^{-(z + 1) / 2} d\zeta
+    \end{align}
+    where the contour $ \gamma(\varepsilon, \varphi) $ is depicted in figure \ref{fig:hankel_wedge}.
+\end{lemma}
+\end{mdframed}
+\begin{wrapfigure}{l}{210pt}
+    \input{diagrams/Hankel_Wedge.tex}
+    \caption{The Hankel countour $ \gamma(\varepsilon, \varphi) $}
+    \label{fig:hankel_wedge}
+\end{wrapfigure}
+\begin{wrapfigure}{r}{10pt}
+    \input{diagrams/Hankel_Wedge_2.tex}
+    \caption{ Integration contour for $ \gamma(\varepsilon, \varphi) $}
+    \label{fig:hankel_wedge_2}
+\end{wrapfigure}
+This proof follows that of Podlubny \cite{Podlubny1999}.
+\begin{proof}
+
+Firstly we show that we can rewrite the contour integral in lemma \ref{lem:contour_1_gamma_1} can be rewritten as a contour
+integral about $ \gamma(\varepsilon, \varphi) $ where $ \gamma(\varepsilon, \varphi) $ is shown in figure \ref{fig:hankel_wedge}. We restrict $ \varphi $ to $ \frac{\pi}{2} < \varphi \pi $. 
+
+Now lets consider the contour integral diagram in figure \ref{fig:hankel_wedge_2} and note that as $ f(\tau) := e^\tau t^{-z} $ does not have any singularities we have
+\begin{align}
+    \int_{A^+ B^+ C^+ D^+} f(\tau) d\tau = \int_{A^-D^-C^-B^-} f(\tau) = 0.
+\end{align}
+
+Considering just the arc $ A^+B^+ $ we note that $ |\tau| = R $ and hence
+\begin{align}
+    |f(\tau)| &= |e^\tau \tau^{-z}| = e^{R\cos(\arg \tau) - Re(z) \log(R) + Im(z) \arg \tau} \\
+      &\leq e^{-R\cos(\pi - \phi) - x \log(R) + 2 \pi y} \\
+      &\sim \frac{1}{R}e^{-R}
+\end{align}
+
+and thus by application of the ML lemma we have
+\begin{align}
+    \lim_{R \lra \infty} \int_{A^+}^{B^+} f(\tau) d\tau = 0.
+\end{align}
+
+
+A completely symmetric argument yields
+\begin{align}
+    \lim_{R \lra \infty} \int_{B^-}^{A^-} f(\tau) d\tau = 0
+\end{align}
+and so we can write
+\begin{align}
+    \int_{C^+}^{B_\infty^+} f(\tau)d\tau = \int_{C^+}^{D^+} f(\tau)d\tau + \int_{D^+}^{\infty^+} f(\tau)d\tau
+\end{align}
+and
+\begin{align}
+    \int_{B_\infty^-}^{C^-} f(\tau)d\tau = \int_{\infty^-}^{D^-} f(\tau)d\tau + \int_{D^-}^{C^-} f(\tau)d\tau.
+\end{align}
+Then
+\begin{align}
+    \int_{Ha} f(\tau) d\tau = \left( \int_{B_\infty^-}^{C^-} f(\tau)d\tau + \int_{C^-}^{C^+} f(\tau)d\tau +  \int_{C^+}^{B_\infty^+} f(\tau)d\tau \right) = \int_{\gamma(\varepsilon, \varphi)}e^\tau \tau^-z d\tau.
+\end{align}
+To get the final results, we perform the substitution $ \tau = \zeta^{1/\alpha} $ for $ \alpha < 2 $
+which yields
+
+\begin{align}
+    \frac{1}{\Gamma(z)} = \frac{1}{2 \pi \alpha i} \int_{\gamma(\varepsilon, \mu)} 
+			  e^{\zeta^{1 / \alpha}} \zeta^{(1-z-\alpha) / \alpha} d\zeta 
+\end{align}
+
+so long as $ \alpha < 2 $ and $ \frac{\pi \alpha}{2} < \mu < \min\{ \pi, \pi \alpha \} $.
+
+If, however, we perform the substitution $ \tau = \sqrt{\zeta} $ and integrate over the contour $ \gamma(\varepsilon, \frac{\pi}{2} $ we get
+
+\begin{align}
+    \frac{1}{\Gamma(z)} = \frac{1}{4 \pi i} \int_{\gamma(\varepsilon, \pi)} e^{\zeta^{1 / 2}} \zeta^{-(z + 1) / 2} d\zeta
+\end{align}
+for $ Re(z) > 0 $.
+
+\end{proof}
 
 \subsection{Mittag-Leffler Function}
 
