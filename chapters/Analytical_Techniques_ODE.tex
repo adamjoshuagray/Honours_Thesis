@@ -1,7 +1,7 @@
-\section{Existance and Uniquness Results for Ordinary Fractional Differential Equations}
+\section{Existence and Uniqueness Results for Ordinary Fractional Differential Equations}
 In this section we establish some analytical results for ordinary fractional differential equations. These results allow us to solve some simple initial value problems and establish a theoretical framework from which results in other sections can draw.
 
-We will first outline a set of ideas which can guarentee the existence of a solution to an initial value problem involving fractional derivatives. These ideas are outlined in \cite{Tisdell2012} but we present these ideas here because they form the basis for a generalisation we would like to present in theorem \ref{thm-existence-uniq}.
+We will first outline a set of ideas which can guarantee the existence of a solution to an initial value problem involving fractional derivatives. These ideas are outlined in \cite{Tisdell2012} but we present these ideas here because they form the basis for a generalisation we would like to present in theorem \ref{thm-existence-uniq}.
 
 \begin{mdframed}[innertopmargin=10pt]
 \begin{propdef}
@@ -25,15 +25,15 @@ This metric, as presented by Tisdell, \cite{Tisdell2012}, is a generalisation of
 \end{lemma}
 \end{mdframed}
 \begin{proof}
-    We only have to show that $ d_\beta $ is equivelent to the max metric ($ d(x,y) = \max_{t \in [0,a]}|x(t) - y(t)| $) to get this result because it is well known that $ (C([0,a]), d) $ is a complete metric space.
+    We only have to show that $ d_\beta $ is equivalent to the max metric ($ d(x,y) = \max_{t \in [0,a]}|x(t) - y(t)| $) to get this result because it is well known that $ (C([0,a]), d) $ is a complete metric space.
     It is easy to see that $ E_{\alpha, 1}(\beta t^\alpha) $ is strictly increasing on $ [0, a] $ and so 
     \begin{align}
         \frac{1}{E_{\alpha, 1}(\beta t^\alpha)} d(x,y) \leq d_\beta(x,y) \leq d(x,y).
     \end{align}
-    This shows that the metrics are equivelent and hence $ (C([0,a]), d_\beta) $ is complete.
+    This shows that the metrics are equivalent and hence $ (C([0,a]), d_\beta) $ is complete.
 \end{proof}
 
-Using these definitions and results we can now say something about the existance and uniqueness of solutions to an initial value problem. The following lemma is from Tisdell \cite{Tisdell2012}.
+Using these definitions and results we can now say something about the existence and uniqueness of solutions to an initial value problem. The following lemma is from Tisdell \cite{Tisdell2012}. Our proof is also the same, but with more justifications for each step. These justifications are important as they will be required somewhat more in the proof of theorem \ref{thm-existence-uniq}.
 
 \begin{mdframed}[innertopmargin=10pt]
 \begin{theorem}[Uniqueness]
@@ -53,6 +53,7 @@ Using these definitions and results we can now say something about the existance
 	\end{align}
 	and let $ f : S \lra \mathcal{R} $ be continuous. If there is a positive constant $ L $ such that 
 	\begin{align}
+		\label{eq:ivp_uniq_1_lipshitz}
 	    |f(t,u) - f(t,v)| \leq L|u-v| 
 	\end{align}   
 	for all $ (t,u), (t,v) \in S $
@@ -60,10 +61,52 @@ Using these definitions and results we can now say something about the existance
 \end{theorem}
 \end{mdframed}
 \begin{proof}
-    TODO
+	Choose $ \beta $ so that $ \frac{L}{\beta} < 1 $.
+	\begin{align}
+		d_\beta(x,y) = \max_{t \in [0,a]} \frac{|x(t) - y(t)|}{E_{\alpha,1}(\beta t^\alpha)}
+	\end{align}
+	combined with the space $ C([0,a]) $ forms a complete metric space. By applying $ I_0^\alpha $ to both sides of \eqref{eq:ivp_uniq_1} and applying lemma \ref{lem:rli-cap} we get that \eqref{eq:ivp_uniq_1} and \eqref{eq:ivp_uniq_ic_1} are equivalent to the integral equation
+	\begin{align}
+		\label{eq:ivp_1_int}
+		x(t) = \sum_{k=0}^{n-1} \frac{a_k} + \frac{1}{\Gamma(\alpha)} \int_0^t (t-s)^{\alpha-1}f(s,x(s))ds
+	\end{align}
+	for $ t \in [0,a] $.
+	The idea is to prove that the right hand side of \eqref{eq:ivp_1_int} is a contraction in the space $ (C([0,a]),d_\beta) $. By (an immediate corollary to) Banach's fixed point theorem this shows the existence of a unique solution to the integral equation, and hence the IVP defined in \eqref{eq:ivp_uniq_1} and \eqref{eq:ivp_uniq_ic_1}.
+	Define $ F : C([0,a]) \lra C([0,a]) $
+	as
+	\begin{align}
+		[Fx](t) = \sum_{k=0}^{n-1} \frac{a_k} + \frac{1}{\Gamma(\alpha)} \int_0^t (t-s)^{\alpha-1}f(s,x(s))ds.
+	\end{align}
+	For any $ x, y \in C([0,a]) $ and consider
+	\begin{align}
+		d_\beta(Fx,Fy) &= \max_{t\in[0,a]} \frac{|[Fx](t) - [Fy](t)|}{E_{\alpha,1}(\beta t^\alpha)} \\
+			&\leq \max_{t\in[0,a]} \left[ \frac{1}{E_{\alpha,1}(\beta t^\alpha)} \frac{1}{\gamma(\alpha)} \int_0^t (t-s)^{\alpha-1}| f(s,x(s)) - f(s,y(x))|ds  \right]
+	\end{align}
+	and by using the Lipschitz condition in \eqref{eq:ivp_uniq_1_lipshitz} we get that
+	\begin{align}
+		d_\beta(Fx,Fy) &\leq \max_{t\in[0,a]} \left[ \frac{1}{E_{\alpha,1}(\beta t^\alpha)} \frac{1}{\Gamma(\alpha)} \int_0^t (t-s)^{\alpha-1}L| x(s) - y(x)|ds  \right] \\
+		&= L  \max_{t\in[0,a]} \left[ \frac{1}{E_{\alpha,1}(\beta t^\alpha)} \frac{1}{\Gamma(\alpha)} \int_0^t (t-s)^{\alpha - 1} E_{\alpha,1}(\beta s^\alpha) \frac{|x(s) - y(s)|}{E_{\alpha,1}(\beta s^\alpha)} ds \right] \\
+		&\leq \underbrace{L d_\beta(x,y) \max_{t\in [0,a]} \left[ \frac{1}{E_{\alpha,1}(\beta t^\alpha)}\frac{1}{\Gamma(\alpha)} \int_0^t (t-s)^{\alpha-1} E_{\alpha,1}(\beta s^\alpha) ds\right]}_{\circledast}
+	\end{align}
+	Now noticing the fractional integral we have that
+	\begin{align}
+		\circledast &= L d_\beta(x,y) \max_{t\in [0,a]} \left[ \frac{1}{E_{\alpha,1}(\beta t^\alpha)} I^\alpha_0 E_{\alpha,1}(\beta s^\alpha) \right]
+	\end{align}
+	by using the result of lemma \ref{lem-rli-mit-lef-2} we have that
+	\begin{align}
+		\circledast &= L d_\beta(x,y) \max_{t\in [0,a]} \left[ \frac{1}{E_{\alpha,1}(\beta t^\alpha)} \left( \frac{E_{\alpha,1}(\beta z^\alpha) - 1}{\beta} \right) \right] \\
+			&= L d_\beta(x,y) \max_{t\in [0,a]} \frac{1}{\beta}\left[ 1 - \frac{1}{E_{\alpha, 1}(\beta t^\alpha)} \right].
+	\end{align}
+	From the definition of $ E_{\alpha,1} $ it should be clear to see that $ E_{\alpha, 1}(\beta t^\alpha) $ is monotonically increasing for $ t \geq 0 $ and so
+	\begin{align}
+		\circledast &= \frac{L}{\beta} d_\beta (x,y)\left[ 1- \frac{1}{\beta a^\alpha} \right]
+	\end{align}
+	and hence by the assumption that $ \frac{L}{\beta} < 1 $ we have that $ \circledast < 1 $ and hence $ d_\beta(Fx, Fy) < d_\beta(x,y) $ and so the right hand side of \eqref{eq:ivp_1_int} is a contraction and thus by (an immediate corollary to) Banach's fixed point theorem \eqref{eq:ivp_1_int} has a unique solution on $ [0,a] $.
 \end{proof}
 
-This generalizes the result above by Tisdell \cite{Tisdell2012} but a similar result for Miller-Ross sequential
+
+
+The following theorem generalizes the result above by Tisdell \cite{Tisdell2012} but a similar result for Miller-Ross sequential
 fractional differential equations can be found in \cite{Podlubny1999}.
 
 \begin{mdframed}[innertopmargin=10pt]
@@ -89,15 +132,15 @@ Consider the following intial value problem,
 		|f(t,u) - f(t,v)| \leq L|u-v|, \text{ for all } (t,u), (t,v) \in S
 		\end{align}
 and the set of constants $ \{ \alpha_j \}_{j = 1}^{N} $, $ \{ \beta_j \}_{j=1}^N $
-such that
+such that we can choose $ \gamma $ sufficiently large such that the following holds on $ [0, a] $
 	\begin{align}
 	    \label{eq:fde-uniq-cond}
-		\sum_{j=2}^N |\beta_j| a^{\alpha_1 - \alpha_j} \frac{E_{\alpha_1,1+\alpha_1-\alpha_j}(\gamma t^{\alpha_1})}{E_{\alpha_1,1}(\gamma t^{\alpha_1})} < 1
+\sum_{j=2}^N |\beta_j| a^{\alpha_1 - \alpha_j} \frac{E_{\alpha_1,1+\alpha_1-\alpha_j}(\gamma t^{\alpha_1})}{E_{\alpha_1,1}(\gamma t^{\alpha_1})} < 1
 	\end{align}
 	then the intial value problem defined in \ref{eq-fde-ivp-1} and \ref{eq-fde-ivp-ic-1} has a unique solution on $ [0, a] $.
 \end{theorem}
 \end{mdframed}
-To prove this we will need several lemmas. 
+To prove this we will need two lemmas. 
 \begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}
 	The IVP defined in \eqref{eq-fde-ivp-1}, \eqref{eq-fde-ivp-ic-1} is equivalent to the integral equation
@@ -109,7 +152,7 @@ To prove this we will need several lemmas.
 \end{lemma}
 \end{mdframed}
 \begin{proof}
-	Apply $ I_0^\alpha $ to both sides of \eqref{eq-fde-ivp-1} and then apply lemma \ref{lem:rli-cap}.
+	Apply $ I_0^{\alpha_1} $ to both sides of \eqref{eq-fde-ivp-1} and then apply lemma \ref{lem:rli-cap}.
 \end{proof}
 
 \begin{mdframed}[innertopmargin=10pt]
@@ -130,35 +173,6 @@ For $ \xi > 0 $, $ \gamma > 0 $ and $ \alpha > 0 $ we have that
 	then by inverting the with the help of lemma \ref{lem:lap_mit_2} we have the result.
 \end{proof}
 
-\begin{mdframed}[innertopmargin=10pt]
-\begin{lemma}	
-\label{lem-rli-mit-lef-2}
-For $ \gamma > 0 $ and $ \alpha > 0 $ we have that
-	\begin{align}
-		I_0^\alpha E_{\alpha,1}(\gamma t^\alpha) = \frac{1}{\gamma} \left( E_{\alpha,1}(\gamma t^\alpha) - 1 \right).
-	\end{align}
-\end{lemma}
-\end{mdframed}
-\begin{proof}
-	Again this is easy to prove with in Laplace space.
-	By using the results of lemmas \ref{lem:rli_laplace} and \ref{lem:lap_mit} we have that
-	\begin{align}
-    	\mathcal{L}\{ I_0^\alpha E_{\alpha, 1}(\gamma t^\alpha) \} = \frac{s^{-1}}{s^\alpha - \gamma}
-	\end{align}
-	also note that
-	\begin{align}
-	    \mathcal{L}\left\{ \frac{1}{\gamma}( E_{\alpha, 1}(\gamma t^\alpha) - 1) \right\} &= \frac{1}{\gamma} \left( \frac{s^{\alpha-1}}{s^\alpha - \gamma} - \frac{1}{s} \right) \\
-	    &= \frac{1}{\gamma}\left( \frac{s^\alpha - s^\alpha + \gamma}{s(s^\alpha - \gamma)}\right) \\
-	    &= \frac{1}{\gamma}\left(\frac{\gamma s^{-1}}{s^\alpha - \gamma}\right) \\
-	    &= \frac{s^{-1}}{s^\alpha - \gamma}
-	\end{align}
-	and so it is clear that
-	\begin{align}
-I_0^\alpha E_{\alpha,1}(\gamma t^\alpha) = \frac{1}{\gamma} \left( E_{\alpha,1}(\gamma t^\alpha) - 1 \right).
-	\end{align}
-\end{proof}
-
-
 \begin{proof}[Proof of theorem \ref{thm-existence-uniq}]
 
 	To arrive at this we only have to prove that the map
@@ -166,7 +180,7 @@ I_0^\alpha E_{\alpha,1}(\gamma t^\alpha) = \frac{1}{\gamma} \left( E_{\alpha,1}(
 		[Fx](t) &:= \sum_{k=1}^{n_1}\frac{A_kt^k}{k!} + \frac{1}{\beta_1} \Bigl( \frac{1}{\Gamma(\alpha_1)}\int_{0}^{t} (t-s)^{\alpha_1 - 1}f(s,x(s))ds \\
 			& \ \ \ - \sum_{j=2}^{N} \frac{\beta_j}{\Gamma(\alpha_1 - \alpha_j)}\int_{0}^{t}(t-s)^{\alpha_1 - \alpha_j - 1}\left(x(s) - \sum_{k=1}^{n_j}\frac{A_ks^k}{k!} \right) ds \Bigr)
 	\end{align}
-	is contractive in the metric space $ \left( C[0,a], d^{\alpha_1}_\gamma \right) $ where 
+	is contractive in the metric space $ \left( C[0,a], d^{\alpha_1}_\gamma \right) $  where 
 	$$ d_\gamma^{\alpha_1}(x,y) = \max_{t \in [0, a]} \frac{|x(t) - y(t)|}{E_{\alpha_1,1}(\gamma t^{\alpha_1})}. $$
 	To see this note that
 	\begin{align}
@@ -211,28 +225,42 @@ I_0^\alpha E_{\alpha,1}(\gamma t^\alpha) = \frac{1}{\gamma} \left( E_{\alpha,1}(
 	and so $ F $ is a contractive mapping and thus the IVP defined in \eqref{eq-fde-ivp-1}, \eqref{eq-fde-ivp-ic-1} has a unique solution on $ [0, a] $.
 \end{proof}
 
-Note that although existence is resolved (by virtue of the solutions given above)
-for the differential equations in (\ref{eq:fde-1}, \ref{eq:fde-1-ic}) and \ref{eq:fde-multi-order}, this 
-guarentees uniqueness on some closed interval starting at $ 0 $ for both cases. Its also important
-to note that this result can be extended to differential equations involving Riemann-Liouville derivatives, by 
-virtue of the correspondence between the Caputo derivative and the Riemann-Liouville derivative \cite{Podlubny1999}. 
+This result could be improved by removing the condition  in \eqref{eq:fde-uniq-cond}. This can be done in the case of $ 0 < \alpha < 2 $ because we can use lemma \ref{lem:mit_lef_asym_exp_1}. For this let us state and prove the following lemma.
 
-This result could be improved by removing the condition  in \eqref{eq:fde-uniq-cond}. This would could be achieved if the following conjecture holds true.
 \begin{mdframed}[innertopmargin=10pt]
-\begin{conjecture}
-    For $ \alpha, \beta, \varepsilon > 0 $ we conjecture that
-    \begin{align}
-        \lim_{z\lra \infty} \frac{E_{\alpha, \beta + \varepsilon}(z)}{E_{\alpha, \beta}(z)} = 0.
-    \end{align}
-\end{conjecture}
+\begin{lemma}
+	\label{lem:mit_lef_quotient}
+	For $ 0 < \alpha < 2 $, $ \beta > 0 $ and $ \varepsilon > 0 $ we have
+	\begin{align}
+		\lim_{z \lra \infty} \frac{E_{\alpha, \beta + \varepsilon}(z)}{E_{\alpha, \beta}(z)} = 0.
+	\end{align}
+\end{lemma}
 \end{mdframed}
-\emph{Justification}
-Proving this is has proved rather tricky. The figure \ref{fig:mittag-quotient} shows that for $ \alpha = 1, \beta = 1 $ and $ \varepsilon = 0.1 $ it appears to hold true. It should be noted that even for relatively large values of $ \varepsilon $ ( $ \varepsilon = 0.1 $ ) $, z $ needs to be extremely large, ($ z \sim 10^{14} $), for the quotient to get within $ 0.04 $ of $ 0 $. Even if this result does not hold a weaker result which states that the limit approaches a non-zero constant would considerably simplify the condition in \eqref{eq:fde-uniq-cond}.
+
+\begin{proof}
+	Using lemma \ref{lem:mit_lef_asym_exp_1} we have that since $ z \in G^+ $,
+	\begin{align}
+		\lim_{z \lra \infty} \frac{E_{\alpha, \beta + \varepsilon}(z)}{E_{\alpha, \beta}(z)} &= \lim_{z \lra \infty}\frac{\frac{1}{\alpha} z^{(1 - \beta - \varepsilon) / \alpha} e^{z^{1/\alpha}} - \sum_{k=1}^p \frac{z^{-k}}{\Gamma(\beta + \varepsilon - \alpha k)} + O(|z|^{-1-p})}{\frac{1}{\alpha} z^{(1 - \beta) / \alpha} e^{z^{1/\alpha}} - \sum_{k=1}^p \frac{z^{-k}}{\Gamma(\beta - \alpha k)} + O(|z|^{-1-p})}
+	\end{align}
+	for some arbitrary integer $ p > 0 $.
+	With sufficiently many applications of L'Hopital's rule we are left with
+	\begin{align}
+		\lim_{z\lra\infty} z^{\frac{-\varepsilon}{\alpha}}		
+	\end{align}
+	which is clearly equal to zero.
+	Some care must be taken if we choose $ \beta $, $ \alpha $, and $ \varepsilon $ such that $ \beta - \alpha k $ or $ \beta + \varphi - \alpha k $ are ever integers due to singularities in the Gamma function, but it should be clear that these issues do not \emph{break} the argument as we could just regard those terms in the sums for which this does occur as $ 0 $.
+\end{proof}
+
+Interestingly this limit converges \emph{very} slowly for some choices of $ \alpha, \beta, \varepsilon $. Figure \ref{fig:mittag-quotient} gives an good illustration of this slow convergence.
+
 \begin{figure}[H]
 \includegraphics[scale=0.6]{images/Mittag-Leffler-Quotient}
 \caption{$ E_{\alpha, \beta + \varepsilon}(z) / E_{\alpha, \beta}(z) $ for $ \alpha = 1, \beta = 1 $ and $ \varepsilon = 0.1 $.}
 \label{fig:mittag-quotient}
 \end{figure}
+
+It should be clear that if $ \alpha_1 < 2 $ then the conditions of lemma \ref{eq:fde-uniq-cond} are fulfilled in the case of the condition outlined in \eqref{eq:fde-uniq-cond} and so we can \emph{always} choose a $ \gamma $ large enough that \eqref{eq:fde-uniq-cond} holds.
+
 
 Both theorems \ref{thm:unique-tisdell} and \ref{thm-existence-uniq} are important as they give us some guarentees about the existance and uniqueness of solutions the initial value problems involving fractional derivatives. The generalisation in \ref{thm-existence-uniq} is important as it could be applied to showing the existance of solutions equations like the Bagley-Torvick equation which is a multi-order fractional differential equation that models the motion of a plate in a viscus fluid \cite{Diethelm2002-3, Podlubny1999, Torvik1984}.
 

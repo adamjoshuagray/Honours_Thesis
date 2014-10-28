@@ -70,6 +70,23 @@ Kai Diethelm and J~Ford.
 \newblock Numerical solution of the bagley-torvik equation.
 \newblock {\em BIT Numerical Mathematics}, 42(3):490--507, 2002.
 
+\bibitem{Ford2001}
+N.J. Ford and A.C. Simpson.
+\newblock The numerical solution of fractional differential equations: Speed
+  versus accuracy.
+\newblock {\em Numerical Algorithms}, pages 333--346, 2001.
+
+\bibitem{Fox1961}
+C.~Fox.
+\newblock The g and h functions as symmetrical fourier kernels.
+\newblock {\em Transactions of the American Mathematical Society}, pages
+  395--429, 1961.
+
+\bibitem{Gorenflo2014}
+R.~Gorenflo, A.A. Kilbas, F.~Mainardi, and S.V. Rogosin.
+\newblock {\em Mittag-Leffler Functions: Related Topics and Applications}.
+\newblock Springer, 2014.
+
 \bibitem{Gorenflo1997}
 R.~Gorenflo and F.~Mainardi.
 \newblock {\em Fractals and Fractional Calculus in Continuum Mechanics}.
@@ -146,6 +163,11 @@ R.~K. Raina and C.~L. Koul.
 S.G. Samko, A.A. Kilbas, and O.I. Marichev.
 \newblock {\em Fractional Integrals and Derivatives}.
 \newblock Breach Science Publishers, 1993.
+
+\bibitem{Srivastava2001}
+H.M. Srivastava and R.K. Saxena.
+\newblock Operators of fractional integration and their applications.
+\newblock {\em Applied Mathematics and Computation}, 118(1):1--52, 2001.
 
 \bibitem{Tisdell2012}
 C.C. Tisdell.

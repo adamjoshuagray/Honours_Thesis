@@ -32,7 +32,7 @@ for $ 0 \leq k < \lfloor \alpha \rfloor $. Note that this initial value problem 
 
 One of the most important things to note about this equation is that for non-integer values of $ \alpha $ it is non-local, in the sense that the value of the solution at $ y(x_0+h) $ depends not only on $ y(x_0) $ but also on $ y(x), x \in [0, x_0] $ \cite{Diethelm2010}. This is in contrast to ordinary differential equations and this fact is what makes fractional differential equations considerably more complex to solve. Even multi-step methods which can be used to solve ordinary differential equations, only rely on some \emph{fixed} number previous time steps. As a solution to a fractional differential equation progresses it relies on more and more previous time steps. As one might suspect this fundamentally increases the computational complexity of the schemes used to solve fractional differential equations as compared with the schemes used to solve traditional ordinary differential equations. \footnote{It is possible to reduce these computations to look at some large but fixed number of previous grid-
 points 
-but this results in a speed vs. accuracy tradeoff which will be discussed in section \ref{sec:reduce_complexity}}
+but this results in a speed vs. accuracy tradeoff which will be discussed in section \ref{subsubsec:reduce_complexity}}
 
 \subsubsection{The Adams Moulton Bashforth Scheme}
 \label{sec:amb_desc}
@@ -287,8 +287,72 @@ As can be seen from this chart, as $ N $ increases it makes sense to perform mor
 
 The speedup from running these computation on CUDA is enormous. It is arguable that any advantage achieved through reducing the number of messages passed between multiple threads and nodes by using the scheme outlined in \cite{Diethelm2011} and in section \ref{sec:parallel_c}, is completely outweighed by the sheer speed of computation on a GPU. 
 
-\subsubsection{Short-Memory-Principle}
+\subsubsection{Short Memory Principle}
+\label{subsubsec:reduce_complexity}
 
-We can actually completely change the complexity class of the problem by improving our solution so as to take advantage of the so-called \emph{short memory principle} \cite{Podlubny1999}.
+We can actually completely change the complexity class of the problem by improving our solution so as to take advantage of the so-called \emph{short memory principle}.  \cite{Podlubny1999, Ford2001}.
 
+The most basic approach is the fixed memory principle as outlined in \cite{Podlubny1999} and again in \cite{Ford2001}. The idea is to truncate the integral in the equivalent integral equation, such as in \label{eq:num_int_eq}. We would like to characterise the trade off in terms of accuracy that occurs when one takes this approach. That is, how much accuracy is sacrificed for different \emph{look back} lengths.
+
+For simplicity lets consider $ \alpha \in (0, 1) $ and lets consider the Caputo fractional derivative of some admissible function $ f $.
+We wish to approximate
+\begin{align}
+	\frac{1}{\Gamma(1-\alpha)} \int_0^t \frac{f'(t)}{(t-s)^\alpha} ds
+\end{align}
+by
+\begin{align}
+	\frac{1}{\Gamma(1-\alpha)} \int_{({t-T})\vee 0}^t \frac{f'(t)}{(t-s)^\alpha} ds
+\end{align}
+where $ T $ is essentially some \emph{lookback length}.
+The difference between these two integrals is 
+\begin{align}
+	\left| \frac{1}{\Gamma(1-\alpha)} \int_0^t \frac{f'(t)}{t-s)^\alpha} ds - \frac{1}{\Gamma(1-\alpha)} \int_{t-T}^t \frac{f'(t)}{t-s)^\alpha} ds \right| =  \left| \frac{1}{\Gamma(1-\alpha)} \int_{0}^{({t-T})\vee 0} \frac{f'(t)}{(t-s)^\alpha} ds \right|
+\end{align}
+which we refer to as the truncation error, $E$. So long as $ f' $ is bonded (by say $ M $) on some interval $ [0,a] $ then we can say that 
+\begin{align}
+	E &\leq \frac{M}{\Gamma(1-\alpha)} \int_0^{({t-T})\vee 0} \frac{1}{(t-s)^\alpha} ds| \\
+		&= \left(\frac{M}{\Gamma(2 - \alpha)} (t^{1-\alpha} - T^{1-\alpha})\right)\vee 0
+\end{align}
+on $ [0,a] $.
+As noted in \cite{Ford2001} such an approach would result in a loss of order. If we insist that $ E \leq \varepsilon $ then we would have to choose T such that
+\begin{align}
+	T^{1-\alpha} \geq t^{1-\alpha} - \left( \frac{\varepsilon \Gamma(2 - \alpha)}{M}\right).
+\end{align}
+As noted in \cite{Ford2001} it turns out that such a requirement essentially removes any computational benefit from truncating the integral so although such a technique would reduce the complexity of each step to $ \mathcal{O}(1) $ and hence the overall complexity to $ \mathcal{O}(n) $ we would be making significant accuracy trade-offs.
+
+\subsubsection{Nested Mesh Technique}
+
+Another technique which could reduce the computational complexity of the problem is the so called \emph{nested mesh technique}. This technique is also well known and a good explanation of it is given by Ford \cite{Ford2001}. The basic idea is to change the step-size for the approximation of the integral across different parts of the integral. Specifically it would mean logarithmically increasing the step size for the quadrature approximation of the integral for points further back in time.
+
+To motivate this suppose we wish to approximate $ I^\alpha_0 f(t) $ for some admissible function. There is a scaling property of the fractional integrals which is outlined in the following lemma.
+
+\begin{mdframed}[innertopmargin=10pt]
+\begin{lemma}
+	\label{lem:int_scaling}
+	For an admissible function $ f $ a positive real number $ v $ and natural number $ p $. We have that
+	\begin{align}
+		I^\alpha_0 f(v^p t) = v^{\alpha p} \int_0^t \frac{f(v^p s)}{(t-s)^{1-\alpha}} ds.
+	\end{align}
+\end{lemma}
+\end{mdframed}
+\begin{proof}
+	From the definitions it is clear that
+	\begin{align}
+		I^\alpha_0 f(vt) = \int_0^vt \frac{f(s)}{(vt - s)^{1-\alpha}}ds
+	\end{align}
+	and by performing the change of variables $ s = vr $ we get
+	\begin{align}
+		I^\alpha_0 f(vt) = v^\alpha \int_0^t \frac{f(vr)}{t-r)^{1-\alpha}} dr.
+	\end{align}
+	By replacing $ v $ with $ v^p $ the result follows.
+\end{proof}
+
+What lemma \ref{lem:int_scaling} means is that if we approximate $ I^\alpha_0 f(nh) $ by a quadrature sum
+\begin{align}
+	\Omega_{h}^\alpha f(nh) := \sum_{j=0}^n w_{n-j} f(jh) 
+\end{align}
+then we can approximate $I^\alpha_0 f(nhv^p) $ by 
+\begin{align}
+	v^{p\alpha} \sum_{j=0}^n w_{n-j} f(jw^p h) 
+\end{align}
 \clearpage 

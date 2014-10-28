@@ -205,6 +205,7 @@ It should be noted that by replacing the Riemann-Liouville fractional derivative
 
 \begin{mdframed}[innertopmargin=10pt]
 \begin{proposition}
+	\label{prop:frac_diff_2}
     The following time fractional partial differential equation
     \begin{align}
         \label{eq:nig_frac_2}
@@ -241,7 +242,8 @@ Again, inverting the Laplace transform with the help of \ref{lem:lap_mit_2} we g
 \end{align}
 and now by following exactly the same steps as for proposition \ref{prop:nig_frac} the result follows. 
 \end{proof}
-Due to the fact that this fractional partial differential equation is specified with an integer order initial condition it is in some sense more usefull from a physical modeling perspective. 
+Due to the fact that this fractional partial differential equation is specified with an integer order initial condition it is in some sense more usefull from a physical modelling perspective. 
 
-Both of the equations looked at so far have been time fractional. We would also like to look at space fractional versions of the diffusion equation. 
+\subsubsection{A note on Fourier Transform techniques for space fractional diffusion}
+It might look like a good idea to use the results in lemmas \ref{lem:rld_fourier} and \ref{lem:cap_fourier} to try and attack a \emph{space fractional} diffusion problem. Unfortunately it is not as simple as that. The reason comes down to the fact that $ (i\omega)^\alpha $ hasn't been defined for non-integer $ \alpha $ and negative $ \omega $. If you use the definition $  (ik)^\alpha = |k|^\alpha\left(cos\left(\frac{\alpha\pi}{2}\right) + i\operatorname{sgn}(k)\sin\left(\frac{\alpha\pi}{2}\right)\right) $ then one can use this along with the Riesz fractional derivative to tackle space fractional diffusion. The 
 \clearpage
