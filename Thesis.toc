@@ -25,12 +25,12 @@
 \contentsline {subsubsection}{\numberline {6.1.7}Parallelizing: A CUDA Approach}{57}{subsubsection.6.1.7}
 \contentsline {subsubsection}{\numberline {6.1.8}Short Memory Principle}{59}{subsubsection.6.1.8}
 \contentsline {subsubsection}{\numberline {6.1.9}Nested Mesh Technique}{59}{subsubsection.6.1.9}
-\contentsline {section}{\numberline {7}Appendix A: Adams-Moulton-Bashforth FDE Solver Code}{61}{section.7}
-\contentsline {subsection}{\numberline {7.1}C\# Implementation of AMB FDE Solver}{61}{subsection.7.1}
-\contentsline {subsubsection}{\numberline {7.1.1}Program.cs}{61}{subsubsection.7.1.1}
-\contentsline {subsubsection}{\numberline {7.1.2}SpecialFunctions.cs}{65}{subsubsection.7.1.2}
-\contentsline {subsection}{\numberline {7.2}CUDA C/C++ Implementation of AMB FDE Solver}{66}{subsection.7.2}
-\contentsline {subsubsection}{\numberline {7.2.1}FDE\_Solver.cu}{66}{subsubsection.7.2.1}
-\contentsline {section}{\numberline {8}Appendix B}{72}{section.8}
-\contentsline {subsection}{\numberline {8.1}Runtimes for C\# implementation described in section \ref {sec:amb_desc}}{72}{subsection.8.1}
-\contentsline {subsection}{\numberline {8.2}Runtimes for CUDA implementation described in section \ref {sec:parallel_cuda}}{72}{subsection.8.2}
+\contentsline {section}{\numberline {7}Appendix A: Adams-Moulton-Bashforth FDE Solver Code}{60}{section.7}
+\contentsline {subsection}{\numberline {7.1}C\# Implementation of AMB FDE Solver}{60}{subsection.7.1}
+\contentsline {subsubsection}{\numberline {7.1.1}Program.cs}{60}{subsubsection.7.1.1}
+\contentsline {subsubsection}{\numberline {7.1.2}SpecialFunctions.cs}{64}{subsubsection.7.1.2}
+\contentsline {subsection}{\numberline {7.2}CUDA C/C++ Implementation of AMB FDE Solver}{65}{subsection.7.2}
+\contentsline {subsubsection}{\numberline {7.2.1}FDE\_Solver.cu}{65}{subsubsection.7.2.1}
+\contentsline {section}{\numberline {8}Appendix B}{71}{section.8}
+\contentsline {subsection}{\numberline {8.1}Runtimes for C\# implementation described in section \ref {sec:amb_desc}}{71}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Runtimes for CUDA implementation described in section \ref {sec:parallel_cuda}}{71}{subsection.8.2}

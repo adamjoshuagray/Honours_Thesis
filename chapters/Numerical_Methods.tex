@@ -322,37 +322,7 @@ As noted in \cite{Ford2001} it turns out that such a requirement essentially rem
 
 \subsubsection{Nested Mesh Technique}
 
-Another technique which could reduce the computational complexity of the problem is the so called \emph{nested mesh technique}. This technique is also well known and a good explanation of it is given by Ford \cite{Ford2001}. The basic idea is to change the step-size for the approximation of the integral across different parts of the integral. Specifically it would mean logarithmically increasing the step size for the quadrature approximation of the integral for points further back in time.
+Another technique which could reduce the computational complexity of the problem is the so called \emph{nested mesh technique}. This technique is also well known and a good explanation of it is given by Ford \cite{Ford2001}. The basic idea is to change the step-size for the approximation of the integral across different parts of the integral. Specifically it would mean logarithmically increasing the step size for the quadrature approximation of the integral for points further back in time. 
 
-To motivate this suppose we wish to approximate $ I^\alpha_0 f(t) $ for some admissible function. There is a scaling property of the fractional integrals which is outlined in the following lemma.
 
-\begin{mdframed}[innertopmargin=10pt]
-\begin{lemma}
-	\label{lem:int_scaling}
-	For an admissible function $ f $ a positive real number $ v $ and natural number $ p $. We have that
-	\begin{align}
-		I^\alpha_0 f(v^p t) = v^{\alpha p} \int_0^t \frac{f(v^p s)}{(t-s)^{1-\alpha}} ds.
-	\end{align}
-\end{lemma}
-\end{mdframed}
-\begin{proof}
-	From the definitions it is clear that
-	\begin{align}
-		I^\alpha_0 f(vt) = \int_0^vt \frac{f(s)}{(vt - s)^{1-\alpha}}ds
-	\end{align}
-	and by performing the change of variables $ s = vr $ we get
-	\begin{align}
-		I^\alpha_0 f(vt) = v^\alpha \int_0^t \frac{f(vr)}{t-r)^{1-\alpha}} dr.
-	\end{align}
-	By replacing $ v $ with $ v^p $ the result follows.
-\end{proof}
-
-What lemma \ref{lem:int_scaling} means is that if we approximate $ I^\alpha_0 f(nh) $ by a quadrature sum
-\begin{align}
-	\Omega_{h}^\alpha f(nh) := \sum_{j=0}^n w_{n-j} f(jh) 
-\end{align}
-then we can approximate $I^\alpha_0 f(nhv^p) $ by 
-\begin{align}
-	v^{p\alpha} \sum_{j=0}^n w_{n-j} f(jw^p h) 
-\end{align}
 \clearpage 
