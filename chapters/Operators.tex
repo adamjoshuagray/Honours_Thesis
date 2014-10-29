@@ -1,6 +1,6 @@
 \section{Fractional Operators and Their Properties}
 \label{sec:operators}
-There are a variety of ways to define fractional differential operators. Good introductions to the various differential operators can be found in \cite{Gorenflo1997, Podlubny1999, Diethelm2002, Samko1993}. In this section, and for the rest of the thesis we will focus of three main fractional operators, the Riemann-Liouville integral and derivative, the Caputo derivative and the Gr{\"u}nwald-Letnikov derivative. There are an abundance of other operators such that the Miller-Ross sequential fractional derivative \cite{Miller1993, Podlubny1999}, the Weyl fractional integral \cite{Gorenflo1997, Samko1993, Raina1979}, the Caputo fractional integral \cite{Gorenflo1997} and fractional operators based on ideas from Fourier analysis \cite{Narayanan2003, Samko1993}.
+There are a variety of ways to define fractional differential operators. Good introductions to the various differential operators can be found in \cite{Gorenflo1997, Podlubny1999, Diethelm2002, Samko1993}. In this section, and for the rest of the thesis we will focus of three main fractional operators, the Riemann-Liouville integral and derivative, the Caputo derivative and the Gr{\"u}nwald-Letnikov derivative. There are an abundance of other operators such that the Miller-Ross sequential fractional derivative \cite{Miller1993, Podlubny1999}, the Weyl fractional integral \cite{Gorenflo1997, Samko1993, Raina1979}, the Caputo fractional integral \cite{Gorenflo1997} and fractional operators such that the Riesz fractional derivative defined using Fourier transforms \cite{Narayanan2003, Samko1993}.
 
 
 \subsection{Riemann Liouville Fractional Integral}
@@ -8,7 +8,7 @@ In the introduction we considered the historical motivations of the Riemann Liou
 \begin{mdframed}[innertopmargin=10pt]
 \begin{definition}[Riemann Liouville Fractional Integeral]
 \label{def:rld_1}
-The Riemann Liouville fractional integral, based at $ a \in \mathbb{R} $ and of order $ \alpha \in (0, \infty) $ of a function $ f $ is given by
+The Riemann Liouville fractional integral, based at $ a \in \mathbb{R} $ and of order $ \alpha \in (0, \infty) $ of an admissible function $ f $ is given by
 \begin{align}
     \label{eq:rld_1}
     \rli{0}{\alpha}{f}(x) := \frac{1}{\Gamma(\alpha)} \int_a^x f(t)(x-t)^{\alpha - 1} dt
@@ -19,7 +19,7 @@ From this point forward we refer to this as the \emph{fractional integral} of th
 
 It is possible to extend to the this definition to $ \alpha \in \Cplx $ and $ a = \infty $. While we will touch on the $ a = -\infty $ case we will neglect discussion of $ \alpha \not\in \mathbb{R} $ and refer the interested reader to Samko et al. \cite{Samko1993}.  It is also worthy of note that some authors define a fractional operator with the limits of integration reversed. We will not deal with these operators, but instead refer the interested reader to \cite{Samko1993, Podlubny1999}. The definition given in \ref{def:rld_1} is the most common in the literature and is compatible with the rest of the theorems and definitions given here.
 
-Although it might seem like a good idea to describe the class of function for which the integral in \eqref{eq:rld_1} is well defined, this is a very complicated problem and we refer the interested reader to \cite{Samko1993}. Although we don't deal with defining the set of admissible functions, this will not have any significant impact on the rest of our discussions because all the functions we deal with will be admissible. 
+Although it might seem like a good idea to describe the class of function for which the integral in \eqref{eq:rld_1} is well defined, this is a very complicated problem and we refer the interested reader to \cite{Samko1993}. Although we don't deal with defining the set of admissible functions, we assure the reader that this class of functions is sufficiently large for our purposes and all of the functions we intend to deal are in this class.
 
 We firstly wish to show that this coincides with the ordinary integrals when $ n \in \Ntrl $. 
 That is we wish to show that 
@@ -89,6 +89,7 @@ Note that this proof hinges off the Laplace convolution theorem, and so it requi
     \end{align}
 \end{lemma}
 \end{mdframed}
+This proof follows ideas outlined in \cite{Podlubny}
 \begin{proof}
     We firstly introduce
     \begin{align}
@@ -128,7 +129,7 @@ We define the Riemann-Liouville fractional derivative based at $ a $ and of orde
 where $ n = \lfloor \alpha \rfloor + 1 $.
 \end{definition}
 \end{mdframed}
-We will not continually specify this condition on $ n $ and in future cases the definition of $ n $ when dealing with fractional derivatives (both Riemann-Liouville and Caputo) the context should make the condition on $ n $ clear.
+We will not continually specify this condition on $ n $. For all future cases, unless otherwise specified the definition of $ n $ should be the same.
 
 
 Again, it should be observed that the precise definition of which functions this transform operates on is not given. As in the fractional integral case this is a complicated question, and we will simply refer to those functions for which \eqref{def:rld} is well defined as admissible functions. The interested reader is referred to \cite{Samko1993} for a discussion of these issues.
@@ -218,7 +219,7 @@ The astute reader might have noticed that we have abused notation in \eqref{eq:n
 \end{mdframed}
 The proof is trivial and follows immediately from the definitions.
 
-What lemmas \ref{lem:rld_left_inverse} and \ref{lem:rld_right_res} essentially amount to is an \emph{extended fundamental theorem of calculus}. While these results generalise tha FTC they not more \emph{fundamental} than the ordinary fundamental theorem of calculus in that they cannot be used to prove the FTC. This is because implicitly in the definition of the Riemann-Liouville fractional integral and integral and in the proofs of \ref{lem:rld_left_inverse} and \ref{lem:rld_right_res} we have used the FTC.
+What lemmas \ref{lem:rld_left_inverse} and \ref{lem:rld_right_res} essentially amount to is an \emph{extended fundamental theorem of calculus}. While these results generalise the FTC they not more \emph{fundamental} than the ordinary fundamental theorem of calculus in that they cannot be used to prove the FTC. This is because implicitly in the definition of the Riemann-Liouville fractional integral and integral and in the proofs of \ref{lem:rld_left_inverse} and \ref{lem:rld_right_res} we have used the FTC.
 
 It turns out that the semi-group property that we formulated for the fractional integral does not hold for the Riemann-Liouville fractional derivative.
 That is, it is not neseccerily true that $ \prescript{}{0}{\mathcal{D}}^\alpha \prescript{}{0}{\mathcal{D}}^\beta =  \prescript{}{0}{\mathcal{D}}^{\alpha + \beta} =  \prescript{}{0}{\mathcal{D}}^\beta  \prescript{}{0}{\mathcal{D}}^\alpha $. Gorenflo and Mainardi give excelent examples of where these equalitities break down \cite{Gorenflo1997}.
@@ -379,9 +380,9 @@ A similar but more complicated result exists for $  I_a^\alpha \prescript{C}{a}{
 \begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}
     \label{lem:cap_fourier}
-    For an admissible function $ f $ the Fourier transform of the Riemann-Liouville fractional derivative with $ a = -\infty $ and of order $ \alpha $ is given by
+    For an admissible function $ f $ the Fourier transform of the Caputo fractional derivative with $ a = -\infty $ and of order $ \alpha $ is given by
     \begin{align}
-        \mathcal{F}\left\{ \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) \right\} = (i\omega)^{\alpha} \mathcal{F}\left\{ f(t) \right\}.
+        \mathcal{F}\left\{ \left(\prescript{C}{-\infty}{\mathcal{D}}^\alpha f\right)(t) \right\} = (i\omega)^{\alpha} \mathcal{F}\left\{ f(t) \right\}.
     \end{align}
 \end{lemma}
 \end{mdframed}
@@ -419,7 +420,7 @@ A careful reader might notice that the results of lemmas \ref{lem:rld_fourier} a
     &=  \prescript{}{-\infty}{\mathcal{D}}^\alpha f(t). 
     \end{align}
 \end{proof}
-The restriction on $ f $ is not as limiting as one might imagine because for the Fourier transform to have nice properties such as being an automorphism one would want $ f $ to come from some sort of Schwartz space and the membership criteria for a Schwartz space are considerably more restrictive than the conditions given in the above lemma. In fact in defining precisely which functions are \emph{admissable} one ends up having to place similar conditions on $ f $. This is not a rabbit hole that we wish to explore further, however, and we refer the interested reader to \cite{Samko1993} for a more thorough discussion of the matter. 
+The restriction on $ f $ is not as limiting as one might imagine because for the Fourier transform to have nice properties such as being an automorphism one would want $ f $ to come from some sort of Schwartz space and the membership criteria for a Schwartz space are considerably more restrictive than the conditions given in the above lemma. In fact, in defining precisely which functions are \emph{admissable} one ends up having to place similar conditions on $ f $. This is not a rabbit hole that we wish to explore further, and we refer the interested reader to \cite{Samko1993} for a more thorough discussion of the matter. 
 
 \subsection{Gr{\"u}nwald-Letnikov Derivative} 
 We actually won't make much use of the Gr{\"u}nwald-Letnikov derivative in future discussions, however, any treatment of fractional calculus would be incomplete without at least a brief discussion of this operator.
@@ -428,8 +429,8 @@ In some sense we could say that the Gr{\"u}nwald-Letnikov derivative is a \emph{
 
 We define the first derivative of a function $ f : R \lra R $ as 
 \begin{align}
-	\frac{df(x)}{dx} = \lim_{h\lra 0} \frac{f(x)-f(x-h)}{h}
-\end{align}\footnote{Obviously we could have also chosen a forward difference. The arguments that follow would be essentially the same.} 
+	\frac{df(x)}{dx} = \lim_{h\lra 0} \frac{f(x)-f(x-h)}{h} \footnote{Obviously we could have also chosen a forward difference. The arguments that follow would be essentially the same.} 
+\end{align}
 and if this limit exists we say that the function is differentiable. It turns out, rather unsurprisingly, that we can extend this definition to higher orders by writing
 \begin{align}
 	\frac{d^nf(x)}{dx^n} = \lim_{h\lra0} \frac{\Delta^n f(x)}{h^n}
@@ -461,7 +462,7 @@ So it makes sense to make the following definition.
 	\end{definition}
 \end{mdframed}
 Note that the binomial sum has become an infinite binomial series. This makes sense because unlike in the integer case $ { \alpha \choose k } $ does not become $ 0 $ for $ k > \alpha $ when $ \alpha \not\in \Ntrl $.
-In this case we can make some comment on what the set of \emph{admissible functions} includes. Several authors have showed that if $ f : \mathbb{R} \lra \mathbb{R} $ is bounded and has derivatives up to $ \lceil alpha \rceil $ then the fractional derivative \eqref{eq:glet-der} exists \cite{Meerschaert2011, Podlubny1999}. 
+In this case we can make some comment on what the set of \emph{admissible functions} includes. Several authors have showed that if $ f : \mathbb{R} \lra \mathbb{R} $ is bounded and has derivatives up to $ \lceil \alpha \rceil $ then the fractional derivative \eqref{eq:glet-der} exists \cite{Meerschaert2011, Podlubny1999}. 
 Podlubny also showed that if $ f : \mathbb{R} \lra \mathbb{R} $ is $ n - 1 $ times continuously differentiable and that $ f^{(n)} $ is integrable then the Riemann-Liouville fractional derivative exists and coincides with Gr{\"u}nwald-Letnikov derivative. 
 
 

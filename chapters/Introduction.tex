@@ -13,7 +13,7 @@ L'Hopital asked Leibniz what it would mean to set $ n = \frac{1}{2} $. Leibniz r
 \begin{align}
     d^\frac{1}{2}x = x\sqrt{dx:x}
 \end{align} and adding that
-``It will lead to a paradox, from which one day useful consequences will be drawn'' (Or at least that what most modern translations say) \cite{Abbas2012}. The notation is unfamiliar to modern mathematics, but this comment actually doesn't really reveal anything about how one might go about computing
+``It will lead to a paradox, from which one day useful consequences will be drawn'' (Or at least that is what most modern translations say) \cite{Abbas2012}. The notation is unfamiliar to modern mathematics, as it appeals to a notion of infinitesimals. This comment actually doesn't really reveal anything about how one might go about computing
 \begin{align}
     \frac{d^\frac{1}{2}f}{dx^\frac{1}{2}}.
 \end{align}
@@ -28,10 +28,10 @@ Two years latter in letters to J. Wallis and J. Bernoulli Euler proposed a possi
     \label{eq:euler_frac}
     \frac{d^m}{dx^m} e^nx = n^me^{nx} 
 \end{align}
-and proposed that one could simply consider non-integer values of $ m $ in order to define a fraction differential operator. 
+and proposed that one could simply consider non-integer values of $ m $ in order to define a fraction differential operator \cite{Samko1993}.
 It is perhaps on this note that we should point out that the name \emph{fractional} calculus is a bit of a misnomer. As in the case above we do not require $ m \in \mathbb{Q} $, but rather are allowed to select $ m \in \mathbb{R} $ or even $ m \in \mathbb{C} $.
 
-Given the definition / motivation in \eqref{eq:euler_frac} one might be tempted to use this result and extend it to other functions via the theory of Fourier Analysis. We need to keep in mind, however, that this was the late $ 17$th century and so Fourier had yet to be born, let alone develop the idea of Fourier decomposition and Fourier basis. This meant that at the time there was not \emph{obvious} way to extend this definition to other functions.
+Given the definition / motivation in \eqref{eq:euler_frac} one might be tempted to use this result and extend it to other functions via the theory of Fourier analysis. We need to keep in mind, however, that this was the late $ 17$th century and so Fourier had yet to be born, let alone develop the idea of Fourier decomposition or the notion of a basis for a function space. This meant that at the time there was not \emph{obvious} way to extend this definition to other functions.
 
 \begin{wrapfigure}{L}{0.25\textwidth}
     \includegraphics[scale=0.8]{images/Leonhard_Euler}
@@ -40,7 +40,7 @@ Given the definition / motivation in \eqref{eq:euler_frac} one might be tempted 
 
 Jumping forward a quarter of a century we arrive at the contributions of Euler. Euler made extremely important contributions in field of special functions, especially the Gamma function which turns out to be crucial in defining fractional integrals and fractional derivatives.
 
-The Gamma function is essentially a solution to an interpolation problem, that is how to extend the factorial function to non-integer values of the argument. 
+The Gamma function is essentially a solution to an interpolation problem, that is, how to extend the factorial function to non-integer values of the argument. 
 
 
 
@@ -55,7 +55,7 @@ and
     n! = \int_0^1 (-\ln(s))^n ds.
 \end{align}
 
-Upon finding the first representation Euler could have simply stopped. He had found a formula which extended the factorial function to non-integer values. However he noticed that a special case of his product had already been calculated by Wallis. If we set $ n = \frac{1}{2} $ we get
+Upon finding the first representation Euler could have simply stopped. He had found a formula which extended the factorial function to non-integer values. However he noticed that a special case of his product had already been calculated by Wallis \cite{Davis1959}. If we set $ n = \frac{1}{2} $ we get
 \begin{align}
     \prod_{k=1}^\infty \frac{(1 + \frac{1}{k})^\frac{1}{2}}{1 + \frac{1}{2k}}
 \end{align}
@@ -81,17 +81,17 @@ but this result is actually more easily obtained as a special case of Euler's in
 \end{align}
 but Euler had not yet developed this.
 
-The fact that Euler had $ \frac{1}{2} ! = \frac{\sqrt{\pi}}{2} $ piqued his curiosity and on nothing more than what appears to have been a hunch he went looking for an integral representation of $ n! $.
+The fact that Euler had $ \frac{1}{2} ! = \frac{\sqrt{\pi}}{2} $ piqued his curiosity and on nothing more than what appears to have been a hunch he went looking for an integral representation of $ n! $\cite{Davis1959}.
 He arrived at \eqref{eq:euler_log} and it is here that our story returns to the history of fractional calculus. Aware of the fact that a meaning for $ \frac{d^\frac{1}{2}}{dx^\frac{1}{2}} $ was sought he noted that
 \begin{align}
     \label{eq:euler_frac_deriv}
     \frac{d^m}{dx^m} x^n = \frac{n!}{(n-m)!}x^{n-m}
 \end{align}
-and then suggested that using either \eqref{eq:euler_prod} or \eqref{eq:euler_log} could give the necessary extension of meaning in order to define the derivative of the power function for non-integer orders of differentiation. In fact using Wallis' result along with a slight extension he was able to suggest that
+and then suggested that using either \eqref{eq:euler_prod} or \eqref{eq:euler_log} could give the necessary extension of meaning in order to define the derivative of the power function for non-integer orders of differentiation. In fact using Wallis' result along with a slight extension, Samko et. al \cite{Davis1959}, not that he was able to suggest that
 \begin{align}
     \frac{d^\frac{1}{2}}{dx^\frac{1}{2}} x = \sqrt{\frac{4x}{\pi}}.
 \end{align}
-Although technically the modern notation we use for the Gamma function and the fact that $ \Gamma(n) = (n-1)! $ is due to Legendre, and were developed some considerable time after these ideas were first worked on by Euler, we will adopt the modern gamma function notation so as to make our discussions from this point more readable to those with some background knowledge. 
+Although technically the modern notation we use for the Gamma function, and the fact that $ \Gamma(n) = (n-1)! $, is due to Legendre, were developed some considerable time after these ideas were first worked on by Euler, we will adopt the modern gamma function notation so as to make our discussions from this point more readable.
 
 We would like to point out just how \emph{good} this idea for the definition of the fractional derivative by Euler was.
 Firstly note that if we take $ n = 1 $ in \eqref{eq:euler_frac_deriv} we get that
@@ -150,7 +150,7 @@ Abel's integral equation (of the first kind) is
     \label{eq:abel}
     \frac{1}{\Gamma(\alpha)} \int_0^x \frac{\phi(t)dt}{(x-t)^{1-\alpha}} = f(x) 
 \end{align}
-for $ x > 0 $ and $ 0 < \alpha < 1 $. Finding a \emph{solution} to this equation essentially means making $ \phi $ the subject. 
+for $ x > 0 $ and $ 0 < \alpha < 1 $. Finding a \emph{solution} to this equation essentially means making $ \phi $ the subject \cite{Samko1993}. 
 We demonstrate the solution method of this integral equation as it turns out to be important in latter formulations of fractional derivatives and integrals.
 Firstly let's consider the integral 
 \begin{equation}
@@ -201,14 +201,16 @@ and by differentiating we get
 \end{align}
 and so we have in some sense solved Abel's integral equation. Notice that we have not discussed which functions $ f $ are suitable. This is a bit of a tricky question and not really informative in the context of the rest of this thesis so we refer the interested reader to \cite{Samko1993}. 
 
-As mentioned earlier Abel solved this integral equation in the context of the Tautochrone problem which corresponded to $ \alpha = \frac{1}{2} $. Abel seemingly had no actual desire to define a fractional integral or derivative but it turns out this problem can be recast in terms of fractional integral equation using a Riemann Liouville fractional integral and the result is in some sense a statement of a generalised fundamental theorem of calculus. We'll leave these ideas and turn our attention to the development of the Riemann-Liouville fractional integral and derivative and return to see how these ideas relate.
+As mentioned earlier Abel solved this integral equation in the context of the Tautochrone problem which corresponded to $ \alpha = \frac{1}{2} $. Abel seemingly had no actual desire to define a fractional integral or derivative but it turns out this problem can be recast in terms of fractional integral equation using a Riemann Liouville fractional integral and the result is in some sense a statement of a generalised fundamental theorem of calculus. 
+
+We'll leave these ideas and turn our attention to the development of the Riemann-Liouville fractional integral and derivative and return to see how these ideas relate.
 
 \begin{wrapfigure}{R}{0.3\textwidth}
     \includegraphics[scale=0.5]{images/Joseph_liouville}
     \caption{An updated and unattributed early photograph of Joseph Liouville.}
 \end{wrapfigure}
 
-It was in a collection of letters over six years from 1832 to 1837 that Liouville outlined ideas which hold any reasonable resemblance to modern fraction calculus. 
+It was in a collection of letters over six years from 1832 to 1837 that Liouville outlined ideas which resemble modern fraction calculus \cite{Samko1993}. 
 
 The first idea explored for a fractional derivative by Liouville bears someone of a resemblance to that of Fourier and Euler. 
 
@@ -222,7 +224,7 @@ then the fractional derivative of $ f $ of order $ \alpha $ could be written as
 \end{align}
 Note that by allowing complex values for $ a_k $ this is essentially a Fourier series and so the resemblance to Fourier's definition is apparent.
 
-Despite the fact that we could view this series as a Fourier series, its not clear that this was done. Then the convergence of the series is tricky and it makes any consideration of the fractional derivative of $ f $ restrictive. 
+Despite the fact that we could view this series as a Fourier series, its not clear that this was done. The convergence of the series is tricky and it makes any consideration of the fractional derivative of $ f $ restrictive \cite{Samko1993}.
 
 In this series of letters he went on to derive a fractional integral
 \begin{align}
@@ -250,9 +252,9 @@ Given the similarity of Riemann's and Liouville's fractional integrals these two
 
 With a bit of technical fiddling it is quite easy to come up with a Riemann-Liouville fractional derivative. The idea behind this is discussed in section \ref{sec:operators}.
 
-Although over the next hundred years or so there was significant development of other forms of fractional operators such the Gr{\u"}nwald Letnikov, Weyl, Miller Ross fractional derivatives. As we won't really explore these operators wi e will skip forward to Caputo in 1967. 
+Although over the next hundred years or so there was significant development of other forms of fractional operators such the Gr{\"u}nwald Letnikov, Weyl, Miller Ross fractional derivatives. As we won't really explore these operators we will skip forward to Caputo in 1967. 
 
-One of the problems with the Riemann-Liouville fractional derivative is that for many fractional differential equations the associated initial or boundary conditions must be of fractional order. Also the Riemann-Liouville fractional derivative of a constant is not zero. 
+One of the problems with the Riemann-Liouville fractional derivative is that for many fractional differential equations the associated initial or boundary conditions must be of fractional order. Also the Riemann-Liouville fractional derivative of a constant is not zero \cite{Podlubny1999}. 
 
 In two papers in 1967 and 1971 Michele Caputo\cite{Caputo1967} \cite{Caputo1971}, introduced a new fractional differential operator. These papers dealt with linear models of dissipation and interestingly this new operator resolved the issues to do with initial and boundary conditions along with the property that the Caputo fractional derivative of a constant is zero. It is perhaps interesting to note that this operator arose from purely physical considerations. 
 
