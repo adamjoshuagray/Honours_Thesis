@@ -269,9 +269,9 @@ Modern graphics cards have the advantage of being able to efficiently perform ma
 
 Instead of using blocks of variables as was done in \cite{Diethelm2011} and reimplemented by us in section \ref{sec:parallel_c} we return to the original specification of the scheme in section \ref{sec:amb_desc} and seek out other opportunities of parallelism.
 
-The essential problem with the scheme is that the number of terms in the sums defined in \eqref{eq:amb_y_pred} and \eqref{eq:amb_y_corr} grows linearly with each time step taken. It is clear that the actual terms in each sum are independent and so breaking the sum up into smaller parts to be calculated and then summed together is a reasonable approach. This is so long as communication between cores doing different parts of the sum is sufficiently fast and global memory access is sufficiently fast. In the case of a GPU both of these criteria are satisfied and so this approach is reasonable.\footnote{It is easy to see that this scheme would be Amdahl efficient in the sense of definition \ref{def:amdahl_efficient}.}
+The essential problem with the scheme is that the number of terms in the sums defined in \eqref{eq:amb_y_pred} and \eqref{eq:amb_y_corr} grows linearly with each time step taken. It is clear that the actual terms in each sum are independent and so breaking the sum up into smaller parts to be calculated and then summed together is a reasonable approach. This works so long as communication between cores doing different parts of the sum is sufficiently fast and global memory access is sufficiently fast. In the case of a GPU both of these criteria are satisfied and so this approach is reasonable.\footnote{It is easy to see that this scheme would be Amdahl efficient in the sense of definition \ref{def:amdahl_efficient}.}
 
-We aim to use as much of the GPU as possible to perform the calculations and so unlike the scheme outlined in section \ref{sec:parallel_c} we will automatically scale the number of threads to use as many cores as possible. We define one \emph{performance tuning} parameter $ opsPerThread $ which define the number of \emph{multiply-add} operations per thread. 
+We aim to use as much of the GPU as possible to perform the calculations and so, unlike the scheme outlined in section \ref{sec:parallel_c} we will automatically scale the number of threads to use as many cores as possible. We define one \emph{performance tuning} parameter $ opsPerThread $ which define the number of \emph{multiply-add} operations per thread. 
 Figure \ref{fig:cuda_performance_surface} shows a \emph{performance surface} showing runtime against number of time steps $ N $ and $ opsPerThread $ \footnote{See appendix B for a full table of runtimes}. The actual initial value problem being solved is exactly the same as in section \ref{sec:parallel_c}.
 
 \begin{figure}[H]
@@ -322,6 +322,19 @@ As noted in \cite{Ford2001} it turns out that such a requirement essentially rem
 \subsubsection{Nested Mesh Technique}
 
 Another technique which could reduce the computational complexity of the problem is the so called \emph{nested mesh technique}. This technique is also well known and a good explanation of it is given by Ford \cite{Ford2001}. The basic idea is to change the step-size for the approximation of the integral across different parts of the integral. Specifically it would mean logarithmically increasing the step size for the quadrature approximation of the integral for points further back in time. 
+
+\subsection{A final note}
+
+As a final note we include a solution surface for the relaxation-oscilation equation given below.
+\begin{align}
+  \prescript{C}{0}{D}^\alpha x(t) = - x(t)
+\end{align}
+along with $ x(0) = 1 $ and $ x'(0) = x''(0) = 0 $ for $ 0 < \alpha \leq 2 $.
+
+\includegraphics[scale=0.5]{images/FDE_Solution_Surface_No_Label.png}
+
+Note that at $ \alpha = 1 $ we have the usual exponential solution but as $ \alpha \lra 2 $ we can see the oscilatory solution appearing.
+
 
 
 \clearpage 
