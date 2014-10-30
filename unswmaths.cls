@@ -38,10 +38,10 @@
 	\begin{center}
 	% Upper part of the page. The '~' is needed because \\
 	% only works if a paragraph has started.
-	\includegraphics[width=1\textwidth]{artwork/unswlogo}~\\[0.5cm]
+	\includegraphics[width=1\textwidth]{artwork/unswlogo}~\\[0.1cm]
 	% Upper part of the page. The '~' is needed because \\
 	% only works if a paragraph has started.
-	\includegraphics[width=0.4\textwidth]{artwork/mathslogo}~\\[1cm]
+	\includegraphics[width=0.35\textwidth]{artwork/mathslogo}~\\[0.5cm]
 	\textsc{\LARGE University of New South Wales}\\[0.2cm]
 	\textsc{\large School of Mathematics and Statistics}\\[0.1cm]
 	% Title
