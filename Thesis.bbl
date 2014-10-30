@@ -43,6 +43,12 @@ Microsoft Copropration.
   \url{http://msdn.microsoft.com/en-us/library/dd997402%28v=vs.110%29.aspx}.
 \newblock Accessed: 2014-08-01.
 
+\bibitem{Davis1959}
+P.J. Davis.
+\newblock Leonhard euler's integral: A historical profile of the gamma
+  function: In memoriam: Milton abramowitz.
+\newblock {\em The American Mathematical Monthly}, 66(10):pp. 849--869, 1959.
+
 \bibitem{Diethelm2010}
 K.~Diethelm.
 \newblock {\em The Analysis of Fractional Differential Equations}.
@@ -102,6 +108,12 @@ M.~Harris.
 \newblock Mapping computational concepts to gpus.
 \newblock In M.~Pharr, R.~Fernando, and T.~Sweeney, editors, {\em GPU Gems 2}.
   Addison-Wesley Professional, 2005.
+
+\bibitem{Henry2010}
+B.I. Henry, T.A.M. Langlands, and P.~Straka.
+\newblock An introduction to fractional diffusion.
+\newblock In {\em Complex Physical, Biophysical and Econophysical Systems},
+  volume~1, pages 37--89. World Scientific, 2010.
 
 \bibitem{Heymans2005}
 N.~Heymans and I.~Podlubny.
