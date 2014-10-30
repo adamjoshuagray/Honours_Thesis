@@ -317,13 +317,13 @@ Despite the fact that fractional differential equations with Riemann-Liouville o
 
 We will now make formal a definition of the Caputo fractional derivative.
 \begin{definition}
-    We define the Caputo fractional derivative based at $ a $ and of order $\alpha \in (0, \infty) $ of an admissable function $ f $, as
+    We define the Caputo fractional derivative based at $ a $ and of order $\alpha \in (0, \infty) $ of an admissible function $ f $, as
     \begin{align*}
         \capder{a}{}{\alpha}{f}(x)      := \frac{1}{\Gamma(n - \alpha)} \int_a^x \frac{\frac{d^n}{dt^n}f(t)}{(x-t)^{\alpha -n + 1}} dt
     \end{align*}
     where $ n = \lfloor \alpha \rfloor + 1 $.
 \end{definition}
-Here an admissable function is taken to have the same general meaning as described in the Riemann-Liouville fractional integral and derivative cases.
+Here an admissible function is taken to have the same general meaning as described in the Riemann-Liouville fractional integral and derivative cases.
 
 We can easily see that
 \begin{align}
@@ -337,7 +337,7 @@ We would now like to develop similar a relationship between $ \prescript{C}{a}{\
 \begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}
     \label{lem:cap_rld_rel}
-    For an admissable function $ f $ we have that
+    For an admissible function $ f $ we have that
     \begin{align*}
         \left(\prescript{C}{a}{\mathcal{D}}^\alpha f\right)(t) = \left( \prescript{}{a}{\mathcal{D}}^\alpha f \right)(t) - \sum_{k=0}^{n-1} \frac{t^{k-\alpha}}{\Gamma(k - \alpha + 1)}f^{(k)}(a).
     \end{align*}
@@ -348,7 +348,8 @@ We would now like to develop similar a relationship between $ \prescript{C}{a}{\
 \end{proof}
 \begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}
-    For an admissable function $ f $ we have that
+	\label{lem:cap_rli}
+    For an admissible function $ f $ we have that
     \begin{align*}
         \left(\prescript{C}{a}{\mathcal{D}}^\alpha I_a^\alpha f\right)(t) = f(t) - \sum_{k=0}^{n-1} \frac{t^{k-\alpha}}{\Gamma(k-\alpha+1)} \left[\frac{d^k}{dt^k}I_a^\alpha f(t) \right]_{t=a}
     \end{align*}
@@ -374,11 +375,11 @@ A similar result exists for $  I_0^\alpha \prescript{C}{o}{\mathcal{D}}^\alpha $
 	and then by using well known results for Laplace transforms the result become immediate.
 \end{proof}
 
-What will prove useful are results for the Laplace and Fourier transforms of the Caputo fractional derivative of a fucntion.
+What will prove useful are results for the Laplace and Fourier transforms of the Caputo fractional derivative of a function.
 \begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}
 \label{lem:cap_laplace}
-    The Laplace transform of the Caputo derivative of an admissable function $ f $ is given by
+    The Laplace transform of the Caputo derivative of an admissible function $ f $ is given by
     \begin{align*}
         \laplace{\capder{0}{t}{\alpha}{f}} = s^{\alpha - n} \left[ s^n \laplace{f} - \sum_{k=0}^{n-1} s^{n-k-1} \left( \der{f}{t}{k} \right)(0) \right].
     \end{align*}

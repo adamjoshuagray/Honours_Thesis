@@ -68,14 +68,14 @@ Using these definitions and results we can now say something about the existence
 	combined with the space $ C([0,a]) $ forms a complete metric space. By applying $ I_0^\alpha $ to both sides of \eqref{eq:ivp_uniq_1} and applying lemma \ref{lem:rli-cap} we get that \eqref{eq:ivp_uniq_1} and \eqref{eq:ivp_uniq_ic_1} are equivalent to the integral equation
 	\begin{align}
 		\label{eq:ivp_1_int}
-		x(t) = \sum_{k=0}^{n-1} \frac{a_k} + \frac{1}{\Gamma(\alpha)} \int_0^t (t-s)^{\alpha-1}f(s,x(s))ds
+		x(t) = \sum_{k=0}^{n-1} \frac{a_k t^k}{k!} + \frac{1}{\Gamma(\alpha)} \int_0^t (t-s)^{\alpha-1}f(s,x(s))ds
 	\end{align}
 	for $ t \in [0,a] $.
 	The idea is to prove that the right hand side of \eqref{eq:ivp_1_int} is a contraction in the space $ (C([0,a]),d_\beta) $. By (an immediate corollary to) Banach's fixed point theorem this shows the existence of a unique solution to the integral equation, and hence the IVP defined in \eqref{eq:ivp_uniq_1} and \eqref{eq:ivp_uniq_ic_1}.
 	Define $ F : C([0,a]) \lra C([0,a]) $
 	as
 	\begin{align*}
-		[Fx](t) = \sum_{k=0}^{n-1} \frac{a_k} + \frac{1}{\Gamma(\alpha)} \int_0^t (t-s)^{\alpha-1}f(s,x(s))ds.
+		[Fx](t) = \sum_{k=0}^{n-1} \frac{a_k t^k}{k!}  + \frac{1}{\Gamma(\alpha)} \int_0^t (t-s)^{\alpha-1}f(s,x(s))ds.
 	\end{align*}
 	For any $ x, y \in C([0,a]) $ and consider
 	\begin{align*}
@@ -144,15 +144,16 @@ To prove this we will need two lemmas.
 \begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}
 	The IVP defined in \eqref{eq-fde-ivp-1}, \eqref{eq-fde-ivp-ic-1} is equivalent to the integral equation
-	\begin{align*}
+	\begin{align}
+		\label{eq:equiv_int_2}
 		x(t) &= \sum_{k=1}^{n_1}\frac{A_kt^k}{k!} + \frac{1}{\beta_1} \Bigl( \frac{1}{\Gamma(\alpha_1)}\int_{0}^{t} (t-s)^{\alpha_1 - 1}f(s,x(s))ds \\
 			& \ \ \ - \sum_{j=2}^{N}\beta_j \frac{1}{\Gamma(\alpha_1 - \alpha_j)}
 			\int_{0}^{t}(t-s)^{\alpha_1 - \alpha_j - 1}\left(x(s) - \sum_{k=1}^{n_j}\frac{A_ks^k}{k!} \right) ds \Bigr)
-	\end{align*}
+	\end{align}
 \end{lemma}
 \end{mdframed}
 \begin{proof}
-	Apply $ I_0^{\alpha_1} $ to both sides of \eqref{eq-fde-ivp-1} and then apply lemma \ref{lem:rli-cap}.
+	Apply $ I_0^{\alpha_1} $ to both sides of \eqref{eq-fde-ivp-1} and then apply lemma \ref{lem:rli-cap}. Alternatively apply lemma \ref{lem:cap_rli} to either side of \eqref{eq:equiv_int_2}. 
 \end{proof}
 
 \begin{mdframed}[innertopmargin=10pt]
@@ -265,6 +266,96 @@ It should be clear that if $ \alpha_1 < 2 $ then the conditions in \ref{eq:fde-u
 Both theorems \ref{thm:unique-tisdell} and \ref{thm-existence-uniq} are important as they give us some guarentees about the existance and uniqueness of solutions the initial value problems involving fractional derivatives. The generalisation in \ref{thm-existence-uniq} is important as it could be applied to showing the existance of solutions equations like the Bagley-Torvick equation which is a multi-order fractional differential equation that models the motion of a plate in a viscus fluid \cite{Diethelm2002-3, Podlubny1999, Torvik1984}.
 
 In fact these results can be taken quite a bit further. The proof techniques used in theorems \ref{thm:unique-tisdell} and \ref{thm-existence-uniq} suggest a constructive method for arriving at a solution to fractional differential equations. This is formalised by Tisdell \cite{Tisdell2012} through the method of successive approximations. A similar idea is also outlined in \cite{Podlubny1999}.
+
+\subsection{A generalised Gronwall's Inequality}
+
+There are obviously other techniques for guaranteeing uniqueness, or non-multiplicity, to solutions, many of these are outlined in \cite{Tisdell2012} and \cite{Podlubny1999}. We would like to present here a result that hinges off a \emph{generalised Gronwall's inequality}. The \emph{generalised Gronwall's inequality}  was shown by Diethlem \cite{Diethelm2004_2}.
+
+\begin{mdframed}[innertopmargin=10pt]
+\begin{lemma}[Generalised Gronwall's Inequality]
+	\label{lem:gronwall}
+	Let $ a, A, B $ and $ C $ all be non-negative real constants and let $ \rho:[0,a] \lra [0, \infty) $ be continuous. If
+	\begin{align*}	
+		\rho(t) \leq A + \frac{1}{\Gamma(\alpha)} \int_0^t (t-s)^{\alpha-1}[ B \rho(s) + C] ds
+	\end{align*}
+	for all $ t \in [0, a] $ then 
+	\begin{align}
+		\rho(t) \leq 
+		\begin{cases}
+			AE_{\alpha,1}(B t^\alpha) + \frac{C}{B}[E_{\alpha, 1}(Bt^\alpha) - 1] & B > 0 \\
+			A + \frac{Ct^\alpha}{\Gamma(\alpha + 1)} & B = 0.
+		\end{cases}
+	\end{align}
+\end{lemma}
+\end{mdframed}
+\begin{proof}
+	To begin let $ B > 0 $ and $ \varepsilon > 0 $ then define the function
+	\begin{align}
+		\label{eq:gronwall_int}
+		\phi(t) = \varepsilon +  A + \frac{1}{\Gamma(\alpha)} \int_0^t (t-s)^{\alpha-1}[ B \rho(s) + C] ds.
+	\end{align}
+	By recognising the fractional integral we can see by direct substitution and use of lemma \ref{lem-rli-mit-lef-2} we get that
+	\begin{align*}
+		\phi(t) = \left( \varepsilon + A + \frac{C}{B} \right)E_{\alpha,1}(B t^\alpha) - \frac{C}{B}
+	\end{align*}
+	is a solution to \eqref{eq:gronwall_int} for $ t \in [0, a] $.
+	
+	The idea is show that $ \rho(t) < \phi(t) $ for all $ t \in [0,a] $ so  for a contraction let's assume that there exists a $ t^* $ such that $ \rho(t) < \phi(t) $ for all $ t \in [0, t^*) $ and $ \rho(t^*) = \phi(t^*) $. Not that the intermediate value theorem would guarantee the existence of $ t^* $ and it is that reason why we require $ \rho $ continuous. 
+	Let us next see that 
+	\begin{align*}
+		\rho(t^*) &\leq A + \frac{1}{\Gamma(\alpha)} \int_0^{t^*} (t^* - s)^{\alpha - 1}[B \rho(s) + C] ds \\
+		&< \varepsilon + A + \frac{1}{\Gamma(\alpha)} \int_0^{t^*} (t^* - s)^{\alpha - 1}[B \rho(s) + C] ds
+	\end{align*}
+	which must contradict $ \rho(t^*) = \phi(t^*) $.
+	This means that $ \rho(t) < \left( \varepsilon + A + \frac{C}{B}\right) E_{\alpha,1}(Bt^\alpha) - \frac{C}{B} $ and since this holds for any $ \varepsilon > 0 $ then we have
+	\begin{align*}
+		\rho(t) \leq AE_{\alpha,1}(B t^\alpha) + \frac{C}{B}[E_{\alpha, 1}(Bt^\alpha) - 1].
+	\end{align*}
+	In the case of $ B = 0 $ then direct integration using the result of lemma \ref{lem:rld_power} gives the result.
+\end{proof}
+
+It turns out that this lemma is powerful enough to prove uniqueness or non-multiplicity of solutions in a particular case and we formalise this in the following lemma.
+
+\begin{mdframed}[innertopmargin=10pt]
+\begin{lemma}
+	If $ f: [0,a] \lra [0, \infty) $ is continuous and there exists an $ L $ such that
+	\begin{align}
+	    |f(t,u) - f(t,v)| \leq L|u-v| 
+	\end{align}  
+	then the initial value problem \eqref{eq:ivp_uniq_1} and \eqref{eq:ivp_uniq_ic_1}, restated here for completeness
+	\begin{align*}   
+        \prescript{C}{0}{\mathcal{D}}x(t) = f(t,x(t))
+    \end{align*}
+    \begin{align*}
+        x(0) = a_0, x'(0) = a_1, \ldots, x^{(n-1)}(0) = a_{n-1}.
+    \end{align*}
+    has at most one solution.
+\end{lemma}
+\end{mdframed}
+\begin{proof}
+	As was noted in the proof of theorem \ref{thm:unique-tisdell} the initial value problem \eqref{eq:ivp_uniq_1} and \eqref{eq:ivp_uniq_ic_1} are equivalent to the integral equation \eqref{eq:ivp_1_int}, restated here for completeness
+	\begin{align}
+		x(t) = \sum_{k=0}^{n-1} \frac{a_k t^k}{k!} + \frac{1}{\Gamma(\alpha)} \int_0^t (t-s)^{\alpha-1}f(s,x(s))ds
+	\end{align}
+	for $ t \in [0,a] $.
+	Now suppose there are two solutions, $ x(t), y(t) $ to \eqref{eq:ivp_1_int} then we have that
+	\begin{align*}
+		|x(t) - y(t)| &= \left| \frac{1}{\Gamma(\alpha)} \int_0^t (t-s)^{\alpha-1}(f(s,x(s)) - f(s,y(s)))ds \right| \\
+			&\leq \frac{1}{\Gamma(\alpha)} \int_0^t (t-s)^{\alpha-1}\left| (f(s,x(s)) - f(s,y(s))) \right|ds \\
+			&\leq \frac{L}{\Gamma(\alpha)} \int_0^t (t-s)^{\alpha-1}\left| (x(s) - y(s)) \right|ds.
+	\end{align*}
+	Then letting $ \rho(t) = |x(t) - y(t)| $
+	we have 
+	\begin{align*}
+		\rho(t) \leq \frac{L}{\Gamma(\alpha)} \int_0^t (t-s)^{\alpha-1}\rho(s)ds
+	\end{align*}
+	but then by lemma \ref{lem:gronwall} with $ A = 0, B = L $ and $ C = 0 $
+	we have that $ \rho(t) \leq 0 $ which implies that $ |x(t) - y(t)| \leq 0 $ for $ t \in [0,a] $ and hence there can be at most one solution.
+\end{proof}
+	
+We should note that this result technique is analogous to a well known result and technique used for non-fractional ordinary differential equations.
+
+It turns out the lemma \ref{lem:gronwall} has significant utility as it has been used to show a number of results. For example Tisdell \cite{Tisdell2012} used it to give an a-priori bound on solutions to the initial value problem given in \eqref{eq:ivp_uniq_1} and \eqref{eq:ivp_uniq_ic_1}.
 
 \clearpage
 

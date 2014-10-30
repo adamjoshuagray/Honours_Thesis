@@ -14,23 +14,24 @@
 \contentsline {subsection}{\numberline {4.4}Solutions to partial fractional differential equations}{38}{subsection.4.4}
 \contentsline {subsubsection}{\numberline {4.4.1}A note on Fourier Transform techniques for space fractional diffusion}{40}{subsubsection.4.4.1}
 \contentsline {section}{\numberline {5}Existence and Uniqueness Results for Ordinary Fractional Differential Equations}{41}{section.5}
-\contentsline {section}{\numberline {6}Numerical Methods for Fractional Differential Equations}{47}{section.6}
-\contentsline {subsection}{\numberline {6.1}Approximations of Fractional Derivatives and Integrals}{47}{subsection.6.1}
-\contentsline {subsubsection}{\numberline {6.1.1}Gr\"{u}nwald-Letnikov Approximation}{47}{subsubsection.6.1.1}
-\contentsline {subsubsection}{\numberline {6.1.2}Quadrature Approximation}{47}{subsubsection.6.1.2}
-\contentsline {subsubsection}{\numberline {6.1.3}An Initial Value Problem}{48}{subsubsection.6.1.3}
-\contentsline {subsubsection}{\numberline {6.1.4}The Adams Moulton Bashforth Scheme}{48}{subsubsection.6.1.4}
-\contentsline {subsubsection}{\numberline {6.1.5}Parallelizing: A Task Based Approach}{49}{subsubsection.6.1.5}
-\contentsline {subsubsection}{\numberline {6.1.6}Analysis of the Performance of the Scheme in C\# and MONO}{53}{subsubsection.6.1.6}
-\contentsline {subsubsection}{\numberline {6.1.7}Parallelizing: A CUDA Approach}{56}{subsubsection.6.1.7}
-\contentsline {subsubsection}{\numberline {6.1.8}Short Memory Principle}{58}{subsubsection.6.1.8}
-\contentsline {subsubsection}{\numberline {6.1.9}Nested Mesh Technique}{58}{subsubsection.6.1.9}
-\contentsline {section}{\numberline {7}Appendix A: Adams-Moulton-Bashforth FDE Solver Code}{59}{section.7}
-\contentsline {subsection}{\numberline {7.1}C\# Implementation of AMB FDE Solver}{59}{subsection.7.1}
-\contentsline {subsubsection}{\numberline {7.1.1}Program.cs}{59}{subsubsection.7.1.1}
-\contentsline {subsubsection}{\numberline {7.1.2}SpecialFunctions.cs}{63}{subsubsection.7.1.2}
-\contentsline {subsection}{\numberline {7.2}CUDA C/C++ Implementation of AMB FDE Solver}{64}{subsection.7.2}
-\contentsline {subsubsection}{\numberline {7.2.1}FDE\_Solver.cu}{64}{subsubsection.7.2.1}
-\contentsline {section}{\numberline {8}Appendix B}{70}{section.8}
-\contentsline {subsection}{\numberline {8.1}Runtimes for C\# implementation described in section \ref {sec:amb_desc}}{70}{subsection.8.1}
-\contentsline {subsection}{\numberline {8.2}Runtimes for CUDA implementation described in section \ref {sec:parallel_cuda}}{70}{subsection.8.2}
+\contentsline {subsection}{\numberline {5.1}A generalised Gronwall's Inequality}{47}{subsection.5.1}
+\contentsline {section}{\numberline {6}Numerical Methods for Fractional Differential Equations}{49}{section.6}
+\contentsline {subsection}{\numberline {6.1}Approximations of Fractional Derivatives and Integrals}{49}{subsection.6.1}
+\contentsline {subsubsection}{\numberline {6.1.1}Gr\"{u}nwald-Letnikov Approximation}{49}{subsubsection.6.1.1}
+\contentsline {subsubsection}{\numberline {6.1.2}Quadrature Approximation}{49}{subsubsection.6.1.2}
+\contentsline {subsubsection}{\numberline {6.1.3}An Initial Value Problem}{50}{subsubsection.6.1.3}
+\contentsline {subsubsection}{\numberline {6.1.4}The Adams Moulton Bashforth Scheme}{50}{subsubsection.6.1.4}
+\contentsline {subsubsection}{\numberline {6.1.5}Parallelizing: A Task Based Approach}{51}{subsubsection.6.1.5}
+\contentsline {subsubsection}{\numberline {6.1.6}Analysis of the Performance of the Scheme in C\# and MONO}{55}{subsubsection.6.1.6}
+\contentsline {subsubsection}{\numberline {6.1.7}Parallelizing: A CUDA Approach}{58}{subsubsection.6.1.7}
+\contentsline {subsubsection}{\numberline {6.1.8}Short Memory Principle}{60}{subsubsection.6.1.8}
+\contentsline {subsubsection}{\numberline {6.1.9}Nested Mesh Technique}{60}{subsubsection.6.1.9}
+\contentsline {section}{\numberline {7}Appendix A: Adams-Moulton-Bashforth FDE Solver Code}{61}{section.7}
+\contentsline {subsection}{\numberline {7.1}C\# Implementation of AMB FDE Solver}{61}{subsection.7.1}
+\contentsline {subsubsection}{\numberline {7.1.1}Program.cs}{61}{subsubsection.7.1.1}
+\contentsline {subsubsection}{\numberline {7.1.2}SpecialFunctions.cs}{65}{subsubsection.7.1.2}
+\contentsline {subsection}{\numberline {7.2}CUDA C/C++ Implementation of AMB FDE Solver}{66}{subsection.7.2}
+\contentsline {subsubsection}{\numberline {7.2.1}FDE\_Solver.cu}{66}{subsubsection.7.2.1}
+\contentsline {section}{\numberline {8}Appendix B}{72}{section.8}
+\contentsline {subsection}{\numberline {8.1}Runtimes for C\# implementation described in section \ref {sec:amb_desc}}{72}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Runtimes for CUDA implementation described in section \ref {sec:parallel_cuda}}{72}{subsection.8.2}
