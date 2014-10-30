@@ -28,7 +28,7 @@ Lets consider the initial value problem
     \label{eq:num_ivp_2}
     y^{(k)}(0) &= y_{0}^{(k)} 
 \end{align}
-for $ 0 \leq k < \lfloor \alpha \rfloor $. Note that this initial value problem is stated in terms of Caputo derivatives. The motivation for such initial value problems was discussed in section \ref{subsec:caputo}.
+for $ 0 \leq k < \lfloor \alpha \rfloor $. Note that this initial value problem is stated in terms of Caputo derivatives. The motivation for such initial vFDE_Solution_Surface_No_Label.pngalue problems was discussed in section \ref{subsec:caputo}.
 
 One of the most important things to note about this equation is that for non-integer values of $ \alpha $ it is non-local, in the sense that the value of the solution at $ y(x_0+h) $ depends not only on $ y(x_0) $ but also on $ y(x), x \in [0, x_0] $ \cite{Diethelm2010}. This is in contrast to ordinary differential equations and this fact is what makes fractional differential equations considerably more complex to solve. Even multi-step methods which can be used to solve ordinary differential equations, only rely on some \emph{fixed} number previous time steps. As a solution to a fractional differential equation progresses it relies on more and more previous time steps. As one might suspect this fundamentally increases the computational complexity of the schemes used to solve fractional differential equations as compared with the schemes used to solve traditional ordinary differential equations. \footnote{It is possible to reduce these computations to look at some large but fixed number of previous grid-points 
 but this results in a speed vs. accuracy tradeoff which will be discussed in section \ref{subsubsec:reduce_complexity}}
@@ -331,7 +331,7 @@ As a final note we include a solution surface for the relaxation-oscilation equa
 \end{align}
 along with $ x(0) = 1 $ and $ x'(0) = x''(0) = 0 $ for $ 0 < \alpha \leq 2 $.
 
-\includegraphics[scale=0.5]{images/FDE_Solution_Surface_No_Label.png}
+\includegraphics[scale=0.3]{images/FDE_Solution_Surface_No_Label.png}
 
 Note that at $ \alpha = 1 $ we have the usual exponential solution but as $ \alpha \lra 2 $ we can see the oscilatory solution appearing.
 
