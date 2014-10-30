@@ -1,7 +1,7 @@
 
 \section{Numerical Methods for Fractional Differential Equations}
 
-In this section we describe numerical methods which can be used for solving fractional differential equations. We begin by looking at two ways for approximating a fractional derivative and then look at a specific scheme outlined by Diethelm \cite{Diethelm2011}.
+In this section we describe a numerical method which can be used to solve a fractional differential equation. We begin by looking at two ways for approximating a fractional derivative and then look at a specific scheme outlined by Diethelm \cite{Diethelm2011}.
 
 \subsection{Approximations of Fractional Derivatives and Integrals}
 
@@ -14,11 +14,11 @@ In much the same was as we might use a finite difference method to approximate a
 Also note that we have \emph{chopped} off the top of the series, taking on the first $ n $ terms in the sum. 
 It can be shown \cite{Podlubny1999} that this yields a first order approximation of the Riemann-Liouville fractional derivative.
 \subsubsection{Quadrature Approximation}
-A completely different approach is to use a quadrature rule to evaluate the integral from the Riemann-Liouville definition. If one is simply evaluating a derivative this method is not ideal because it also requires the approximation of an integer order derivative. If, however, we wish to calculate a fractional integral, such as might be required in a numerical FDE solver, then the quadrature method may be a more practical method.
+A completely different approach is to use a quadrature rule to evaluate the a fractional integral. This has particular utility when we wish to solve the equivelent integral equation.
 
 There is no \emph{set way} to do the quadrature approximation and it will all depend on the scheme being used. 
 
-In the following sections we will examine a general initial value problem and an Adams Moulton Bashforth scheme which is based off a quadrature method. \cite{Diethelm2011}
+In the following sections we will examine a general initial value problem and an Adams Moulton Bashforth scheme which is based off of a quadrature method. \cite{Diethelm2011}
 
 \subsubsection{An Initial Value Problem}
 Lets consider the initial value problem
