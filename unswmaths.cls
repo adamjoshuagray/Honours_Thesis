@@ -68,6 +68,7 @@
 	\end{flushright}
 	\end{minipage}
 	\vfill
+	Submitted in Partial Fulfillment of the Requirements for the award of the degree of Bachelor of Science with Honours 
 	\end{center}
 	\end{titlepage}
 }
