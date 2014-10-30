@@ -1,5 +1,5 @@
 \section{Historical Introduction}
-Fractional calculus is a field which extends all the way back to the birth of \emph{ordinary} calculus. In this section we wish to give an account of the development of this field. Like any historical recount this section will have its flaws, inaccuracies and omissions. One can get bogged down in the historiography of the field and criticise this recount as a story written with whiggish bias, but we seek to tell a story which is relevant to the rest of this thesis an contextualize modern fractional calculus.
+Fractional calculus is a field which extends all the way back to the birth of \emph{ordinary} calculus. In this section we wish to give an account of the development of this field. Like any historical recount this section will have its flaws, inaccuracies and omissions. One can get bogged down in the historiography of the field and criticise this recount as a story written with whiggish bias, but we seek to tell a story which is relevant to the rest of this thesis and contextualize modern fractional calculus.
 
 In any historical introduction to fractional calculus one almost always starts with the letters exchanged between L'Hopital and Leibniz in the fall of 1695. Upon hearing of Leibniz's calculus and the differential operator
 \begin{align*}
@@ -23,7 +23,7 @@ L'Hopital asked Leibniz what it would mean to set $ n = \frac{1}{2} $. Leibniz r
     \caption{Bernhard Christoph Francke's portrait of Gottfried Wilhelm von Leibniz}
 \end{wrapfigure}
 
-Two years latter in letters to J. Wallis and J. Bernoulli Euler proposed a possible approach to dealing with fractional derivatives of exponential functions \cite{Abbas2012}. He noticed that
+Two years later in letters to J. Wallis and J. Bernoulli Euler proposed a possible approach to dealing with fractional derivatives of exponential functions \cite{Abbas2012}. He noticed that
 \begin{align}
     \label{eq:euler_frac}
     \frac{d^m}{dx^m} e^nx = n^me^{nx} 
@@ -87,7 +87,7 @@ He arrived at \eqref{eq:euler_log} and it is here that our story returns to the 
     \label{eq:euler_frac_deriv}
     \frac{d^m}{dx^m} x^n = \frac{n!}{(n-m)!}x^{n-m}
 \end{align}
-and then suggested that using either \eqref{eq:euler_prod} or \eqref{eq:euler_log} could give the necessary extension of meaning in order to define the derivative of the power function for non-integer orders of differentiation. In fact using Wallis' result along with a slight extension, Samko et. al \cite{Davis1959}, not that he was able to suggest that
+and then suggested that using either \eqref{eq:euler_prod} or \eqref{eq:euler_log} could give the necessary extension of meaning in order to define the derivative of the power function for non-integer orders of differentiation. In fact using Wallis' result along with a sleight extension, Samko et. al \cite{Davis1959}, not that he was able to suggest that
 \begin{align*}
     \frac{d^\frac{1}{2}}{dx^\frac{1}{2}} x = \sqrt{\frac{4x}{\pi}}.
 \end{align*}
@@ -131,7 +131,7 @@ Secondly, and more importantly from a mathematical point of view, is the slight 
 \end{align*}
 One can see that in the integer case we get $ 0 $ simply because of singularities in the Gamma function for the non-positive integers. This particular complication of non-zero derivatives for the case where $ m > n $ extends even into more modern fractional derivatives and is dealt with in a modern context in section \ref{sec:operators} of this thesis.
 
-It was almost a century latter when in 1822 Fourier suggest that using the equality
+It was almost a century later when in 1822 Fourier suggest that using the equality
 \begin{align}
     \label{eq:fourier_frac}
     \frac{d^m}{dx^m} f(x) = \frac{1}{2\pi} \int_{-\infty}^\infty \int_{-\infty}^\infty f(t)u^m \cos\left(ux - tu - \frac{m\pi}{2}\right) dt du
@@ -151,7 +151,7 @@ Abel's integral equation (of the first kind) is
     \frac{1}{\Gamma(\alpha)} \int_0^x \frac{\phi(t)dt}{(x-t)^{1-\alpha}} = f(x) 
 \end{align}
 for $ x > 0 $ and $ 0 < \alpha < 1 $. Finding a \emph{solution} to this equation essentially means making $ \phi $ the subject \cite{Samko1993}. 
-We demonstrate the solution method of this integral equation as it turns out to be important in latter formulations of fractional derivatives and integrals.
+We demonstrate the solution method of this integral equation as it turns out to be important in later formulations of fractional derivatives and integrals.
 Firstly let's consider the integral 
 \begin{equation}
 	\label{eq:abel_int}
@@ -234,7 +234,7 @@ In this series of letters he went on to derive a fractional integral
 Papers in 1832 and 1837 by Liouville were really the first papers which discussed an application of a fractional calculus, specifically to the solution of linear ordinary differential equations. 
 
 He also discussed the idea of a fractional difference quotient.
-Liouville didn't go far with this idea and it was considerably latter in 1867 and 1868 that Gr{\"u}nwald and respectively Letnikov dealt with this idea in much more depth. 
+Liouville didn't go far with this idea and it was considerably later in 1867 and 1868 that Gr{\"u}nwald and respectively Letnikov dealt with this idea in much more depth. 
  
 \begin{wrapfigure}{l}{0.3\textwidth}
     \includegraphics[scale=0.6]{images/Georg_Friedrich_Bernhard_Riemann}
@@ -246,7 +246,7 @@ As a student in 1847 Riemann arrived at the fractional integral
 	I^\alpha f(x) = \frac{1}{\Gamma(\alpha)} \int_0^x \frac{f(t)dt}{(x-t)^{1-\alpha}}
 \end{align*}
 
-Interestingly it wasn't until 10 years after his death in 1866 that this definition was published. The astute reader will notice that for positive integral values of $ \alpha $ this definition aggrees with the Cauchy formula for repeated integration. We'll touch on this a little more in section \ref{sec:operators}, but this fact was important in the motivation of the defintion.
+Interestingly it wasn't until 10 years after his death in 1866 that this definition was published. The astute reader will notice that for positive integral values of $ \alpha $ this definition agrees with the Cauchy formula for repeated integration. We'll touch on this a little more in section \ref{sec:operators}, but this fact was important in the motivation of the defintion.
 
 Given the similarity of Riemann's and Liouville's fractional integrals these two ideas have been combined and named the Riemann Liouville fractional integral. This particular definition has become extremely significant and it forms the basis for modern fractional calculus. 
 

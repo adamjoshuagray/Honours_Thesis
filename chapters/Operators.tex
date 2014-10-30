@@ -28,7 +28,7 @@ That is we wish to show that
 \end{align*}
 but this is the Cauchy theorem for repeated integration which is a well known result. It follows from applying the fundamental theorem of calculus repeatedly. 
 
-What this means is that the the Riemann-Liouville fractional integral makes sense in that it agrees with the ordinary integral. This is obviously a very desirable property. 
+What this means is that the Riemann-Liouville fractional integral makes sense in that it agrees with the ordinary integral. This is obviously a very desirable property. 
 
 The second property that we wish to explore is the semigroup property.
 \begin{mdframed}[innertopmargin=10pt]
@@ -178,7 +178,7 @@ The Riemann-Liouville fractional derivative is \emph{not} a right inverse of the
 \begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}
     \label{lem:rld_right_res}
-    For an admissable function $ f $ we have that
+    For an admissible function $ f $ we have that
     \begin{align*}
         \left(I_a^\alpha \prescript{}{a}{\mathcal{D}}^\alpha f\right)(t) = f(t) - \sum_{j=1}^{n} \left[ \prescript{}{a}{\mathcal{D}}^{\alpha - j}f(t)\right]_{t=a} \frac{(t-a)^{\alpha - j}}{\Gamma(\alpha - j + 1)}
     \end{align*}
@@ -224,13 +224,13 @@ The proof is trivial and follows immediately from the definitions.
 What lemmas \ref{lem:rld_left_inverse} and \ref{lem:rld_right_res} essentially amount to is an \emph{extended fundamental theorem of calculus}. While these results generalise the FTC they not more \emph{fundamental} than the ordinary fundamental theorem of calculus in that they cannot be used to prove the FTC. This is because implicitly in the definition of the Riemann-Liouville fractional integral and integral and in the proofs of \ref{lem:rld_left_inverse} and \ref{lem:rld_right_res} we have used the FTC.
 
 It turns out that the semi-group property that we formulated for the fractional integral does not hold for the Riemann-Liouville fractional derivative.
-That is, it is not neseccerily true that $ \prescript{}{0}{\mathcal{D}}^\alpha \prescript{}{0}{\mathcal{D}}^\beta =  \prescript{}{0}{\mathcal{D}}^{\alpha + \beta} =  \prescript{}{0}{\mathcal{D}}^\beta  \prescript{}{0}{\mathcal{D}}^\alpha $. Gorenflo and Mainardi give excelent examples of where these equalitities break down \cite{Gorenflo1997}.
+That is, it is not neseccerily true that $ \prescript{}{0}{\mathcal{D}}^\alpha \prescript{}{0}{\mathcal{D}}^\beta =  \prescript{}{0}{\mathcal{D}}^{\alpha + \beta} =  \prescript{}{0}{\mathcal{D}}^\beta  \prescript{}{0}{\mathcal{D}}^\alpha $. Gorenflo and Mainardi give excellent examples of where these equalities break down \cite{Gorenflo1997}.
 
 Due to the utilitiy of the Laplace transform of the Riemann-Liouville fractional derivative we calculate it here as it will prove useful for latter results.
 \begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}
 \label{lem:lap_rld}
-	The Laplace transform the of the Riemann-Liouville derivative of an admissable function $ f $ is given by
+	The Laplace transform the of the Riemann-Liouville derivative of an admissible function $ f $ is given by
 	\begin{align*}
 		\mathcal{L} \left\{ \rld{0}{}{\alpha}{f} \right\} = s^\alpha \mathcal{L} \left\{ f(x) \right\} - \sum_{k=0}^{n-1} s^{k} \rld{0}{}{\alpha-k-1}{f}(0).
 	\end{align*}
@@ -252,7 +252,7 @@ We also consider the Fourier transform of the Riemann-Liouville fractional deriv
 \begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}
     \label{lem:rld_fourier}
-    For an admissable function $ f $ the Fourier transform of the Riemann-Liouville fractional derivative with $ a = -\infty $ and of order $ \alpha $ is given by
+    For an admissible function $ f $ the Fourier transform of the Riemann-Liouville fractional derivative with $ a = -\infty $ and of order $ \alpha $ is given by
     \begin{align*}
         \mathcal{F}\left\{ \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) \right\} = (i\omega)^{\alpha} \mathcal{F}\left\{ f(t) \right\}.
     \end{align*}
@@ -264,7 +264,7 @@ We also consider the Fourier transform of the Riemann-Liouville fractional deriv
     \begin{align*}
         \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) = \frac{d^n}{dt^n} \left[ I_{-\infty}^{n - \alpha} f(t)\right]
     \end{align*}
-    and so by elementry results for Fourier transforms we have that
+    and so by elementary results for Fourier transforms we have that
     \begin{align*}
         \mathcal{F}\left\{ \left(\prescript{}{-\infty}{\mathcal{D}}^\alpha f\right)(t) \right\}  &=
         \mathcal{F}\left\{ \frac{d^n}{dt^n} \left[ I_{-\infty}^{n-\alpha} f(t) \right] \right\} \\
@@ -361,7 +361,7 @@ A similar result exists for $  I_0^\alpha \prescript{C}{o}{\mathcal{D}}^\alpha $
 \begin{mdframed}[innertopmargin=10pt]
 \begin{lemma}
  \label{lem:rli-cap}
- For an admissable function $ f $ we have that,
+ For an admissible function $ f $ we have that,
  \begin{align}
  \left(I^\alpha_0 \prescript{C}{0}{\mathcal{D}}^\alpha f \right)(t) = f(t) + \sum_{k=0}^{n} \frac{f^{(k)}(0)t^{k}}{k!}.
  \end{align}
@@ -442,7 +442,7 @@ A careful reader might notice that the results of lemmas \ref{lem:rld_fourier} a
     &=  \prescript{}{-\infty}{\mathcal{D}}^\alpha f(t). 
     \end{align*}
 \end{proof}
-The restriction on $ f $ is not as limiting as one might imagine because for the Fourier transform to have nice properties such as being an automorphism one would want $ f $ to come from some sort of Schwartz space and the membership criteria for a Schwartz space are considerably more restrictive than the conditions given in the above lemma. In fact, in defining precisely which functions are \emph{admissable} one ends up having to place similar conditions on $ f $. This is not a rabbit hole that we wish to explore further, and we refer the interested reader to \cite{Samko1993} for a more thorough discussion of the matter. 
+The restriction on $ f $ is not as limiting as one might imagine because for the Fourier transform to have nice properties such as being an automorphism one would want $ f $ to come from some sort of Schwartz space and the membership criteria for a Schwartz space are considerably more restrictive than the conditions given in the above lemma. In fact, in defining precisely which functions are \emph{admissible} one ends up having to place similar conditions on $ f $. This is not a rabbit hole that we wish to explore further, and we refer the interested reader to \cite{Samko1993} for a more thorough discussion of the matter. 
 
 \subsection{Gr{\"u}nwald-Letnikov Derivative} 
 We actually won't make much use of the Gr{\"u}nwald-Letnikov derivative in future discussions, however, any treatment of fractional calculus would be incomplete without at least a brief discussion of this operator.

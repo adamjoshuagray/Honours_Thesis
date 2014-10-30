@@ -8,7 +8,7 @@ We will look in detail at two functions, the Gamma function and the Mittag-Leffl
 
 \subsection{Gamma Function}
 
-The Gamma function forms part of the definition of the the fractional derivatives and integrals so far discussed. It also forms part of the definition of the Mittag-Leffler function, the Wright function, the Meijer G function and the Fox H function. These functions these are all very general functions important important in the field of fractional calculus. It makes sense therefore to give a formal definition of the Gamma function and include some results.
+The Gamma function forms part of the definition of the fractional derivatives and integrals so far discussed. It also forms part of the definition of the Mittag-Leffler function, the Wright function, the Meijer G function and the Fox H function. These functions these are all very general functions important in the field of fractional calculus. It makes sense therefore to give a formal definition of the Gamma function and include some results.
 
 Much of the results we prove here are setup to allow us to prove lemma \ref{lem:mit_lef_asym_exp_1} which will then be used to prove lemma \ref{lem:mit_lef_quotient}. 
 
@@ -452,7 +452,7 @@ which means that
     \circledast = \int_{\gamma(\varepsilon, \mu)} \frac{e^{\zeta^{1 / \alpha}}\zeta^{(1-\beta)/\alpha}}{\zeta - z} d\zeta.
 \end{align*}
 
-As argued in Podulbny \cite{Podlubny1999}, because of \ref{eq:mit_lef_region}, this integral is absolutely convergent in $G^-(\varepsilon, \mu) $ and is an analytic function of $ z $ and so by the principle of analytic continuation this integral equals $ E_{\alpha, \beta}(z) $ in all of $ G^-(\varepsilon, \mu) $ rather than just $ |z| < \varepsilon $.
+As argued in Podlubny \cite{Podlubny1999}, because of \ref{eq:mit_lef_region}, this integral is absolutely convergent in $G^-(\varepsilon, \mu) $ and is an analytic function of $ z $ and so by the principle of analytic continuation this integral equals $ E_{\alpha, \beta}(z) $ in all of $ G^-(\varepsilon, \mu) $ rather than just $ |z| < \varepsilon $.
 
 If $ z \in G^+(\varepsilon, \mu) $ we can say that $ z \in G(\delta, \mu) $ where $ \delta $ is chosen so that $ |z| < \delta $. The idea here it to get $ z $ on the other side of a contour $ \gamma(\delta, \mu) $.
 Then the above result still stands, but with a different contour. So if $ \varepsilon < |z| <\delta $ and $ -\mu < \arg(z) < \mu $ then we can use Cauchy's theorem to write

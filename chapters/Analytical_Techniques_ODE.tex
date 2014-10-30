@@ -112,7 +112,7 @@ fractional differential equations can be found in \cite{Podlubny1999}.
 \begin{mdframed}[innertopmargin=10pt]
 \begin{theorem}[Uniqueness]
 \label{thm-existence-uniq}
-Consider the following intial value problem,
+Consider the following initial value problem,
 
 	\begin{align}
 		\label{eq-fde-ivp-1}
@@ -137,7 +137,7 @@ such that we can choose $ \gamma $ sufficiently large such that the following ho
 	    \label{eq:fde-uniq-cond}
 \sum_{j=2}^N |\beta_j| a^{\alpha_1 - \alpha_j} \frac{E_{\alpha_1,1+\alpha_1-\alpha_j}(\gamma t^{\alpha_1})}{E_{\alpha_1,1}(\gamma t^{\alpha_1})} < 1
 	\end{align}
-	then the intial value problem defined in \ref{eq-fde-ivp-1} and \ref{eq-fde-ivp-ic-1} has a unique solution on $ [0, a] $.
+	then the initial value problem defined in \ref{eq-fde-ivp-1} and \ref{eq-fde-ivp-ic-1} has a unique solution on $ [0, a] $.
 \end{theorem}
 \end{mdframed}
 To prove this we will need two lemmas. 
@@ -263,7 +263,7 @@ Interestingly this limit converges \emph{very} slowly for some choices of $ \alp
 It should be clear that if $ \alpha_1 < 2 $ then the conditions in \ref{eq:fde-uniq-cond} is fulfilled and so we can \emph{always} choose a $ \gamma $ large enough that \eqref{eq:fde-uniq-cond} holds.
 
 
-Both theorems \ref{thm:unique-tisdell} and \ref{thm-existence-uniq} are important as they give us some guarentees about the existance and uniqueness of solutions the initial value problems involving fractional derivatives. The generalisation in \ref{thm-existence-uniq} is important as it could be applied to showing the existance of solutions equations like the Bagley-Torvick equation which is a multi-order fractional differential equation that models the motion of a plate in a viscus fluid \cite{Diethelm2002-3, Podlubny1999, Torvik1984}.
+Both theorems \ref{thm:unique-tisdell} and \ref{thm-existence-uniq} are important as they give us some guarantees about the existence and uniqueness of solutions the initial value problems involving fractional derivatives. The generalisation in \ref{thm-existence-uniq} is important as it could be applied to showing the existence of solutions equations like the Bagley-Torvick equation which is a multi-order fractional differential equation that models the motion of a plate in a viscus fluid \cite{Diethelm2002-3, Podlubny1999, Torvik1984}.
 
 In fact these results can be taken quite a bit further. The proof techniques used in theorems \ref{thm:unique-tisdell} and \ref{thm-existence-uniq} suggest a constructive method for arriving at a solution to fractional differential equations. This is formalised by Tisdell \cite{Tisdell2012} through the method of successive approximations. A similar idea is also outlined in \cite{Podlubny1999}.
 
@@ -353,7 +353,7 @@ It turns out that this lemma is powerful enough to prove uniqueness or non-multi
 	we have that $ \rho(t) \leq 0 $ which implies that $ |x(t) - y(t)| \leq 0 $ for $ t \in [0,a] $ and hence there can be at most one solution.
 \end{proof}
 	
-We should note that this result technique is analogous to a well known result and technique used for non-fractional ordinary differential equations. Although this is a weaker result than theoerem \ref{thm:unique-tisdell} it's illustrative of an important technique. 
+We should note that this result technique is analogous to a well known result and technique used for non-fractional ordinary differential equations. Although this is a weaker result than theorem \ref{thm:unique-tisdell} it's illustrative of an important technique. 
 
 It turns out lemma \ref{lem:gronwall} has significant utility as it has been used to show a number of results. For example Tisdell \cite{Tisdell2012} used it to give an \emph{a priori} bound on solutions to the initial value problem given in \eqref{eq:ivp_uniq_1} and \eqref{eq:ivp_uniq_ic_1}.
 

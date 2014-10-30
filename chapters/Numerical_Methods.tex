@@ -30,13 +30,12 @@ Lets consider the initial value problem
 \end{align}
 for $ 0 \leq k < \lfloor \alpha \rfloor $. Note that this initial value problem is stated in terms of Caputo derivatives. The motivation for such initial value problems was discussed in section \ref{subsec:caputo}.
 
-One of the most important things to note about this equation is that for non-integer values of $ \alpha $ it is non-local, in the sense that the value of the solution at $ y(x_0+h) $ depends not only on $ y(x_0) $ but also on $ y(x), x \in [0, x_0] $ \cite{Diethelm2010}. This is in contrast to ordinary differential equations and this fact is what makes fractional differential equations considerably more complex to solve. Even multi-step methods which can be used to solve ordinary differential equations, only rely on some \emph{fixed} number previous time steps. As a solution to a fractional differential equation progresses it relies on more and more previous time steps. As one might suspect this fundamentally increases the computational complexity of the schemes used to solve fractional differential equations as compared with the schemes used to solve traditional ordinary differential equations. \footnote{It is possible to reduce these computations to look at some large but fixed number of previous grid-
-points 
+One of the most important things to note about this equation is that for non-integer values of $ \alpha $ it is non-local, in the sense that the value of the solution at $ y(x_0+h) $ depends not only on $ y(x_0) $ but also on $ y(x), x \in [0, x_0] $ \cite{Diethelm2010}. This is in contrast to ordinary differential equations and this fact is what makes fractional differential equations considerably more complex to solve. Even multi-step methods which can be used to solve ordinary differential equations, only rely on some \emph{fixed} number previous time steps. As a solution to a fractional differential equation progresses it relies on more and more previous time steps. As one might suspect this fundamentally increases the computational complexity of the schemes used to solve fractional differential equations as compared with the schemes used to solve traditional ordinary differential equations. \footnote{It is possible to reduce these computations to look at some large but fixed number of previous grid-points 
 but this results in a speed vs. accuracy tradeoff which will be discussed in section \ref{subsubsec:reduce_complexity}}
 
 \subsubsection{The Adams Moulton Bashforth Scheme}
 \label{sec:amb_desc}
-We briefly outline a method explained and analyzed in detail in \cite{Diethelm2004}. As shown in the proof of theorem \ref{thm:unique-tisdell} the initial value problem \eqref{eq:num_ivp_1}, \eqref{eq:num_ivp_2} is equivalent to the Volterra equation.
+We briefly outline a method explained and analysed in detail in \cite{Diethelm2004}. As shown in the proof of theorem \ref{thm:unique-tisdell} the initial value problem \eqref{eq:num_ivp_1}, \eqref{eq:num_ivp_2} is equivalent to the Volterra equation.
 
 \begin{align}
     \label{eq:num_int_eq}
@@ -87,7 +86,7 @@ and thus a predicted value of $ y_{k+1} $ can be calculated by
 \end{align}
 
 This outlines a fractional Adams Moulton Bashforth scheme. Of particular note are the sums which arise in \eqref{eq:amb_sum_1} and \eqref{eq:amb_sum_2}. These sums do not arise in the integer order Adams Moulton Bashforth method. They arise as a result of the non-local nature of the fractional derivative \cite{Diethelm2004}. These sums represent a significant computational cost as the number of terms grow linearly as the solution progress. This means in the fractional case the Adams Moulton Bashforth method has computational complexity $ O(N^2) $ \cite{Diethelm2011}. Section \ref{sec:parallel_c} will outline a task based parallel approach and section \ref{sec:parallel_cuda} will outline a massively parallel approach to solving \eqref{eq:num_ivp_1}, \eqref{eq:num_ivp_2} with NVIDIA's CUDA.
-\subsubsection{Parallelizing: A Task Based Approach}
+\subsubsection{Parallelising: A Task Based Approach}
 \label{sec:parallel_c}
 
 Diethelm's paper \cite{Diethelm2011} outlines a parallel method of numerically approximating the solution to \eqref{eq:num_ivp_1}, \eqref{eq:num_ivp_2} by using a thread based parallel implementation of the Adams Moulton Bashforth method outlined in \ref{sec:amb_desc}. We base our approach in this section broadly on those of \cite{Diethelm2011} but reformulate the scheme in terms of tasks instead of threads. This has a number of distinct benefits including scalability, especially from an implementation standpoint and clarity.
@@ -146,12 +145,12 @@ The red arrow illustrate the interdependency of variables within a block. The se
 
 \subsubsection{Analysis of the Performance of the Scheme in C\# and MONO}
 
-We wish to analyze the performance of this scheme both from the a theoretical standpoint and from at practical standpoint. 
+We wish to analyze the performance of this scheme both from a theoretical standpoint and from at practical standpoint. 
 
 For the theoretical analysis of the scheme we introduce Amdahl's Law or Amdahl's principle.
 \begin{mdframed}[innertopmargin=10pt]
 \begin{principle}[Amdahl]
-Let $ P $ be the proportion of a computation which can be parallelized in a given progress. Then the speedup given by
+Let $ P $ be the proportion of a computation which can be parallelised in a given progress. Then the speedup given by
 $ Q $ cores is
 \begin{align}
 	S(Q) = \frac{1}{(1-P)+\frac{P}{Q}}
@@ -220,7 +219,7 @@ then letting $ N \lra \infty $ we get
 
 \end{proof}
 
-What this result means is that if we have $ 2p $ free cores this parallel method should take $ \frac{1}{2p} $ the amount of time to run compared to it's serial counterpart given a sufficiently large number of grid points, $N$. Due to the fact that this a task based scheme this is also dependent on an efficient scheduler.
+What this result means is that if we have $ 2p $ free cores this parallel method should take $ \frac{1}{2p} $ the amount of time to run compared to its serial counterpart given a sufficiently large number of grid points, $N$. Due to the fact that this a task based scheme this is also dependent on an efficient scheduler.
 
 We now compare this with practical experimentation. This method was developed in C\# with MONO (see Appendix A for C\# code) and run on a machine with an Intel \textregistered Core \texttrademark{} i7-4930K CPU @ 3.40GHz. This particular CPU has 6 physical cores with 12 logical cores provided by hyper-threading. 
 
@@ -260,11 +259,11 @@ There is the possibility that we haven't chosen a large enough value of $ N $ to
 
 Also for cases where $ p > 3 $ we have 6 computationally heavy tasks ( $ H $ and $ H_p $ ) being completed per block and are therefore reaching the limit of the number of physical cores on the system. Obviously we cannot expect an improvement once $ p $ gets too large as the number of tasks to be executed in parallel exceeds the number of available cores. We see the full effect of this in the $ p = 6 $ case where the runtime was actually longer than that for $ p = 5 $.
 
-\subsubsection{Parallelizing: A CUDA Approach}
+\subsubsection{Parallelising: A CUDA Approach}
 
 \label{sec:parallel_cuda}
 
-One of the main benefits of the scheme outlined in section \ref{sec:parallel_c}, especially noted in it's form presented by Diethelm in \cite{Diethelm2011} is the ability for this scheme to be implemented across multiple machines with a small amount of message passing between executing threads (or in this case tasks). The main reason for wanting to minimize message passing is that it can significantly impact performance to the point where most of the time is actually spent communicating updates between execution nodes. This is given significant consideration in \cite{Diethelm2011}. In this section we abandon these measures in favor of massive performance gains when executing in a massively parallel manner on a GPU.
+One of the main benefits of the scheme outlined in section \ref{sec:parallel_c}, especially noted in it's form presented by Diethelm in \cite{Diethelm2011} is the ability for this scheme to be implemented across multiple machines with a small amount of message passing between executing threads (or in this case tasks). The main reason for wanting to minimize message passing is that it can significantly impact performance to the point where most of the time is actually spent communicating updates between execution nodes. This is given significant consideration in \cite{Diethelm2011}. In this section we abandon these measures in favour of massive performance gains when executing in a massively parallel manner on a GPU.
 
 Modern graphics cards have the advantage of being able to efficiently perform massively parallel computations, especially calculations involving floating point arithmetic \cite{Fernando2005}. For example the NVIDIA GeForce GTX 780 has 2304 cores clocked at 863MHz. We use one of these graphics cards in an effort to dramatically speed up the fractional Adams Moulton Bashforth Method using NVIDIA's CUDA tool-chain.
 
@@ -294,7 +293,7 @@ We can actually completely change the complexity class of the problem by improvi
 
 The most basic approach is the fixed memory principle as outlined in \cite{Podlubny1999} and again in \cite{Ford2001}. The idea is to truncate the integral in the equivalent integral equation, such as in \label{eq:num_int_eq}. We would like to characterise the trade off in terms of accuracy that occurs when one takes this approach. That is, how much accuracy is sacrificed for different \emph{look back} lengths.
 
-For simplicity lets consider $ \alpha \in (0, 1) $ and lets consider the Caputo fractional derivative of some admissible function $ f $.
+For simplicity let's consider $ \alpha \in (0, 1) $ and let's consider the Caputo fractional derivative of some admissible function $ f $.
 We wish to approximate
 \begin{align}
 	\frac{1}{\Gamma(1-\alpha)} \int_0^t \frac{f'(t)}{(t-s)^\alpha} ds
