@@ -162,12 +162,6 @@ Now lets consider the contour integral diagram in figure \ref{fig:hankel_wedge_2
     \int_{A^+ B^+ C^+ D^+} f(\tau) d\tau = \int_{A^-D^-C^-B^-} f(\tau) = 0.
 \end{align}
 
- \begin{wrapfigure}{H}{210pt}
-\input{diagrams/Hankel_Wedge.tex}
-\caption{The Hankel countour $ \gamma(\varepsilon, \varphi) $}
-\label{fig:hankel_wedge}
-\end{wrapfigure}
-
 Considering just the arc $ A^+B^+ $ we note that $ |\tau| = R $ and hence
 \begin{align*}
     |f(\tau)| &= |e^\tau \tau^{-z}| = e^{R\cos(\arg \tau) - Re(z) \log(R) + Im(z) \arg \tau} \\
@@ -180,6 +174,11 @@ and thus by application of the ML lemma we have
     \lim_{R \lra \infty} \int_{A^+}^{B^+} f(\tau) d\tau = 0.
 \end{align*}
 
+ \begin{wrapfigure}{H}{210pt}
+\input{diagrams/Hankel_Wedge.tex}
+\caption{The Hankel countour $ \gamma(\varepsilon, \varphi) $}
+\label{fig:hankel_wedge}
+\end{wrapfigure}
 
 A completely symmetric argument yields
 \begin{align*}
