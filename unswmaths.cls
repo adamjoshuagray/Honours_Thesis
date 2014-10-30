@@ -42,8 +42,8 @@
 	% Upper part of the page. The '~' is needed because \\
 	% only works if a paragraph has started.
 	\includegraphics[width=0.4\textwidth]{artwork/mathslogo}~\\[1cm]
-	\textsc{\LARGE University of New South Wales}\\[0.5cm]
-	\textsc{\large School of Mathematics and Statistics}\\[0.5cm]
+	\textsc{\LARGE University of New South Wales}\\[0.2cm]
+	\textsc{\large School of Mathematics and Statistics}\\[0.1cm]
 	% Title
 	\HRule \\[0.4cm]
 	{ \huge \bfseries \@title}\\[0.2cm]
@@ -68,7 +68,8 @@
 	\end{flushright}
 	\end{minipage}
 	\vfill
-	Submitted in Partial Fulfillment of the Requirements for the award of the degree of Bachelor of Science with Honours 
+	\textsc{Submitted in Partial Fulfillment of the Requirements for the Award of the Degree of \\
+	Bachelor of Science with Honours}
 	\end{center}
 	\end{titlepage}
 }
