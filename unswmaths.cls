@@ -67,7 +67,7 @@
 	\@studentno
 	\end{flushright}
 	\end{minipage}
-	\vfill
+	\\[0.5cm]
 	\textsc{Submitted in Partial Fulfillment of the Requirements for the Award of the Degree of \\
 	Bachelor of Science with Honours}
 	\end{center}
